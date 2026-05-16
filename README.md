@@ -6,7 +6,7 @@
 
 I work at the intersection of **data, operations and decision support**, turning structured information into practical insights for performance monitoring, process improvement and business analysis.
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Lovable-0f766e?style=for-the-badge)](https://lovable.dev/projects/3ca529e3-2da7-4915-a84c-4b2f06bfadef)
+
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Luanda%20Rodrigues-0a66c2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/luanda-rodrigues)
 [![Email](https://img.shields.io/badge/Email-Contact-334155?style=for-the-badge&logo=gmail)](mailto:luandarodrigues30@gmail.com)
 
