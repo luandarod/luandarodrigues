@@ -27,6 +27,12 @@ The dataset contains identification and location fields for UBS records:
 - Address and neighborhood
 - Latitude and longitude
 
+The raw file is currently stored at:
+
+```text
+projects/ubs-healthcare-mapping/data/Unidades_Basicas_Saude-UBS.csv
+```
+
 ## Key numbers
 
 | Metric | Value |
@@ -76,24 +82,52 @@ The dataset contains identification and location fields for UBS records:
 5. Aggregation by region, state and municipality
 6. Geolocation quality assessment
 7. Preparation of outputs for dashboard and portfolio presentation
+8. Optional IBGE/SIDRA enrichment for population and territorial analysis
+
+## Enrichment pipeline
+
+The raw UBS file can be enriched with IBGE territory data using:
+
+```bash
+python projects/ubs-healthcare-mapping/scripts/enrich_with_ibge.py \
+  --input projects/ubs-healthcare-mapping/data/Unidades_Basicas_Saude-UBS.csv \
+  --output-dir projects/ubs-healthcare-mapping/data/enriched
+```
+
+Expected enriched outputs:
+
+```text
+projects/ubs-healthcare-mapping/data/enriched/
+├── municipality_ubs_territory.csv
+├── uf_ubs_territory_summary.csv
+├── priority_matrix.csv
+└── enrichment_metadata.json
+```
 
 ## Files in this project
 
 ```text
 projects/ubs-healthcare-mapping/
 ├── README.md
+├── DATA_ENRICHMENT.md
 ├── data/
+│   ├── Unidades_Basicas_Saude-UBS.csv
 │   ├── data_quality_summary.csv
 │   ├── region_distribution.csv
 │   ├── state_distribution.csv
-│   └── top_municipalities_by_ubs.csv
+│   └── enriched/
+│       ├── municipality_ubs_territory.csv
+│       ├── uf_ubs_territory_summary.csv
+│       ├── priority_matrix.csv
+│       └── enrichment_metadata.json
 └── scripts/
-    └── analyze_ubs.py
+    ├── analyze_ubs.py
+    └── enrich_with_ibge.py
 ```
 
 ## Tools
 
-Python, Pandas, Folium, Matplotlib, CSV, Geolocation, Data Quality, Health Analytics.
+Python, Pandas, Folium, Matplotlib, CSV, Geolocation, Data Quality, Health Analytics, IBGE APIs, SIDRA, Territorial Intelligence.
 
 ## Limitations
 
