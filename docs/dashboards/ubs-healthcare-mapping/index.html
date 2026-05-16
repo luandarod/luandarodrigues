@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UBS Healthcare Mapping — Interactive Dashboard</title>
+  <meta name="description" content="Interactive portfolio dashboard for mapping Brazilian Primary Healthcare Units, regional distribution and geolocation data quality." />
+  <style>
+    :root{
+      --bg:#f4f1eb;
+      --ink:#111111;
+      --muted:#686159;
+      --line:rgba(17,17,17,.14);
+      --card:rgba(255,255,255,.58);
+      --card-strong:#fffaf1;
+      --soft:#e7e0d6;
+      --dark:#111111;
+      --accent:#2f81f7;
+      --good:#0f766e;
+      --warn:#b45309;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 8% 0%,rgba(17,17,17,.07),transparent 24%),radial-gradient(circle at 88% 8%,rgba(255,255,255,.55),transparent 22%),linear-gradient(rgba(17,17,17,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.045) 1px,transparent 1px);background-size:auto,auto,74px 74px,74px 74px;z-index:-1}
+    a{color:inherit;text-decoration:none}.wrap{width:min(1180px,calc(100% - 34px));margin:0 auto}.topbar{position:sticky;top:0;z-index:20;background:rgba(244,241,235,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:18px 0}.brand{font-weight:900;letter-spacing:-.04em}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav a{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.32)}.nav a:hover{background:#111;color:#f4f1eb}.hero{padding:80px 0 58px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1.08fr .92fr;gap:44px;align-items:end}.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.16em;font-weight:950;color:var(--muted)}h1{font-size:clamp(48px,8vw,104px);line-height:.88;letter-spacing:-.08em;margin:18px 0 20px}.hero p{font-size:clamp(18px,2.2vw,28px);line-height:1.12;letter-spacing:-.04em;color:#312d28;margin:0}.hero-card{border:1px solid var(--line);border-radius:34px;padding:26px;background:rgba(255,250,241,.62);box-shadow:0 22px 70px rgba(17,17,17,.08)}.hero-card h2{font-size:30px;line-height:1;letter-spacing:-.05em;margin:0 0 14px}.hero-card p{font-size:16px;line-height:1.38;letter-spacing:-.01em;color:var(--muted)}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}.chip{border:1px solid var(--line);border-radius:999px;padding:8px 11px;font-size:12px;font-weight:850;background:rgba(255,255,255,.45)}.section{padding:62px 0;border-bottom:1px solid var(--line)}.section-title{display:grid;grid-template-columns:.72fr 1.28fr;gap:42px;align-items:start;margin-bottom:26px}.section-title h2{font-size:clamp(34px,5vw,68px);line-height:.92;letter-spacing:-.07em;margin:0}.section-title p{font-size:18px;color:var(--muted);margin:0;max-width:760px}.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.kpi{border:1px solid var(--line);border-radius:24px;padding:22px;background:var(--card)}.kpi span{display:block;color:var(--muted);font-size:12px;font-weight:900;letter-spacing:.10em;text-transform:uppercase}.kpi strong{display:block;font-size:38px;letter-spacing:-.06em;line-height:1;margin-top:26px}.kpi small{display:block;color:var(--muted);margin-top:8px}.panel{border:1px solid var(--line);border-radius:30px;background:rgba(255,250,241,.58);padding:24px}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.controls button,.controls select{border:1px solid var(--line);background:rgba(255,255,255,.42);border-radius:999px;padding:10px 12px;font-weight:850;color:var(--ink);cursor:pointer}.controls button.active{background:var(--ink);color:var(--bg)}.chart-wrap{min-height:380px}.bar-row{display:grid;grid-template-columns:120px 1fr 76px;gap:12px;align-items:center;margin:12px 0}.bar-label{font-weight:850}.bar-bg{height:28px;background:rgba(17,17,17,.07);border-radius:999px;overflow:hidden}.bar-fill{height:100%;background:var(--ink);border-radius:999px;transition:width .35s ease}.bar-fill.region{background:#2f81f7}.bar-value{text-align:right;color:var(--muted);font-weight:800}.tooltip{position:fixed;pointer-events:none;background:#111;color:#fff;padding:8px 10px;border-radius:10px;font-size:12px;opacity:0;transform:translate(-50%,-120%);transition:opacity .12s ease;z-index:50}.quality-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.quality-card{border:1px solid var(--line);border-radius:24px;padding:22px;background:rgba(255,255,255,.35)}.quality-card strong{display:block;font-size:34px;letter-spacing:-.05em;line-height:1}.quality-card span{display:block;color:var(--muted);font-size:13px;margin-top:8px}.meter{height:12px;background:rgba(17,17,17,.08);border-radius:999px;overflow:hidden;margin-top:16px}.meter div{height:100%;background:var(--ink);border-radius:999px}.meter div.good{background:var(--good)}.meter div.warn{background:var(--warn)}.insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.insight{border:1px solid var(--line);border-radius:24px;padding:22px;background:rgba(255,255,255,.35)}.insight span{font-size:12px;font-weight:950;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}.insight h3{font-size:24px;line-height:1;letter-spacing:-.04em;margin:22px 0 10px}.insight p{color:var(--muted);margin:0}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.35)}table{width:100%;border-collapse:collapse;min-width:620px}th,td{padding:13px 14px;border-bottom:1px solid var(--line);text-align:left}th{font-size:12px;text-transform:uppercase;letter-spacing:.10em;color:var(--muted)}td:nth-child(3),td:nth-child(4){text-align:right;font-variant-numeric:tabular-nums}.footer{padding:42px 0;color:var(--muted);font-size:14px}.footer a{text-decoration:underline;text-underline-offset:4px}.source-note{font-size:13px;color:var(--muted);margin-top:16px}.slide-controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.slide-controls a{border:1px solid var(--line);border-radius:999px;padding:12px 14px;font-weight:900;background:#111;color:#f4f1eb}.slide-controls a.secondary{background:rgba(255,255,255,.35);color:#111}@media(max-width:900px){.hero,.section-title,.grid-2{grid-template-columns:1fr}.kpi-grid,.quality-grid,.insight-grid{grid-template-columns:1fr 1fr}.bar-row{grid-template-columns:80px 1fr 64px}.nav{display:none}}@media(max-width:560px){h1{font-size:50px}.kpi-grid,.quality-grid,.insight-grid{grid-template-columns:1fr}.hero{padding-top:52px}.section{padding:46px 0}.chart-wrap{min-height:auto}.topbar .wrap{align-items:flex-start;gap:10px;flex-direction:column}.nav{display:flex}.bar-row{grid-template-columns:1fr}.bar-value{text-align:left}}
+  </style>
+</head>
+<body>
+  <div class="tooltip" id="tooltip"></div>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../../">Luanda Rodrigues · Portfolio Dashboard</a>
+      <nav class="nav" aria-label="Dashboard navigation">
+        <a href="#overview">Overview</a>
+        <a href="#distribution">Distribution</a>
+        <a href="#quality">Data Quality</a>
+        <a href="#insights">Insights</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="overview">
+      <div>
+        <div class="kicker">Health Analytics · Geomapping · Public Health BI</div>
+        <h1>Mapping Primary Healthcare Units in Brazil.</h1>
+        <p>Interactive presentation of UBS distribution, coordinate readiness and data governance signals for public health planning.</p>
+        <div class="slide-controls">
+          <a href="#distribution">Start presentation</a>
+          <a class="secondary" href="https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/ubs-healthcare-mapping" target="_blank" rel="noreferrer">Open GitHub project</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <h2>Project question</h2>
+        <p>How can geographic and cadastral data from primary healthcare units be transformed into useful intelligence for territorial planning, BI dashboards and data quality monitoring?</p>
+        <div class="chips">
+          <span class="chip">47,714 UBS records</span>
+          <span class="chip">27 states</span>
+          <span class="chip">5,483 municipalities</span>
+          <span class="chip">95.96% valid coordinates</span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-title">
+        <h2>Executive snapshot.</h2>
+        <p>The dataset has broad national coverage and is suitable for geographic portfolio presentation, but some coordinate quality issues must be documented before operational use.</p>
+      </div>
+      <div class="kpi-grid" id="kpis"></div>
+    </section>
+
+    <section class="section wrap" id="distribution">
+      <div class="section-title">
+        <h2>Regional and state distribution.</h2>
+        <p>Use the filters to move between national, regional and state-level views. The dashboard shows distribution of registered UBS records, not population-adjusted coverage.</p>
+      </div>
+      <div class="grid-2">
+        <div class="panel">
+          <div class="controls" id="regionControls"></div>
+          <div class="chart-wrap" id="regionChart"></div>
+        </div>
+        <div class="panel">
+          <div class="controls">
+            <select id="regionSelect" aria-label="Filter states by region"></select>
+            <button id="sortRecords" class="active">Sort by records</button>
+            <button id="sortShare">Sort by share</button>
+          </div>
+          <div class="chart-wrap" id="stateChart"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="quality">
+      <div class="section-title">
+        <h2>Data quality signals.</h2>
+        <p>Coordinate completeness is strong, but repeated coordinates and missing latitude/longitude should be treated as governance flags before using the base in operational dashboards.</p>
+      </div>
+      <div class="quality-grid" id="qualityCards"></div>
+    </section>
+
+    <section class="section wrap" id="insights">
+      <div class="section-title">
+        <h2>What this means.</h2>
+        <p>The analysis is useful for mapping, dashboard prototyping and data quality monitoring. Coverage conclusions require additional population and service production data.</p>
+      </div>
+      <div class="insight-grid">
+        <article class="insight"><span>01</span><h3>Strong mapping base</h3><p>Most records have usable coordinates, making the dataset ready for map-based exploration and geographic BI storytelling.</p></article>
+        <article class="insight"><span>02</span><h3>Distribution is not coverage</h3><p>High counts do not mean adequate access. Population, demand, catchment area and production indicators are needed for coverage analysis.</p></article>
+        <article class="insight"><span>03</span><h3>Governance opportunity</h3><p>Missing or repeated coordinates can be monitored as data quality KPIs in public health information systems.</p></article>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-title">
+        <h2>State table.</h2>
+        <p>Complete ranking by state, including region, UBS record count and national share.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>State</th><th>Region</th><th>UBS records</th><th>Share</th></tr></thead>
+          <tbody id="stateTable"></tbody>
+        </table>
+      </div>
+      <p class="source-note">Source: summarized project outputs stored in the GitHub repository. This dashboard is a static, open-link portfolio presentation generated from the project CSV outputs.</p>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <p>Built as a static interactive dashboard for GitHub Pages. <a href="https://luandarodrigues.github.io/luandarodrigues/">Back to portfolio</a>.</p>
+  </footer>
+
+<script>
+const regionData = [
+  {region:'Northeast', ubs:18125, percentage:37.98675441170307},
+  {region:'Southeast', ubs:15274, percentage:32.011568931550485},
+  {region:'South', ubs:6764, percentage:14.176132791214318},
+  {region:'North', ubs:3971, percentage:8.322504925179192},
+  {region:'Center-West', ubs:3580, percentage:7.503038940352937}
+];
+const stateData = [
+  {uf:'MG',region:'Southeast',ubs:6137,percentage:12.862053066186025},{uf:'SP',region:'Southeast',ubs:5824,percentage:12.206061114138409},{uf:'BA',region:'Northeast',ubs:4449,percentage:9.324307331181624},{uf:'PE',region:'Northeast',ubs:3012,percentage:6.312612650375152},{uf:'CE',region:'Northeast',ubs:2492,percentage:5.222785765184223},{uf:'MA',region:'Northeast',ubs:2380,percentage:4.988053820681561},{uf:'RJ',region:'Southeast',ubs:2371,percentage:4.969191432284026},{uf:'PR',region:'South',ubs:2367,percentage:4.960808148551788},{uf:'RS',region:'South',ubs:2340,percentage:4.904220983359182},{uf:'SC',region:'South',ubs:2057,percentage:4.311103659303349},{uf:'PA',region:'North',ubs:1852,percentage:3.881460368026156},{uf:'PB',region:'Northeast',ubs:1788,percentage:3.747327828310349},{uf:'GO',region:'Center-West',ubs:1611,percentage:3.3763675231588213},{uf:'PI',region:'Northeast',ubs:1276,percentage:2.6742675105838956},{uf:'RN',region:'Northeast',ubs:1135,percentage:2.378756759022509},{uf:'MT',region:'Center-West',ubs:1063,percentage:2.2278576518422266},{uf:'AL',region:'Northeast',ubs:1001,percentage:2.0979167539925387},{uf:'ES',region:'Southeast',ubs:942,percentage:1.9742633189420293},{uf:'AM',region:'North',ubs:706,percentage:1.4796495787399924},{uf:'MS',region:'Center-West',ubs:696,percentage:1.458689865409397},{uf:'SE',region:'Northeast',ubs:592,percentage:1.2408973420648115},{uf:'DF',region:'Center-West',ubs:210,percentage:0.44012240637064423},{uf:'RO',region:'North',ubs:533,percentage:1.1172442296349103},{uf:'TO',region:'North',ubs:415,percentage:0.8693507155132666},{uf:'AC',region:'North',ubs:284,percentage:0.5952114687513091},{uf:'AP',region:'North',ubs:98,percentage:0.2053904514406673},{uf:'RR',region:'North',ubs:83,percentage:0.17395313744392002}
+];
+const summary = {
+  total_records:47714, unique_cnes:47714, states:27, municipalities:5483,
+  valid_coordinates:45785, valid_pct:95.95716142012827,
+  missing_complete_coordinates:1929, missing_pct:4.042838579871736,
+  repeated_coordinates:3182, repeated_pct:6.668902208995263
+};
+const fmt = new Intl.NumberFormat('en-US');
+const pct = v => `${v.toFixed(1)}%`;
+const tooltip = document.getElementById('tooltip');
+function showTip(e, text){ tooltip.textContent = text; tooltip.style.left = `${e.clientX}px`; tooltip.style.top = `${e.clientY}px`; tooltip.style.opacity = 1; }
+function hideTip(){ tooltip.style.opacity = 0; }
+function barRows(data, opts={}){
+  const max = Math.max(...data.map(d=>d.ubs));
+  return data.map(d=>`<div class="bar-row" data-tip="${d.region || d.uf}: ${fmt.format(d.ubs)} records · ${pct(d.percentage)}">
+    <div class="bar-label">${d.uf || d.region}</div>
+    <div class="bar-bg"><div class="bar-fill ${opts.region ? 'region':''}" style="width:${(d.ubs/max)*100}%"></div></div>
+    <div class="bar-value">${pct(d.percentage)}</div>
+  </div>`).join('');
+}
+function attachTips(){ document.querySelectorAll('[data-tip]').forEach(el=>{ el.onmousemove=e=>showTip(e, el.dataset.tip); el.onmouseleave=hideTip; }); }
+function renderKpis(){
+  const items = [
+    ['Total UBS records', fmt.format(summary.total_records), 'Unique CNES records: 47,714'],
+    ['States represented', summary.states, 'All Brazilian federative units'],
+    ['Municipalities', fmt.format(summary.municipalities), 'National municipal coverage in the registry'],
+    ['Valid coordinates', pct(summary.valid_pct), `${fmt.format(summary.valid_coordinates)} records ready for mapping`]
+  ];
+  document.getElementById('kpis').innerHTML = items.map(([label,value,small])=>`<article class="kpi"><span>${label}</span><strong>${value}</strong><small>${small}</small></article>`).join('');
+}
+function renderRegionControls(){
+  const regions = ['All', ...regionData.map(d=>d.region)];
+  document.getElementById('regionControls').innerHTML = regions.map((r,i)=>`<button class="${i===0?'active':''}" data-region="${r}">${r}</button>`).join('');
+  document.querySelectorAll('#regionControls button').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('#regionControls button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const selected = btn.dataset.region;
+    document.getElementById('regionChart').innerHTML = barRows(selected==='All'?regionData:regionData.filter(d=>d.region===selected), {region:true});
+    document.getElementById('regionSelect').value = selected;
+    renderStateChart(); attachTips();
+  }));
+}
+function renderRegionChart(){ document.getElementById('regionChart').innerHTML = barRows(regionData,{region:true}); }
+let stateSort = 'records';
+function renderStateSelect(){
+  document.getElementById('regionSelect').innerHTML = ['All', ...regionData.map(d=>d.region)].map(r=>`<option value="${r}">${r}</option>`).join('');
+  document.getElementById('regionSelect').addEventListener('change', renderStateChart);
+  document.getElementById('sortRecords').addEventListener('click',()=>{stateSort='records';toggleSort();renderStateChart();});
+  document.getElementById('sortShare').addEventListener('click',()=>{stateSort='share';toggleSort();renderStateChart();});
+}
+function toggleSort(){ document.getElementById('sortRecords').classList.toggle('active', stateSort==='records'); document.getElementById('sortShare').classList.toggle('active', stateSort==='share'); }
+function stateFiltered(){
+  const region = document.getElementById('regionSelect').value;
+  return stateData.filter(d=> region==='All' || d.region===region).sort((a,b)=> stateSort==='records' ? b.ubs-a.ubs : b.percentage-a.percentage);
+}
+function renderStateChart(){ document.getElementById('stateChart').innerHTML = barRows(stateFiltered().slice(0,12)); attachTips(); }
+function renderQuality(){
+  const cards = [
+    ['Coordinate readiness', pct(summary.valid_pct), 'Valid latitude/longitude records', summary.valid_pct, 'good'],
+    ['Missing coordinates', pct(summary.missing_pct), `${fmt.format(summary.missing_complete_coordinates)} records need correction`, summary.missing_pct, 'warn'],
+    ['Repeated coordinates', pct(summary.repeated_pct), `${fmt.format(summary.repeated_coordinates)} records flagged`, summary.repeated_pct, 'warn']
+  ];
+  document.getElementById('qualityCards').innerHTML = cards.map(([title,value,desc,width,cls])=>`<article class="quality-card"><strong>${value}</strong><span>${title}</span><p>${desc}</p><div class="meter"><div class="${cls}" style="width:${Math.min(width,100)}%"></div></div></article>`).join('');
+}
+function renderTable(){
+  document.getElementById('stateTable').innerHTML = stateData.map(d=>`<tr><td>${d.uf}</td><td>${d.region}</td><td>${fmt.format(d.ubs)}</td><td>${pct(d.percentage)}</td></tr>`).join('');
+}
+renderKpis(); renderRegionControls(); renderRegionChart(); renderStateSelect(); renderStateChart(); renderQuality(); renderTable(); attachTips();
+</script>
+</body>
+</html>
