@@ -15,6 +15,9 @@
 <a href="https://luandarodrigues.github.io/luandarodrigues/">
   <img src="https://img.shields.io/badge/Portfolio-Visit%20site-111111?style=for-the-badge&logo=githubpages&logoColor=white" alt="Portfolio" />
 </a>
+<a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2">
+  <img src="https://img.shields.io/badge/Main%20Dashboard-UBS%20%2B%20IBGE%20%2B%20APS-111111?style=for-the-badge&logo=githubpages&logoColor=white" alt="Main Dashboard" />
+</a>
 <a href="https://www.linkedin.com/in/luanda-rodrigues">
   <img src="https://img.shields.io/badge/LinkedIn-Luanda%20Rodrigues-111111?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
 </a>
@@ -66,21 +69,47 @@ Currently, my portfolio connects:
 
 ---
 
-## Featured Projects
+## Main Portfolio Project
 
 <table>
   <tr>
-    <td width="50%" valign="top">
-      <h3>01 · Mapping Primary Healthcare Units in Brazil</h3>
-      <p><strong>Health Analytics · Geomapping · Data Quality · Public Health BI</strong></p>
-      <p>Analysis of 47,714 Brazilian Primary Healthcare Units to map geographic distribution, evaluate coordinate quality and identify opportunities for better public health data governance.</p>
+    <td width="45%" valign="top">
+      <h3>UBS + IBGE + Cobertura Potencial APS</h3>
+      <p><strong>Health Analytics · Territorial Intelligence · Public Health BI · Data Quality</strong></p>
+      <p>This interactive dashboard connects the physical registry of Brazilian Primary Healthcare Units with IBGE/SIDRA population and territorial indicators, then adds APS potential coverage to estimate installed primary care capacity.</p>
+      <p>The goal is to move beyond simply counting healthcare units. The dashboard helps compare physical presence, population pressure, territorial dispersion, coordinate quality and potential APS coverage, while keeping the limitations of public health data explicit.</p>
       <p>
         <img src="https://img.shields.io/badge/47,714-UBS%20records-111111?style=flat-square" />
-        <img src="https://img.shields.io/badge/27-states-111111?style=flat-square" />
         <img src="https://img.shields.io/badge/5,483-municipalities-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/210.4M-APS%20population-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/180.3M-estimated%20capacity-111111?style=flat-square" />
       </p>
-      <p><a href="./projects/ubs-healthcare-mapping"><strong>Open project →</strong></a></p>
+      <p>
+        <a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2"><strong>Open interactive dashboard →</strong></a><br />
+        <a href="./projects/ubs-healthcare-mapping"><strong>Open project README →</strong></a>
+      </p>
     </td>
+    <td width="55%" valign="top">
+      <h4>What the dashboard shows</h4>
+      <ul>
+        <li>UBS distribution by state and region.</li>
+        <li>Comparison between UBS volume, population and territorial area.</li>
+        <li>Geolocation quality and coordinate readiness.</li>
+        <li>APS potential coverage by municipality and state.</li>
+        <li>Signals for territorial prioritization and further investigation.</li>
+      </ul>
+      <h4>Why it matters</h4>
+      <p>Counting UBS alone does not explain access, capacity or sufficiency. This project demonstrates how public datasets can be integrated into a decision-oriented analytical layer for health operations and public planning.</p>
+    </td>
+  </tr>
+</table>
+
+---
+
+## Other Featured Projects
+
+<table>
+  <tr>
     <td width="50%" valign="top">
       <h3>02 · Heart Disease Risk Prediction</h3>
       <p><strong>Machine Learning · Clinical Risk Factors · Model Evaluation</strong></p>
@@ -92,8 +121,6 @@ Currently, my portfolio connects:
       </p>
       <p><a href="./projects/heart-disease-risk-ml"><strong>Open project →</strong></a></p>
     </td>
-  </tr>
-  <tr>
     <td width="50%" valign="top">
       <h3>03 · Brazilian E-Commerce Delivery Experience</h3>
       <p><strong>SQL · Logistics · Customer Experience · Machine Learning</strong></p>
@@ -105,6 +132,8 @@ Currently, my portfolio connects:
       </p>
       <p><a href="./projects/olist-ecommerce-experience-analytics"><strong>Open project →</strong></a></p>
     </td>
+  </tr>
+  <tr>
     <td width="50%" valign="top">
       <h3>04 · CineGraph Network Intelligence</h3>
       <p><strong>Graph Analytics · Recommender Systems · NLP · Knowledge Graphs</strong></p>
@@ -115,6 +144,11 @@ Currently, my portfolio connects:
         <img src="https://img.shields.io/badge/Graph%20%2B%20NLP-analysis-111111?style=flat-square" />
       </p>
       <p><a href="./projects/cinegraph-network-intelligence"><strong>Open project →</strong></a></p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>Applied and confidential work</h3>
+      <p><strong>Healthcare Operations · BI · Automation · Scientific Communication</strong></p>
+      <p>Some applied dashboards and operational projects cannot be publicly shared because they involve institutional or private data. They are represented through anonymized descriptions and transferable methods.</p>
     </td>
   </tr>
 </table>
