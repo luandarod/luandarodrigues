@@ -35,7 +35,7 @@
 
 ## Hub de perfil
 
-Este repositório agora funciona como um **hub de perfil**. Ele mantém o README público, os assets visuais e os links para projetos do portfólio. Os principais projetos serão separados em repositórios próprios para facilitar a leitura por recrutadores, avaliadores técnicos e pessoas interessadas nos estudos.
+Este repositório agora funciona como um **hub de perfil**. Ele mantém o README público, os assets visuais e os links para os repositórios do portfólio. Os principais projetos estão sendo separados em repositórios próprios para facilitar a leitura por recrutadores, avaliadores técnicos e pessoas interessadas nos estudos.
 
 Construo projetos analíticos que conectam **operações em saúde, business intelligence, machine learning, qualidade de dados e inteligência para decisão**. Minha trajetória combina Engenharia Biomédica, Gestão Hospitalar, operações de farmácia clínica, monitoramento de KPIs, dados públicos de saúde, projetos digitais e fluxos apoiados por IA.
 
@@ -99,33 +99,33 @@ Construo projetos analíticos que conectam **operações em saúde, business int
 
 ---
 
-## Roadmap de repositórios
+## Repositórios de projetos
 
 <table>
   <tr>
-    <th align="left">Projeto</th>
+    <th align="left">Repositório</th>
     <th align="left">Foco</th>
     <th align="left">Status</th>
   </tr>
   <tr>
     <td><a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence"><strong>UBS + IBGE + APS Territorial Intelligence</strong></a></td>
     <td>Health analytics, inteligência territorial, BI em saúde pública</td>
-    <td>Repositório separado criado</td>
+    <td>Publicado</td>
   </tr>
   <tr>
-    <td><strong>Heart Disease Risk Prediction</strong></td>
+    <td><a href="https://github.com/luandarodrigues/heart-disease-risk-prediction"><strong>Heart Disease Risk Prediction</strong></a></td>
     <td>Machine learning clínico, avaliação de modelos, responsible ML</td>
-    <td>Próximo repositório a separar</td>
+    <td>Repositório criado; README e sheets serão refinados em seguida</td>
   </tr>
   <tr>
-    <td><strong>Brazilian E-Commerce Delivery Experience</strong></td>
+    <td><a href="https://github.com/luandarodrigues/olist-delivery-experience-analytics"><strong>Brazilian E-Commerce Delivery Experience</strong></a></td>
     <td>SQL, logística, satisfação do cliente, risco de atraso/baixa avaliação</td>
-    <td>Próximo repositório a separar</td>
+    <td>Repositório criado; README e sheets serão refinados em seguida</td>
   </tr>
   <tr>
-    <td><strong>CineGraph Network Intelligence</strong></td>
+    <td><a href="https://github.com/luandarodrigues/cinegraph-network-intelligence"><strong>CineGraph Network Intelligence</strong></a></td>
     <td>Graph analytics, sistemas de recomendação, NLP, dados de mídia</td>
-    <td>Próximo repositório a separar</td>
+    <td>Repositório criado; README e sheets serão refinados em seguida</td>
   </tr>
 </table>
 
