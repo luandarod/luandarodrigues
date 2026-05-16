@@ -1,0 +1,151 @@
+---
+const projects = [
+  {
+    number: '01',
+    title: 'Mapping Primary Healthcare Units in Brazil',
+    type: 'Health Analytics · Geomapping · Data Quality',
+    description: 'Mapped 47,714 Brazilian Primary Healthcare Units to analyze geographic distribution, coordinate quality and public health data governance opportunities.',
+    metrics: ['47,714 UBS records', '27 states', '5,483 municipalities'],
+    href: 'https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/ubs-healthcare-mapping'
+  },
+  {
+    number: '02',
+    title: 'Heart Disease Risk Prediction',
+    type: 'Machine Learning · Clinical Risk · Model Evaluation',
+    description: 'Used 918 clinical records and 11 predictors to evaluate heart disease classification models with careful discussion of clinical and ethical limitations.',
+    metrics: ['918 records', 'ROC-AUC ~0.93', 'Responsible ML'],
+    href: 'https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/heart-disease-risk-ml'
+  },
+  {
+    number: '03',
+    title: 'Brazilian E-Commerce Delivery Experience Analytics',
+    type: 'SQL · Logistics · Customer Experience · ML',
+    description: 'Analyzed Olist marketplace orders to understand how delivery delays, freight, categories and seller structure affect customer satisfaction.',
+    metrics: ['99,441 orders', 'R$ 15.8M GMV', 'Low-review model'],
+    href: 'https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/olist-ecommerce-experience-analytics'
+  },
+  {
+    number: '04',
+    title: 'CineGraph Network Intelligence',
+    type: 'Graph Analytics · NLP · Recommender Systems',
+    description: 'Explored a large TMDB graph dataset to analyze relationship integrity, co-star networks, recommendation edges, streaming coverage and review text signals.',
+    metrics: ['22,393 movies', '58,393 people', 'Graph + NLP'],
+    href: 'https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/cinegraph-network-intelligence'
+  }
+];
+
+const skills = [
+  'Python', 'SQL', 'Power BI', 'Looker', 'Pandas', 'Scikit-learn', 'NetworkX',
+  'Machine Learning', 'Graph Analytics', 'NLP', 'Data Quality', 'Health Analytics',
+  'Business Intelligence', 'KPI Design', 'Operations Analytics'
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Luanda Rodrigues — Data Analyst portfolio focused on Health Analytics, BI, Machine Learning, SQL, Graph Analytics and operations intelligence." />
+    <title>Luanda Rodrigues — Data Analyst</title>
+    <link rel="stylesheet" href="/luandarodrigues/styles/global.css" />
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <nav class="nav" aria-label="Main navigation">
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="eyebrow">Portfolio / Data · Health · Operations</div>
+        <h1>Luanda Rodrigues</h1>
+        <p class="hero-subtitle">Data Analyst working across health analytics, BI, machine learning, graph analytics and operational intelligence.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://github.com/luandarodrigues" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="button" href="https://www.linkedin.com/in/luanda-rodrigues" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="button" href="mailto:luandarodrigues30@gmail.com">Email</a>
+        </div>
+      </section>
+
+      <section class="intro-grid" id="about">
+        <div>
+          <span class="section-label">About</span>
+          <h2>Analytics with context, not just charts.</h2>
+        </div>
+        <div class="intro-copy">
+          <p>I work at the intersection of data, operations and decision support, transforming structured information into practical insights for performance monitoring, process improvement and business analysis.</p>
+          <p>My background combines healthcare operations, clinical pharmacy workflows, health tech, BI, AI-supported projects and public portfolio cases using Python, SQL, machine learning, graph analytics and NLP.</p>
+        </div>
+      </section>
+
+      <section id="projects" class="projects-section">
+        <div class="section-header">
+          <span class="section-label">Selected work</span>
+          <h2>Public portfolio projects</h2>
+        </div>
+
+        <div class="projects-list">
+          {projects.map((project) => (
+            <article class="project-card">
+              <div class="project-number">{project.number}</div>
+              <div class="project-content">
+                <p class="project-type">{project.type}</p>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <ul>
+                  {project.metrics.map((metric) => <li>{metric}</li>)}
+                </ul>
+              </div>
+              <a class="project-link" href={project.href} target="_blank" rel="noreferrer">Open GitHub project</a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="skills" class="skills-section">
+        <span class="section-label">Stack</span>
+        <h2>Tools and analytical focus</h2>
+        <div class="skills-wrap">
+          {skills.map((skill) => <span>{skill}</span>)}
+        </div>
+      </section>
+
+      <section class="confidential-section">
+        <div>
+          <span class="section-label">Applied work</span>
+          <h2>Confidential healthcare and business projects</h2>
+        </div>
+        <div class="confidential-grid">
+          <article>
+            <h3>Clinical Pharmacy KPI Dashboard</h3>
+            <p>Institutional project at EBSERH / HC-UFU. Public description limited to anonymized skills: KPI design, hospital workflow analysis and operational monitoring.</p>
+          </article>
+          <article>
+            <h3>AI for Scientific Communication</h3>
+            <p>Private healthcare projects involving applied AI, automation, health communication, content strategy and low-code workflows.</p>
+          </article>
+          <article>
+            <h3>Performance Dashboard for Decision-Making</h3>
+            <p>Corporate BI work involving executive reporting, dashboard structure, indicators and business analysis in closed contexts.</p>
+          </article>
+        </div>
+      </section>
+
+      <footer id="contact">
+        <div>
+          <span class="section-label">Contact</span>
+          <h2>Open to data, BI and analytics roles.</h2>
+        </div>
+        <div class="footer-links">
+          <a href="mailto:luandarodrigues30@gmail.com">luandarodrigues30@gmail.com</a>
+          <a href="https://github.com/luandarodrigues" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/luanda-rodrigues" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://www.behance.net/luandarodrguez" target="_blank" rel="noreferrer">Behance</a>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
