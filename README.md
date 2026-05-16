@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=150&color=0:0b0b0b,100:2b2b2b&text=Luanda%20Rodrigues&fontColor=f4f1eb&fontSize=44&fontAlignY=36&desc=Data%20Analyst%20%7C%20Health%20%2B%20Operations%20%2B%20Decision%20Intelligence&descAlignY=62&descSize=14" alt="Luanda Rodrigues — Data Analyst" />
+<img src="https://capsule-render.vercel.app/api?type=waving&height=155&color=0:f4f1eb,100:e2ddd4&text=Luanda%20Rodrigues&fontColor=111111&fontSize=46&fontAlignY=36&desc=Data%20Analyst%20%7C%20Health%20%2B%20Operations%20%2B%20Decision%20Intelligence&descAlignY=62&descSize=15" alt="Luanda Rodrigues — Data Analyst" />
 
 <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=24&duration=2800&pause=900&color=111111&center=true&vCenter=true&width=900&lines=Data+Analyst+focused+on+Health%2C+Operations+%26+Decision+Intelligence;Healthcare+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Graph+Analytics+%E2%80%A2+NLP+%E2%80%A2+Data+Quality+%E2%80%A2+Dashboards" alt="Typing headline" />
 
@@ -172,13 +172,51 @@ Some applied work cannot be publicly shared because it involves institutional or
 
 ## How I approach data projects
 
+I treat data projects as decision systems. The goal is not only to build charts or models, but to understand the operational question, test the reliability of the data, select the right analytical method and communicate conclusions with clear limitations.
+
 ```mermaid
-flowchart LR
-    A[Business or healthcare question] --> B[Data validation]
-    B --> C[Exploratory analysis]
-    C --> D[Modeling and metrics]
-    D --> E[Interpretation]
-    E --> F[Decision-ready communication]
+flowchart TB
+    A[1. Understand the decision context] --> A1[Clarify the healthcare, business or operational question]
+    A --> A2[Define stakeholders, expected decision and success criteria]
+
+    A2 --> B[2. Map data sources]
+    B --> B1[Identify tables, entities, keys and relationships]
+    B --> B2[Check granularity, time windows and business definitions]
+
+    B2 --> C[3. Validate data quality]
+    C --> C1[Missing values, duplicates, outliers and inconsistent records]
+    C --> C2[Document limitations before analysis]
+
+    C2 --> D[4. Build the analytical dataset]
+    D --> D1[Clean, join and transform data]
+    D --> D2[Create indicators, features and analytical marts]
+
+    D2 --> E[5. Explore patterns]
+    E --> E1[Trends, segments, distributions and correlations]
+    E --> E2[Compare groups, categories, geography or time periods]
+
+    E2 --> F{6. Choose the right method}
+    F --> F1[BI dashboard or KPI monitoring]
+    F --> F2[Statistical analysis or hypothesis testing]
+    F --> F3[Machine learning model]
+    F --> F4[Graph analytics or NLP]
+
+    F1 --> G[7. Interpret results]
+    F2 --> G
+    F3 --> G
+    F4 --> G
+
+    G --> G1[Translate outputs into operational meaning]
+    G --> G2[Separate signal from noise]
+    G --> G3[State risks, bias and clinical or business limitations]
+
+    G3 --> H[8. Communicate for action]
+    H --> H1[Executive summary, dashboard, README or report]
+    H --> H2[Recommendations, next steps and monitoring metrics]
+
+    H2 --> I[9. Iterate]
+    I --> I1[Collect feedback]
+    I --> I2[Improve model, metric, dashboard or process]
 ```
 
 ---
@@ -197,4 +235,4 @@ flowchart LR
 
 </div>
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=95&color=0:2b2b2b,100:0b0b0b&section=footer" alt="Footer" />
+<img src="https://capsule-render.vercel.app/api?type=waving&height=95&color=0:e2ddd4,100:f4f1eb&section=footer" alt="Footer" />
