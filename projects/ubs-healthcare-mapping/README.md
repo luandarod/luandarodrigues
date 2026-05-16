@@ -1,42 +1,62 @@
-# Mapping Primary Healthcare Units in Brazil
+# UBS + IBGE + Cobertura Potencial APS
 
-**Health Analytics | Geomapping | Data Quality | Public Health BI**
+**Health Analytics | Territorial Intelligence | Data Quality | Public Health BI | Interactive Dashboard**
 
-This project analyzes a public dataset of Brazilian Primary Healthcare Units (UBS) to map geographic distribution, evaluate coordinate quality and identify data governance opportunities for public health planning.
+This is the main healthcare analytics project in my portfolio. It transforms a public registry of Brazilian Primary Healthcare Units (UBS) into an integrated territorial intelligence dashboard by combining three layers of data: physical UBS presence, IBGE/SIDRA population and territory indicators, and potential Primary Care coverage capacity.
 
 ## Interactive dashboard
 
-A static interactive dashboard is available through GitHub Pages:
+**[Open the interactive dashboard →](https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2)**
 
-**[Open the UBS Healthcare Mapping Dashboard →](https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/)**
+The dashboard works as the presentation layer of the project. It was built as a static, open-access GitHub Pages dashboard using HTML, CSS and JavaScript, with data prepared in Python.
 
-The dashboard works as a portfolio presentation layer for the analysis, with KPI cards, regional filters, state-level rankings, data quality indicators and interpretation notes.
+It includes:
 
-## Business and public health question
+- executive KPI cards;
+- UBS distribution by state and region;
+- comparison between UBS volume, population and territorial area;
+- coordinate quality indicators;
+- APS potential coverage indicators;
+- ranking of municipalities by lower or higher APS coverage;
+- state-level integrated table;
+- priority signals for territorial investigation;
+- source explanation and analytical conclusion.
 
-How can geographic and cadastral data from primary healthcare units be transformed into useful intelligence for territorial planning, BI dashboards and data quality monitoring?
+## Analytical question
 
-## Dataset
+Counting UBS is not enough to understand primary care capacity. A state may have many registered units and still face population pressure, geographic dispersion or gaps between physical presence and installed team capacity.
 
-The dataset contains identification and location fields for UBS records:
+This project asks:
 
-- CNES establishment code
-- State code
-- Municipality IBGE code
-- Establishment name
-- Address and neighborhood
-- Latitude and longitude
+> What changes when the physical registry of UBS is analyzed together with population, territory and potential APS coverage?
 
-The raw UBS file is currently stored at:
+## Data sources
+
+| Layer | Source | Analytical role |
+|---|---|---|
+| UBS registry | Public UBS dataset | Physical presence of primary healthcare units, CNES, municipality, UF and coordinates |
+| IBGE/SIDRA | Municipality-level population and territorial area | Population-adjusted and territory-adjusted indicators |
+| Cobertura Potencial APS | APS potential coverage report | Installed team capacity and potential primary care coverage |
+
+The raw files are stored at:
 
 ```text
 projects/ubs-healthcare-mapping/data/Unidades_Basicas_Saude-UBS.csv
+projects/ubs-healthcare-mapping/data/cobertura-aps-geral.xlsx
 ```
 
-The APS coverage file is currently stored at:
+The enriched outputs are stored at:
 
 ```text
-projects/ubs-healthcare-mapping/data/cobertura-aps-geral.xlsx
+projects/ubs-healthcare-mapping/data/enriched/
+├── municipality_ubs_territory.csv
+├── uf_ubs_territory_summary.csv
+├── priority_matrix.csv
+├── aps_coverage_normalized.csv
+├── municipality_ubs_aps_coverage.csv
+├── uf_ubs_aps_coverage_summary.csv
+├── enrichment_metadata.json
+└── aps_enrichment_metadata.json
 ```
 
 ## Key numbers
@@ -46,52 +66,44 @@ projects/ubs-healthcare-mapping/data/cobertura-aps-geral.xlsx
 | Total UBS records | 47,714 |
 | Unique CNES records | 47,714 |
 | States represented | 27 |
-| Unique municipalities | 5,483 |
-| Records with valid coordinates | 45,785 |
-| Records without complete coordinates | 1,929 |
-| Records with repeated coordinates | 3,182 |
+| Municipalities represented | 5,483 |
+| Records with valid coordinates | ~96% |
+| APS population in coverage file | ~210.4 million |
+| Estimated APS team capacity | ~180.3 million |
 
-## Distribution by region
+## Dashboard interpretation
 
-| Region | UBS records | Share |
-|---|---:|---:|
-| Northeast | 18,125 | 38.0% |
-| Southeast | 15,274 | 32.0% |
-| South | 6,764 | 14.2% |
-| North | 3,971 | 8.3% |
-| Center-West | 3,580 | 7.5% |
+The dashboard separates the analysis into three complementary views.
 
-## Top states by number of UBS records
+First, the UBS registry shows the **physical presence of the network**. It helps answer where units are registered and whether their coordinates are usable for map-based analysis.
 
-| State | Region | UBS records |
-|---|---|---:|
-| MG | Southeast | 6,137 |
-| SP | Southeast | 5,824 |
-| BA | Northeast | 4,449 |
-| PE | Northeast | 3,012 |
-| CE | Northeast | 2,492 |
+Second, the IBGE/SIDRA enrichment adds **population and territorial context**. This makes it possible to compare states not only by number of units, but also by UBS per population and UBS per territorial area.
+
+Third, the APS coverage layer adds **installed capacity signals**. It estimates how many people can potentially be covered by primary care teams in each municipality.
+
+Together, these layers create a more responsible reading: the project does not claim real access to care, but it shows where further investigation may be needed.
 
 ## Main insights
 
-- The dataset has strong national coverage, with all 27 Brazilian federative units represented.
-- Around 96% of records have usable geographic coordinates, which makes the base suitable for mapping.
-- Missing latitude/longitude values and repeated coordinates are relevant data quality flags.
-- The Northeast and Southeast concentrate the largest number of UBS records in the dataset.
-- The IBGE enrichment makes it possible to compare UBS volume against population and territorial area.
-- The APS coverage layer can support a stronger interpretation of installed capacity and potential primary care coverage.
-- The analysis describes distribution and analytical signals, not definitive healthcare access or adequacy.
+- The dataset has national coverage, with all 27 Brazilian federative units represented.
+- Around 96% of records have usable geographic coordinates, making the base suitable for mapping.
+- The Northeast and Southeast concentrate the largest number of UBS records.
+- Volume of UBS alone does not explain sufficiency, capacity or access.
+- IBGE/SIDRA enrichment allows population- and area-adjusted analysis.
+- APS coverage data helps separate physical units from potential care capacity.
+- Some indicators should be interpreted as prioritization signals, not definitive conclusions.
 
 ## Methodology
 
 1. Data dictionary validation
 2. CSV ingestion and field standardization
-3. Missing coordinate analysis
-4. Classification of states by Brazilian region
-5. Aggregation by region, state and municipality
-6. Geolocation quality assessment
-7. IBGE/SIDRA enrichment for population and territorial analysis
-8. APS potential coverage enrichment
-9. Preparation of outputs for dashboard and portfolio presentation
+3. Coordinate cleaning and geolocation quality assessment
+4. Aggregation by municipality, state and region
+5. IBGE/SIDRA enrichment for population and territorial analysis
+6. APS coverage normalization and municipality-level integration
+7. Construction of enriched analytical outputs
+8. Static interactive dashboard development for GitHub Pages
+9. Interpretation with explicit limitations
 
 ## Enrichment pipeline
 
@@ -112,26 +124,13 @@ python projects/ubs-healthcare-mapping/scripts/enrich_with_aps_coverage.py \
   --output-dir projects/ubs-healthcare-mapping/data/enriched
 ```
 
-Expected enriched outputs:
-
-```text
-projects/ubs-healthcare-mapping/data/enriched/
-├── municipality_ubs_territory.csv
-├── uf_ubs_territory_summary.csv
-├── priority_matrix.csv
-├── aps_coverage_normalized.csv
-├── municipality_ubs_aps_coverage.csv
-├── uf_ubs_aps_coverage_summary.csv
-├── enrichment_metadata.json
-└── aps_enrichment_metadata.json
-```
-
 ## Files in this project
 
 ```text
 projects/ubs-healthcare-mapping/
 ├── README.md
 ├── DATA_ENRICHMENT.md
+├── requirements.txt
 ├── data/
 │   ├── Unidades_Basicas_Saude-UBS.csv
 │   ├── cobertura-aps-geral.xlsx
@@ -139,24 +138,24 @@ projects/ubs-healthcare-mapping/
 │   ├── region_distribution.csv
 │   ├── state_distribution.csv
 │   └── enriched/
-│       ├── municipality_ubs_territory.csv
-│       ├── uf_ubs_territory_summary.csv
-│       ├── priority_matrix.csv
-│       ├── aps_coverage_normalized.csv
-│       ├── municipality_ubs_aps_coverage.csv
-│       ├── uf_ubs_aps_coverage_summary.csv
-│       ├── enrichment_metadata.json
-│       └── aps_enrichment_metadata.json
 └── scripts/
     ├── analyze_ubs.py
     ├── enrich_with_ibge.py
     └── enrich_with_aps_coverage.py
 ```
 
+Dashboard file:
+
+```text
+docs/dashboards/ubs-healthcare-mapping/index.html
+```
+
 ## Tools
 
-Python, Pandas, Folium, Matplotlib, CSV, Geolocation, Data Quality, Health Analytics, IBGE APIs, SIDRA, APS Coverage, Territorial Intelligence.
+Python, Pandas, Requests, OpenPyXL, CSV, IBGE APIs, SIDRA, GitHub Pages, HTML, CSS, JavaScript, Data Quality, Health Analytics, Territorial Intelligence.
 
 ## Limitations
 
-This project does not infer definitive access to care, demand, productivity or adequacy of healthcare coverage. To answer those questions, the dataset should also be enriched with service production, teams, workload, catchment areas, socioeconomic indicators and official APS coverage metrics by period.
+This dashboard does not measure real access to care, quality of care, service productivity or adequacy of primary care coverage. It organizes analytical signals from public datasets to support better questions and prioritize further investigation.
+
+A stronger next version would include service production, active teams by period, socioeconomic indicators, catchment areas, distance to services and time-series coverage analysis.
