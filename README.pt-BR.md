@@ -8,24 +8,21 @@
 
 <br /><br />
 
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=23&duration=3200&pause=1200&color=2F81F7&center=true&vCenter=true&width=900&lines=Analista+de+Dados+focada+em+Sa%C3%BAde%2C+Opera%C3%A7%C3%B5es+e+Decis%C3%A3o;Health+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Graph+Analytics+%E2%80%A2+NLP+%E2%80%A2+Data+Quality+%E2%80%A2+Dashboards" alt="Título animado" />
+<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=23&duration=3200&pause=1200&color=111111&center=true&vCenter=true&width=900&lines=Analista+de+Dados+focada+em+Sa%C3%BAde%2C+Opera%C3%A7%C3%B5es+e+Decis%C3%A3o;Health+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Intelig%C3%AAncia+Territorial+%E2%80%A2+Qualidade+de+Dados+%E2%80%A2+Dashboards" alt="Título animado" />
 
 <br />
 
 <a href="https://luandarodrigues.github.io/luandarodrigues/">
   <img src="https://img.shields.io/badge/Portf%C3%B3lio-Acessar%20site-111111?style=for-the-badge&logo=githubpages&logoColor=white" alt="Portfólio" />
 </a>
-<a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2">
-  <img src="https://img.shields.io/badge/Painel%20Principal-UBS%20%2B%20IBGE%20%2B%20APS-111111?style=for-the-badge&logo=githubpages&logoColor=white" alt="Painel Principal" />
+<a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence">
+  <img src="https://img.shields.io/badge/Projeto%20Principal-UBS%20%2B%20IBGE%20%2B%20APS-111111?style=for-the-badge&logo=github&logoColor=white" alt="Projeto Principal" />
 </a>
 <a href="https://www.linkedin.com/in/luanda-rodrigues">
   <img src="https://img.shields.io/badge/LinkedIn-Luanda%20Rodrigues-111111?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
 </a>
 <a href="mailto:luandarodrigues30@gmail.com">
   <img src="https://img.shields.io/badge/E--mail-Contato-111111?style=for-the-badge&logo=gmail&logoColor=white" alt="E-mail" />
-</a>
-<a href="https://www.behance.net/luandarodrguez">
-  <img src="https://img.shields.io/badge/Behance-Portf%C3%B3lio-111111?style=for-the-badge&logo=behance&logoColor=white" alt="Behance" />
 </a>
 
 <br /><br />
@@ -36,13 +33,11 @@
 
 ---
 
-## Sobre
+## Hub de perfil
 
-Construo projetos analíticos que conectam **operações em saúde, business intelligence, machine learning e qualidade de dados** para apoiar melhores decisões.
+Este repositório agora funciona como um **hub de perfil**. Ele mantém o README público, os assets visuais e os links para projetos do portfólio. Os principais projetos serão separados em repositórios próprios para facilitar a leitura por recrutadores, avaliadores técnicos e pessoas interessadas nos estudos.
 
-Minha trajetória combina **Engenharia Biomédica, Gestão Hospitalar, operações de farmácia clínica, monitoramento de KPIs, dados públicos de saúde, projetos digitais e fluxos apoiados por IA**. Trabalho com dados não apenas como camada técnica, mas como forma de entender processos, identificar gargalos e traduzir achados em ação.
-
-Atualmente, meu portfólio conecta:
+Construo projetos analíticos que conectam **operações em saúde, business intelligence, machine learning, qualidade de dados e inteligência para decisão**. Minha trajetória combina Engenharia Biomédica, Gestão Hospitalar, operações de farmácia clínica, monitoramento de KPIs, dados públicos de saúde, projetos digitais e fluxos apoiados por IA.
 
 <table>
   <tr>
@@ -69,15 +64,15 @@ Atualmente, meu portfólio conecta:
 
 ---
 
-## Projeto principal do portfólio
+## Repositório principal do portfólio
 
 <table>
   <tr>
     <td width="45%" valign="top">
       <h3>UBS + IBGE + Cobertura Potencial APS</h3>
       <p><strong>Health Analytics · Inteligência Territorial · BI em Saúde Pública · Qualidade de Dados</strong></p>
-      <p>Este painel interativo conecta o cadastro físico de Unidades Básicas de Saúde brasileiras com indicadores populacionais e territoriais do IBGE/SIDRA, além de incorporar a Cobertura Potencial da Atenção Primária à Saúde.</p>
-      <p>O objetivo é ir além da contagem de unidades. O painel compara presença física da rede, pressão populacional, dispersão territorial, qualidade das coordenadas e capacidade potencial da APS, sempre deixando explícitas as limitações dos dados públicos.</p>
+      <p>Projeto interativo de análise em saúde pública que integra o cadastro brasileiro de UBS com indicadores territoriais do IBGE/SIDRA e dados de Cobertura Potencial da APS.</p>
+      <p>O projeto vai além da contagem de unidades. Ele compara presença física da rede, pressão populacional, dispersão territorial, qualidade de coordenadas e capacidade instalada estimada da Atenção Primária.</p>
       <p>
         <img src="https://img.shields.io/badge/47.714-registros%20UBS-111111?style=flat-square" />
         <img src="https://img.shields.io/badge/5.483-munic%C3%ADpios-111111?style=flat-square" />
@@ -85,56 +80,52 @@ Atualmente, meu portfólio conecta:
         <img src="https://img.shields.io/badge/180%2C3M-capacidade%20estimada-111111?style=flat-square" />
       </p>
       <p>
-        <a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2"><strong>Abrir painel interativo →</strong></a><br />
-        <a href="./projects/ubs-healthcare-mapping"><strong>Abrir README do projeto →</strong></a>
+        <a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence"><strong>Abrir repositório →</strong></a><br />
+        <a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2"><strong>Abrir painel →</strong></a>
       </p>
     </td>
     <td width="55%" valign="top">
-      <h4>O que o painel mostra</h4>
+      <h4>O que este projeto demonstra</h4>
       <ul>
-        <li>Distribuição das UBS por estado e região.</li>
-        <li>Comparação entre volume de UBS, população e área territorial.</li>
-        <li>Qualidade de geolocalização e prontidão das coordenadas.</li>
-        <li>Cobertura potencial da APS por município e estado.</li>
-        <li>Sinais de prioridade para investigação territorial.</li>
+        <li>Limpeza e normalização de bases públicas de saúde.</li>
+        <li>Integração entre UBS, IBGE/SIDRA e Cobertura APS.</li>
+        <li>Modelagem analítica orientada a dashboard.</li>
+        <li>Indicadores territoriais para planejamento em saúde.</li>
+        <li>Interpretação responsável com limitações explícitas.</li>
       </ul>
-      <h4>Por que ele importa</h4>
-      <p>Contar UBS não explica sozinho acesso, capacidade ou suficiência. Este projeto mostra como bases públicas podem ser integradas em uma camada analítica orientada à decisão para operações em saúde e planejamento público.</p>
     </td>
   </tr>
 </table>
 
 ---
 
-## Outros projetos em destaque
+## Roadmap de repositórios
 
 <table>
   <tr>
-    <td width="50%" valign="top">
-      <h3>02 · Heart Disease Risk Prediction</h3>
-      <p><strong>Machine Learning · Clinical Risk Factors · Model Evaluation</strong></p>
-      <p>Projeto de machine learning com 918 registros clínicos e 11 preditores para avaliar modelos de classificação de doença cardíaca e discutir limitações clínicas e éticas.</p>
-      <p><a href="./projects/heart-disease-risk-ml"><strong>Abrir projeto →</strong></a></p>
-    </td>
-    <td width="50%" valign="top">
-      <h3>03 · Brazilian E-Commerce Delivery Experience</h3>
-      <p><strong>SQL · Logistics · Customer Experience · Machine Learning</strong></p>
-      <p>Análise da base pública da Olist para entender como logística, atraso de entrega, pagamentos e categorias de produto afetam a satisfação do cliente.</p>
-      <p><a href="./projects/olist-ecommerce-experience-analytics"><strong>Abrir projeto →</strong></a></p>
-    </td>
+    <th align="left">Projeto</th>
+    <th align="left">Foco</th>
+    <th align="left">Status</th>
   </tr>
   <tr>
-    <td width="50%" valign="top">
-      <h3>04 · CineGraph Network Intelligence</h3>
-      <p><strong>Graph Analytics · Recommender Systems · NLP · Knowledge Graphs</strong></p>
-      <p>Projeto avançado de media analytics usando uma grande base TMDB em grafo para analisar integridade de relações, redes de colaboração, recomendações, streaming e reviews.</p>
-      <p><a href="./projects/cinegraph-network-intelligence"><strong>Abrir projeto →</strong></a></p>
-    </td>
-    <td width="50%" valign="top">
-      <h3>Trabalhos aplicados e confidenciais</h3>
-      <p><strong>Operações em Saúde · BI · Automação · Comunicação Científica</strong></p>
-      <p>Alguns dashboards e projetos operacionais não podem ser compartilhados publicamente por envolverem dados institucionais ou privados. Eles são apresentados por descrições anonimizadas e métodos transferíveis.</p>
-    </td>
+    <td><a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence"><strong>UBS + IBGE + APS Territorial Intelligence</strong></a></td>
+    <td>Health analytics, inteligência territorial, BI em saúde pública</td>
+    <td>Repositório separado criado</td>
+  </tr>
+  <tr>
+    <td><strong>Heart Disease Risk Prediction</strong></td>
+    <td>Machine learning clínico, avaliação de modelos, responsible ML</td>
+    <td>Próximo repositório a separar</td>
+  </tr>
+  <tr>
+    <td><strong>Brazilian E-Commerce Delivery Experience</strong></td>
+    <td>SQL, logística, satisfação do cliente, risco de atraso/baixa avaliação</td>
+    <td>Próximo repositório a separar</td>
+  </tr>
+  <tr>
+    <td><strong>CineGraph Network Intelligence</strong></td>
+    <td>Graph analytics, sistemas de recomendação, NLP, dados de mídia</td>
+    <td>Próximo repositório a separar</td>
   </tr>
 </table>
 
@@ -173,7 +164,7 @@ Automação            Ferramentas de IA · low-code · comunicação em saúde
 
 ---
 
-## Trabalhos confidenciais e aplicados
+## Trabalhos aplicados e confidenciais
 
 Parte do meu trabalho aplicado não pode ser compartilhada publicamente por envolver dados institucionais ou de empresas privadas. Esses projetos são apresentados por descrições anonimizadas e competências transferíveis.
 
@@ -197,51 +188,23 @@ Parte do meu trabalho aplicado não pode ser compartilhada publicamente por envo
 
 ## Como penso projetos de dados
 
-Trato projetos de dados como sistemas de decisão. O objetivo não é apenas criar gráficos ou modelos, mas entender a pergunta operacional, testar a confiabilidade da base, escolher o método correto e comunicar conclusões com limitações claras.
-
 ```mermaid
 flowchart TB
-    A[1. Entender o contexto da decisão] --> A1[Clarificar a pergunta de saúde, negócio ou operação]
-    A --> A2[Definir stakeholders, decisão esperada e critérios de sucesso]
-
-    A2 --> B[2. Mapear fontes de dados]
-    B --> B1[Identificar tabelas, entidades, chaves e relações]
-    B --> B2[Checar granularidade, períodos e definições de negócio]
-
-    B2 --> C[3. Validar qualidade dos dados]
-    C --> C1[Valores ausentes, duplicidades, outliers e inconsistências]
-    C --> C2[Documentar limitações antes da análise]
-
-    C2 --> D[4. Construir a base analítica]
-    D --> D1[Limpar, cruzar e transformar dados]
-    D --> D2[Criar indicadores, features e marts analíticos]
-
-    D2 --> E[5. Explorar padrões]
-    E --> E1[Tendências, segmentos, distribuições e correlações]
-    E --> E2[Comparar grupos, categorias, geografias ou períodos]
-
-    E2 --> F{6. Escolher o método certo}
-    F --> F1[Dashboard BI ou monitoramento de KPIs]
-    F --> F2[Análise estatística ou teste de hipótese]
-    F --> F3[Modelo de machine learning]
+    A[Entender o contexto da decisão] --> B[Mapear fontes de dados]
+    B --> C[Validar qualidade dos dados]
+    C --> D[Construir a base analítica]
+    D --> E[Explorar padrões]
+    E --> F{Escolher o método certo}
+    F --> F1[Dashboard BI]
+    F --> F2[Análise estatística]
+    F --> F3[Machine learning]
     F --> F4[Graph analytics ou NLP]
-
-    F1 --> G[7. Interpretar resultados]
+    F1 --> G[Interpretar resultados]
     F2 --> G
     F3 --> G
     F4 --> G
-
-    G --> G1[Traduzir saídas em significado operacional]
-    G --> G2[Separar sinal de ruído]
-    G --> G3[Declarar riscos, viés e limitações clínicas ou de negócio]
-
-    G3 --> H[8. Comunicar para ação]
-    H --> H1[Resumo executivo, dashboard, README ou relatório]
-    H --> H2[Recomendações, próximos passos e métricas de monitoramento]
-
-    H2 --> I[9. Iterar]
-    I --> I1[Coletar feedback]
-    I --> I2[Melhorar modelo, métrica, dashboard ou processo]
+    G --> H[Comunicar para ação]
+    H --> I[Iterar]
 ```
 
 ---
