@@ -4,30 +4,37 @@ Enrich the UBS mapping project with APS potential coverage data.
 This script joins the municipality-level UBS + IBGE enriched dataset with an external
 APS coverage spreadsheet exported from e-Gestor/SISAB-style reports.
 
+Important format note for this APS report:
+    - "Região de Saúde" contains the municipality name in the exported file.
+    - "Município" contains the IBGE municipality code.
+
 Expected APS columns, when available:
-    Competência CNES
+    Comp. CNES
+    Região
     UF
     Estado
+    Região de Saúde
     Município
     População
     Qt. eSF
     Qt. eAP 20hs
     Qt. eAP 30hs
     Qt. eCR
+    Qt. Cadastro eCR
     Qt. eAPP 20hs
+    Qt. Cadastro eAPP 20hs
     Qt. eAPP 30hs
+    Qt. Cadastro eAPP 30hs
     Qt. eSFR
+    Qt. Cadastro eSFR
     Qt. cadastros das eCR e eAPP
     Qt. capacidade da equipe
     Cobertura APS
 
-If the APS file is only a national aggregate and does not contain UF/Município, the
-script will save a macro summary but will not perform municipality-level joins.
-
 Example:
     python enrich_with_aps_coverage.py \
       --ubs-territory data/enriched/municipality_ubs_territory.csv \
-      --aps-file data/external/cobertura_aps.xlsx \
+      --aps-file data/cobertura-aps-geral.xlsx \
       --output-dir data/enriched
 """
 
@@ -58,11 +65,9 @@ def parse_number(value: Any) -> float | None:
     text = str(value).strip()
     if text in {"", "-", "..", "..."}:
         return None
-    is_percent = "%" in text
     text = text.replace("%", "").replace(".", "").replace(",", ".")
     try:
-        number = float(text)
-        return number if not is_percent else number
+        return float(text)
     except ValueError:
         return None
 
@@ -83,17 +88,25 @@ def normalize_aps_columns(df: pd.DataFrame) -> pd.DataFrame:
     rename_map = {
         "competencia_cnes": "competencia_cnes",
         "comp_cnes": "competencia_cnes",
+        "regiao": "regiao_aps",
         "uf": "uf_sigla",
         "estado": "estado_nome",
-        "municipio": "municipio_nome",
+        # In this report, Região de Saúde is the municipality name.
+        "regiao_de_saude": "municipio_nome_aps",
+        # In this report, Município is the IBGE municipality code.
+        "municipio": "ibge_municipio",
         "populacao": "aps_populacao",
         "qt_esf": "qt_esf",
         "qt_eap_20hs": "qt_eap_20hs",
         "qt_eap_30hs": "qt_eap_30hs",
         "qt_ecr": "qt_ecr",
+        "qt_cadastro_ecr": "qt_cadastro_ecr",
         "qt_eapp_20hs": "qt_eapp_20hs",
+        "qt_cadastro_eapp_20hs": "qt_cadastro_eapp_20hs",
         "qt_eapp_30hs": "qt_eapp_30hs",
+        "qt_cadastro_eapp_30hs": "qt_cadastro_eapp_30hs",
         "qt_esfr": "qt_esfr",
+        "qt_cadastro_esfr": "qt_cadastro_esfr",
         "qt_cadastros_das_ecr_e_eapp": "qt_cadastros_ecr_eapp",
         "qt_capacidade_da_equipe": "aps_capacidade_equipe",
         "cobertura_aps": "cobertura_aps_pct",
@@ -101,14 +114,19 @@ def normalize_aps_columns(df: pd.DataFrame) -> pd.DataFrame:
     df = df.rename(columns={c: rename_map.get(c, c) for c in df.columns})
 
     numeric_cols = [
+        "ibge_municipio",
         "aps_populacao",
         "qt_esf",
         "qt_eap_20hs",
         "qt_eap_30hs",
         "qt_ecr",
+        "qt_cadastro_ecr",
         "qt_eapp_20hs",
+        "qt_cadastro_eapp_20hs",
         "qt_eapp_30hs",
+        "qt_cadastro_eapp_30hs",
         "qt_esfr",
+        "qt_cadastro_esfr",
         "qt_cadastros_ecr_eapp",
         "aps_capacidade_equipe",
         "cobertura_aps_pct",
@@ -117,10 +135,12 @@ def normalize_aps_columns(df: pd.DataFrame) -> pd.DataFrame:
         if col in df.columns:
             df[col] = df[col].map(parse_number)
 
+    if "ibge_municipio" in df.columns:
+        df["ibge_municipio"] = pd.to_numeric(df["ibge_municipio"], errors="coerce").astype("Int64")
     if "uf_sigla" in df.columns:
         df["uf_sigla"] = df["uf_sigla"].astype(str).str.strip().str.upper()
-    if "municipio_nome" in df.columns:
-        df["municipio_key"] = df["municipio_nome"].map(slugify)
+    if "municipio_nome_aps" in df.columns:
+        df["municipio_key"] = df["municipio_nome_aps"].map(slugify)
 
     df.attrs["original_columns"] = original
     return df
@@ -137,52 +157,55 @@ def build_outputs(ubs_territory_path: Path, aps_file_path: Path, output_dir: Pat
         "original_aps_columns": aps.attrs.get("original_columns", []),
         "aps_rows": int(len(aps)),
         "municipality_level_join": False,
+        "join_strategy": "ibge_municipio when available; fallback to UF + normalized municipality name",
     }
 
     aps.to_csv(output_dir / "aps_coverage_normalized.csv", index=False)
 
-    required_join_cols = {"uf_sigla", "municipio_key"}
-    if not required_join_cols.issubset(set(aps.columns)):
-        metadata["note"] = "APS file does not contain UF and Município columns. Only macro summary was generated."
-        macro = aps.copy()
-        macro.to_csv(output_dir / "aps_coverage_macro_summary.csv", index=False)
-        (output_dir / "aps_enrichment_metadata.json").write_text(
-            json.dumps(metadata, indent=2, ensure_ascii=False), encoding="utf-8"
-        )
-        print("APS file has no UF/Município columns. Saved macro summary only.")
+    if "ibge_municipio" not in aps.columns and not {"uf_sigla", "municipio_key"}.issubset(set(aps.columns)):
+        metadata["note"] = "APS file does not contain municipality code or UF+municipality name. Only macro summary was generated."
+        aps.to_csv(output_dir / "aps_coverage_macro_summary.csv", index=False)
+        (output_dir / "aps_enrichment_metadata.json").write_text(json.dumps(metadata, indent=2, ensure_ascii=False), encoding="utf-8")
+        print("APS file has no municipality join key. Saved macro summary only.")
         return
 
     ubs = pd.read_csv(ubs_territory_path)
-    if "municipio_nome_ibge" not in ubs.columns or "uf_sigla" not in ubs.columns:
-        raise ValueError("UBS territory file must contain municipio_nome_ibge and uf_sigla columns.")
+    if "ibge_municipio" not in ubs.columns:
+        raise ValueError("UBS territory file must contain ibge_municipio column.")
 
-    ubs["municipio_key"] = ubs["municipio_nome_ibge"].map(slugify)
-    ubs["uf_sigla"] = ubs["uf_sigla"].astype(str).str.strip().str.upper()
+    ubs["ibge_municipio"] = pd.to_numeric(ubs["ibge_municipio"], errors="coerce").astype("Int64")
+    if "municipio_nome_ibge" in ubs.columns:
+        ubs["municipio_key"] = ubs["municipio_nome_ibge"].map(slugify)
+    if "uf_sigla" in ubs.columns:
+        ubs["uf_sigla"] = ubs["uf_sigla"].astype(str).str.strip().str.upper()
 
     # Keep the most recent competência if multiple periods exist.
     if "competencia_cnes" in aps.columns:
         aps_sorted = aps.sort_values("competencia_cnes")
-        aps_latest = aps_sorted.groupby(["uf_sigla", "municipio_key"], as_index=False).tail(1)
+        if "ibge_municipio" in aps.columns:
+            aps_latest = aps_sorted.groupby(["ibge_municipio"], as_index=False).tail(1)
+        else:
+            aps_latest = aps_sorted.groupby(["uf_sigla", "municipio_key"], as_index=False).tail(1)
     else:
-        aps_latest = aps.drop_duplicates(subset=["uf_sigla", "municipio_key"], keep="last")
+        if "ibge_municipio" in aps.columns:
+            aps_latest = aps.drop_duplicates(subset=["ibge_municipio"], keep="last")
+        else:
+            aps_latest = aps.drop_duplicates(subset=["uf_sigla", "municipio_key"], keep="last")
 
-    enriched = ubs.merge(
-        aps_latest,
-        on=["uf_sigla", "municipio_key"],
-        how="left",
-        suffixes=("", "_aps"),
-    )
+    if "ibge_municipio" in aps_latest.columns:
+        enriched = ubs.merge(aps_latest, on="ibge_municipio", how="left", suffixes=("", "_aps"))
+    else:
+        enriched = ubs.merge(aps_latest, on=["uf_sigla", "municipio_key"], how="left", suffixes=("", "_aps"))
 
-    if "aps_capacidade_equipe" in enriched.columns:
-        enriched["aps_capacity_per_10k_population"] = (
-            enriched["aps_capacidade_equipe"] / enriched.get("populacao_residente", enriched.get("aps_populacao")) * 10000
-        )
+    population_base = enriched["populacao_residente"] if "populacao_residente" in enriched.columns else enriched.get("aps_populacao")
+
+    if "aps_capacidade_equipe" in enriched.columns and population_base is not None:
+        enriched["aps_capacity_per_10k_population"] = enriched["aps_capacidade_equipe"] / population_base * 10000
 
     if "cobertura_aps_pct" in enriched.columns:
         enriched["coverage_gap_pct"] = 100 - enriched["cobertura_aps_pct"]
 
     if {"ubs_per_10k_population", "cobertura_aps_pct", "coordinate_validity_pct"}.issubset(enriched.columns):
-        # Portfolio prioritization score. Higher = stronger investigation priority.
         ubs_pressure = 1 - enriched["ubs_per_10k_population"].rank(pct=True)
         coverage_gap = enriched["coverage_gap_pct"].rank(pct=True) if "coverage_gap_pct" in enriched.columns else 0
         coord_gap = 1 - enriched["coordinate_validity_pct"] / 100
@@ -202,9 +225,14 @@ def build_outputs(ubs_territory_path: Path, aps_file_path: Path, output_dir: Pat
             "qt_eap_20hs",
             "qt_eap_30hs",
             "qt_ecr",
+            "qt_cadastro_ecr",
             "qt_eapp_20hs",
+            "qt_cadastro_eapp_20hs",
             "qt_eapp_30hs",
+            "qt_cadastro_eapp_30hs",
             "qt_esfr",
+            "qt_cadastro_esfr",
+            "qt_cadastros_ecr_eapp",
             "aps_capacidade_equipe",
         ]
         for col in optional_sum:
@@ -215,7 +243,8 @@ def build_outputs(ubs_territory_path: Path, aps_file_path: Path, output_dir: Pat
         if "aps_priority_score" in enriched.columns:
             agg_cols["aps_priority_score"] = ("aps_priority_score", "mean")
 
-        uf_summary = enriched.groupby(["uf_sigla", "uf_nome", "regiao_nome"], dropna=False).agg(**agg_cols).reset_index()
+        group_cols = [c for c in ["uf_sigla", "uf_nome", "regiao_nome"] if c in enriched.columns]
+        uf_summary = enriched.groupby(group_cols, dropna=False).agg(**agg_cols).reset_index()
         uf_summary.to_csv(output_dir / "uf_ubs_aps_coverage_summary.csv", index=False)
 
     metadata["municipality_level_join"] = True
@@ -224,9 +253,7 @@ def build_outputs(ubs_territory_path: Path, aps_file_path: Path, output_dir: Pat
         "municipality_ubs_aps_coverage.csv",
         "uf_ubs_aps_coverage_summary.csv",
     ]
-    (output_dir / "aps_enrichment_metadata.json").write_text(
-        json.dumps(metadata, indent=2, ensure_ascii=False), encoding="utf-8"
-    )
+    (output_dir / "aps_enrichment_metadata.json").write_text(json.dumps(metadata, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Done. APS coverage outputs saved to: {output_dir}")
 
 
