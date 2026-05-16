@@ -4,91 +4,102 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Luanda Rodrigues — Data Analyst portfolio focused on Health Analytics, BI, Machine Learning, SQL, Graph Analytics and operations intelligence." />
-    <meta property="og:title" content="Luanda Rodrigues — Data Analyst" />
-    <meta property="og:description" content="Health Analytics, BI, Machine Learning, SQL, Graph Analytics and Operations Intelligence." />
     <title>Luanda Rodrigues — Data Analyst</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="noise"></div>
-    <header class="site-header">
-      <a class="brand" href="#top">Luanda Rodrigues</a>
-      <nav aria-label="Main navigation">
-        <a href="#work">Work</a>
-        <a href="#capabilities">Capabilities</a>
+    <header class="topbar">
+      <a href="#home" class="brand">Luanda Rodrigues</a>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
-    <main id="top">
-      <section class="hero section-shell">
-        <div class="hero-kicker reveal">DATA / HEALTH / OPS / INTELLIGENCE</div>
-        <h1 class="reveal">Data analyst turning complex operations into clear decisions.</h1>
-        <div class="hero-bottom reveal">
+    <main id="home">
+      <section class="hero">
+        <p class="kicker">Data / Health / Operations / Intelligence</p>
+        <h1>Data analyst turning complex information into clear decisions.</h1>
+        <div class="hero-grid">
           <p>Health analytics, BI, machine learning, SQL modeling, graph analytics and NLP — built into public portfolio projects with documented code and business context.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="https://github.com/luandarodrigues" target="_blank" rel="noreferrer">View GitHub</a>
-            <a class="button" href="https://www.linkedin.com/in/luanda-rodrigues" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="button" href="mailto:luandarodrigues30@gmail.com">Email</a>
+          <div class="actions">
+            <a class="btn primary" href="https://github.com/luandarodrigues" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/luanda-rodrigues" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="btn" href="mailto:luandarodrigues30@gmail.com">Email</a>
           </div>
         </div>
       </section>
 
-      <section class="marquee" aria-label="Expertise highlights">
-        <div class="marquee-track">
-          <span>Health Analytics</span><span>Business Intelligence</span><span>Python</span><span>SQL</span><span>Machine Learning</span><span>Graph Analytics</span><span>NLP</span><span>Data Quality</span><span>Operations Intelligence</span>
-          <span>Health Analytics</span><span>Business Intelligence</span><span>Python</span><span>SQL</span><span>Machine Learning</span><span>Graph Analytics</span><span>NLP</span><span>Data Quality</span><span>Operations Intelligence</span>
+      <section class="intro" id="about">
+        <div>
+          <p class="kicker">About</p>
+          <h2>Analytics with context, not just charts.</h2>
+        </div>
+        <div class="intro-copy">
+          <p>I work at the intersection of data, operations and decision support, transforming structured information into practical insights for performance monitoring, process improvement and business analysis.</p>
+          <p>My background combines healthcare operations, clinical pharmacy workflows, health tech, BI, AI-supported projects and public portfolio cases using Python, SQL, machine learning, graph analytics and NLP.</p>
         </div>
       </section>
 
-      <section id="work" class="section-shell work-section">
-        <div class="section-heading reveal">
-          <p>Selected Work</p>
+      <section class="projects" id="projects">
+        <div class="section-title">
+          <p class="kicker">Selected work</p>
           <h2>Four public projects. Four different analytical muscles.</h2>
         </div>
 
-        <div class="work-grid">
-          <article class="work-card large reveal">
-            <div class="work-meta"><span>01</span><span>Health Analytics · Geomapping</span></div>
-            <h3>Mapping Primary Healthcare Units in Brazil</h3>
-            <p>Mapped 47,714 Brazilian Primary Healthcare Units to analyze geographic distribution, coordinate quality and public health data governance opportunities.</p>
-            <div class="metrics"><span>47,714 UBS</span><span>27 states</span><span>5,483 municipalities</span></div>
-            <a href="https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/ubs-healthcare-mapping" target="_blank" rel="noreferrer">Open GitHub project ↗</a>
+        <div class="project-list">
+          <article class="project-card">
+            <div class="number">01</div>
+            <div class="project-main">
+              <p class="type">Health Analytics · Geomapping · Data Quality</p>
+              <h3>Mapping Primary Healthcare Units in Brazil</h3>
+              <p>Mapped 47,714 Brazilian Primary Healthcare Units to analyze geographic distribution, coordinate quality and public health data governance opportunities.</p>
+              <ul><li>47,714 UBS records</li><li>27 states</li><li>5,483 municipalities</li></ul>
+            </div>
+            <a class="project-link" href="https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/ubs-healthcare-mapping" target="_blank" rel="noreferrer">GitHub ↗</a>
           </article>
 
-          <article class="work-card reveal">
-            <div class="work-meta"><span>02</span><span>Clinical ML</span></div>
-            <h3>Heart Disease Risk Prediction</h3>
-            <p>Used 918 clinical records and 11 predictors to evaluate heart disease classification models with explicit clinical and ethical limitations.</p>
-            <div class="metrics"><span>ROC-AUC ~0.93</span><span>Responsible ML</span></div>
-            <a href="https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/heart-disease-risk-ml" target="_blank" rel="noreferrer">Open GitHub project ↗</a>
+          <article class="project-card">
+            <div class="number">02</div>
+            <div class="project-main">
+              <p class="type">Machine Learning · Clinical Risk · Model Evaluation</p>
+              <h3>Heart Disease Risk Prediction</h3>
+              <p>Used 918 clinical records and 11 predictors to evaluate heart disease classification models with explicit clinical and ethical limitations.</p>
+              <ul><li>918 records</li><li>ROC-AUC ~0.93</li><li>Responsible ML</li></ul>
+            </div>
+            <a class="project-link" href="https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/heart-disease-risk-ml" target="_blank" rel="noreferrer">GitHub ↗</a>
           </article>
 
-          <article class="work-card reveal">
-            <div class="work-meta"><span>03</span><span>SQL · CX · Logistics</span></div>
-            <h3>Brazilian E-Commerce Delivery Experience</h3>
-            <p>Analyzed Olist marketplace orders to understand how delivery delays, freight, categories and seller structure affect customer satisfaction.</p>
-            <div class="metrics"><span>99,441 orders</span><span>R$ 15.8M GMV</span></div>
-            <a href="https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/olist-ecommerce-experience-analytics" target="_blank" rel="noreferrer">Open GitHub project ↗</a>
+          <article class="project-card">
+            <div class="number">03</div>
+            <div class="project-main">
+              <p class="type">SQL · Logistics · Customer Experience · ML</p>
+              <h3>Brazilian E-Commerce Delivery Experience</h3>
+              <p>Analyzed Olist marketplace orders to understand how delivery delays, freight, categories and seller structure affect customer satisfaction.</p>
+              <ul><li>99,441 orders</li><li>R$ 15.8M GMV</li><li>Low-review model</li></ul>
+            </div>
+            <a class="project-link" href="https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/olist-ecommerce-experience-analytics" target="_blank" rel="noreferrer">GitHub ↗</a>
           </article>
 
-          <article class="work-card large dark-card reveal">
-            <div class="work-meta"><span>04</span><span>Graph Analytics · NLP</span></div>
-            <h3>CineGraph Network Intelligence</h3>
-            <p>Explored a large TMDB graph dataset to analyze relationship integrity, co-star networks, recommendation edges, streaming coverage and review text signals.</p>
-            <div class="metrics"><span>22,393 movies</span><span>58,393 people</span><span>Graph + NLP</span></div>
-            <a href="https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/cinegraph-network-intelligence" target="_blank" rel="noreferrer">Open GitHub project ↗</a>
+          <article class="project-card featured">
+            <div class="number">04</div>
+            <div class="project-main">
+              <p class="type">Graph Analytics · NLP · Recommender Systems</p>
+              <h3>CineGraph Network Intelligence</h3>
+              <p>Explored a large TMDB graph dataset to analyze relationship integrity, co-star networks, recommendation edges, streaming coverage and review text signals.</p>
+              <ul><li>22,393 movies</li><li>58,393 people</li><li>Graph + NLP</li></ul>
+            </div>
+            <a class="project-link" href="https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/cinegraph-network-intelligence" target="_blank" rel="noreferrer">GitHub ↗</a>
           </article>
         </div>
       </section>
 
-      <section id="capabilities" class="section-shell capabilities-section">
-        <div class="section-heading reveal">
-          <p>Capabilities</p>
-          <h2>What I bring into data projects.</h2>
-        </div>
-        <div class="capability-list reveal">
+      <section class="skills" id="skills">
+        <p class="kicker">Capabilities</p>
+        <h2>Tools and analytical focus.</h2>
+        <div class="skill-grid">
           <div><span>01</span><h3>Health Analytics</h3><p>Hospital workflows, public health data, pharmacy operations and KPI monitoring.</p></div>
           <div><span>02</span><h3>Business Intelligence</h3><p>Power BI, Looker, dashboards, executive reporting and operational metrics.</p></div>
           <div><span>03</span><h3>Machine Learning</h3><p>Classification models, model evaluation, risk analysis and responsible interpretation.</p></div>
@@ -97,34 +108,22 @@
         </div>
       </section>
 
-      <section id="about" class="section-shell about-section">
-        <div class="portrait-block reveal">
-          <span>LR</span>
-        </div>
-        <div class="about-copy reveal">
-          <p class="label">About</p>
-          <h2>Analytics with domain context.</h2>
-          <p>I work at the intersection of data, operations and decision support, transforming structured information into practical insights for performance monitoring, process improvement and business analysis.</p>
-          <p>My background combines healthcare operations, clinical pharmacy workflows, health tech, BI, AI-supported projects and public portfolio cases using Python, SQL, machine learning, graph analytics and NLP.</p>
-        </div>
-      </section>
-
-      <section class="section-shell confidential-section">
-        <div class="section-heading reveal">
-          <p>Confidential Work</p>
+      <section class="confidential">
+        <div>
+          <p class="kicker">Confidential work</p>
           <h2>Applied projects with private or institutional data.</h2>
         </div>
-        <div class="confidential-grid reveal">
+        <div class="confidential-grid">
           <article><span>Confidential — EBSERH / HC-UFU</span><h3>Clinical Pharmacy KPI Dashboard</h3><p>KPI design, hospital workflow analysis, operational monitoring and decision support.</p></article>
           <article><span>Confidential — Healthcare Companies</span><h3>AI for Scientific Communication</h3><p>Applied AI, automation, health communication, content strategy and low-code workflows.</p></article>
           <article><span>Confidential — Corporate Context</span><h3>Performance Dashboard</h3><p>Executive reporting, dashboard structure, indicators and business analysis.</p></article>
         </div>
       </section>
 
-      <footer id="contact" class="section-shell footer-section">
-        <p class="label reveal">Contact</p>
-        <h2 class="reveal">Let’s connect data, operations and decision-making.</h2>
-        <div class="footer-links reveal">
+      <footer id="contact">
+        <p class="kicker">Contact</p>
+        <h2>Let’s connect data, operations and decision-making.</h2>
+        <div class="footer-links">
           <a href="mailto:luandarodrigues30@gmail.com">Email</a>
           <a href="https://github.com/luandarodrigues" target="_blank" rel="noreferrer">GitHub</a>
           <a href="https://www.linkedin.com/in/luanda-rodrigues" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -132,15 +131,5 @@
         </div>
       </footer>
     </main>
-
-    <script>
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('is-visible');
-        });
-      }, { threshold: 0.12 });
-
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-    </script>
   </body>
 </html>
