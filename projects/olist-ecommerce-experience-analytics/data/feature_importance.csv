@@ -1,0 +1,13 @@
+feature,importance
+delay_days,0.366308
+delivery_days,0.277517
+items_count,0.092624
+freight,0.055615
+product_category_name_english,0.044901
+customer_state,0.035012
+sellers_count,0.030797
+revenue,0.028863
+freight_ratio,0.025329
+seller_state,0.017870
+payment_installments,0.012963
+same_state,0.012202
