@@ -1,0 +1,34 @@
+{
+  "aps_file": "projects\\ubs-healthcare-mapping\\data\\cobertura-aps-geral.xlsx",
+  "original_aps_columns": [
+    "Comp. CNES",
+    "Região",
+    "UF",
+    "Estado",
+    "Região de Saúde",
+    "Município",
+    "População",
+    "Qt. eSF",
+    "Qt. eAP 20hs",
+    "Qt. eAP 30hs",
+    "Qt. eCR",
+    "Qt. Cadastro eCR",
+    "Qt. eAPP 20hs",
+    "Qt. Cadastro eAPP 20hs",
+    "Qt. eAPP 30hs",
+    "Qt. Cadastro eAPP 30hs",
+    "Qt. eSFR",
+    "Qt. Cadastro eSFR",
+    "Qt. cadastros das eCR e eAPP",
+    "Qt. capacidade da equipe",
+    "Cobertura APS"
+  ],
+  "aps_rows": 5558,
+  "municipality_level_join": true,
+  "join_strategy": "ibge_municipio when available; fallback to UF + normalized municipality name",
+  "outputs": [
+    "aps_coverage_normalized.csv",
+    "municipality_ubs_aps_coverage.csv",
+    "uf_ubs_aps_coverage_summary.csv"
+  ]
+}

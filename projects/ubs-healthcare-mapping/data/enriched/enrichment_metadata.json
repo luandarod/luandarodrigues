@@ -1,0 +1,11 @@
+{
+  "source_ubs_file": "projects\\ubs-healthcare-mapping\\data\\Unidades_Basicas_Saude-UBS.csv",
+  "ibge_localidades_url": "https://servicodados.ibge.gov.br/api/v1/localidades/municipios",
+  "sidra_4714_url": "https://apisidra.ibge.gov.br/values/t/4714/n6/all/p/last",
+  "sidra_loaded": true,
+  "outputs": [
+    "municipality_ubs_territory.csv",
+    "uf_ubs_territory_summary.csv",
+    "priority_matrix.csv"
+  ]
+}
