@@ -35,7 +35,7 @@
 
 ## Profile hub
 
-This repository is now organized as a **profile hub**. It keeps the public GitHub profile, visual assets and links to portfolio projects. Each major project is being separated into its own repository so recruiters and reviewers can inspect the work without navigating a large mixed folder structure.
+This repository is now a **profile hub**. It keeps the public GitHub profile, visual assets and links to the project repositories. The main projects are separated into their own repositories so recruiters and reviewers can inspect each case with a clearer structure.
 
 I build analytical projects that connect **healthcare operations, business intelligence, machine learning, data quality and decision intelligence**. My background combines Biomedical Engineering, Hospital Management, clinical pharmacy operations, KPI monitoring, public health datasets, digital projects and AI-supported workflows.
 
@@ -99,33 +99,33 @@ I build analytical projects that connect **healthcare operations, business intel
 
 ---
 
-## Project repository roadmap
+## Project repositories
 
 <table>
   <tr>
-    <th align="left">Project</th>
+    <th align="left">Repository</th>
     <th align="left">Focus</th>
     <th align="left">Status</th>
   </tr>
   <tr>
     <td><a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence"><strong>UBS + IBGE + APS Territorial Intelligence</strong></a></td>
     <td>Health analytics, territorial intelligence, public health BI</td>
-    <td>Separated repository created</td>
+    <td>Published</td>
   </tr>
   <tr>
-    <td><strong>Heart Disease Risk Prediction</strong></td>
+    <td><a href="https://github.com/luandarodrigues/heart-disease-risk-prediction"><strong>Heart Disease Risk Prediction</strong></a></td>
     <td>Clinical machine learning, model evaluation, responsible ML</td>
-    <td>Next repository to separate</td>
+    <td>Repository created; README and sheets will be refined next</td>
   </tr>
   <tr>
-    <td><strong>Brazilian E-Commerce Delivery Experience</strong></td>
+    <td><a href="https://github.com/luandarodrigues/olist-delivery-experience-analytics"><strong>Brazilian E-Commerce Delivery Experience</strong></a></td>
     <td>SQL, logistics analytics, customer satisfaction, delivery risk</td>
-    <td>Next repository to separate</td>
+    <td>Repository created; README and sheets will be refined next</td>
   </tr>
   <tr>
-    <td><strong>CineGraph Network Intelligence</strong></td>
+    <td><a href="https://github.com/luandarodrigues/cinegraph-network-intelligence"><strong>CineGraph Network Intelligence</strong></a></td>
     <td>Graph analytics, recommender systems, NLP, media data</td>
-    <td>Next repository to separate</td>
+    <td>Repository created; README and sheets will be refined next</td>
   </tr>
 </table>
 
