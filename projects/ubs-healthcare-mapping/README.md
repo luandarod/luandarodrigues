@@ -4,6 +4,14 @@
 
 This project analyzes a public dataset of Brazilian Primary Healthcare Units (UBS) to map geographic distribution, evaluate coordinate quality and identify data governance opportunities for public health planning.
 
+## Interactive dashboard
+
+A static interactive dashboard is available through GitHub Pages:
+
+**[Open the UBS Healthcare Mapping Dashboard →](https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/)**
+
+The dashboard works as a portfolio presentation layer for the analysis, with KPI cards, regional filters, state-level rankings, data quality indicators and interpretation notes.
+
 ## Business and public health question
 
 How can geographic and cadastral data from primary healthcare units be transformed into useful intelligence for territorial planning, BI dashboards and data quality monitoring?
