@@ -1,0 +1,18 @@
+dataset_variable,current_risk_factor,coverage,portfolio_interpretation
+Age,Age / older age,Directly available,Non-modifiable factor; risk increases with age.
+Sex,Sex,Directly available,Non-modifiable factor; male sex often shows higher risk in CHD datasets.
+RestingBP,High blood pressure / hypertension,Direct proxy,Resting blood pressure is available and can be grouped by clinical thresholds.
+Cholesterol,High cholesterol / dyslipidemia,Direct proxy but imperfect,"Total serum cholesterol exists, but HDL/LDL split is unavailable; 172 zero values need treatment as missing/unknown."
+FastingBS,Diabetes / high blood glucose,Partial proxy,Binary marker for fasting blood sugar >120 mg/dL; does not replace full diabetes status or HbA1c.
+ExerciseAngina,Exercise-related ischemic symptoms,Dataset-specific clinical signal,"Not a lifestyle risk factor, but strongly indicates exertional symptoms."
+ChestPainType,Clinical presentation/symptoms,Dataset-specific clinical signal,Asymptomatic chest pain group had high disease prevalence.
+RestingECG,ECG abnormality,Clinical diagnostic signal,Captures ST-T abnormalities or LVH but not full ECG interpretation.
+MaxHR,Exercise capacity / cardiovascular response,Indirect proxy,Lower maximum heart rate can reflect reduced exercise response; interpretation depends on age and testing context.
+Oldpeak,ST depression during stress,Clinical diagnostic signal,Represents exercise-induced ST depression.
+ST_Slope,Stress-test ECG abnormality,Clinical diagnostic signal,Strongest predictive feature in this analysis.
+Not available,Smoking,Missing,Important current risk factor but absent from dataset.
+Not available,Obesity / BMI / waist circumference,Missing,Important current risk factor but absent from dataset.
+Not available,Physical inactivity,Missing,Important current risk factor but absent from dataset.
+Not available,Diet / sodium / saturated fat / ultra-processed foods,Missing,Important current risk factor but absent from dataset.
+Not available,Sleep health,Missing,Part of AHA Life's Essential 8 but absent from dataset.
+Not available,Air pollution / environmental exposure,Missing,"WHO identifies air pollution as environmental risk factor, but it is absent from dataset."
