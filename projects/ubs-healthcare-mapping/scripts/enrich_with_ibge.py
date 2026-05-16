@@ -18,23 +18,8 @@ territorial intelligence layer. It can join the UBS dataset by municipality IBGE
 Expected UBS input columns:
     cnes, uf, ibge, nome, logradouro, bairro, latitude, longitude
 
-The original UBS CSV may use comma decimal separators in latitude/longitude fields.
-This script normalizes both comma and dot decimal formats.
-
-Example:
-    python enrich_with_ibge.py \
-      --input data/raw/ubs.csv \
-      --output-dir data/enriched
-
-Outputs:
-    municipality_ubs_territory.csv
-    uf_ubs_territory_summary.csv
-    priority_matrix.csv
-
-Notes:
-    - This script requires internet access to call IBGE APIs.
-    - If the SIDRA API format changes, the Localidades enrichment still runs and the
-      SIDRA step is skipped with a warning.
+The original UBS CSV may use semicolon separators and comma decimal separators.
+This script auto-detects separators and normalizes both comma and dot decimal formats.
 """
 
 from __future__ import annotations
@@ -43,7 +28,7 @@ import argparse
 import json
 import re
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 import pandas as pd
 import requests
@@ -56,6 +41,39 @@ def _safe_get(url: str, timeout: int = 60) -> Any:
     response = requests.get(url, timeout=timeout)
     response.raise_for_status()
     return response.json()
+
+
+def read_ubs_csv(path: Path) -> pd.DataFrame:
+    """Read UBS CSV with automatic delimiter and encoding handling."""
+    encodings = ["utf-8-sig", "utf-8", "latin1"]
+    separators = [None, ";", ",", "\t"]
+
+    last_error: Exception | None = None
+    for encoding in encodings:
+        for sep in separators:
+            try:
+                df = pd.read_csv(
+                    path,
+                    sep=sep,
+                    engine="python" if sep is None else "c",
+                    encoding=encoding,
+                    dtype=str,
+                )
+                normalized_cols = [str(c).strip().lower() for c in df.columns]
+                if "ibge" in normalized_cols:
+                    return df
+                # If the file was read as a single column, try next separator.
+                if len(df.columns) == 1:
+                    continue
+            except Exception as exc:  # noqa: BLE001
+                last_error = exc
+                continue
+
+    raise ValueError(
+        "Could not read the UBS CSV with an IBGE column. "
+        "Check if the file is a valid CSV and contains the header 'IBGE'. "
+        f"Last error: {last_error}"
+    )
 
 
 def _normalize_decimal_series(series: pd.Series) -> pd.Series:
@@ -113,10 +131,10 @@ def fetch_ibge_municipalities() -> pd.DataFrame:
 
 def normalize_ubs(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
-    df.columns = [c.strip().lower() for c in df.columns]
+    df.columns = [str(c).strip().lower() for c in df.columns]
 
     if "ibge" not in df.columns:
-        raise ValueError("Input file must contain an 'ibge' municipality code column.")
+        raise ValueError(f"Input file must contain an 'ibge' municipality code column. Columns found: {list(df.columns)}")
 
     df["ibge_municipio"] = pd.to_numeric(df["ibge"], errors="coerce").astype("Int64")
 
@@ -130,26 +148,20 @@ def normalize_ubs(df: pd.DataFrame) -> pd.DataFrame:
     else:
         df["longitude"] = pd.NA
 
-    df["has_valid_coordinates"] = (
-        df["latitude"].between(-34, 6) & df["longitude"].between(-74, -34)
-    )
-
+    df["has_valid_coordinates"] = df["latitude"].between(-34, 6) & df["longitude"].between(-74, -34)
     return df
 
 
 def aggregate_ubs_by_municipality(df: pd.DataFrame) -> pd.DataFrame:
     group = df.groupby("ibge_municipio", dropna=True)
-
     result = group.agg(
         ubs_records=("ibge_municipio", "size"),
         valid_coordinate_records=("has_valid_coordinates", "sum"),
         latitude_missing=("latitude", lambda s: s.isna().sum()),
         longitude_missing=("longitude", lambda s: s.isna().sum()),
     ).reset_index()
-
     result["coordinate_validity_pct"] = result["valid_coordinate_records"] / result["ubs_records"] * 100
     result["missing_coordinate_records"] = result["ubs_records"] - result["valid_coordinate_records"]
-
     return result
 
 
@@ -172,13 +184,10 @@ def fetch_sidra_4714() -> pd.DataFrame:
     if not data or len(data) < 2:
         raise ValueError("SIDRA API returned no data.")
 
-    rows = data[1:]
-    raw = pd.DataFrame(rows)
-
+    raw = pd.DataFrame(data[1:])
     code_col = "D1C" if "D1C" in raw.columns else None
     name_col = "D1N" if "D1N" in raw.columns else None
     value_col = "V" if "V" in raw.columns else None
-
     if not code_col or not value_col:
         raise ValueError("Could not identify SIDRA territorial code/value columns.")
 
@@ -189,7 +198,6 @@ def fetch_sidra_4714() -> pd.DataFrame:
         if labels.str.contains("populacao|area|densidade", regex=True).any():
             variable_col = col
             break
-
     if variable_col is None:
         raise ValueError("Could not identify SIDRA variable label column.")
 
@@ -200,18 +208,11 @@ def fetch_sidra_4714() -> pd.DataFrame:
 
     def classify_variable(label: str) -> str:
         label_norm = (
-            str(label)
-            .lower()
-            .replace("á", "a")
-            .replace("ã", "a")
-            .replace("â", "a")
-            .replace("é", "e")
-            .replace("ê", "e")
-            .replace("í", "i")
-            .replace("ó", "o")
-            .replace("õ", "o")
-            .replace("ú", "u")
-            .replace("ç", "c")
+            str(label).lower()
+            .replace("á", "a").replace("ã", "a").replace("â", "a")
+            .replace("é", "e").replace("ê", "e")
+            .replace("í", "i").replace("ó", "o").replace("õ", "o")
+            .replace("ú", "u").replace("ç", "c")
         )
         if "populacao" in label_norm:
             return "populacao_residente"
@@ -234,51 +235,38 @@ def fetch_sidra_4714() -> pd.DataFrame:
 
 def add_priority_metrics(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
-
     if "populacao_residente" in df.columns:
         df["ubs_per_10k_population"] = df["ubs_records"] / df["populacao_residente"] * 10000
     else:
         df["ubs_per_10k_population"] = pd.NA
-
     if "area_km2" in df.columns:
         df["ubs_per_1000_km2"] = df["ubs_records"] / df["area_km2"] * 1000
     else:
         df["ubs_per_1000_km2"] = pd.NA
-
     df["coordinate_quality_flag"] = pd.cut(
-        df["coordinate_validity_pct"],
-        bins=[-1, 80, 95, 100],
-        labels=["high_attention", "monitor", "good"],
+        df["coordinate_validity_pct"], bins=[-1, 80, 95, 100], labels=["high_attention", "monitor", "good"]
     )
-
-    if "ubs_per_10k_population" in df.columns and df["ubs_per_10k_population"].notna().any():
+    if df["ubs_per_10k_population"].notna().any():
         q25 = df["ubs_per_10k_population"].quantile(0.25)
-        df["population_pressure_flag"] = df["ubs_per_10k_population"].apply(
-            lambda x: "possible_pressure" if pd.notna(x) and x <= q25 else "baseline"
-        )
+        df["population_pressure_flag"] = df["ubs_per_10k_population"].apply(lambda x: "possible_pressure" if pd.notna(x) and x <= q25 else "baseline")
     else:
         df["population_pressure_flag"] = "population_not_loaded"
-
-    if "ubs_per_1000_km2" in df.columns and df["ubs_per_1000_km2"].notna().any():
+    if df["ubs_per_1000_km2"].notna().any():
         q25_area = df["ubs_per_1000_km2"].quantile(0.25)
-        df["territorial_dispersion_flag"] = df["ubs_per_1000_km2"].apply(
-            lambda x: "possible_dispersion" if pd.notna(x) and x <= q25_area else "baseline"
-        )
+        df["territorial_dispersion_flag"] = df["ubs_per_1000_km2"].apply(lambda x: "possible_dispersion" if pd.notna(x) and x <= q25_area else "baseline")
     else:
         df["territorial_dispersion_flag"] = "area_not_loaded"
-
     return df
 
 
 def build_outputs(input_path: Path, output_dir: Path) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    ubs = normalize_ubs(pd.read_csv(input_path))
+    ubs = normalize_ubs(read_ubs_csv(input_path))
     ubs_municipality = aggregate_ubs_by_municipality(ubs)
 
     print("Fetching IBGE Localidades...")
     municipalities = fetch_ibge_municipalities()
-
     enriched = ubs_municipality.merge(municipalities, on="ibge_municipio", how="left")
 
     sidra_loaded = False
@@ -287,7 +275,7 @@ def build_outputs(input_path: Path, output_dir: Path) -> None:
         sidra = fetch_sidra_4714()
         enriched = enriched.merge(sidra, on="ibge_municipio", how="left")
         sidra_loaded = True
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001
         print(f"Warning: SIDRA Table 4714 could not be loaded: {exc}")
 
     enriched = add_priority_metrics(enriched)
@@ -304,7 +292,6 @@ def build_outputs(input_path: Path, output_dir: Path) -> None:
         agg_spec["area_km2"] = ("area_km2", "sum")
 
     uf_summary = enriched.groupby(["uf_sigla", "uf_nome", "regiao_nome"], dropna=False).agg(**agg_spec).reset_index()
-
     if "population" in uf_summary.columns:
         uf_summary["ubs_per_10k_population"] = uf_summary["ubs_records"] / uf_summary["population"] * 10000
     if "area_km2" in uf_summary.columns:
@@ -325,14 +312,9 @@ def build_outputs(input_path: Path, output_dir: Path) -> None:
         "ibge_localidades_url": LOCALIDADES_MUNICIPIOS_URL,
         "sidra_4714_url": SIDRA_4714_URL,
         "sidra_loaded": sidra_loaded,
-        "outputs": [
-            "municipality_ubs_territory.csv",
-            "uf_ubs_territory_summary.csv",
-            "priority_matrix.csv",
-        ],
+        "outputs": ["municipality_ubs_territory.csv", "uf_ubs_territory_summary.csv", "priority_matrix.csv"],
     }
     (output_dir / "enrichment_metadata.json").write_text(json.dumps(metadata, indent=2, ensure_ascii=False), encoding="utf-8")
-
     print(f"Done. Files saved to: {output_dir}")
 
 
@@ -341,7 +323,6 @@ def main() -> None:
     parser.add_argument("--input", required=True, help="Path to raw UBS CSV file.")
     parser.add_argument("--output-dir", default="data/enriched", help="Output directory.")
     args = parser.parse_args()
-
     build_outputs(Path(args.input), Path(args.output_dir))
 
 
