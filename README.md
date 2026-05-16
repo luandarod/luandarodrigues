@@ -8,7 +8,7 @@
 
 <br /><br />
 
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=24&duration=2800&pause=900&color=111111&center=true&vCenter=true&width=900&lines=Data+Analyst+focused+on+Health%2C+Operations+%26+Decision+Intelligence;Healthcare+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Graph+Analytics+%E2%80%A2+NLP+%E2%80%A2+Data+Quality+%E2%80%A2+Dashboards" alt="Typing headline" />
+<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=23&duration=3200&pause=1200&color=2F81F7&center=true&vCenter=true&width=900&lines=Data+Analyst+focused+on+Health%2C+Operations+%26+Decision+Intelligence;Healthcare+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Graph+Analytics+%E2%80%A2+NLP+%E2%80%A2+Data+Quality+%E2%80%A2+Dashboards" alt="Animated headline" />
 
 <br />
 
