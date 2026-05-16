@@ -110,12 +110,12 @@ I build analytical projects that connect **healthcare operations, business intel
   <tr>
     <td><a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence"><strong>UBS + IBGE + APS Territorial Intelligence</strong></a></td>
     <td>Health analytics, territorial intelligence, public health BI</td>
-    <td>Published</td>
+    <td><a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2">Dashboard live</a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/luandarodrigues/heart-disease-risk-prediction"><strong>Heart Disease Risk Prediction</strong></a></td>
     <td>Clinical machine learning, model evaluation, responsible ML</td>
-    <td>Repository created; README and sheets will be refined next</td>
+    <td><a href="https://luandarodrigues.github.io/heart-disease-risk-prediction/?v=5">Dashboard live</a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/luandarodrigues/olist-delivery-experience-analytics"><strong>Brazilian E-Commerce Delivery Experience</strong></a></td>
