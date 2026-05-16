@@ -1,71 +1,110 @@
-# 📊 Luanda Rodrigues – Healthcare Data Analyst
+# Luanda Rodrigues | Healthcare Data Analyst
 
-**Data-driven professional transforming hospital operations through analytical insights, process optimization, and actionable metrics.**
+Data analyst with experience in healthcare operations, hospital indicators, process improvement, health tech and applied AI.
 
----
+I work at the intersection of **data, operations and healthcare**, transforming structured information into insights for decision-making, performance monitoring and service improvement.
 
-## 🏥 About Me
+## Focus areas
 
-I'm a **Data Analyst specializing in healthcare operations**, with a foundation in clinical pharmacy workflows and hospital management systems. I leverage data to identify inefficiencies, optimize processes, and support evidence-based decision-making in large public hospital environments.
+- Health Analytics and hospital operations
+- Business Intelligence and KPI monitoring
+- Public health data analysis
+- Machine Learning applied to healthcare
+- Data quality and exploratory analysis
+- Process optimization and decision support
 
-My approach is **practical and results-oriented**: I focus on measuring what matters, identifying where delays and bottlenecks occur, and recommending solutions that can actually be implemented.
+## Featured portfolio projects
 
-### Key Strengths
-- 📈 **Healthcare domain expertise** – deep understanding of clinical workflows, prescription processes, and operational challenges
-- 🔍 **Process optimization** – identifying inefficiencies and quantifying impact
-- 📊 **Translating data into action** – bridging the gap between analytics and hospital management decisions
-- 🎯 **Operational intelligence** – building indicators that drive real change
+### 1. Mapping Primary Healthcare Units in Brazil
+**Health Analytics | Geomapping | Data Quality | Public Health BI**
 
----
+Analysis of **47,714 Brazilian Primary Healthcare Units (UBS)** to map their geographic distribution, evaluate geolocation quality and identify opportunities for better data governance in public health planning.
 
-## 🛠️ Technical Toolkit
+**Highlights**
 
-| Category | Tools |
-|----------|-------|
-| **Data Analysis & Modeling** | Excel (advanced formulas, operational models), Python (pandas, matplotlib, NumPy) |
-| **Databases & Queries** | SQL (data extraction, complex joins, performance analysis) |
-| **Visualization & BI** | Power BI (dashboards, KPI monitoring, interactive reports) |
-| **Domain Systems** | AGHU / Hospital Management Systems (data context, structure, workflows) |
+- 47,714 UBS records analyzed
+- 27 Brazilian states represented
+- 5,483 municipalities identified
+- 45,785 records with valid coordinates
+- 3,182 records with repeated coordinates, flagged for potential georeferencing review
 
----
+**Tools:** Python, Pandas, Folium, Matplotlib, CSV, Geolocation, Data Quality
 
-## 💼 Featured Projects
-
-### 1. 🏥 Hospital Operations Analysis
-**Comprehensive analysis of triage, prescription, and delivery workflows**
-
-Identifies bottlenecks in pharmacy operations and evaluates clinical effectiveness.
-
-- **Key Metrics:** Triage time, prescription analysis rates (%), delivery performance
-- **Impact:** Reveals where delays occur and proposes data-backed improvements
-- **Tools:** Python | Excel | Power BI
-- **[View Project](./projects/hospital-operations)**
+[Open project](./projects/ubs-healthcare-mapping)
 
 ---
 
-### 2. 📋 Prescription Data – SQL Analysis  
-**Structured query analysis for operational intelligence**
+### 2. Heart Disease Risk Prediction with Machine Learning
+**Health Analytics | Machine Learning | Clinical Risk Factors | Model Evaluation**
 
-Deep-dive into prescription processing delays and departmental performance variation.
+Machine learning project using a clinical dataset with **918 patient records** and **11 predictive variables** to identify patterns associated with heart disease and evaluate classification models.
 
-- **Analysis:** Comparison between departments, average delays by sector, volume vs. processing capacity
-- **Outcome:** Quantifies inefficiencies and capacity constraints
-- **Tools:** SQL | Relational Databases
-- **[View Project](./projects/sql-prescriptions)**
+The project combines model performance with clinical context, including a critical comparison between the dataset variables and current cardiovascular risk factors such as blood pressure, cholesterol, glucose, smoking, obesity, physical activity and sleep.
 
----
+**Highlights**
 
-### 3. 📊 Operational Dashboard – KPI Monitoring
-**Real-time performance tracking for hospital management**
+- 918 records analyzed
+- 11 clinical predictors
+- Logistic Regression and Random Forest tested
+- Best ROC-AUC around 0.93
+- Strongest predictive signal: ST_Slope
+- Clear discussion of clinical and ethical limitations
 
-Centralized dashboard monitoring critical operational indicators.
+**Tools:** Python, Pandas, Scikit-learn, Matplotlib, EDA, Classification, Model Evaluation
 
-- **Tracked Metrics:** Triage SLA compliance, delivery volume, effectiveness rates, process delays
-- **Users:** Hospital management and operations teams
-- **Design:** Intuitive, actionable insights for decision-makers
-- **Tools:** Power BI
-- **[View Project](./projects/dashboard-indicators)**
+[Open project](./projects/heart-disease-risk-ml)
 
 ---
 
-## 🎯 My Approach
+## More healthcare & data work
+
+These projects are part of my applied experience, but cannot be publicly shared because they involve institutional or private company data.
+
+### Dashboard of Clinical Pharmacy KPIs
+**Confidential project — EBSERH/HC-UFU**
+
+Institutional project involving internal healthcare operations data. The public description focuses only on anonymized structure, analytical reasoning and skills demonstrated.
+
+**Skills demonstrated:** KPI design, hospital workflow analysis, operational monitoring, decision support, pharmacy process improvement.
+
+### AI Solutions for Scientific Communication in Healthcare
+**Confidential project — private healthcare companies**
+
+Projects developed in closed corporate contexts involving health communication, scientific content and AI-supported workflows.
+
+**Skills demonstrated:** applied AI, automation, content strategy, health tech, low-code workflows, stakeholder communication.
+
+### Performance Dashboard for Decision-Making
+**Confidential project — closed corporate context**
+
+Corporate performance project with private indicators and non-public dashboards.
+
+**Skills demonstrated:** BI structure, executive reporting, performance metrics, dashboard design, business analysis.
+
+---
+
+## Technical toolkit
+
+| Area | Tools and skills |
+|---|---|
+| Data analysis | Python, Pandas, NumPy, Excel |
+| Visualization | Matplotlib, Power BI, Looker |
+| Machine learning | Scikit-learn, classification models, model evaluation |
+| Databases | SQL, DB API foundations |
+| Healthcare analytics | KPIs, hospital workflows, public health data, pharmacy operations |
+| Process improvement | Lean Six Sigma, bottleneck analysis, operational indicators |
+| Cloud & automation | AWS foundations, AI tools, low-code automation |
+
+## Background
+
+- Hospital Management — UNAMA
+- Biomedical Engineering — Universidade Federal do Pará
+- Aspire Leadership Program — Aspire Institute
+- Experience in healthcare operations, pharmaceutical business projects, technical support and health data analysis
+
+## Contact
+
+- Email: luandarodrigues30@gmail.com
+- LinkedIn: [linkedin.com/in/luanda-rodrigues](https://www.linkedin.com/in/luanda-rodrigues)
+- Behance: [behance.net/luandarodrguez](https://www.behance.net/luandarodrguez)
+- Portfolio site: [Lovable portfolio](https://lovable.dev/projects/07cdaf57-09b7-49d4-8048-56f0da7fcd91)
