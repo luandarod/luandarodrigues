@@ -18,6 +18,9 @@ territorial intelligence layer. It can join the UBS dataset by municipality IBGE
 Expected UBS input columns:
     cnes, uf, ibge, nome, logradouro, bairro, latitude, longitude
 
+The original UBS CSV may use comma decimal separators in latitude/longitude fields.
+This script normalizes both comma and dot decimal formats.
+
 Example:
     python enrich_with_ibge.py \
       --input data/raw/ubs.csv \
@@ -40,7 +43,7 @@ import argparse
 import json
 import re
 from pathlib import Path
-from typing import Any, Dict, Iterable, Optional
+from typing import Any, Dict, Optional
 
 import pandas as pd
 import requests
@@ -55,13 +58,15 @@ def _safe_get(url: str, timeout: int = 60) -> Any:
     return response.json()
 
 
-def _dig(data: Dict[str, Any], *keys: str) -> Any:
-    current: Any = data
-    for key in keys:
-        if not isinstance(current, dict):
-            return None
-        current = current.get(key)
-    return current
+def _normalize_decimal_series(series: pd.Series) -> pd.Series:
+    """Convert decimal strings with comma or dot separators to numeric values."""
+    return pd.to_numeric(
+        series.astype(str)
+        .str.strip()
+        .str.replace(" ", "", regex=False)
+        .str.replace(",", ".", regex=False),
+        errors="coerce",
+    )
 
 
 def fetch_ibge_municipalities() -> pd.DataFrame:
@@ -116,12 +121,12 @@ def normalize_ubs(df: pd.DataFrame) -> pd.DataFrame:
     df["ibge_municipio"] = pd.to_numeric(df["ibge"], errors="coerce").astype("Int64")
 
     if "latitude" in df.columns:
-        df["latitude"] = pd.to_numeric(df["latitude"], errors="coerce")
+        df["latitude"] = _normalize_decimal_series(df["latitude"])
     else:
         df["latitude"] = pd.NA
 
     if "longitude" in df.columns:
-        df["longitude"] = pd.to_numeric(df["longitude"], errors="coerce")
+        df["longitude"] = _normalize_decimal_series(df["longitude"])
     else:
         df["longitude"] = pd.NA
 
@@ -142,12 +147,8 @@ def aggregate_ubs_by_municipality(df: pd.DataFrame) -> pd.DataFrame:
         longitude_missing=("longitude", lambda s: s.isna().sum()),
     ).reset_index()
 
-    result["coordinate_validity_pct"] = (
-        result["valid_coordinate_records"] / result["ubs_records"] * 100
-    )
-    result["missing_coordinate_records"] = (
-        result["ubs_records"] - result["valid_coordinate_records"]
-    )
+    result["coordinate_validity_pct"] = result["valid_coordinate_records"] / result["ubs_records"] * 100
+    result["missing_coordinate_records"] = result["ubs_records"] - result["valid_coordinate_records"]
 
     return result
 
@@ -166,23 +167,14 @@ def _clean_numeric(value: Any) -> Optional[float]:
 
 
 def fetch_sidra_4714() -> pd.DataFrame:
-    """Fetch and reshape SIDRA Table 4714.
-
-    The SIDRA API returns a first metadata row followed by data rows. This parser is
-    intentionally defensive because column labels can vary depending on the selected
-    dimensions and API output options.
-    """
+    """Fetch and reshape SIDRA Table 4714."""
     data = _safe_get(SIDRA_4714_URL)
     if not data or len(data) < 2:
         raise ValueError("SIDRA API returned no data.")
 
-    header = data[0]
     rows = data[1:]
     raw = pd.DataFrame(rows)
 
-    # Common SIDRA columns:
-    # D1C = territorial code, D1N = territorial name, D2N or D3N can hold variable labels,
-    # V = value. The exact variable dimension may vary, so detect it by label content.
     code_col = "D1C" if "D1C" in raw.columns else None
     name_col = "D1N" if "D1N" in raw.columns else None
     value_col = "V" if "V" in raw.columns else None
@@ -230,10 +222,12 @@ def fetch_sidra_4714() -> pd.DataFrame:
         return re.sub(r"[^a-z0-9]+", "_", label_norm).strip("_")
 
     parsed["metric"] = parsed["variable"].map(classify_variable)
-    wide = (
-        parsed.pivot_table(index=["ibge_municipio", "municipio_nome_sidra"], columns="metric", values="value", aggfunc="first")
-        .reset_index()
-    )
+    wide = parsed.pivot_table(
+        index=["ibge_municipio", "municipio_nome_sidra"],
+        columns="metric",
+        values="value",
+        aggfunc="first",
+    ).reset_index()
     wide.columns.name = None
     return wide
 
@@ -251,8 +245,6 @@ def add_priority_metrics(df: pd.DataFrame) -> pd.DataFrame:
     else:
         df["ubs_per_1000_km2"] = pd.NA
 
-    # Risk-oriented flags. These are not clinical judgements; they are portfolio/business
-    # rules to help prioritize data review and territorial investigation.
     df["coordinate_quality_flag"] = pd.cut(
         df["coordinate_validity_pct"],
         bins=[-1, 80, 95, 100],
@@ -295,27 +287,27 @@ def build_outputs(input_path: Path, output_dir: Path) -> None:
         sidra = fetch_sidra_4714()
         enriched = enriched.merge(sidra, on="ibge_municipio", how="left")
         sidra_loaded = True
-    except Exception as exc:  # noqa: BLE001
+    except Exception as exc:
         print(f"Warning: SIDRA Table 4714 could not be loaded: {exc}")
 
     enriched = add_priority_metrics(enriched)
 
-    uf_summary = (
-        enriched.groupby(["uf_sigla", "uf_nome", "regiao_nome"], dropna=False)
-        .agg(
-            municipalities=("ibge_municipio", "nunique"),
-            ubs_records=("ubs_records", "sum"),
-            valid_coordinate_records=("valid_coordinate_records", "sum"),
-            missing_coordinate_records=("missing_coordinate_records", "sum"),
-            population=("populacao_residente", "sum") if "populacao_residente" in enriched.columns else ("ubs_records", "sum"),
-            area_km2=("area_km2", "sum") if "area_km2" in enriched.columns else ("ubs_records", "sum"),
-        )
-        .reset_index()
-    )
-
+    agg_spec = {
+        "municipalities": ("ibge_municipio", "nunique"),
+        "ubs_records": ("ubs_records", "sum"),
+        "valid_coordinate_records": ("valid_coordinate_records", "sum"),
+        "missing_coordinate_records": ("missing_coordinate_records", "sum"),
+    }
     if "populacao_residente" in enriched.columns:
-        uf_summary["ubs_per_10k_population"] = uf_summary["ubs_records"] / uf_summary["population"] * 10000
+        agg_spec["population"] = ("populacao_residente", "sum")
     if "area_km2" in enriched.columns:
+        agg_spec["area_km2"] = ("area_km2", "sum")
+
+    uf_summary = enriched.groupby(["uf_sigla", "uf_nome", "regiao_nome"], dropna=False).agg(**agg_spec).reset_index()
+
+    if "population" in uf_summary.columns:
+        uf_summary["ubs_per_10k_population"] = uf_summary["ubs_records"] / uf_summary["population"] * 10000
+    if "area_km2" in uf_summary.columns:
         uf_summary["ubs_per_1000_km2"] = uf_summary["ubs_records"] / uf_summary["area_km2"] * 1000
     uf_summary["coordinate_validity_pct"] = uf_summary["valid_coordinate_records"] / uf_summary["ubs_records"] * 100
 
