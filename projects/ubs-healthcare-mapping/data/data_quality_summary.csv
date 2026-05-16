@@ -1,0 +1,11 @@
+metric,value,percentage
+total_records,47714,100.0
+unique_cnes,47714,100.0
+states,27,
+municipalities,5483,
+valid_coordinates,45785,95.95716142012827
+missing_complete_coordinates,1929,4.042838579871736
+latitude_missing,1928,4.040742758938676
+longitude_missing,1927,4.038646938005617
+repeated_coordinates,3182,6.668902208995263
+repeated_name_address,78,0.1634740327786394
