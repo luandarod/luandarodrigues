@@ -15,6 +15,9 @@
 <a href="https://luandarodrigues.github.io/luandarodrigues/">
   <img src="https://img.shields.io/badge/Portf%C3%B3lio-Acessar%20site-111111?style=for-the-badge&logo=githubpages&logoColor=white" alt="Portfólio" />
 </a>
+<a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2">
+  <img src="https://img.shields.io/badge/Painel%20Principal-UBS%20%2B%20IBGE%20%2B%20APS-111111?style=for-the-badge&logo=githubpages&logoColor=white" alt="Painel Principal" />
+</a>
 <a href="https://www.linkedin.com/in/luanda-rodrigues">
   <img src="https://img.shields.io/badge/LinkedIn-Luanda%20Rodrigues-111111?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
 </a>
@@ -66,35 +69,71 @@ Atualmente, meu portfólio conecta:
 
 ---
 
-## Projetos em destaque
+## Projeto principal do portfólio
 
 <table>
   <tr>
-    <td width="50%" valign="top">
-      <h3>01 · Mapping Primary Healthcare Units in Brazil</h3>
-      <p><strong>Health Analytics · Geomapping · Data Quality · Public Health BI</strong></p>
-      <p>Análise de 47.714 Unidades Básicas de Saúde brasileiras para mapear distribuição geográfica, avaliar qualidade de coordenadas e identificar oportunidades de governança de dados em saúde pública.</p>
-      <p><a href="./projects/ubs-healthcare-mapping"><strong>Abrir projeto →</strong></a></p>
+    <td width="45%" valign="top">
+      <h3>UBS + IBGE + Cobertura Potencial APS</h3>
+      <p><strong>Health Analytics · Inteligência Territorial · BI em Saúde Pública · Qualidade de Dados</strong></p>
+      <p>Este painel interativo conecta o cadastro físico de Unidades Básicas de Saúde brasileiras com indicadores populacionais e territoriais do IBGE/SIDRA, além de incorporar a Cobertura Potencial da Atenção Primária à Saúde.</p>
+      <p>O objetivo é ir além da contagem de unidades. O painel compara presença física da rede, pressão populacional, dispersão territorial, qualidade das coordenadas e capacidade potencial da APS, sempre deixando explícitas as limitações dos dados públicos.</p>
+      <p>
+        <img src="https://img.shields.io/badge/47.714-registros%20UBS-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/5.483-munic%C3%ADpios-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/210%2C4M-popula%C3%A7%C3%A3o%20APS-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/180%2C3M-capacidade%20estimada-111111?style=flat-square" />
+      </p>
+      <p>
+        <a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2"><strong>Abrir painel interativo →</strong></a><br />
+        <a href="./projects/ubs-healthcare-mapping"><strong>Abrir README do projeto →</strong></a>
+      </p>
     </td>
+    <td width="55%" valign="top">
+      <h4>O que o painel mostra</h4>
+      <ul>
+        <li>Distribuição das UBS por estado e região.</li>
+        <li>Comparação entre volume de UBS, população e área territorial.</li>
+        <li>Qualidade de geolocalização e prontidão das coordenadas.</li>
+        <li>Cobertura potencial da APS por município e estado.</li>
+        <li>Sinais de prioridade para investigação territorial.</li>
+      </ul>
+      <h4>Por que ele importa</h4>
+      <p>Contar UBS não explica sozinho acesso, capacidade ou suficiência. Este projeto mostra como bases públicas podem ser integradas em uma camada analítica orientada à decisão para operações em saúde e planejamento público.</p>
+    </td>
+  </tr>
+</table>
+
+---
+
+## Outros projetos em destaque
+
+<table>
+  <tr>
     <td width="50%" valign="top">
       <h3>02 · Heart Disease Risk Prediction</h3>
       <p><strong>Machine Learning · Clinical Risk Factors · Model Evaluation</strong></p>
       <p>Projeto de machine learning com 918 registros clínicos e 11 preditores para avaliar modelos de classificação de doença cardíaca e discutir limitações clínicas e éticas.</p>
       <p><a href="./projects/heart-disease-risk-ml"><strong>Abrir projeto →</strong></a></p>
     </td>
-  </tr>
-  <tr>
     <td width="50%" valign="top">
       <h3>03 · Brazilian E-Commerce Delivery Experience</h3>
       <p><strong>SQL · Logistics · Customer Experience · Machine Learning</strong></p>
       <p>Análise da base pública da Olist para entender como logística, atraso de entrega, pagamentos e categorias de produto afetam a satisfação do cliente.</p>
       <p><a href="./projects/olist-ecommerce-experience-analytics"><strong>Abrir projeto →</strong></a></p>
     </td>
+  </tr>
+  <tr>
     <td width="50%" valign="top">
       <h3>04 · CineGraph Network Intelligence</h3>
       <p><strong>Graph Analytics · Recommender Systems · NLP · Knowledge Graphs</strong></p>
       <p>Projeto avançado de media analytics usando uma grande base TMDB em grafo para analisar integridade de relações, redes de colaboração, recomendações, streaming e reviews.</p>
       <p><a href="./projects/cinegraph-network-intelligence"><strong>Abrir projeto →</strong></a></p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>Trabalhos aplicados e confidenciais</h3>
+      <p><strong>Operações em Saúde · BI · Automação · Comunicação Científica</strong></p>
+      <p>Alguns dashboards e projetos operacionais não podem ser compartilhados publicamente por envolverem dados institucionais ou privados. Eles são apresentados por descrições anonimizadas e métodos transferíveis.</p>
     </td>
   </tr>
 </table>
