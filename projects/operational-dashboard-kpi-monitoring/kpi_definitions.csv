@@ -1,6 +1,0 @@
-kpi_name,description,formula
-Avg Triage Time,Average time to complete triage,AVG(triage_time_minutes)
-Avg Delivery Time,Average time to deliver medication,AVG(delivery_time_minutes)
-Triage Delay Rate,Percentage of delayed triage,DIVIDE(delay_flag,total)
-Delivery Delay Rate,Percentage of delayed delivery,DIVIDE(delivery_delay_flag,total)
-Completion Rate,Percentage of completed analysis,DIVIDE(analysis_completed_flag,total)
