@@ -110,12 +110,12 @@ Construo projetos analíticos que conectam **operações em saúde, business int
   <tr>
     <td><a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence"><strong>UBS + IBGE + APS Territorial Intelligence</strong></a></td>
     <td>Health analytics, inteligência territorial, BI em saúde pública</td>
-    <td>Publicado</td>
+    <td><a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2">Painel publicado</a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/luandarodrigues/heart-disease-risk-prediction"><strong>Heart Disease Risk Prediction</strong></a></td>
     <td>Machine learning clínico, avaliação de modelos, responsible ML</td>
-    <td>Repositório criado; README e sheets serão refinados em seguida</td>
+    <td><a href="https://luandarodrigues.github.io/heart-disease-risk-prediction/?v=5">Painel publicado</a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/luandarodrigues/olist-delivery-experience-analytics"><strong>Brazilian E-Commerce Delivery Experience</strong></a></td>
