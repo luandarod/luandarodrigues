@@ -2,10 +2,11 @@
 
 # Luanda Rodrigues
 
-### Healthcare Data Analyst | Health Tech | BI & KPIs | Machine Learning in Healthcare
+### Data Analyst | Health Analytics | BI & KPIs | Machine Learning | E-commerce Analytics
 
-I work at the intersection of **data, healthcare operations and decision support**, turning structured information into practical insights for performance monitoring, process improvement and public health analysis.
+I work at the intersection of **data, operations and decision support**, turning structured information into practical insights for performance monitoring, process improvement and business analysis.
 
+[![Portfolio](https://img.shields.io/badge/Portfolio-Lovable-0f766e?style=for-the-badge)](https://lovable.dev/projects/3ca529e3-2da7-4915-a84c-4b2f06bfadef)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Luanda%20Rodrigues-0a66c2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/luanda-rodrigues)
 [![Email](https://img.shields.io/badge/Email-Contact-334155?style=for-the-badge&logo=gmail)](mailto:luandarodrigues30@gmail.com)
 
@@ -15,17 +16,18 @@ I work at the intersection of **data, healthcare operations and decision support
 
 ## About
 
-I am a data-driven professional with experience in **hospital operations, clinical pharmacy workflows, healthcare indicators, AI-supported projects and business intelligence**.
+I am a data-driven professional with experience in **healthcare operations, clinical pharmacy workflows, healthcare indicators, AI-supported projects, business intelligence and operational analytics**.
 
-My work combines analytical thinking with healthcare context. I focus on building indicators, identifying bottlenecks, validating data quality and translating findings into clear recommendations for decision-making.
+My work combines analytical thinking with domain context. I focus on building indicators, identifying bottlenecks, validating data quality and translating findings into clear recommendations for decision-making.
 
-Currently, my portfolio is focused on projects that connect:
+Currently, my portfolio connects:
 
 - **Health Analytics** and public health datasets
 - **Business Intelligence** and KPI monitoring
-- **Machine Learning** applied to clinical risk analysis
-- **Data Quality** and responsible interpretation of healthcare data
-- **Operational improvement** in complex healthcare environments
+- **Machine Learning** applied to clinical and business risk analysis
+- **SQL data modeling** and relational analytical marts
+- **Customer experience analytics** and logistics performance
+- **Data Quality** and responsible interpretation of operational data
 
 ---
 
@@ -58,6 +60,21 @@ Currently, my portfolio is focused on projects that connect:
       <p><a href="./projects/heart-disease-risk-ml"><strong>Open project →</strong></a></p>
     </td>
   </tr>
+  <tr>
+    <td colspan="2">
+      <h3>Brazilian E-Commerce Delivery Experience Analytics</h3>
+      <p><strong>E-commerce Analytics · SQL Data Modeling · Logistics Performance · Customer Experience · Machine Learning</strong></p>
+      <p>Analysis of the Brazilian Olist public e-commerce dataset to understand how logistics, delivery delays, payment behavior and product categories affect customer satisfaction.</p>
+      <ul>
+        <li>99,441 orders analyzed</li>
+        <li>112,650 order items</li>
+        <li>3,095 sellers and 32,951 products</li>
+        <li>R$ 15.8M in GMV including freight</li>
+        <li>Low-review risk model using Logistic Regression and Random Forest</li>
+      </ul>
+      <p><a href="./projects/olist-ecommerce-experience-analytics"><strong>Open project →</strong></a></p>
+    </td>
+  </tr>
 </table>
 
 ---
@@ -68,8 +85,10 @@ Currently, my portfolio is focused on projects that connect:
 |---|---|
 | **Healthcare analytics** | Hospital workflows, public health data, clinical pharmacy indicators, service performance |
 | **Business intelligence** | KPI design, dashboards, executive reporting, operational monitoring |
+| **E-commerce analytics** | Customer experience, logistics performance, seller behavior, payment analysis |
 | **Data analysis** | Exploratory analysis, data quality checks, segmentation, trend interpretation |
-| **Machine learning** | Classification models, model evaluation, clinical risk analysis, responsible interpretation |
+| **Machine learning** | Classification models, model evaluation, clinical and business risk analysis |
+| **SQL modeling** | Analytical marts, relational joins, dimensional thinking, reproducible queries |
 | **Process improvement** | Bottleneck detection, workflow optimization, Lean Six Sigma thinking |
 | **AI & automation** | AI-supported workflows, low-code automation, health communication projects |
 
@@ -83,11 +102,13 @@ Currently, my portfolio is focused on projects that connect:
 ![Pandas](https://img.shields.io/badge/Pandas-334155?style=flat-square&logo=pandas)
 ![Scikit--learn](https://img.shields.io/badge/Scikit--learn-334155?style=flat-square&logo=scikitlearn)
 ![SQL](https://img.shields.io/badge/SQL-334155?style=flat-square)
+![SQLite](https://img.shields.io/badge/SQLite-334155?style=flat-square&logo=sqlite)
 ![Power BI](https://img.shields.io/badge/Power%20BI-334155?style=flat-square&logo=powerbi)
 ![Looker](https://img.shields.io/badge/Looker-334155?style=flat-square&logo=looker)
 ![Excel](https://img.shields.io/badge/Excel-334155?style=flat-square&logo=microsoftexcel)
 ![AWS](https://img.shields.io/badge/AWS%20Foundations-334155?style=flat-square&logo=amazonaws)
 ![Healthcare](https://img.shields.io/badge/Healthcare%20Analytics-0f766e?style=flat-square)
+![E--commerce](https://img.shields.io/badge/E--commerce%20Analytics-0f766e?style=flat-square)
 ![Data Quality](https://img.shields.io/badge/Data%20Quality-0f766e?style=flat-square)
 
 </div>
@@ -98,8 +119,9 @@ Currently, my portfolio is focused on projects that connect:
 Data Analysis      Python · Pandas · NumPy · Excel
 BI & Dashboards    Power BI · Looker · KPI monitoring · Executive reporting
 ML & Modeling      Scikit-learn · Classification · Model evaluation · ROC-AUC · F1-score
-Databases          SQL · DB API foundations · Structured data analysis
+Databases          SQL · SQLite-ready queries · Analytical marts · Structured data modeling
 Healthcare         Hospital operations · Pharmacy workflows · Public health datasets
+E-commerce         Delivery performance · Reviews · Seller analysis · Customer experience
 Operations         Bottleneck analysis · Lean Six Sigma · Process optimization
 Automation         AI tools · Low-code workflows · Health tech projects
 ```
@@ -129,12 +151,13 @@ Some of my applied work cannot be publicly shared because it involves institutio
 
 ## How I approach data projects
 
-1. Understand the operational or healthcare question.
+1. Understand the operational, healthcare or business question.
 2. Validate the dataset and document quality issues.
 3. Build exploratory analysis before jumping to conclusions.
-4. Translate findings into business or healthcare context.
-5. Make limitations explicit, especially in clinical or public health analysis.
-6. Communicate results in a format that decision-makers can use.
+4. Model the data structure clearly, especially when multiple tables are involved.
+5. Translate findings into business or healthcare context.
+6. Make limitations explicit, especially in clinical, public health or predictive analysis.
+7. Communicate results in a format that decision-makers can use.
 
 ---
 
