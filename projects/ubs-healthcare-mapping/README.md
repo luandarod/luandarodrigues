@@ -27,10 +27,16 @@ The dataset contains identification and location fields for UBS records:
 - Address and neighborhood
 - Latitude and longitude
 
-The raw file is currently stored at:
+The raw UBS file is currently stored at:
 
 ```text
 projects/ubs-healthcare-mapping/data/Unidades_Basicas_Saude-UBS.csv
+```
+
+The APS coverage file is currently stored at:
+
+```text
+projects/ubs-healthcare-mapping/data/cobertura-aps-geral.xlsx
 ```
 
 ## Key numbers
@@ -71,7 +77,9 @@ projects/ubs-healthcare-mapping/data/Unidades_Basicas_Saude-UBS.csv
 - Around 96% of records have usable geographic coordinates, which makes the base suitable for mapping.
 - Missing latitude/longitude values and repeated coordinates are relevant data quality flags.
 - The Northeast and Southeast concentrate the largest number of UBS records in the dataset.
-- The analysis describes the distribution of registered units, not healthcare coverage. Coverage analysis would require population, demand, catchment area and service production data.
+- The IBGE enrichment makes it possible to compare UBS volume against population and territorial area.
+- The APS coverage layer can support a stronger interpretation of installed capacity and potential primary care coverage.
+- The analysis describes distribution and analytical signals, not definitive healthcare access or adequacy.
 
 ## Methodology
 
@@ -81,8 +89,9 @@ projects/ubs-healthcare-mapping/data/Unidades_Basicas_Saude-UBS.csv
 4. Classification of states by Brazilian region
 5. Aggregation by region, state and municipality
 6. Geolocation quality assessment
-7. Preparation of outputs for dashboard and portfolio presentation
-8. Optional IBGE/SIDRA enrichment for population and territorial analysis
+7. IBGE/SIDRA enrichment for population and territorial analysis
+8. APS potential coverage enrichment
+9. Preparation of outputs for dashboard and portfolio presentation
 
 ## Enrichment pipeline
 
@@ -94,6 +103,15 @@ python projects/ubs-healthcare-mapping/scripts/enrich_with_ibge.py \
   --output-dir projects/ubs-healthcare-mapping/data/enriched
 ```
 
+After generating `municipality_ubs_territory.csv`, the APS coverage file can be joined using:
+
+```bash
+python projects/ubs-healthcare-mapping/scripts/enrich_with_aps_coverage.py \
+  --ubs-territory projects/ubs-healthcare-mapping/data/enriched/municipality_ubs_territory.csv \
+  --aps-file projects/ubs-healthcare-mapping/data/cobertura-aps-geral.xlsx \
+  --output-dir projects/ubs-healthcare-mapping/data/enriched
+```
+
 Expected enriched outputs:
 
 ```text
@@ -101,7 +119,11 @@ projects/ubs-healthcare-mapping/data/enriched/
 ├── municipality_ubs_territory.csv
 ├── uf_ubs_territory_summary.csv
 ├── priority_matrix.csv
-└── enrichment_metadata.json
+├── aps_coverage_normalized.csv
+├── municipality_ubs_aps_coverage.csv
+├── uf_ubs_aps_coverage_summary.csv
+├── enrichment_metadata.json
+└── aps_enrichment_metadata.json
 ```
 
 ## Files in this project
@@ -112,6 +134,7 @@ projects/ubs-healthcare-mapping/
 ├── DATA_ENRICHMENT.md
 ├── data/
 │   ├── Unidades_Basicas_Saude-UBS.csv
+│   ├── cobertura-aps-geral.xlsx
 │   ├── data_quality_summary.csv
 │   ├── region_distribution.csv
 │   ├── state_distribution.csv
@@ -119,16 +142,21 @@ projects/ubs-healthcare-mapping/
 │       ├── municipality_ubs_territory.csv
 │       ├── uf_ubs_territory_summary.csv
 │       ├── priority_matrix.csv
-│       └── enrichment_metadata.json
+│       ├── aps_coverage_normalized.csv
+│       ├── municipality_ubs_aps_coverage.csv
+│       ├── uf_ubs_aps_coverage_summary.csv
+│       ├── enrichment_metadata.json
+│       └── aps_enrichment_metadata.json
 └── scripts/
     ├── analyze_ubs.py
-    └── enrich_with_ibge.py
+    ├── enrich_with_ibge.py
+    └── enrich_with_aps_coverage.py
 ```
 
 ## Tools
 
-Python, Pandas, Folium, Matplotlib, CSV, Geolocation, Data Quality, Health Analytics, IBGE APIs, SIDRA, Territorial Intelligence.
+Python, Pandas, Folium, Matplotlib, CSV, Geolocation, Data Quality, Health Analytics, IBGE APIs, SIDRA, APS Coverage, Territorial Intelligence.
 
 ## Limitations
 
-This project does not infer access to care, demand, productivity or adequacy of healthcare coverage. To answer those questions, the dataset should be enriched with population by municipality, socioeconomic indicators, primary care coverage and service production data.
+This project does not infer definitive access to care, demand, productivity or adequacy of healthcare coverage. To answer those questions, the dataset should also be enriched with service production, teams, workload, catchment areas, socioeconomic indicators and official APS coverage metrics by period.
