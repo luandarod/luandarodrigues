@@ -182,6 +182,6 @@ Some of my applied work cannot be publicly shared because it involves institutio
 
 ### Contact
 
-[Portfolio](https://lovable.dev/projects/3ca529e3-2da7-4915-a84c-4b2f06bfadef) · [LinkedIn](https://www.linkedin.com/in/luanda-rodrigues) · [Behance](https://www.behance.net/luandarodrguez) · [Email](mailto:luandarodrigues30@gmail.com)
+· [LinkedIn](https://www.linkedin.com/in/luanda-rodrigues) · [Behance](https://www.behance.net/luandarodrguez) · [Email](mailto:luandarodrigues30@gmail.com)
 
 </div>
