@@ -8,24 +8,21 @@
 
 <br /><br />
 
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=23&duration=3200&pause=1200&color=2F81F7&center=true&vCenter=true&width=900&lines=Data+Analyst+focused+on+Health%2C+Operations+%26+Decision+Intelligence;Healthcare+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Graph+Analytics+%E2%80%A2+NLP+%E2%80%A2+Data+Quality+%E2%80%A2+Dashboards" alt="Animated headline" />
+<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=23&duration=3200&pause=1200&color=111111&center=true&vCenter=true&width=900&lines=Data+Analyst+focused+on+Health%2C+Operations+%26+Decision+Intelligence;Healthcare+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Territorial+Intelligence+%E2%80%A2+Data+Quality+%E2%80%A2+Dashboards" alt="Animated headline" />
 
 <br />
 
 <a href="https://luandarodrigues.github.io/luandarodrigues/">
   <img src="https://img.shields.io/badge/Portfolio-Visit%20site-111111?style=for-the-badge&logo=githubpages&logoColor=white" alt="Portfolio" />
 </a>
-<a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2">
-  <img src="https://img.shields.io/badge/Main%20Dashboard-UBS%20%2B%20IBGE%20%2B%20APS-111111?style=for-the-badge&logo=githubpages&logoColor=white" alt="Main Dashboard" />
+<a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence">
+  <img src="https://img.shields.io/badge/Main%20Project-UBS%20%2B%20IBGE%20%2B%20APS-111111?style=for-the-badge&logo=github&logoColor=white" alt="Main Project" />
 </a>
 <a href="https://www.linkedin.com/in/luanda-rodrigues">
   <img src="https://img.shields.io/badge/LinkedIn-Luanda%20Rodrigues-111111?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
 </a>
 <a href="mailto:luandarodrigues30@gmail.com">
   <img src="https://img.shields.io/badge/Email-Contact-111111?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
-</a>
-<a href="https://www.behance.net/luandarodrguez">
-  <img src="https://img.shields.io/badge/Behance-Portfolio-111111?style=for-the-badge&logo=behance&logoColor=white" alt="Behance" />
 </a>
 
 <br /><br />
@@ -36,13 +33,11 @@
 
 ---
 
-## About
+## Profile hub
 
-I build analytical projects that connect **healthcare operations, business intelligence, machine learning and data quality** to support better decisions.
+This repository is now organized as a **profile hub**. It keeps the public GitHub profile, visual assets and links to portfolio projects. Each major project is being separated into its own repository so recruiters and reviewers can inspect the work without navigating a large mixed folder structure.
 
-My background combines **Biomedical Engineering, Hospital Management, clinical pharmacy operations, KPI monitoring, public health datasets, digital projects and AI-supported workflows**. I work with data not only as a technical layer, but as a way to understand processes, identify bottlenecks and translate findings into action.
-
-Currently, my portfolio connects:
+I build analytical projects that connect **healthcare operations, business intelligence, machine learning, data quality and decision intelligence**. My background combines Biomedical Engineering, Hospital Management, clinical pharmacy operations, KPI monitoring, public health datasets, digital projects and AI-supported workflows.
 
 <table>
   <tr>
@@ -69,15 +64,15 @@ Currently, my portfolio connects:
 
 ---
 
-## Main Portfolio Project
+## Main project repository
 
 <table>
   <tr>
     <td width="45%" valign="top">
       <h3>UBS + IBGE + Cobertura Potencial APS</h3>
       <p><strong>Health Analytics · Territorial Intelligence · Public Health BI · Data Quality</strong></p>
-      <p>This interactive dashboard connects the physical registry of Brazilian Primary Healthcare Units with IBGE/SIDRA population and territorial indicators, then adds APS potential coverage to estimate installed primary care capacity.</p>
-      <p>The goal is to move beyond simply counting healthcare units. The dashboard helps compare physical presence, population pressure, territorial dispersion, coordinate quality and potential APS coverage, while keeping the limitations of public health data explicit.</p>
+      <p>Interactive public health analytics project integrating the Brazilian UBS registry with IBGE/SIDRA territorial indicators and APS potential coverage data.</p>
+      <p>The project moves beyond counting healthcare units. It compares physical network presence, population pressure, territorial dispersion, coordinate quality and installed primary care capacity.</p>
       <p>
         <img src="https://img.shields.io/badge/47,714-UBS%20records-111111?style=flat-square" />
         <img src="https://img.shields.io/badge/5,483-municipalities-111111?style=flat-square" />
@@ -85,77 +80,58 @@ Currently, my portfolio connects:
         <img src="https://img.shields.io/badge/180.3M-estimated%20capacity-111111?style=flat-square" />
       </p>
       <p>
-        <a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2"><strong>Open interactive dashboard →</strong></a><br />
-        <a href="./projects/ubs-healthcare-mapping"><strong>Open project README →</strong></a>
+        <a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence"><strong>Open repository →</strong></a><br />
+        <a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2"><strong>Open dashboard →</strong></a>
       </p>
     </td>
     <td width="55%" valign="top">
-      <h4>What the dashboard shows</h4>
+      <h4>What this project demonstrates</h4>
       <ul>
-        <li>UBS distribution by state and region.</li>
-        <li>Comparison between UBS volume, population and territorial area.</li>
-        <li>Geolocation quality and coordinate readiness.</li>
-        <li>APS potential coverage by municipality and state.</li>
-        <li>Signals for territorial prioritization and further investigation.</li>
+        <li>Data cleaning and normalization of public health datasets.</li>
+        <li>Integration between UBS, IBGE/SIDRA and APS coverage data.</li>
+        <li>Dashboard-oriented analytical modeling.</li>
+        <li>Territorial indicators for health planning.</li>
+        <li>Clear analytical limitations and responsible interpretation.</li>
       </ul>
-      <h4>Why it matters</h4>
-      <p>Counting UBS alone does not explain access, capacity or sufficiency. This project demonstrates how public datasets can be integrated into a decision-oriented analytical layer for health operations and public planning.</p>
     </td>
   </tr>
 </table>
 
 ---
 
-## Other Featured Projects
+## Project repository roadmap
 
 <table>
   <tr>
-    <td width="50%" valign="top">
-      <h3>02 · Heart Disease Risk Prediction</h3>
-      <p><strong>Machine Learning · Clinical Risk Factors · Model Evaluation</strong></p>
-      <p>Machine learning project using 918 patient records and 11 clinical predictors to evaluate heart disease classification models and discuss clinical and ethical limitations.</p>
-      <p>
-        <img src="https://img.shields.io/badge/918-clinical%20records-111111?style=flat-square" />
-        <img src="https://img.shields.io/badge/ROC--AUC-~0.93-111111?style=flat-square" />
-        <img src="https://img.shields.io/badge/Responsible-ML-111111?style=flat-square" />
-      </p>
-      <p><a href="./projects/heart-disease-risk-ml"><strong>Open project →</strong></a></p>
-    </td>
-    <td width="50%" valign="top">
-      <h3>03 · Brazilian E-Commerce Delivery Experience</h3>
-      <p><strong>SQL · Logistics · Customer Experience · Machine Learning</strong></p>
-      <p>Analysis of the Brazilian Olist public e-commerce dataset to understand how logistics, delivery delays, payment behavior and product categories affect customer satisfaction.</p>
-      <p>
-        <img src="https://img.shields.io/badge/99,441-orders-111111?style=flat-square" />
-        <img src="https://img.shields.io/badge/R$15.8M-GMV-111111?style=flat-square" />
-        <img src="https://img.shields.io/badge/Low--review-risk%20model-111111?style=flat-square" />
-      </p>
-      <p><a href="./projects/olist-ecommerce-experience-analytics"><strong>Open project →</strong></a></p>
-    </td>
+    <th align="left">Project</th>
+    <th align="left">Focus</th>
+    <th align="left">Status</th>
   </tr>
   <tr>
-    <td width="50%" valign="top">
-      <h3>04 · CineGraph Network Intelligence</h3>
-      <p><strong>Graph Analytics · Recommender Systems · NLP · Knowledge Graphs</strong></p>
-      <p>Advanced media analytics project using a large TMDB graph dataset to analyze relationship integrity, co-star networks, recommendation edges, streaming availability and review text signals.</p>
-      <p>
-        <img src="https://img.shields.io/badge/22,393-movies-111111?style=flat-square" />
-        <img src="https://img.shields.io/badge/58,393-people-111111?style=flat-square" />
-        <img src="https://img.shields.io/badge/Graph%20%2B%20NLP-analysis-111111?style=flat-square" />
-      </p>
-      <p><a href="./projects/cinegraph-network-intelligence"><strong>Open project →</strong></a></p>
-    </td>
-    <td width="50%" valign="top">
-      <h3>Applied and confidential work</h3>
-      <p><strong>Healthcare Operations · BI · Automation · Scientific Communication</strong></p>
-      <p>Some applied dashboards and operational projects cannot be publicly shared because they involve institutional or private data. They are represented through anonymized descriptions and transferable methods.</p>
-    </td>
+    <td><a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence"><strong>UBS + IBGE + APS Territorial Intelligence</strong></a></td>
+    <td>Health analytics, territorial intelligence, public health BI</td>
+    <td>Separated repository created</td>
+  </tr>
+  <tr>
+    <td><strong>Heart Disease Risk Prediction</strong></td>
+    <td>Clinical machine learning, model evaluation, responsible ML</td>
+    <td>Next repository to separate</td>
+  </tr>
+  <tr>
+    <td><strong>Brazilian E-Commerce Delivery Experience</strong></td>
+    <td>SQL, logistics analytics, customer satisfaction, delivery risk</td>
+    <td>Next repository to separate</td>
+  </tr>
+  <tr>
+    <td><strong>CineGraph Network Intelligence</strong></td>
+    <td>Graph analytics, recommender systems, NLP, media data</td>
+    <td>Next repository to separate</td>
   </tr>
 </table>
 
 ---
 
-## Technical Toolkit
+## Technical toolkit
 
 <div align="center">
 
@@ -188,7 +164,7 @@ Automation         AI tools · low-code workflows · health communication projec
 
 ---
 
-## Confidential & Applied Work
+## Applied and confidential work
 
 Some applied work cannot be publicly shared because it involves institutional or private company data. I present these projects through anonymized descriptions and transferable skills.
 
@@ -212,51 +188,23 @@ Some applied work cannot be publicly shared because it involves institutional or
 
 ## How I approach data projects
 
-I treat data projects as decision systems. The goal is not only to build charts or models, but to understand the operational question, test the reliability of the data, select the right analytical method and communicate conclusions with clear limitations.
-
 ```mermaid
 flowchart TB
-    A[1. Understand the decision context] --> A1[Clarify the healthcare, business or operational question]
-    A --> A2[Define stakeholders, expected decision and success criteria]
-
-    A2 --> B[2. Map data sources]
-    B --> B1[Identify tables, entities, keys and relationships]
-    B --> B2[Check granularity, time windows and business definitions]
-
-    B2 --> C[3. Validate data quality]
-    C --> C1[Missing values, duplicates, outliers and inconsistent records]
-    C --> C2[Document limitations before analysis]
-
-    C2 --> D[4. Build the analytical dataset]
-    D --> D1[Clean, join and transform data]
-    D --> D2[Create indicators, features and analytical marts]
-
-    D2 --> E[5. Explore patterns]
-    E --> E1[Trends, segments, distributions and correlations]
-    E --> E2[Compare groups, categories, geography or time periods]
-
-    E2 --> F{6. Choose the right method}
-    F --> F1[BI dashboard or KPI monitoring]
-    F --> F2[Statistical analysis or hypothesis testing]
-    F --> F3[Machine learning model]
+    A[Understand the decision context] --> B[Map data sources]
+    B --> C[Validate data quality]
+    C --> D[Build the analytical dataset]
+    D --> E[Explore patterns]
+    E --> F{Choose the right method}
+    F --> F1[BI dashboard]
+    F --> F2[Statistical analysis]
+    F --> F3[Machine learning]
     F --> F4[Graph analytics or NLP]
-
-    F1 --> G[7. Interpret results]
+    F1 --> G[Interpret results]
     F2 --> G
     F3 --> G
     F4 --> G
-
-    G --> G1[Translate outputs into operational meaning]
-    G --> G2[Separate signal from noise]
-    G --> G3[State risks, bias and clinical or business limitations]
-
-    G3 --> H[8. Communicate for action]
-    H --> H1[Executive summary, dashboard, README or report]
-    H --> H2[Recommendations, next steps and monitoring metrics]
-
-    H2 --> I[9. Iterate]
-    I --> I1[Collect feedback]
-    I --> I2[Improve model, metric, dashboard or process]
+    G --> H[Communicate for action]
+    H --> I[Iterate]
 ```
 
 ---
