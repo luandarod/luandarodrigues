@@ -8,7 +8,7 @@
 
 <br /><br />
 
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=23&duration=3200&pause=1200&color=111111&center=true&vCenter=true&width=900&lines=Analista+de+Dados+focada+em+Sa%C3%BAde%2C+Opera%C3%A7%C3%B5es+e+Decis%C3%A3o;Health+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Intelig%C3%AAncia+Territorial+%E2%80%A2+Qualidade+de+Dados+%E2%80%A2+Dashboards" alt="Título animado" />
+<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=23&duration=3200&pause=1200&color=111111&center=true&vCenter=true&width=900&lines=Analista+de+Dados+focada+em+Sa%C3%BAde%2C+Opera%C3%A7%C3%B5es%2C+CX+e+Decis%C3%A3o;Health+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Marketplace+Analytics+%E2%80%A2+Storytelling+Dashboards+%E2%80%A2+Qualidade+de+Dados" alt="Título animado" />
 
 <br />
 
@@ -35,9 +35,9 @@
 
 ## Hub de perfil
 
-Este repositório agora funciona como um **hub de perfil**. Ele mantém o README público, os assets visuais e os links para os repositórios do portfólio. Os principais projetos estão sendo separados em repositórios próprios para facilitar a leitura por recrutadores, avaliadores técnicos e pessoas interessadas nos estudos.
+Este repositório funciona como um **hub de perfil**. Ele mantém o README público, os assets visuais e os links para os repositórios do portfólio. Os principais projetos estão separados em repositórios próprios para facilitar a leitura por recrutadores, avaliadores técnicos e pessoas interessadas nos estudos.
 
-Construo projetos analíticos que conectam **operações em saúde, business intelligence, machine learning, qualidade de dados e inteligência para decisão**. Minha trajetória combina Engenharia Biomédica, Gestão Hospitalar, operações de farmácia clínica, monitoramento de KPIs, dados públicos de saúde, projetos digitais e fluxos apoiados por IA.
+Construo projetos analíticos que conectam **operações em saúde, business intelligence, machine learning, qualidade de dados, experiência do cliente e inteligência para decisão**. Minha trajetória combina Engenharia Biomédica, Gestão Hospitalar, operações de farmácia clínica, monitoramento de KPIs, dados públicos de saúde, projetos digitais e fluxos apoiados por IA.
 
 <table>
   <tr>
@@ -50,7 +50,7 @@ Construo projetos analíticos que conectam **operações em saúde, business int
   </tr>
   <tr>
     <td><strong>Machine Learning</strong></td>
-    <td>Modelos de classificação, avaliação de modelos, risco clínico e risco de negócio.</td>
+    <td>Modelos de classificação, avaliação de modelos, risco clínico, risco de CX e risco de negócio.</td>
   </tr>
   <tr>
     <td><strong>Graph + NLP</strong></td>
@@ -64,35 +64,40 @@ Construo projetos analíticos que conectam **operações em saúde, business int
 
 ---
 
-## Repositório principal do portfólio
+## Repositórios em destaque
 
 <table>
   <tr>
-    <td width="45%" valign="top">
+    <td width="50%" valign="top">
       <h3>UBS + IBGE + Cobertura Potencial APS</h3>
       <p><strong>Health Analytics · Inteligência Territorial · BI em Saúde Pública · Qualidade de Dados</strong></p>
       <p>Projeto interativo de análise em saúde pública que integra o cadastro brasileiro de UBS com indicadores territoriais do IBGE/SIDRA e dados de Cobertura Potencial da APS.</p>
-      <p>O projeto vai além da contagem de unidades. Ele compara presença física da rede, pressão populacional, dispersão territorial, qualidade de coordenadas e capacidade instalada estimada da Atenção Primária.</p>
+      <p>O projeto compara presença física da rede, pressão populacional, dispersão territorial, qualidade de coordenadas e capacidade instalada estimada da Atenção Primária.</p>
       <p>
         <img src="https://img.shields.io/badge/47.714-registros%20UBS-111111?style=flat-square" />
         <img src="https://img.shields.io/badge/5.483-munic%C3%ADpios-111111?style=flat-square" />
         <img src="https://img.shields.io/badge/210%2C4M-popula%C3%A7%C3%A3o%20APS-111111?style=flat-square" />
-        <img src="https://img.shields.io/badge/180%2C3M-capacidade%20estimada-111111?style=flat-square" />
       </p>
       <p>
         <a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence"><strong>Abrir repositório →</strong></a><br />
         <a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2"><strong>Abrir painel →</strong></a>
       </p>
     </td>
-    <td width="55%" valign="top">
-      <h4>O que este projeto demonstra</h4>
-      <ul>
-        <li>Limpeza e normalização de bases públicas de saúde.</li>
-        <li>Integração entre UBS, IBGE/SIDRA e Cobertura APS.</li>
-        <li>Modelagem analítica orientada a dashboard.</li>
-        <li>Indicadores territoriais para planejamento em saúde.</li>
-        <li>Interpretação responsável com limitações explícitas.</li>
-      </ul>
+    <td width="50%" valign="top">
+      <h3>Olist Delivery Experience Analytics</h3>
+      <p><strong>Marketplace Analytics · Performance Logística · SQL Mart · Risco de CX · Storytelling Dashboard</strong></p>
+      <p>Projeto de storytelling de negócio com a base pública da Olist para mostrar como atrito logístico vira insatisfação do cliente, pressão de custo e oportunidade operacional.</p>
+      <p>O painel inclui camada de auditoria com dados brutos via Git LFS, CSVs analíticos derivados, lógica de transformação SQL, análise de cenários e interface bilíngue PT/EN inspirada na identidade visual da Olist.</p>
+      <p>
+        <img src="https://img.shields.io/badge/99.441-pedidos-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/96.478-entregues-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/R$15.8M-GMV-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/PT%2FEN-dashboard-111111?style=flat-square" />
+      </p>
+      <p>
+        <a href="https://github.com/luandarodrigues/olist-delivery-experience-analytics"><strong>Abrir repositório →</strong></a><br />
+        <a href="https://luandarodrigues.github.io/olist-delivery-experience-analytics/?v=4"><strong>Abrir painel →</strong></a>
+      </p>
     </td>
   </tr>
 </table>
@@ -119,8 +124,8 @@ Construo projetos analíticos que conectam **operações em saúde, business int
   </tr>
   <tr>
     <td><a href="https://github.com/luandarodrigues/olist-delivery-experience-analytics"><strong>Brazilian E-Commerce Delivery Experience</strong></a></td>
-    <td>SQL, logística, satisfação do cliente, risco de atraso/baixa avaliação</td>
-    <td>Repositório criado; README e sheets serão refinados em seguida</td>
+    <td>SQL, logística, satisfação do cliente, risco de atraso/baixa avaliação, storytelling dashboard</td>
+    <td><a href="https://luandarodrigues.github.io/olist-delivery-experience-analytics/?v=4">Painel publicado</a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/luandarodrigues/cinegraph-network-intelligence"><strong>CineGraph Network Intelligence</strong></a></td>
@@ -159,6 +164,7 @@ NLP                  TF-IDF · mineração de reviews · sinais de sentimento ·
 Bancos de Dados      SQL · consultas SQLite-ready · marts analíticos · modelagem estruturada
 Saúde                Operações hospitalares · fluxos de farmácia · bases públicas de saúde
 Operações            Gargalos · Lean Six Sigma · otimização de fluxos · apoio à decisão
+CX Analytics         Reviews · risco de entrega · insatisfação do cliente · operações de marketplace
 Automação            Ferramentas de IA · low-code · comunicação em saúde
 ```
 
