@@ -8,15 +8,15 @@
 
 <br /><br />
 
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=23&duration=3200&pause=1200&color=111111&center=true&vCenter=true&width=900&lines=Data+Analyst+focused+on+Health%2C+Operations%2C+CX+%26+Decision+Intelligence;Healthcare+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Marketplace+Analytics+%E2%80%A2+Storytelling+Dashboards+%E2%80%A2+Data+Quality" alt="Animated headline" />
+<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=23&duration=3200&pause=1200&color=111111&center=true&vCenter=true&width=900&lines=Data+Analyst+focused+on+Health%2C+Operations%2C+CX+%26+Decision+Intelligence;Healthcare+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Graph+Analytics+%E2%80%A2+Neural+Search+%E2%80%A2+Storytelling+Dashboards" alt="Animated headline" />
 
 <br />
 
 <a href="https://luandarodrigues.github.io/luandarodrigues/">
   <img src="https://img.shields.io/badge/Portfolio-Visit%20site-111111?style=for-the-badge&logo=githubpages&logoColor=white" alt="Portfolio" />
 </a>
-<a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence">
-  <img src="https://img.shields.io/badge/Main%20Project-UBS%20%2B%20IBGE%20%2B%20APS-111111?style=for-the-badge&logo=github&logoColor=white" alt="Main Project" />
+<a href="https://cinegraph-network-intelligence-lcsr.streamlit.app/">
+  <img src="https://img.shields.io/badge/CineGraph%20AI%20Explorer-Preview%20App-111111?style=for-the-badge&logo=streamlit&logoColor=white" alt="CineGraph AI Explorer Preview App" />
 </a>
 <a href="https://www.linkedin.com/in/luanda-rodrigues">
   <img src="https://img.shields.io/badge/LinkedIn-Luanda%20Rodrigues-111111?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
@@ -35,32 +35,9 @@
 
 ## Profile hub
 
-This repository is now a **profile hub**. It keeps the public GitHub profile, visual assets and links to the project repositories. The main projects are separated into their own repositories so recruiters and reviewers can inspect each case with a clearer structure.
+This repository is my **public profile hub**. It centralizes my portfolio, project repositories and applied analytics work across healthcare, operations, business intelligence, machine learning, customer experience and decision intelligence.
 
-I build analytical projects that connect **healthcare operations, business intelligence, machine learning, data quality, customer experience and decision intelligence**. My background combines Biomedical Engineering, Hospital Management, clinical pharmacy operations, KPI monitoring, public health datasets, digital projects and AI-supported workflows.
-
-<table>
-  <tr>
-    <td><strong>Health Analytics</strong></td>
-    <td>Public health datasets, hospital workflows, clinical pharmacy indicators and service performance.</td>
-  </tr>
-  <tr>
-    <td><strong>Business Intelligence</strong></td>
-    <td>KPI design, dashboards, executive reporting and operational monitoring.</td>
-  </tr>
-  <tr>
-    <td><strong>Machine Learning</strong></td>
-    <td>Classification models, model evaluation, clinical risk, CX risk and business risk analysis.</td>
-  </tr>
-  <tr>
-    <td><strong>Graph + NLP</strong></td>
-    <td>NetworkX, recommendation networks, relationship modeling, TF-IDF and review text mining.</td>
-  </tr>
-  <tr>
-    <td><strong>Operations Analytics</strong></td>
-    <td>Bottleneck detection, workflow optimization, logistics performance and customer experience.</td>
-  </tr>
-</table>
+I build analytical projects that connect **business context, data quality, modeling, visualization and decision-making**. My background combines Biomedical Engineering, Hospital Management, clinical pharmacy operations, KPI monitoring, public health datasets, digital projects and AI-supported workflows.
 
 ---
 
@@ -71,7 +48,7 @@ I build analytical projects that connect **healthcare operations, business intel
     <td width="50%" valign="top">
       <h3>UBS + IBGE + Cobertura Potencial APS</h3>
       <p><strong>Health Analytics · Territorial Intelligence · Public Health BI · Data Quality</strong></p>
-      <p>Interactive public health analytics project integrating the Brazilian UBS registry with IBGE/SIDRA territorial indicators and APS potential coverage data.</p>
+      <p>Public health analytics project integrating the Brazilian UBS registry with IBGE/SIDRA territorial indicators and APS potential coverage data.</p>
       <p>The project compares physical network presence, population pressure, territorial dispersion, coordinate quality and installed primary care capacity.</p>
       <p>
         <img src="https://img.shields.io/badge/47,714-UBS%20records-111111?style=flat-square" />
@@ -84,6 +61,23 @@ I build analytical projects that connect **healthcare operations, business intel
       </p>
     </td>
     <td width="50%" valign="top">
+      <h3>CineGraph Network Intelligence</h3>
+      <p><strong>Graph Analytics · Neural Search · Hybrid Recommender · NLP · Streamlit App</strong></p>
+      <p>Media intelligence project using the CineGraph TMDB dataset as a graph of movies, TV shows, people, recommendation edges, orphan nodes and reviews.</p>
+      <p>The current Streamlit app is a <strong>preview version</strong>. It already includes catalog KPIs, movie/TV search, hybrid recommendations, people-title network exploration, semantic search and recommendation explanations.</p>
+      <p>
+        <img src="https://img.shields.io/badge/22,393-movies-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/58,393-people-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/Streamlit-preview-111111?style=flat-square" />
+      </p>
+      <p>
+        <a href="https://github.com/luandarodrigues/cinegraph-network-intelligence"><strong>Open repository →</strong></a><br />
+        <a href="https://cinegraph-network-intelligence-lcsr.streamlit.app/"><strong>Open preview app →</strong></a>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
       <h3>Olist Delivery Experience Analytics</h3>
       <p><strong>Marketplace Analytics · Logistics Performance · SQL Mart · CX Risk · Storytelling Dashboard</strong></p>
       <p>Business storytelling project using the Olist public e-commerce dataset to show how logistics friction becomes customer dissatisfaction, cost pressure and operational opportunity.</p>
@@ -92,11 +86,25 @@ I build analytical projects that connect **healthcare operations, business intel
         <img src="https://img.shields.io/badge/99,441-orders-111111?style=flat-square" />
         <img src="https://img.shields.io/badge/96,478-delivered-111111?style=flat-square" />
         <img src="https://img.shields.io/badge/R$15.8M-GMV-111111?style=flat-square" />
-        <img src="https://img.shields.io/badge/PT%2FEN-dashboard-111111?style=flat-square" />
       </p>
       <p>
         <a href="https://github.com/luandarodrigues/olist-delivery-experience-analytics"><strong>Open repository →</strong></a><br />
         <a href="https://luandarodrigues.github.io/olist-delivery-experience-analytics/?v=4"><strong>Open dashboard →</strong></a>
+      </p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>Heart Disease Risk Prediction</h3>
+      <p><strong>Clinical Machine Learning · Model Evaluation · Responsible ML</strong></p>
+      <p>Clinical risk project using classification models to predict heart disease presence and translate technical model features into clinical interpretation.</p>
+      <p>The project emphasizes model evaluation, feature interpretation and responsible communication of limits.</p>
+      <p>
+        <img src="https://img.shields.io/badge/918-records-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/11-predictors-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/PT%2FEN-dashboard-111111?style=flat-square" />
+      </p>
+      <p>
+        <a href="https://github.com/luandarodrigues/heart-disease-risk-prediction"><strong>Open repository →</strong></a><br />
+        <a href="https://luandarodrigues.github.io/heart-disease-risk-prediction/?v=5"><strong>Open dashboard →</strong></a>
       </p>
     </td>
   </tr>
@@ -106,66 +114,34 @@ I build analytical projects that connect **healthcare operations, business intel
 
 ## Project repositories
 
-<table>
-  <tr>
-    <th align="left">Repository</th>
-    <th align="left">Focus</th>
-    <th align="left">Status</th>
-  </tr>
-  <tr>
-    <td><a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence"><strong>UBS + IBGE + APS Territorial Intelligence</strong></a></td>
-    <td>Health analytics, territorial intelligence, public health BI</td>
-    <td><a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2">Dashboard live</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://github.com/luandarodrigues/heart-disease-risk-prediction"><strong>Heart Disease Risk Prediction</strong></a></td>
-    <td>Clinical machine learning, model evaluation, responsible ML</td>
-    <td><a href="https://luandarodrigues.github.io/heart-disease-risk-prediction/?v=5">Dashboard live</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://github.com/luandarodrigues/olist-delivery-experience-analytics"><strong>Brazilian E-Commerce Delivery Experience</strong></a></td>
-    <td>SQL, logistics analytics, customer satisfaction, delivery risk, storytelling dashboard</td>
-    <td><a href="https://luandarodrigues.github.io/olist-delivery-experience-analytics/?v=4">Dashboard live</a></td>
-  </tr>
-  <tr>
-    <td><a href="https://github.com/luandarodrigues/cinegraph-network-intelligence"><strong>CineGraph Network Intelligence</strong></a></td>
-    <td>Graph analytics, recommender systems, NLP, media data</td>
-    <td>Repository created; README and sheets will be refined next</td>
-  </tr>
-</table>
+| Repository | Focus | Status |
+|---|---|---|
+| [UBS + IBGE + APS Territorial Intelligence](https://github.com/luandarodrigues/ubs-aps-territorial-intelligence) | Health analytics, territorial intelligence, public health BI | [Dashboard live](https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2) |
+| [Heart Disease Risk Prediction](https://github.com/luandarodrigues/heart-disease-risk-prediction) | Clinical machine learning, model evaluation, responsible ML | [Dashboard live](https://luandarodrigues.github.io/heart-disease-risk-prediction/?v=5) |
+| [Brazilian E-Commerce Delivery Experience](https://github.com/luandarodrigues/olist-delivery-experience-analytics) | SQL, logistics analytics, customer satisfaction, delivery risk | [Dashboard live](https://luandarodrigues.github.io/olist-delivery-experience-analytics/?v=4) |
+| [CineGraph Network Intelligence](https://github.com/luandarodrigues/cinegraph-network-intelligence) | Graph analytics, neural search, hybrid recommender systems, NLP | [Preview app](https://cinegraph-network-intelligence-lcsr.streamlit.app/) |
+
+---
+
+## Improvement roadmap
+
+The **CineGraph AI Explorer** is published as a preview. Next improvements documented in the project repository include persistent embeddings, FAISS retrieval, Node2Vec/GraphSAGE, RAG Q&A, richer poster/title detail pages, stronger caching and a precomputed processed catalog layer.
 
 ---
 
 ## Technical toolkit
-
-<div align="center">
-
-<img src="https://skillicons.dev/icons?i=python,sqlite,git,github,aws" alt="Technical tools" />
-
-<br /><br />
-
-<img src="https://img.shields.io/badge/Python-111111?style=for-the-badge&logo=python&logoColor=white" />
-<img src="https://img.shields.io/badge/Pandas-111111?style=for-the-badge&logo=pandas&logoColor=white" />
-<img src="https://img.shields.io/badge/Scikit--learn-111111?style=for-the-badge&logo=scikitlearn&logoColor=white" />
-<img src="https://img.shields.io/badge/NetworkX-111111?style=for-the-badge" />
-<img src="https://img.shields.io/badge/SQL-111111?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Power%20BI-111111?style=for-the-badge&logo=powerbi&logoColor=white" />
-<img src="https://img.shields.io/badge/Looker-111111?style=for-the-badge&logo=looker&logoColor=white" />
-<img src="https://img.shields.io/badge/Excel-111111?style=for-the-badge&logo=microsoftexcel&logoColor=white" />
-
-</div>
 
 ```text
 Data Analysis      Python · Pandas · NumPy · Excel · exploratory analysis
 BI & Dashboards    Power BI · Looker · KPI monitoring · executive reporting
 ML & Modeling      Scikit-learn · classification · model evaluation · ROC-AUC · F1-score
 Graph Analytics    NetworkX · edge lists · relationship coverage · recommender graphs
+Neural Search      Sentence Transformers · semantic search · FAISS-ready retrieval
 NLP                TF-IDF · review mining · sentiment signals · text feature extraction
 Databases          SQL · SQLite-ready queries · analytical marts · structured data modeling
 Healthcare         Hospital operations · pharmacy workflows · public health datasets
 Operations         Bottlenecks · Lean Six Sigma · workflow optimization · decision support
 CX Analytics       Reviews · delivery risk · customer dissatisfaction · marketplace operations
-Automation         AI tools · low-code workflows · health communication projects
 ```
 
 ---
@@ -189,29 +165,6 @@ Some applied work cannot be publicly shared because it involves institutional or
 - **Aspire Leadership Program** — Aspire Institute
 - Healthcare operations, clinical pharmacy workflows and health data analysis
 - Marketing and scientific communication projects involving content creation, HTML email marketing, design, automation and AI-supported workflows
-
----
-
-## How I approach data projects
-
-```mermaid
-flowchart TB
-    A[Understand the decision context] --> B[Map data sources]
-    B --> C[Validate data quality]
-    C --> D[Build the analytical dataset]
-    D --> E[Explore patterns]
-    E --> F{Choose the right method}
-    F --> F1[BI dashboard]
-    F --> F2[Statistical analysis]
-    F --> F3[Machine learning]
-    F --> F4[Graph analytics or NLP]
-    F1 --> G[Interpret results]
-    F2 --> G
-    F3 --> G
-    F4 --> G
-    G --> H[Communicate for action]
-    H --> I[Iterate]
-```
 
 ---
 
