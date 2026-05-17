@@ -8,7 +8,7 @@
 
 <br /><br />
 
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=23&duration=3200&pause=1200&color=111111&center=true&vCenter=true&width=900&lines=Data+Analyst+focused+on+Health%2C+Operations+%26+Decision+Intelligence;Healthcare+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Territorial+Intelligence+%E2%80%A2+Data+Quality+%E2%80%A2+Dashboards" alt="Animated headline" />
+<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=23&duration=3200&pause=1200&color=111111&center=true&vCenter=true&width=900&lines=Data+Analyst+focused+on+Health%2C+Operations%2C+CX+%26+Decision+Intelligence;Healthcare+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Marketplace+Analytics+%E2%80%A2+Storytelling+Dashboards+%E2%80%A2+Data+Quality" alt="Animated headline" />
 
 <br />
 
@@ -37,7 +37,7 @@
 
 This repository is now a **profile hub**. It keeps the public GitHub profile, visual assets and links to the project repositories. The main projects are separated into their own repositories so recruiters and reviewers can inspect each case with a clearer structure.
 
-I build analytical projects that connect **healthcare operations, business intelligence, machine learning, data quality and decision intelligence**. My background combines Biomedical Engineering, Hospital Management, clinical pharmacy operations, KPI monitoring, public health datasets, digital projects and AI-supported workflows.
+I build analytical projects that connect **healthcare operations, business intelligence, machine learning, data quality, customer experience and decision intelligence**. My background combines Biomedical Engineering, Hospital Management, clinical pharmacy operations, KPI monitoring, public health datasets, digital projects and AI-supported workflows.
 
 <table>
   <tr>
@@ -50,7 +50,7 @@ I build analytical projects that connect **healthcare operations, business intel
   </tr>
   <tr>
     <td><strong>Machine Learning</strong></td>
-    <td>Classification models, model evaluation, clinical risk and business risk analysis.</td>
+    <td>Classification models, model evaluation, clinical risk, CX risk and business risk analysis.</td>
   </tr>
   <tr>
     <td><strong>Graph + NLP</strong></td>
@@ -64,35 +64,40 @@ I build analytical projects that connect **healthcare operations, business intel
 
 ---
 
-## Main project repository
+## Featured project repositories
 
 <table>
   <tr>
-    <td width="45%" valign="top">
+    <td width="50%" valign="top">
       <h3>UBS + IBGE + Cobertura Potencial APS</h3>
       <p><strong>Health Analytics · Territorial Intelligence · Public Health BI · Data Quality</strong></p>
       <p>Interactive public health analytics project integrating the Brazilian UBS registry with IBGE/SIDRA territorial indicators and APS potential coverage data.</p>
-      <p>The project moves beyond counting healthcare units. It compares physical network presence, population pressure, territorial dispersion, coordinate quality and installed primary care capacity.</p>
+      <p>The project compares physical network presence, population pressure, territorial dispersion, coordinate quality and installed primary care capacity.</p>
       <p>
         <img src="https://img.shields.io/badge/47,714-UBS%20records-111111?style=flat-square" />
         <img src="https://img.shields.io/badge/5,483-municipalities-111111?style=flat-square" />
         <img src="https://img.shields.io/badge/210.4M-APS%20population-111111?style=flat-square" />
-        <img src="https://img.shields.io/badge/180.3M-estimated%20capacity-111111?style=flat-square" />
       </p>
       <p>
         <a href="https://github.com/luandarodrigues/ubs-aps-territorial-intelligence"><strong>Open repository →</strong></a><br />
         <a href="https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2"><strong>Open dashboard →</strong></a>
       </p>
     </td>
-    <td width="55%" valign="top">
-      <h4>What this project demonstrates</h4>
-      <ul>
-        <li>Data cleaning and normalization of public health datasets.</li>
-        <li>Integration between UBS, IBGE/SIDRA and APS coverage data.</li>
-        <li>Dashboard-oriented analytical modeling.</li>
-        <li>Territorial indicators for health planning.</li>
-        <li>Clear analytical limitations and responsible interpretation.</li>
-      </ul>
+    <td width="50%" valign="top">
+      <h3>Olist Delivery Experience Analytics</h3>
+      <p><strong>Marketplace Analytics · Logistics Performance · SQL Mart · CX Risk · Storytelling Dashboard</strong></p>
+      <p>Business storytelling project using the Olist public e-commerce dataset to show how logistics friction becomes customer dissatisfaction, cost pressure and operational opportunity.</p>
+      <p>The dashboard includes raw data audit with Git LFS, derived analytical CSVs, SQL transformation logic, scenario analysis and a bilingual PT/EN interface inspired by Olist's visual identity.</p>
+      <p>
+        <img src="https://img.shields.io/badge/99,441-orders-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/96,478-delivered-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/R$15.8M-GMV-111111?style=flat-square" />
+        <img src="https://img.shields.io/badge/PT%2FEN-dashboard-111111?style=flat-square" />
+      </p>
+      <p>
+        <a href="https://github.com/luandarodrigues/olist-delivery-experience-analytics"><strong>Open repository →</strong></a><br />
+        <a href="https://luandarodrigues.github.io/olist-delivery-experience-analytics/?v=4"><strong>Open dashboard →</strong></a>
+      </p>
     </td>
   </tr>
 </table>
@@ -119,8 +124,8 @@ I build analytical projects that connect **healthcare operations, business intel
   </tr>
   <tr>
     <td><a href="https://github.com/luandarodrigues/olist-delivery-experience-analytics"><strong>Brazilian E-Commerce Delivery Experience</strong></a></td>
-    <td>SQL, logistics analytics, customer satisfaction, delivery risk</td>
-    <td>Repository created; README and sheets will be refined next</td>
+    <td>SQL, logistics analytics, customer satisfaction, delivery risk, storytelling dashboard</td>
+    <td><a href="https://luandarodrigues.github.io/olist-delivery-experience-analytics/?v=4">Dashboard live</a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/luandarodrigues/cinegraph-network-intelligence"><strong>CineGraph Network Intelligence</strong></a></td>
@@ -159,6 +164,7 @@ NLP                TF-IDF · review mining · sentiment signals · text feature 
 Databases          SQL · SQLite-ready queries · analytical marts · structured data modeling
 Healthcare         Hospital operations · pharmacy workflows · public health datasets
 Operations         Bottlenecks · Lean Six Sigma · workflow optimization · decision support
+CX Analytics       Reviews · delivery risk · customer dissatisfaction · marketplace operations
 Automation         AI tools · low-code workflows · health communication projects
 ```
 
