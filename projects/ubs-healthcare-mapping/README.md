@@ -6,7 +6,7 @@ This is the main healthcare analytics project in my portfolio. It transforms a p
 
 ## Interactive dashboard
 
-**[Open the interactive dashboard →](https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2)**
+**[Open the interactive dashboard ->](https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/)**
 
 The dashboard works as the presentation layer of the project. It was built as a static, open-access GitHub Pages dashboard using HTML, CSS and JavaScript, with data prepared in Python.
 

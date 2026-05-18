@@ -2,7 +2,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/readme-header-dark.svg" />
-  <img src="./docs/assets/readme-header-light.svg" alt="Luanda Rodrigues — Data Analyst focused on Health, Operations and Decision Intelligence" />
+  <img src="./docs/assets/readme-header-light.svg" alt="Luanda Rodrigues - Data Analyst focused on Health, Operations and Decision Intelligence" />
 </picture>
 
 <br />
@@ -94,14 +94,14 @@ The project shows that public health indicators explain life expectancy differen
 ## Technical Toolkit
 
 ```text
-Analysis           Python · Pandas · NumPy · exploratory analysis · feature engineering
-BI & Reporting     Power BI · Looker · KPI design · executive dashboards
-ML & Benchmarking  Scikit-learn · model comparison · ROC-AUC · residual analysis
+Analytical design  Decision framing · metric logic · executive summaries · reporting
+Data foundation    Quality audits · temporal splits · missingness · consistency checks
+Modeling           Scikit-learn · benchmark comparison · residual analysis · validation
+Data stack         Python · Pandas · NumPy · SQL · analytical marts
+Decision BI        Power BI · Looker · KPI design · operational dashboards
 Graphs & NLP       NetworkX · TF-IDF · relationship modeling · review mining
-Data Quality       Missingness audits · temporal splits · consistency checks
-Databases          SQL · analytical joins · marts · structured modeling
 Healthcare         Clinical pharmacy · hospital operations · public health datasets
-Communication      README strategy · narrative reporting · decision-oriented presentation
+Product delivery   README strategy · live reports · narrative analytics · stakeholder clarity
 ```
 
 ---
@@ -112,17 +112,17 @@ Some applied work cannot be shared publicly because it involves institutional or
 
 | Project | Context | Skills demonstrated |
 |---|---|---|
-| **Clinical Pharmacy KPI Dashboard** | Confidential — EBSERH / HC-UFU | KPI design, hospital workflow analysis, operational monitoring, decision support |
-| **AI for Scientific Communication in Healthcare** | Confidential — private healthcare companies | Applied AI, automation, health communication, content strategy, low-code workflows |
-| **Performance Dashboard for Decision-Making** | Confidential — corporate context | BI structure, executive reporting, dashboard design, business analysis |
+| **Clinical Pharmacy KPI Dashboard** | Confidential - EBSERH / HC-UFU | KPI design, hospital workflow analysis, operational monitoring, decision support |
+| **AI for Scientific Communication in Healthcare** | Confidential - private healthcare companies | Applied AI, automation, health communication, content strategy, low-code workflows |
+| **Performance Dashboard for Decision-Making** | Confidential - corporate context | BI structure, executive reporting, dashboard design, business analysis |
 
 ---
 
 ## Background
 
-- **Hospital Management** — UNAMA
-- **Biomedical Engineering** — Federal University of Pará
-- **Aspire Leadership Program** — Aspire Institute
+- **Hospital Management** - UNAMA
+- **Biomedical Engineering** - Federal University of Pará
+- **Aspire Leadership Program** - Aspire Institute
 - Healthcare operations, clinical pharmacy workflows and public health data analysis
 - Marketing technology and scientific communication projects involving HTML email, content, design, automation and AI-supported workflows
 

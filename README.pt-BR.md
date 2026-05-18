@@ -2,7 +2,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/readme-header-dark.svg" />
-  <img src="./docs/assets/readme-header-light.svg" alt="Luanda Rodrigues — Analista de Dados focada em Saúde, Operações e Inteligência para Decisão" />
+  <img src="./docs/assets/readme-header-light.svg" alt="Luanda Rodrigues - Analista de Dados focada em Saúde, Operações e Inteligência para Decisão" />
 </picture>
 
 <br />
@@ -94,14 +94,14 @@ O projeto mostra que indicadores públicos de saúde explicam muito bem diferen�
 ## Ferramentas e Stack
 
 ```text
-Análise             Python · Pandas · NumPy · exploração · engenharia de atributos
-BI e Relatórios     Power BI · Looker · desenho de KPIs · dashboards executivos
-ML e Benchmark      Scikit-learn · comparação de modelos · ROC-AUC · resíduos
+Desenho analítico   Framing da decisão · lógica de métricas · resumo executivo · relatórios
+Base de dados       Auditorias de qualidade · recortes temporais · completude · consistência
+Modelagem           Scikit-learn · benchmark · análise de resíduos · validação
+Stack de dados      Python · Pandas · NumPy · SQL · marts analíticos
+BI para decisão     Power BI · Looker · desenho de KPIs · dashboards operacionais
 Grafos e NLP        NetworkX · TF-IDF · modelagem relacional · mineração de reviews
-Qualidade de Dados  Auditorias de completude · recortes temporais · consistência
-Bancos de Dados     SQL · joins analíticos · marts · modelagem estruturada
 Saúde               Farmácia clínica · operações hospitalares · dados públicos
-Comunicação         Estratégia de README · narrativa analítica · decisão orientada
+Entrega do produto  Estratégia de README · relatórios ao vivo · narrativa analítica · clareza para stakeholders
 ```
 
 ---
@@ -112,17 +112,17 @@ Parte do meu trabalho aplicado não pode ser compartilhada publicamente porque e
 
 | Projeto | Contexto | Competências demonstradas |
 |---|---|---|
-| **Clinical Pharmacy KPI Dashboard** | Confidencial — EBSERH / HC-UFU | Desenho de KPIs, análise de fluxos hospitalares, monitoramento operacional, apoio à decisão |
-| **AI for Scientific Communication in Healthcare** | Confidencial — empresas privadas de saúde | IA aplicada, automação, comunicação em saúde, estratégia de conteúdo, low-code |
-| **Performance Dashboard for Decision-Making** | Confidencial — contexto corporativo | Estrutura de BI, relatório executivo, dashboard design, análise de negócio |
+| **Clinical Pharmacy KPI Dashboard** | Confidencial - EBSERH / HC-UFU | Desenho de KPIs, análise de fluxos hospitalares, monitoramento operacional, apoio à decisão |
+| **AI for Scientific Communication in Healthcare** | Confidencial - empresas privadas de saúde | IA aplicada, automação, comunicação em saúde, estratégia de conteúdo, low-code |
+| **Performance Dashboard for Decision-Making** | Confidencial - contexto corporativo | Estrutura de BI, relatório executivo, dashboard design, análise de negócio |
 
 ---
 
 ## Formação e Trajetória
 
-- **Gestão Hospitalar** — UNAMA
-- **Engenharia Biomédica** — Universidade Federal do Pará
-- **Aspire Leadership Program** — Aspire Institute
+- **Gestão Hospitalar** - UNAMA
+- **Engenharia Biomédica** - Universidade Federal do Pará
+- **Aspire Leadership Program** - Aspire Institute
 - Operações em saúde, fluxos de farmácia clínica e análise de dados em saúde pública
 - Projetos de marketing technology e comunicação científica envolvendo HTML email, conteúdo, design, automação e IA
 
