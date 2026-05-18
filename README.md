@@ -1,6 +1,9 @@
 <div align="center">
 
-<img src="./docs/assets/readme-header-light.svg" alt="Luanda Rodrigues — Data Analyst focused on Health, Operations and Decision Intelligence" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/readme-header-dark.svg" />
+  <img src="./docs/assets/readme-header-light.svg" alt="Luanda Rodrigues — Data Analyst focused on Health, Operations and Decision Intelligence" />
+</picture>
 
 <br />
 
@@ -8,21 +11,21 @@
 
 <br /><br />
 
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=23&duration=3200&pause=1200&color=79D1C3&center=true&vCenter=true&width=900&lines=Data+Analyst+focused+on+Health%2C+Operations%2C+CX+%26+Decision+Intelligence;Healthcare+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Graph+Analytics+%E2%80%A2+Neural+Search+%E2%80%A2+Storytelling+Dashboards" alt="Animated headline" />
+<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=23&duration=3200&pause=1200&color=D7FF6F&center=true&vCenter=true&width=980&lines=Data+Analyst+focused+on+Health%2C+Operations+and+Decision+Intelligence;Healthcare+Analytics+%E2%80%A2+BI+%E2%80%A2+Machine+Learning+%E2%80%A2+SQL;Graphs+%E2%80%A2+NLP+%E2%80%A2+Data+Quality+%E2%80%A2+Executive+Reporting" alt="Animated headline" />
 
 <br />
 
-<a href="https://luandarodrigues.github.io/luandarodrigues/">
-  <img src="https://img.shields.io/badge/Portfolio-Visit%20site-111111?style=for-the-badge&logo=githubpages&logoColor=white" alt="Portfolio" />
+<a href="https://luandarodrigues-portfolio.vercel.app/">
+  <img src="https://img.shields.io/badge/Portfolio-Live%20site-D7FF6F?style=for-the-badge&logo=vercel&logoColor=030303&labelColor=030303" alt="Portfolio" />
 </a>
-<a href="https://cinegraph-network-intelligence-lcsr.streamlit.app/">
-  <img src="https://img.shields.io/badge/CineGraph%20AI%20Explorer-Preview%20App-111111?style=for-the-badge&logo=streamlit&logoColor=white" alt="CineGraph AI Explorer Preview App" />
+<a href="https://who-global-health-signals.vercel.app/">
+  <img src="https://img.shields.io/badge/WHO%20Case-Live%20report-9FC8FF?style=for-the-badge&logo=vercel&logoColor=030303&labelColor=030303" alt="WHO report" />
 </a>
 <a href="https://www.linkedin.com/in/luanda-rodrigues">
-  <img src="https://img.shields.io/badge/LinkedIn-Luanda%20Rodrigues-111111?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  <img src="https://img.shields.io/badge/LinkedIn-Luanda%20Rodrigues-C9C4BA?style=for-the-badge&logo=linkedin&logoColor=030303&labelColor=030303" alt="LinkedIn" />
 </a>
 <a href="mailto:luandarodrigues30@gmail.com">
-  <img src="https://img.shields.io/badge/Email-Contact-111111?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+  <img src="https://img.shields.io/badge/Email-Contact-FF7777?style=for-the-badge&logo=gmail&logoColor=030303&labelColor=030303" alt="Email" />
 </a>
 
 <br /><br />
@@ -33,55 +36,142 @@
 
 ---
 
-## Profile hub
+## About
 
-This repository is my **public profile hub**. It centralizes my portfolio, project repositories and applied analytics work across healthcare, operations, business intelligence, machine learning, customer experience and decision intelligence.
+I build analytical products that connect **healthcare operations, public data, BI, machine learning and decision communication**.
 
-I build analytical projects that connect **business context, data quality, modeling, visualization and decision-making**. My background combines Biomedical Engineering, Hospital Management, clinical pharmacy operations, KPI monitoring, public health datasets, digital projects and AI-supported workflows.
+My background combines **Biomedical Engineering, Hospital Management, clinical pharmacy routines, KPI monitoring, public health datasets and AI-supported workflows**. I approach data as an operational system: understand the question, audit the inputs, model the signal, expose the limits and turn the result into action.
+
+My current portfolio is organized around five complementary layers:
+
+| Layer | Focus |
+|---|---|
+| **Health analytics** | Public health indicators, healthcare infrastructure, hospital flows and service performance |
+| **Decision intelligence** | KPI design, executive reporting, dashboards and decision framing |
+| **Machine learning** | Predictive models, validation, benchmark comparison and responsible interpretation |
+| **Graphs + NLP** | Network relationships, recommendation logic, TF-IDF and text signals |
+| **Operations analytics** | Bottlenecks, logistics, customer experience and workflow optimization |
 
 ---
 
-## Featured projects
+## Flagship Product
 
-| Project | Focus | Status |
+### WHO Global Health Signals
+
+**Question:** can public health indicators explain and predict life expectancy differences across countries?
+
+This project rebuilt WHO public indicators into a country-year analytical panel, audited data quality upstream, benchmarked heavy local models against TabPFN, analyzed residuals and published the result as an executive interactive report.
+
+**Final result**
+
+- `13,785` analytical rows
+- `218` countries and entities
+- `0.110` MAE with `TabPFN`
+- `0.243` MAE for the best fully local model
+
+**Why it matters**
+
+The project shows that public health indicators explain life expectancy differences unusually well, while residual analysis still highlights where deeper country context matters. It is both a machine learning benchmark and a decision-intelligence product.
+
+**Open it**
+
+- [Live report](https://who-global-health-signals.vercel.app/)
+- [Repository](https://github.com/luandarodrigues/who-global-health-signals)
+
+---
+
+## Selected Archive
+
+| Project | Focus | Snapshot |
 |---|---|---|
-| [UBS + IBGE + APS Territorial Intelligence](https://github.com/luandarodrigues/ubs-aps-territorial-intelligence) | Health analytics, territorial intelligence, public health BI | [Dashboard live](https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/?v=aps2) |
-| [CineGraph Network Intelligence](https://github.com/luandarodrigues/cinegraph-network-intelligence) | Graph analytics, neural search, hybrid recommender systems, NLP | [Preview app](https://cinegraph-network-intelligence-lcsr.streamlit.app/) |
-| [Brazilian E-Commerce Delivery Experience](https://github.com/luandarodrigues/olist-delivery-experience-analytics) | SQL, logistics analytics, customer satisfaction, delivery risk | [Dashboard live](https://luandarodrigues.github.io/olist-delivery-experience-analytics/?v=4) |
-| [Heart Disease Risk Prediction](https://github.com/luandarodrigues/heart-disease-risk-prediction) | Clinical machine learning, model evaluation, responsible ML | [Dashboard live](https://luandarodrigues.github.io/heart-disease-risk-prediction/?v=5) |
+| [Mapping Primary Healthcare Units in Brazil](./projects/ubs-healthcare-mapping) | Health analytics · Geomapping · Data quality | `47,714` facilities across Brazil with coverage and coordinate-quality analysis |
+| [Heart Disease Risk Prediction](./projects/heart-disease-risk-ml) | Machine learning · Clinical risk | `918` clinical records and responsible model evaluation |
+| [Brazilian E-Commerce Delivery Experience](./projects/olist-ecommerce-experience-analytics) | SQL · Logistics · Customer experience | `99,441` orders connecting delays, freight and reviews |
+| [CineGraph Network Intelligence](./projects/cinegraph-network-intelligence) | Graph analytics · NLP · Recommenders | Media graph analysis with relationship integrity and recommendation logic |
 
 ---
 
-## CineGraph preview roadmap
-
-The **CineGraph AI Explorer** is published as a preview. Next improvements documented in the project repository include persistent embeddings, FAISS retrieval, Node2Vec/GraphSAGE, RAG Q&A, richer poster/title detail pages, stronger caching and a precomputed processed catalog layer.
-
----
-
-## Technical toolkit
+## Technical Toolkit
 
 ```text
-Data Analysis      Python · Pandas · NumPy · Excel · exploratory analysis
-BI & Dashboards    Power BI · Looker · KPI monitoring · executive reporting
-ML & Modeling      Scikit-learn · classification · model evaluation · ROC-AUC · F1-score
-Graph Analytics    NetworkX · edge lists · relationship coverage · recommender graphs
-Neural Search      Sentence Transformers · semantic search · FAISS-ready retrieval
-NLP                TF-IDF · review mining · sentiment signals · text feature extraction
-Databases          SQL · SQLite-ready queries · analytical marts · structured data modeling
-Healthcare         Hospital operations · pharmacy workflows · public health datasets
-Operations         Bottlenecks · Lean Six Sigma · workflow optimization · decision support
-CX Analytics       Reviews · delivery risk · customer dissatisfaction · marketplace operations
+Analysis           Python · Pandas · NumPy · exploratory analysis · feature engineering
+BI & Reporting     Power BI · Looker · KPI design · executive dashboards
+ML & Benchmarking  Scikit-learn · model comparison · ROC-AUC · residual analysis
+Graphs & NLP       NetworkX · TF-IDF · relationship modeling · review mining
+Data Quality       Missingness audits · temporal splits · consistency checks
+Databases          SQL · analytical joins · marts · structured modeling
+Healthcare         Clinical pharmacy · hospital operations · public health datasets
+Communication      README strategy · narrative reporting · decision-oriented presentation
 ```
+
+---
+
+## Applied Work
+
+Some applied work cannot be shared publicly because it involves institutional or private-company data. I present those cases through anonymized descriptions and transferable capabilities.
+
+| Project | Context | Skills demonstrated |
+|---|---|---|
+| **Clinical Pharmacy KPI Dashboard** | Confidential — EBSERH / HC-UFU | KPI design, hospital workflow analysis, operational monitoring, decision support |
+| **AI for Scientific Communication in Healthcare** | Confidential — private healthcare companies | Applied AI, automation, health communication, content strategy, low-code workflows |
+| **Performance Dashboard for Decision-Making** | Confidential — corporate context | BI structure, executive reporting, dashboard design, business analysis |
 
 ---
 
 ## Background
 
 - **Hospital Management** — UNAMA
-- **Biomedical Engineering** — Universidade Federal do Pará
+- **Biomedical Engineering** — Federal University of Pará
 - **Aspire Leadership Program** — Aspire Institute
-- Healthcare operations, clinical pharmacy workflows and health data analysis
-- Marketing and scientific communication projects involving content creation, HTML email marketing, design, automation and AI-supported workflows
+- Healthcare operations, clinical pharmacy workflows and public health data analysis
+- Marketing technology and scientific communication projects involving HTML email, content, design, automation and AI-supported workflows
+
+---
+
+## How I approach data products
+
+I treat data projects as decision systems. The goal is not only to produce charts or models, but to understand the operational question, test the reliability of the data, choose the right analytical method and communicate conclusions with explicit limits.
+
+```mermaid
+flowchart TB
+    A[1. Frame the decision] --> A1[Clarify the healthcare, business or operational question]
+    A --> A2[Define stakeholders, expected action and success criteria]
+
+    A2 --> B[2. Map the data]
+    B --> B1[Identify tables, entities, keys and relationships]
+    B --> B2[Check granularity, time windows and business definitions]
+
+    B2 --> C[3. Audit quality]
+    C --> C1[Missing values, duplicates, outliers and inconsistent records]
+    C --> C2[Document limitations before analysis]
+
+    C2 --> D[4. Build the analytical layer]
+    D --> D1[Clean, join and transform data]
+    D --> D2[Create indicators, features and analytical marts]
+
+    D2 --> E[5. Explore patterns]
+    E --> E1[Trends, segments, distributions and correlations]
+    E --> E2[Compare groups, categories, geography or time periods]
+
+    E2 --> F{6. Choose the method}
+    F --> F1[BI dashboard or KPI monitoring]
+    F --> F2[Statistical analysis]
+    F --> F3[Machine learning model]
+    F --> F4[Graph analytics or NLP]
+
+    F1 --> G[7. Interpret results]
+    F2 --> G
+    F3 --> G
+    F4 --> G
+
+    G --> G1[Translate outputs into operational meaning]
+    G --> G2[Separate signal from noise]
+    G --> G3[State risks, bias and limitations]
+
+    G3 --> H[8. Communicate for action]
+    H --> H1[Executive summary, dashboard, README or report]
+    H --> H2[Recommendations, next steps and monitoring]
+```
 
 ---
 
@@ -89,12 +179,12 @@ CX Analytics       Reviews · delivery risk · customer dissatisfaction · marke
 
 ### Portfolio
 
-<a href="https://luandarodrigues.github.io/luandarodrigues/">
-  <img src="https://img.shields.io/badge/Open%20Portfolio-luandarodrigues.github.io-111111?style=for-the-badge&logo=githubpages&logoColor=white" alt="Open Portfolio" />
+<a href="https://luandarodrigues-portfolio.vercel.app/">
+  <img src="https://img.shields.io/badge/Open%20Portfolio-luandarodrigues--portfolio.vercel.app-D7FF6F?style=for-the-badge&logo=vercel&logoColor=030303&labelColor=030303" alt="Open Portfolio" />
 </a>
 
 <br /><br />
 
-· [LinkedIn](https://www.linkedin.com/in/luanda-rodrigues) · [Behance](https://www.behance.net/luandarodrguez) · [Email](mailto:luandarodrigues30@gmail.com) ·
+· [LinkedIn](https://www.linkedin.com/in/luanda-rodrigues) · [WHO live report](https://who-global-health-signals.vercel.app/) · [Email](mailto:luandarodrigues30@gmail.com) ·
 
 </div>
