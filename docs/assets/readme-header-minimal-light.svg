@@ -1,0 +1,9 @@
+<svg width="960" height="160" viewBox="0 0 960 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Luanda Rodrigues profile header</title>
+  <desc id="desc">Minimal header with name and data analyst focus.</desc>
+  <rect width="960" height="160" fill="#F7F7F5"/>
+  <line x1="56" y1="42" x2="904" y2="42" stroke="#111111" stroke-width="1"/>
+  <text x="56" y="86" fill="#111111" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" font-size="30" letter-spacing="1.2">LUANDA RODRIGUES</text>
+  <text x="56" y="116" fill="#4B4B4B" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" font-size="15" letter-spacing="0.8">DATA ANALYST / BI / MACHINE LEARNING</text>
+  <text x="56" y="140" fill="#6A6A6A" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" font-size="12">analytics · predictive modeling · dashboards · data quality</text>
+</svg>
