@@ -1,9 +1,21 @@
-<svg width="960" height="160" viewBox="0 0 960 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Luanda Rodrigues profile header</title>
-  <desc id="desc">Minimal header with name and data analyst focus.</desc>
-  <rect width="960" height="160" fill="#F7F7F5"/>
-  <line x1="56" y1="42" x2="904" y2="42" stroke="#111111" stroke-width="1"/>
-  <text x="56" y="86" fill="#111111" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" font-size="30" letter-spacing="1.2">LUANDA RODRIGUES</text>
-  <text x="56" y="116" fill="#4B4B4B" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" font-size="15" letter-spacing="0.8">DATA ANALYST / BI / MACHINE LEARNING</text>
-  <text x="56" y="140" fill="#6A6A6A" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" font-size="12">analytics · predictive modeling · dashboards · data quality</text>
+<svg width="960" height="260" viewBox="0 0 960 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Luanda Rodrigues profile hero</title>
+  <desc id="desc">Editorial profile header for Luanda Rodrigues with data analytics focus.</desc>
+  <rect width="960" height="260" rx="24" fill="#F6F3EE"/>
+  <rect x="24" y="24" width="912" height="212" rx="20" fill="#FAF8F4" stroke="#D7D1C7"/>
+  <rect x="56" y="54" width="120" height="28" rx="14" fill="#111111"/>
+  <text x="82" y="73" fill="#F6F3EE" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" letter-spacing="1.8">AVAILABLE</text>
+  <text x="56" y="124" fill="#111111" font-family="Georgia, Times New Roman, serif" font-size="42" font-weight="700">Luanda Rodrigues</text>
+  <text x="56" y="160" fill="#3A3A3A" font-family="Arial, Helvetica, sans-serif" font-size="18" letter-spacing="0.6">Data Analyst / BI / Machine Learning</text>
+  <text x="56" y="194" fill="#5B5B5B" font-family="Arial, Helvetica, sans-serif" font-size="16">Building analytical products, predictive models, dashboards, and decision-ready insights.</text>
+  <rect x="56" y="210" width="132" height="16" rx="8" fill="#E6DED1"/>
+  <rect x="194" y="210" width="158" height="16" rx="8" fill="#E9E2D7"/>
+  <rect x="358" y="210" width="110" height="16" rx="8" fill="#ECE5DB"/>
+  <rect x="674" y="52" width="214" height="156" rx="18" fill="#111111"/>
+  <rect x="698" y="76" width="76" height="12" rx="6" fill="#F4C95D"/>
+  <rect x="698" y="100" width="144" height="12" rx="6" fill="#F6F3EE"/>
+  <rect x="698" y="122" width="114" height="12" rx="6" fill="#D8D0C5"/>
+  <rect x="698" y="154" width="166" height="10" rx="5" fill="#2A2A2A"/>
+  <rect x="698" y="154" width="96" height="10" rx="5" fill="#F4C95D"/>
+  <text x="698" y="189" fill="#D8D0C5" font-family="Arial, Helvetica, sans-serif" font-size="14">Python 51.8%  •  Astro 21.2%  •  JS 9.5%</text>
 </svg>

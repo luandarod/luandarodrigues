@@ -1,0 +1,23 @@
+<svg width="960" height="230" viewBox="0 0 960 230" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Language distribution across public repositories</title>
+  <desc id="desc">Language share across Luanda Rodrigues public GitHub repositories.</desc>
+  <rect width="960" height="230" rx="24" fill="#F6F3EE"/>
+  <rect x="24" y="24" width="912" height="182" rx="20" fill="#FAF8F4" stroke="#D7D1C7"/>
+  <text x="48" y="60" fill="#111111" font-family="Georgia, Times New Roman, serif" font-size="28" font-weight="700">Language Distribution</text>
+  <text x="48" y="86" fill="#5B5B5B" font-family="Arial, Helvetica, sans-serif" font-size="15">Calculated from public repositories on GitHub.</text>
+  <rect x="48" y="108" width="864" height="18" rx="9" fill="#E4DDD2"/>
+  <rect x="48" y="108" width="447" height="18" rx="9" fill="#356A98"/>
+  <rect x="495" y="108" width="183" height="18" fill="#E78A2F"/>
+  <rect x="678" y="108" width="82" height="18" fill="#E6C229"/>
+  <rect x="760" y="108" width="60" height="18" fill="#FF6B6B"/>
+  <rect x="820" y="108" width="42" height="18" fill="#3178C6"/>
+  <rect x="862" y="108" width="26" height="18" fill="#6B7280"/>
+  <rect x="888" y="108" width="19" height="18" rx="0 9 9 0" fill="#D97706"/>
+  <circle cx="62" cy="156" r="6" fill="#356A98"/><text x="76" y="161" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="15">Python 51.8%</text>
+  <circle cx="220" cy="156" r="6" fill="#E78A2F"/><text x="234" y="161" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="15">Astro 21.2%</text>
+  <circle cx="378" cy="156" r="6" fill="#E6C229"/><text x="392" y="161" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="15">JavaScript 9.5%</text>
+  <circle cx="598" cy="156" r="6" fill="#FF6B6B"/><text x="612" y="161" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="15">Svelte 7.0%</text>
+  <circle cx="742" cy="156" r="6" fill="#3178C6"/><text x="756" y="161" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="15">TypeScript 4.9%</text>
+  <circle cx="62" cy="184" r="6" fill="#6B7280"/><text x="76" y="189" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="15">CSS 3.0%</text>
+  <circle cx="178" cy="184" r="6" fill="#D97706"/><text x="192" y="189" fill="#111111" font-family="Arial, Helvetica, sans-serif" font-size="15">HTML 2.2%</text>
+</svg>

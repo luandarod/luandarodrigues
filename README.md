@@ -1,51 +1,59 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/readme-header-minimal-dark.svg" />
-  <img src="./docs/assets/readme-header-minimal-light.svg" alt="Luanda Rodrigues - Data Analyst / BI / Machine Learning" />
-</picture>
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/readme-header-minimal-dark.svg" />
+    <img src="./docs/assets/readme-header-minimal-light.svg" alt="Luanda Rodrigues - Data Analyst / BI / Machine Learning" />
+  </picture>
 
-# Luanda Rodrigues
+  <br />
 
-`Data Analyst | BI | Machine Learning`
+  <a href="https://luandarodrigues-portfolio.vercel.app/"><img src="https://img.shields.io/badge/Portfolio-111111?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio" /></a>
+  <a href="https://www.linkedin.com/in/luanda-rodrigues"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="mailto:luandarodrigues30@gmail.com"><img src="https://img.shields.io/badge/Email-3A3A3A?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
+</div>
 
-[Portfolio](https://luandarodrigues-portfolio.vercel.app/) · [LinkedIn](https://www.linkedin.com/in/luanda-rodrigues) · [Email](mailto:luandarodrigues30@gmail.com)
+## About
 
-## Intro
-
-I build analytical solutions that turn raw data into KPIs, dashboards, predictive models, and decision-ready insights. My work combines business intelligence, machine learning, data quality, and operational analysis with a strong focus on clarity, performance, and execution.
+I build analytical products that turn raw data into dashboards, KPIs, predictive models, and decision-ready insights. My focus is on data analytics, business intelligence, machine learning, and operational problem-solving with a strong bias toward clarity and execution.
 
 ## Stack
 
-`Python` `SQL` `Pandas` `Scikit-learn` `Power BI` `Looker Studio` `Machine Learning` `Data Quality` `Dashboards` `KPIs`
+<div align="center">
+  <img src="https://img.shields.io/badge/Python-356A98?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/SQL-111111?style=for-the-badge&logo=postgresql&logoColor=white" alt="SQL" />
+  <img src="https://img.shields.io/badge/Pandas-1B1F23?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas" />
+  <img src="https://img.shields.io/badge/Scikit--Learn-F2994A?style=for-the-badge&logo=scikitlearn&logoColor=white" alt="Scikit-learn" />
+  <img src="https://img.shields.io/badge/Power_BI-F2C94C?style=for-the-badge&logo=powerbi&logoColor=111111" alt="Power BI" />
+  <img src="https://img.shields.io/badge/Looker_Studio-5B8DEF?style=for-the-badge&logo=looker&logoColor=white" alt="Looker Studio" />
+  <img src="https://img.shields.io/badge/Machine_Learning-7A3FFC?style=for-the-badge" alt="Machine Learning" />
+  <img src="https://img.shields.io/badge/Data_Quality-4F5D75?style=for-the-badge" alt="Data Quality" />
+</div>
 
-## Selected Courses & Certifications
+## Certifications
 
-- Google Project Management Professional Certificate
-- Snowflake Data Engineering
-- Introduction to Data Analytics on Google Cloud
-- Looker Studio Pro Essentials
-- Análise de Dados com Power BI e Copilot
-
-[![Google Project Management Professional Certificate](https://images.credly.com/images/68508264-ec6e-47cf-a8c1-94d86f2573fb/linkedin_thumb_blob)](https://www.credly.com/badges/6cbcc5d9-2fa2-4c67-9bef-49c7e70fb1bc/public_url)
+<div align="center">
+  <a href="https://www.credly.com/badges/6cbcc5d9-2fa2-4c67-9bef-49c7e70fb1bc/public_url"><img src="https://img.shields.io/badge/Google_Project_Management-Credly_badge-F4C95D?style=for-the-badge&logo=google&logoColor=111111" alt="Google Project Management Professional Certificate" /></a>
+  <img src="https://img.shields.io/badge/Snowflake_Data_Engineering-29B5E8?style=for-the-badge&logo=snowflake&logoColor=white" alt="Snowflake Data Engineering" />
+  <img src="https://img.shields.io/badge/Data_Analytics_on_Google_Cloud-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" alt="Introduction to Data Analytics on Google Cloud" />
+  <img src="https://img.shields.io/badge/Looker_Studio_Pro-5B8DEF?style=for-the-badge&logo=looker&logoColor=white" alt="Looker Studio Pro Essentials" />
+  <img src="https://img.shields.io/badge/Power_BI_%2B_Copilot-111111?style=for-the-badge&logo=powerbi&logoColor=F2C94C" alt="Analise de Dados com Power BI e Copilot" />
+</div>
 
 ## Focus
 
-`Data Analytics` · `Business Intelligence` · `Machine Learning` · `Predictive Modeling` · `Operations Analytics`
+<div align="center">
+  <img src="https://img.shields.io/badge/Data_Analytics-1B1F23?style=flat-square" alt="Data Analytics" />
+  <img src="https://img.shields.io/badge/Business_Intelligence-1B1F23?style=flat-square" alt="Business Intelligence" />
+  <img src="https://img.shields.io/badge/Machine_Learning-1B1F23?style=flat-square" alt="Machine Learning" />
+  <img src="https://img.shields.io/badge/Predictive_Modeling-1B1F23?style=flat-square" alt="Predictive Modeling" />
+  <img src="https://img.shields.io/badge/Operations_Analytics-1B1F23?style=flat-square" alt="Operations Analytics" />
+</div>
 
-## Language Map
+## Profile Analysis
 
-Across public repositories on GitHub:
-
-| Language | Share |
-| --- | --- |
-| `Python` | `51.8%` |
-| `Astro` | `21.2%` |
-| `JavaScript` | `9.5%` |
-| `Svelte` | `7.0%` |
-| `TypeScript` | `4.9%` |
-| `CSS` | `3.0%` |
-| `HTML` | `2.2%` |
-
-Primary usage appears strongest in `Python`, with frontend work spread across `Astro`, `JavaScript`, `Svelte`, and `TypeScript`.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/language-map-dark.svg" />
+  <img src="./docs/assets/language-map-light.svg" alt="Language distribution across public repositories" />
+</picture>
 
 ## Tags
 
