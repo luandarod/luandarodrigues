@@ -63,7 +63,7 @@ My main portfolio lives on Vercel. GitHub is where I keep the working pieces beh
 
 I am turning a few notebook projects into GitHub-readable reports, with chart images and results directly in the project README. The first one is a Bayesian pharmacovigilance notebook using openFDA/FAERS data for Semaglutide vs Tirzepatide.
 
-Next up: a simpler city cost snapshot and a heart disease risk explainer.
+Next up: two non-health notebooks, one on city cost of living and one on labor market salary patterns.
 
 ## Profile Analysis
 
