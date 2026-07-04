@@ -13,7 +13,18 @@
 
 ## About
 
-I build analytical products that turn raw data into dashboards, KPIs, predictive models, and decision-ready insights. My focus is on data analytics, business intelligence, machine learning, and operational problem-solving with a strong bias toward clarity and execution.
+I build data projects that move from raw tables to something a decision-maker can actually use: dashboards, KPIs, predictive models, notebooks, and short analytical reports.
+
+My main portfolio lives on Vercel. GitHub is where I keep the working pieces behind it: code, notebooks, data checks, and project notes.
+
+## Start Here
+
+| Link | What to expect |
+| --- | --- |
+| [Portfolio](https://luandarodrigues-portfolio.vercel.app/) | Curated case studies, bilingual pages, and the cleanest view of my work |
+| [Notebook reports](https://github.com/luandarodrigues/projectsforjupyternotebook) | Jupyter projects written like small reports, with charts, results, and reproducible checks |
+| [Health analytics project](https://github.com/luandarodrigues/ubs-aps-territorial-intelligence) | UBS/APS territorial intelligence with data enrichment, segmentation, and BI-ready outputs |
+| [Delivery analytics project](https://github.com/luandarodrigues/olist-delivery-experience-analytics) | E-commerce delivery experience analysis with SQL, modeling, and executive outputs |
 
 ## Stack
 
@@ -47,6 +58,12 @@ I build analytical products that turn raw data into dashboards, KPIs, predictive
   <img src="https://img.shields.io/badge/Predictive_Modeling-1B1F23?style=flat-square" alt="Predictive Modeling" />
   <img src="https://img.shields.io/badge/Operations_Analytics-1B1F23?style=flat-square" alt="Operations Analytics" />
 </div>
+
+## Current Notebook Work
+
+I am turning a few notebook projects into GitHub-readable reports, with chart images and results directly in the project README. The first one is a Bayesian pharmacovigilance notebook using openFDA/FAERS data for Semaglutide vs Tirzepatide.
+
+Next up: a simpler city cost snapshot and a heart disease risk explainer.
 
 ## Profile Analysis
 
