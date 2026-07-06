@@ -61,7 +61,7 @@ My main portfolio lives on Vercel. GitHub is where I keep the working pieces beh
 
 ## Current Notebook Work
 
-I am turning notebook projects into GitHub-readable reports, with chart images and results directly in the project README. Recent examples include Bayesian pharmacovigilance, causal inference for remote salaries, and crypto market regime detection with current Binance data.
+I am turning notebook projects into GitHub-readable reports, with chart images and results directly in the project README. Recent examples include Bayesian pharmacovigilance, causal inference for remote salaries, crypto market regime detection with current Binance data, and a literature-backed Brazil macro regime report using BCB/SGS series.
 
 Next up: a survival-analysis project for customer churn.
 

@@ -48,6 +48,10 @@ Desenvolvo produtos analíticos que transformam dados brutos em dashboards, KPIs
   <img src="https://img.shields.io/badge/Operations_Analytics-1B1F23?style=flat-square" alt="Operations Analytics" />
 </div>
 
+## Trabalhos recentes em notebooks
+
+Estou transformando notebooks em relat?rios leg?veis no GitHub, com gr?ficos, resultados e checagens reprodut?veis dentro do pr?prio README. Os projetos recentes cobrem farmacovigil?ncia bayesiana, infer?ncia causal para sal?rios remotos, regimes de mercado em cripto e uma an?lise macroecon?mica do Brasil com s?ries BCB/SGS e base bibliogr?fica.
+
 ## Análise do Perfil
 
 <picture>
