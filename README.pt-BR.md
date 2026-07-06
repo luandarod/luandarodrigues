@@ -13,7 +13,18 @@
 
 ## Sobre
 
-Desenvolvo produtos analíticos que transformam dados brutos em dashboards, KPIs, modelos preditivos e insights para tomada de decisão. Meu foco está em data analytics, business intelligence, machine learning e análise operacional com forte atenção a clareza e execução.
+Trabalho com dados desde a primeira tabela bagunçada até a história final: dashboards, KPIs, modelos, notebooks e reports curtos que deixam o raciocínio fácil de conferir.
+
+Meu portfólio principal está no Vercel. No GitHub ficam as partes de trabalho: código, notebooks, gráficos, checagens e notas sobre as escolhas de cada projeto.
+
+## Comece aqui
+
+| Link | O que você vai encontrar |
+| --- | --- |
+| [Portfolio](https://luandarodrigues-portfolio.vercel.app/) | Cases, reports em notebooks e a versão mais limpa do meu trabalho |
+| [Reports em notebooks](https://github.com/luandarodrigues/projectsforjupyternotebook) | Projetos Jupyter escritos como pequenos reports, com gráficos, resultados e checagens reprodutíveis |
+| [Projeto de health analytics](https://github.com/luandarodrigues/ubs-aps-territorial-intelligence) | Inteligência territorial UBS/APS com enriquecimento de dados, segmentação e saídas prontas para BI |
+| [Projeto de delivery analytics](https://github.com/luandarodrigues/olist-delivery-experience-analytics) | Análise de experiência logística em e-commerce com SQL, modelagem e saída executiva |
 
 ## Stack
 
@@ -50,7 +61,16 @@ Desenvolvo produtos analíticos que transformam dados brutos em dashboards, KPIs
 
 ## Trabalhos recentes em notebooks
 
-Estou transformando notebooks em relat?rios leg?veis no GitHub, com gr?ficos, resultados e checagens reprodut?veis dentro do pr?prio README. Os projetos recentes cobrem farmacovigil?ncia bayesiana, infer?ncia causal para sal?rios remotos, regimes de mercado em cripto e uma an?lise macroecon?mica do Brasil com s?ries BCB/SGS e base bibliogr?fica.
+Estou transformando notebooks em reports legíveis no GitHub, com os principais gráficos e resultados dentro do README de cada projeto.
+
+Trabalhos recentes:
+
+- Farmacovigilância bayesiana para medicamentos GLP-1 com openFDA/FAERS.
+- Inferência causal para prêmio salarial remoto, com AIPW, DML e intervalos de incerteza.
+- Detecção de regimes de mercado cripto com dados recentes de BTC/ETH da Binance.
+- Regimes de inflação e política monetária no Brasil com séries BCB/SGS e base bibliográfica para as escolhas do modelo.
+
+Próximo passo: um projeto de análise de sobrevivência para churn.
 
 ## Análise do Perfil
 

@@ -49,18 +49,37 @@ const projects = [
     metrics: ['22.393 filmes', '58.393 pessoas', 'Graph + NLP'],
     github: 'https://github.com/luandarodrigues/cinegraph-network-intelligence',
     dashboard: ''
+  }
+];
+
+const notebookReports = [
+  {
+    theme: 'Farmacovigilância bayesiana',
+    title: 'GLP-1 Bayesian Pharmacovigilance',
+    result: 'Com openFDA/FAERS, o estudo compara Semaglutide e Tirzepatide por um modelo Beta-Binomial. O foco não é causalidade clínica, e sim um sinal estatístico honesto sobre serious reports e viés de notificação.',
+    methods: ['openFDA/FAERS', 'Beta-Binomial', 'Posterior intervals'],
+    link: 'https://github.com/luandarodrigues/projectsforjupyternotebook/tree/main/notebooks/glp1-bayesian-farmacovigilancia'
   },
   {
-    number: '05',
-    category: 'Notebook Reports · Estatística Aplicada · Macroeconomia',
+    theme: 'Inferência causal',
+    title: 'Remote Work Salary Premium',
+    result: 'O gap bruto de salário remoto cai depois dos ajustes: AIPW estimou prêmio médio de 2,4%, com intervalo de -8,2% a 14,2%. A leitura principal é sobre seleção, confundimento e incerteza.',
+    methods: ['AIPW', 'DML', 'Propensity score'],
+    link: 'https://github.com/luandarodrigues/projectsforjupyternotebook/tree/main/notebooks/remote-work-salary-causal-inference'
+  },
+  {
+    theme: 'Séries financeiras',
+    title: 'Crypto Market Regime Detection',
+    result: 'Usando dados recentes da Binance, o notebook separa regimes de BTC/ETH com mistura gaussiana, validação por BIC e teste fora da amostra. O report discute estabilidade, drawdown e mudança de volatilidade.',
+    methods: ['Binance API', 'GMM', 'BIC + train/test'],
+    link: 'https://github.com/luandarodrigues/projectsforjupyternotebook/tree/main/notebooks/crypto-market-regime-detection'
+  },
+  {
+    theme: 'Macroeconomia aplicada',
     title: 'Brazil Inflation & Monetary Regimes',
-    context: 'Inflação no Brasil não é só uma série de preços. Câmbio, Selic, juros reais, credibilidade e mudanças de regime aparecem juntos na leitura macroeconômica.',
-    objective: 'Usar séries públicas do Banco Central para estimar regimes de pressão inflacionária, comparar baselines e construir uma análise apoiada por bibliografia sobre inflation targeting, pass-through cambial e modelos de regime.',
-    results: 'O projeto analisa 280 meses entre 2002 e 2026, seleciona 4 regimes por BIC e mostra o regime recente como Inflation/fx pressure, com IPCA 12m de 3,81%, Selic anualizada de 14,90% e juros reais ex-post de 11,09%.',
-    tools: ['Python', 'Pandas', 'Scikit-learn', 'BCB/SGS API', 'Causal Thinking', 'Literature Review'],
-    metrics: ['280 meses', '4 regimes', 'BCB/SGS + bibliografia'],
-    github: 'https://github.com/luandarodrigues/projectsforjupyternotebook/tree/main/notebooks/brazil-inflation-monetary-regimes',
-    dashboard: ''
+    result: 'Com séries BCB/SGS entre 2002 e 2026, o projeto encontra 4 regimes por BIC e lê inflação, Selic, câmbio e juros reais junto com base bibliográfica sobre pass-through e inflation targeting.',
+    methods: ['BCB/SGS', 'GMM', 'Literature review'],
+    link: 'https://github.com/luandarodrigues/projectsforjupyternotebook/tree/main/notebooks/brazil-inflation-monetary-regimes'
   }
 ];
 
@@ -78,7 +97,7 @@ const skills = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Luanda Rodrigues — portfólio de Data Analytics com foco em saúde, operações, BI, machine learning, SQL, grafos, NLP e inteligência para decisão." />
+    <meta name="description" content="Luanda Rodrigues — portfólio de Data Analytics, BI, estatística aplicada, machine learning, SQL, grafos, NLP e reports em notebooks." />
     <title>Luanda Rodrigues — Data Analyst</title>
   </head>
   <body>
@@ -86,6 +105,7 @@ const skills = [
       <section class="hero">
         <nav class="nav" aria-label="Navegação principal">
           <a href="#projects">Projetos</a>
+          <a href="#notebooks">Notebooks</a>
           <a href="#about">Sobre</a>
           <a href="#skills">Skills</a>
           <a href="#contact">Contato</a>
@@ -93,9 +113,9 @@ const skills = [
 
         <div class="hero-grid">
           <div class="hero-copy">
-            <div class="eyebrow">Data / Health / Operations / CX</div>
+            <div class="eyebrow">Data / Statistics / ML / BI</div>
             <h1>Luanda Rodrigues</h1>
-            <p class="hero-subtitle">Analista de Dados focada em saúde, operações, business intelligence, machine learning e inteligência para decisão.</p>
+            <p class="hero-subtitle">Analista de dados que transforma base crua em diagnóstico, modelo e história visual que alguém consegue usar.</p>
             <div class="hero-actions">
               <a class="button primary" href="https://github.com/luandarodrigues" target="_blank" rel="noreferrer">GitHub</a>
               <a class="button" href="https://www.linkedin.com/in/luanda-rodrigues" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -111,11 +131,11 @@ const skills = [
       <section class="intro-grid" id="about">
         <div>
           <span class="section-label">Sobre</span>
-          <h2>Analytics com contexto, método e decisão.</h2>
+          <h2>Dados com contexto, método e consequência.</h2>
         </div>
         <div class="intro-copy">
-          <p>Atuo na interseção entre dados, operações e apoio à decisão, transformando bases estruturadas em diagnósticos práticos para monitoramento de performance, melhoria de processos e análise de negócio.</p>
-          <p>Minha trajetória combina operações em saúde, fluxos de farmácia clínica, BI, projetos apoiados por IA, análise pública de dados, machine learning, grafos, NLP e dashboards narrativos.</p>
+          <p>Trabalho na ponte entre dados, operação e decisão. Gosto de pegar uma base difícil, entender o que ela deixa escapar, limpar o suficiente para confiar e devolver uma leitura que ajude alguém a agir.</p>
+          <p>Minha trajetória passa por saúde, farmácia clínica, BI, IA aplicada, dados públicos, machine learning, grafos, NLP e dashboards narrativos. No portfólio, tento deixar o raciocínio visível: fonte, método, resultado e limite.</p>
         </div>
       </section>
 
@@ -125,7 +145,7 @@ const skills = [
             <span class="section-label">Meus trabalhos</span>
             <h2>Projetos públicos de portfólio</h2>
           </div>
-          <p>Projetos desenvolvidos com foco em problemas de negócio, análise exploratória, modelagem, transformação de dados e comunicação executiva.</p>
+          <p>Projetos maiores, com dashboard ou case completo. Alguns nasceram de dados públicos, outros de uma pergunta operacional que merecia virar produto analítico.</p>
         </div>
 
         <div class="projects-list">
@@ -156,6 +176,30 @@ const skills = [
         </div>
       </section>
 
+      <section id="notebooks" class="notebooks-section">
+        <div class="section-header">
+          <div>
+            <span class="section-label">Reports em notebooks</span>
+            <h2>Análises com estatística, gráficos e resultado</h2>
+          </div>
+          <p>Notebooks escritos como pequenos reports: pergunta clara, dados recentes quando faz sentido, método explícito, figuras no README e uma conclusão que respeita a incerteza.</p>
+        </div>
+
+        <div class="notebook-grid">
+          {notebookReports.map((report) => (
+            <article class="notebook-card">
+              <p class="notebook-theme">{report.theme}</p>
+              <h3>{report.title}</h3>
+              <p>{report.result}</p>
+              <ul>
+                {report.methods.map((method) => <li>{method}</li>)}
+              </ul>
+              <a class="notebook-link" href={report.link} target="_blank" rel="noreferrer">Abrir report no GitHub</a>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section id="skills" class="skills-section">
         <span class="section-label">Stack</span>
         <h2>Ferramentas e foco analítico</h2>
@@ -172,15 +216,15 @@ const skills = [
         <div class="confidential-grid">
           <article>
             <h3>Clinical Pharmacy KPI Dashboard</h3>
-            <p>Projeto institucional no contexto EBSERH / HC-UFU. Descrição pública limitada a competências anonimizadas: desenho de KPIs, análise de fluxos hospitalares e monitoramento operacional.</p>
+            <p>Projeto institucional no contexto EBSERH / HC-UFU. A versão pública fica no nível das competências: desenho de KPIs, leitura de fluxos hospitalares e monitoramento operacional.</p>
           </article>
           <article>
             <h3>AI for Scientific Communication</h3>
-            <p>Projetos privados em saúde envolvendo IA aplicada, automação, comunicação científica, estratégia de conteúdo e fluxos low-code.</p>
+            <p>Projetos privados em saúde com IA aplicada, automação, comunicação científica, estratégia de conteúdo e fluxos low-code.</p>
           </article>
           <article>
             <h3>Performance Dashboard for Decision-Making</h3>
-            <p>Trabalho corporativo de BI com estruturação de indicadores, relatórios executivos, dashboards e análise de negócio em contextos fechados.</p>
+            <p>Trabalho corporativo de BI com indicadores, relatórios executivos, dashboards e análise de negócio em ambientes fechados.</p>
           </article>
         </div>
       </section>

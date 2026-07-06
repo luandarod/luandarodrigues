@@ -13,15 +13,15 @@
 
 ## About
 
-I build data projects that move from raw tables to something a decision-maker can actually use: dashboards, KPIs, predictive models, notebooks, and short analytical reports.
+I work with data from the messy first table to the final story: dashboards, KPIs, models, notebooks, and short reports that make the reasoning easy to check.
 
-My main portfolio lives on Vercel. GitHub is where I keep the working pieces behind it: code, notebooks, data checks, and project notes.
+My main portfolio lives on Vercel. GitHub is where I keep the working parts behind it: code, notebooks, charts, checks, and the notes that explain why each choice was made.
 
 ## Start Here
 
 | Link | What to expect |
 | --- | --- |
-| [Portfolio](https://luandarodrigues-portfolio.vercel.app/) | Curated case studies, bilingual pages, and the cleanest view of my work |
+| [Portfolio](https://luandarodrigues-portfolio.vercel.app/) | Case studies, notebook reports, and the cleanest view of my work |
 | [Notebook reports](https://github.com/luandarodrigues/projectsforjupyternotebook) | Jupyter projects written like small reports, with charts, results, and reproducible checks |
 | [Health analytics project](https://github.com/luandarodrigues/ubs-aps-territorial-intelligence) | UBS/APS territorial intelligence with data enrichment, segmentation, and BI-ready outputs |
 | [Delivery analytics project](https://github.com/luandarodrigues/olist-delivery-experience-analytics) | E-commerce delivery experience analysis with SQL, modeling, and executive outputs |
@@ -61,9 +61,16 @@ My main portfolio lives on Vercel. GitHub is where I keep the working pieces beh
 
 ## Current Notebook Work
 
-I am turning notebook projects into GitHub-readable reports, with chart images and results directly in the project README. Recent examples include Bayesian pharmacovigilance, causal inference for remote salaries, crypto market regime detection with current Binance data, and a literature-backed Brazil macro regime report using BCB/SGS series.
+I am turning notebooks into GitHub-readable reports, with the main charts and findings in each project README.
 
-Next up: a survival-analysis project for customer churn.
+Recent work:
+
+- Bayesian pharmacovigilance for GLP-1 drugs with openFDA/FAERS.
+- Causal inference for remote salary premium, with AIPW, DML, and uncertainty intervals.
+- Crypto market regime detection with recent Binance BTC/ETH data.
+- Brazil inflation and monetary regimes with BCB/SGS series and a bibliography behind the model choices.
+
+Next up: a survival analysis project for customer churn.
 
 ## Profile Analysis
 
