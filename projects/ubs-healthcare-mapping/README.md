@@ -1,161 +1,194 @@
 # UBS + IBGE + Cobertura Potencial APS
 
-**Health Analytics | Territorial Intelligence | Data Quality | Public Health BI | Interactive Dashboard**
+Projeto de análise territorial em saúde pública. A ideia é cruzar três camadas que costumam ser lidas separadamente: o cadastro físico de Unidades Básicas de Saúde, o contexto populacional e territorial do IBGE/SIDRA, e a cobertura potencial da Atenção Primária à Saúde.
 
-This is the main healthcare analytics project in my portfolio. It transforms a public registry of Brazilian Primary Healthcare Units (UBS) into an integrated territorial intelligence dashboard by combining three layers of data: physical UBS presence, IBGE/SIDRA population and territory indicators, and potential Primary Care coverage capacity.
+O resultado não tenta dizer se um território está bem atendido. Essa resposta exigiria produção assistencial, equipes ativas por período, demanda, distância real até os serviços e qualidade do cuidado. Aqui o objetivo é mais cuidadoso: montar uma base comparável, mostrar onde a leitura por volume de UBS engana e apontar lugares que merecem investigação.
 
-## Interactive dashboard
+## Dashboard
 
-**[Open the interactive dashboard ->](https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/)**
+[Abrir dashboard interativo](https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/)
 
-The dashboard works as the presentation layer of the project. It was built as a static, open-access GitHub Pages dashboard using HTML, CSS and JavaScript, with data prepared in Python.
+O dashboard é uma camada de apresentação estática em GitHub Pages. Os dados usados nele ficam versionados em `docs/dashboards/ubs-healthcare-mapping/data/`, para evitar diferença entre o relatório e os CSVs do projeto.
 
-It includes:
+## Pergunta
 
-- executive KPI cards;
-- UBS distribution by state and region;
-- comparison between UBS volume, population and territorial area;
-- coordinate quality indicators;
-- APS potential coverage indicators;
-- ranking of municipalities by lower or higher APS coverage;
-- state-level integrated table;
-- priority signals for territorial investigation;
-- source explanation and analytical conclusion.
+Contar UBS responde onde existem registros de unidades. Não responde, sozinho, se existe capacidade suficiente de atenção primária.
 
-## Analytical question
+A pergunta deste projeto é:
 
-Counting UBS is not enough to understand primary care capacity. A state may have many registered units and still face population pressure, geographic dispersion or gaps between physical presence and installed team capacity.
+> O que muda quando o cadastro de UBS é analisado junto com população, território e cobertura potencial da APS?
 
-This project asks:
+## Dados
 
-> What changes when the physical registry of UBS is analyzed together with population, territory and potential APS coverage?
-
-## Data sources
-
-| Layer | Source | Analytical role |
+| Camada | Fonte | Como entra na análise |
 |---|---|---|
-| UBS registry | Public UBS dataset | Physical presence of primary healthcare units, CNES, municipality, UF and coordinates |
-| IBGE/SIDRA | Municipality-level population and territorial area | Population-adjusted and territory-adjusted indicators |
-| Cobertura Potencial APS | APS potential coverage report | Installed team capacity and potential primary care coverage |
+| Cadastro de UBS | Arquivo público `Unidades_Basicas_Saude-UBS.csv` | Registros de unidades, CNES, UF, município e coordenadas |
+| IBGE Localidades | API oficial de municípios do IBGE | Nome oficial do município, UF e região |
+| SIDRA 4714 | Tabela do IBGE/SIDRA | População residente, área territorial e densidade |
+| Cobertura APS | Relatório público de Cobertura Potencial APS | População, equipes, capacidade estimada e cobertura potencial |
 
-The raw files are stored at:
+Referências de origem:
 
-```text
-projects/ubs-healthcare-mapping/data/Unidades_Basicas_Saude-UBS.csv
-projects/ubs-healthcare-mapping/data/cobertura-aps-geral.xlsx
-```
+- IBGE Localidades: https://servicodados.ibge.gov.br/api/docs/localidades
+- SIDRA API usada no pipeline: https://apisidra.ibge.gov.br/values/t/4714/n6/all/p/last
+- Relatórios Públicos APS: https://relatorioaps.saude.gov.br/cobertura/aps
 
-The enriched outputs are stored at:
+## Números principais
 
-```text
-projects/ubs-healthcare-mapping/data/enriched/
-├── municipality_ubs_territory.csv
-├── uf_ubs_territory_summary.csv
-├── priority_matrix.csv
-├── aps_coverage_normalized.csv
-├── municipality_ubs_aps_coverage.csv
-├── uf_ubs_aps_coverage_summary.csv
-├── enrichment_metadata.json
-└── aps_enrichment_metadata.json
-```
-
-## Key numbers
-
-| Metric | Value |
+| Indicador | Valor |
 |---|---:|
-| Total UBS records | 47,714 |
-| Unique CNES records | 47,714 |
-| States represented | 27 |
-| Municipalities represented | 5,483 |
-| Records with valid coordinates | ~96% |
-| APS population in coverage file | ~210.4 million |
-| Estimated APS team capacity | ~180.3 million |
+| Registros de UBS | 47.714 |
+| CNES únicos | 47.714 |
+| UFs representadas | 27 |
+| Municípios no cadastro UBS | 5.483 |
+| Registros com coordenadas válidas | 45.782, ou 95,95% |
+| Registros com match territorial IBGE/SIDRA | 47.710 |
+| Registros sem match territorial | 4 registros em 2 municípios |
+| Competência APS | 04/2026 |
+| Municípios no arquivo APS oficial | 5.567 |
+| População no arquivo APS | 213,4 milhões |
+| Capacidade estimada APS | 211,4 milhões |
+| Cobertura APS ponderada por população | 99,1% |
 
-## Dashboard interpretation
+## Gráficos do relatório
 
-The dashboard separates the analysis into three complementary views.
+### 1. Distribuição regional das UBS
 
-First, the UBS registry shows the **physical presence of the network**. It helps answer where units are registered and whether their coordinates are usable for map-based analysis.
+![Distribuição de UBS por região](assets/01_ubs_distribution_by_region.png)
 
-Second, the IBGE/SIDRA enrichment adds **population and territorial context**. This makes it possible to compare states not only by number of units, but also by UBS per population and UBS per territorial area.
+Nordeste e Sudeste concentram a maior parte dos registros. Isso é esperado em parte pela distribuição populacional, mas não deve ser lido como suficiência de oferta. A leitura melhora quando o denominador entra.
 
-Third, the APS coverage layer adds **installed capacity signals**. It estimates how many people can potentially be covered by primary care teams in each municipality.
+### 2. UBS por população
 
-Together, these layers create a more responsible reading: the project does not claim real access to care, but it shows where further investigation may be needed.
+![UBS por população](assets/02_ubs_per_population_extremes.png)
 
-## Main insights
+Quando a contagem passa a ser ajustada por população, o ranking muda. Estados com muitos registros absolutos podem ter disponibilidade relativa menor, enquanto estados menores aparecem com mais UBS por 100 mil habitantes.
 
-- The dataset has national coverage, with all 27 Brazilian federative units represented.
-- Around 96% of records have usable geographic coordinates, making the base suitable for mapping.
-- The Northeast and Southeast concentrate the largest number of UBS records.
-- Volume of UBS alone does not explain sufficiency, capacity or access.
-- IBGE/SIDRA enrichment allows population- and area-adjusted analysis.
-- APS coverage data helps separate physical units from potential care capacity.
-- Some indicators should be interpreted as prioritization signals, not definitive conclusions.
+### 3. Cobertura APS ponderada
 
-## Methodology
+![Cobertura APS ponderada por UF](assets/03_aps_weighted_coverage_by_uf.png)
 
-1. Data dictionary validation
-2. CSV ingestion and field standardization
-3. Coordinate cleaning and geolocation quality assessment
-4. Aggregation by municipality, state and region
-5. IBGE/SIDRA enrichment for population and territorial analysis
-6. APS coverage normalization and municipality-level integration
-7. Construction of enriched analytical outputs
-8. Static interactive dashboard development for GitHub Pages
-9. Interpretation with explicit limitations
+A cobertura APS do arquivo tem muitos valores municipais acima de 100%. Por isso o projeto guarda duas leituras:
 
-## Enrichment pipeline
+- cobertura nominal ponderada, que preserva valores acima de 100% como sinal de capacidade informada;
+- cobertura capada em 100%, usada quando a pergunta é proporção da população potencialmente coberta.
 
-The raw UBS file can be enriched with IBGE territory data using:
+Essa separação evita interpretar capacidade nominal excedente como acesso real.
+
+Os KPIs de APS usam o arquivo oficial completo. A tabela integrada usa a interseção entre APS e o cadastro UBS, porque depende da junção com a camada territorial do projeto.
+
+### 4. Sinais para investigação
+
+![Score exploratório de prioridade](assets/04_priority_screening_top10.png)
+
+O score é uma triagem, não um ranking de política pública. Ele combina baixa disponibilidade relativa de UBS, gap positivo de APS e qualidade de coordenadas. O papel dele é indicar onde uma análise mais profunda faria sentido.
+
+### 5. Sensibilidade do score
+
+![Sensibilidade do score por UF](assets/05_priority_sensitivity.png)
+
+O score foi testado em quatro cenários: base, cobertura, território e qualidade cadastral. Quando uma UF muda muito de posição entre cenários, o resultado deve ser lido com mais cautela. Quando permanece alta em vários cenários, o sinal é mais estável.
+
+## Método
+
+A justificativa bibliográfica do método está em [METHODOLOGICAL_REFERENCES.md](METHODOLOGICAL_REFERENCES.md).
+
+1. Ler o cadastro UBS com detecção de separador e encoding.
+2. Padronizar UF, município, latitude e longitude.
+3. Validar coordenadas com uma checagem ampla de bounding box do Brasil.
+4. Agregar UBS por município, UF e região.
+5. Normalizar a chave municipal: UBS e APS usam código IBGE de 6 dígitos, enquanto IBGE/SIDRA usam o código oficial de 7 dígitos.
+6. Juntar IBGE Localidades e SIDRA 4714.
+7. Calcular UBS por 10 mil habitantes, UBS por 1.000 km² e validade de coordenadas.
+8. Normalizar o arquivo de Cobertura APS.
+9. Calcular cobertura nominal, cobertura capada em 100%, gap positivo e excesso nominal.
+10. Rodar análise de sensibilidade do score.
+11. Gerar CSVs, gráficos e dashboard.
+
+## Como reproduzir
 
 ```bash
+python projects/ubs-healthcare-mapping/scripts/analyze_ubs.py \
+  projects/ubs-healthcare-mapping/data/Unidades_Basicas_Saude-UBS.csv \
+  projects/ubs-healthcare-mapping/data
+
 python projects/ubs-healthcare-mapping/scripts/enrich_with_ibge.py \
   --input projects/ubs-healthcare-mapping/data/Unidades_Basicas_Saude-UBS.csv \
   --output-dir projects/ubs-healthcare-mapping/data/enriched
-```
 
-After generating `municipality_ubs_territory.csv`, the APS coverage file can be joined using:
+python projects/ubs-healthcare-mapping/scripts/fetch_latest_aps_coverage.py
 
-```bash
 python projects/ubs-healthcare-mapping/scripts/enrich_with_aps_coverage.py \
   --ubs-territory projects/ubs-healthcare-mapping/data/enriched/municipality_ubs_territory.csv \
-  --aps-file projects/ubs-healthcare-mapping/data/cobertura-aps-geral.xlsx \
+  --aps-file projects/ubs-healthcare-mapping/data/cobertura-aps-latest.csv \
   --output-dir projects/ubs-healthcare-mapping/data/enriched
+
+python projects/ubs-healthcare-mapping/scripts/priority_sensitivity_analysis.py
+
+python projects/ubs-healthcare-mapping/scripts/generate_report_assets.py
+
+python projects/ubs-healthcare-mapping/scripts/build_dashboard_data.py
 ```
 
-## Files in this project
+Testes de sanidade:
+
+```bash
+python -m unittest discover -s projects/ubs-healthcare-mapping/tests
+```
+
+## Arquivos
 
 ```text
 projects/ubs-healthcare-mapping/
 ├── README.md
 ├── DATA_ENRICHMENT.md
+├── METHODOLOGICAL_REFERENCES.md
+├── PUBLICATION_AUDIT.md
 ├── requirements.txt
+├── assets/
+│   ├── 01_ubs_distribution_by_region.png
+│   ├── 02_ubs_per_population_extremes.png
+│   ├── 03_aps_weighted_coverage_by_uf.png
+│   ├── 04_priority_screening_top10.png
+│   └── 05_priority_sensitivity.png
 ├── data/
 │   ├── Unidades_Basicas_Saude-UBS.csv
 │   ├── cobertura-aps-geral.xlsx
+│   ├── cobertura-aps-latest.csv
+│   ├── aps_api_metadata.json
 │   ├── data_quality_summary.csv
 │   ├── region_distribution.csv
 │   ├── state_distribution.csv
 │   └── enriched/
-└── scripts/
-    ├── analyze_ubs.py
-    ├── enrich_with_ibge.py
-    └── enrich_with_aps_coverage.py
+├── scripts/
+│   ├── analyze_ubs.py
+│   ├── build_dashboard_data.py
+│   ├── enrich_with_ibge.py
+│   ├── enrich_with_aps_coverage.py
+│   ├── fetch_latest_aps_coverage.py
+│   ├── generate_report_assets.py
+│   └── priority_sensitivity_analysis.py
+└── tests/
+    └── test_pipeline_sanity.py
 ```
 
-Dashboard file:
+## Fragilidades conhecidas
 
-```text
-docs/dashboards/ubs-healthcare-mapping/index.html
-```
+- Coordenada válida significa apenas latitude e longitude dentro de uma faixa plausível para o Brasil. Não garante que o ponto esteja no município correto.
+- O cadastro UBS mostra presença registrada, não unidade ativa, produção, equipe disponível ou horário de funcionamento.
+- A Cobertura APS usada está na competência 04/2026, a mais recente retornada pelo endpoint público no momento desta execução. Ainda assim, decisões operacionais exigem checagem da fonte oficial no dia da análise.
+- Valores de cobertura APS acima de 100% foram mantidos como sinal nominal de capacidade. Para falar de população coberta, o projeto também calcula uma versão capada em 100%.
+- O score de prioridade é exploratório. Ele não substitui avaliação local, análise espacial fina ou validação com gestores e bases assistenciais.
+- Dois municípios do cadastro UBS não fecharam com a camada territorial do IBGE/SIDRA nesta versão. Eles ficam documentados no metadata e não entram na síntese por UF.
 
-## Tools
+## Próximos passos
 
-Python, Pandas, Requests, OpenPyXL, CSV, IBGE APIs, SIDRA, GitHub Pages, HTML, CSS, JavaScript, Data Quality, Health Analytics, Territorial Intelligence.
+- Comparar a série temporal da APS, em vez de olhar apenas a competência mais recente.
+- Validar coordenadas por distância ao centróide municipal ou polígono oficial.
+- Integrar produção ambulatorial, equipes ativas e indicadores socioeconômicos.
+- Evoluir a sensibilidade do score para análise de incerteza com intervalos e pesos definidos com especialistas.
+- Adicionar mapa com polígonos municipais e leitura regional.
 
-## Limitations
+## Stack
 
-This dashboard does not measure real access to care, quality of care, service productivity or adequacy of primary care coverage. It organizes analytical signals from public datasets to support better questions and prioritize further investigation.
-
-A stronger next version would include service production, active teams by period, socioeconomic indicators, catchment areas, distance to services and time-series coverage analysis.
+Python, Pandas, Requests, OpenPyXL, Matplotlib, IBGE APIs, SIDRA, HTML, CSS, JavaScript, GitHub Pages, análise territorial, qualidade de dados e saúde pública.

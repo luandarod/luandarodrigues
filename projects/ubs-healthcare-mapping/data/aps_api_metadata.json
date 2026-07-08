@@ -1,0 +1,8 @@
+{
+  "source": "Relatorios Publicos APS",
+  "base_url": "https://relatorioaps-prd.saude.gov.br",
+  "competence": "202604",
+  "rows": 5567,
+  "unit": "MUNICIPIO",
+  "output": "projects\\ubs-healthcare-mapping\\data\\cobertura-aps-latest.csv"
+}

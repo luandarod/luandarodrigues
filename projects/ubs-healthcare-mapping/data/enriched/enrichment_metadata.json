@@ -1,8 +1,11 @@
 {
   "source_ubs_file": "projects\\ubs-healthcare-mapping\\data\\Unidades_Basicas_Saude-UBS.csv",
+  "municipality_join_key": "ibge_municipio, six-digit code used by the UBS and APS source files",
+  "official_ibge_key": "ibge_municipio_7, seven-digit code used by IBGE Localidades and SIDRA",
   "ibge_localidades_url": "https://servicodados.ibge.gov.br/api/v1/localidades/municipios",
   "sidra_4714_url": "https://apisidra.ibge.gov.br/values/t/4714/n6/all/p/last",
   "sidra_loaded": true,
+  "unmatched_territory_rows": 2,
   "outputs": [
     "municipality_ubs_territory.csv",
     "uf_ubs_territory_summary.csv",

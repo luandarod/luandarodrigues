@@ -65,7 +65,11 @@ def parse_number(value: Any) -> float | None:
     text = str(value).strip()
     if text in {"", "-", "..", "..."}:
         return None
-    text = text.replace("%", "").replace(".", "").replace(",", ".")
+    text = text.replace("%", "")
+    if "," in text and "." in text:
+        text = text.replace(".", "").replace(",", ".")
+    elif "," in text:
+        text = text.replace(",", ".")
     try:
         return float(text)
     except ValueError:
@@ -88,30 +92,59 @@ def normalize_aps_columns(df: pd.DataFrame) -> pd.DataFrame:
     rename_map = {
         "competencia_cnes": "competencia_cnes",
         "comp_cnes": "competencia_cnes",
+        "nucomp": "competencia_cnes",
         "regiao": "regiao_aps",
+        "noregiao": "regiao_aps",
         "uf": "uf_sigla",
+        "sguf": "uf_sigla",
         "estado": "estado_nome",
+        "nouf": "estado_nome",
+        "noufacentuado": "estado_nome",
         # In this report, Região de Saúde is the municipality name.
         "regiao_de_saude": "municipio_nome_aps",
         # In this report, Município is the IBGE municipality code.
         "municipio": "ibge_municipio",
+        "comunicipioibge": "ibge_municipio",
+        "nomunicipioibge": "municipio_nome_aps",
+        "nomunicipioacentuado": "municipio_nome_aps",
         "populacao": "aps_populacao",
+        "qtpopulacao": "aps_populacao",
         "qt_esf": "qt_esf",
+        "qtesf": "qt_esf",
         "qt_eap_20hs": "qt_eap_20hs",
+        "qteap20": "qt_eap_20hs",
         "qt_eap_30hs": "qt_eap_30hs",
+        "qteap30": "qt_eap_30hs",
         "qt_ecr": "qt_ecr",
+        "qtecr": "qt_ecr",
         "qt_cadastro_ecr": "qt_cadastro_ecr",
+        "qtcadastroecr": "qt_cadastro_ecr",
         "qt_eapp_20hs": "qt_eapp_20hs",
+        "qteapp20": "qt_eapp_20hs",
         "qt_cadastro_eapp_20hs": "qt_cadastro_eapp_20hs",
+        "qtcadastroeapp20": "qt_cadastro_eapp_20hs",
         "qt_eapp_30hs": "qt_eapp_30hs",
+        "qteapp30": "qt_eapp_30hs",
         "qt_cadastro_eapp_30hs": "qt_cadastro_eapp_30hs",
+        "qtcadastroeapp30": "qt_cadastro_eapp_30hs",
         "qt_esfr": "qt_esfr",
+        "qtesfr": "qt_esfr",
         "qt_cadastro_esfr": "qt_cadastro_esfr",
+        "qtcadastroesfr": "qt_cadastro_esfr",
         "qt_cadastros_das_ecr_e_eapp": "qt_cadastros_ecr_eapp",
+        "qtcadastroequipeesfrecreapp": "qt_cadastros_ecr_eapp",
         "qt_capacidade_da_equipe": "aps_capacidade_equipe",
+        "qtcapacidadeequipe": "aps_capacidade_equipe",
         "cobertura_aps": "cobertura_aps_pct",
+        "qtcobertura": "cobertura_aps_pct",
     }
     df = df.rename(columns={c: rename_map.get(c, c) for c in df.columns})
+    if df.columns.duplicated().any():
+        combined = {}
+        for col in dict.fromkeys(df.columns):
+            repeated = df.loc[:, df.columns == col]
+            combined[col] = repeated.bfill(axis=1).iloc[:, 0] if repeated.shape[1] > 1 else repeated.iloc[:, 0]
+        df = pd.DataFrame(combined)
 
     numeric_cols = [
         "ibge_municipio",
@@ -200,10 +233,13 @@ def build_outputs(ubs_territory_path: Path, aps_file_path: Path, output_dir: Pat
     population_base = enriched["populacao_residente"] if "populacao_residente" in enriched.columns else enriched.get("aps_populacao")
 
     if "aps_capacidade_equipe" in enriched.columns and population_base is not None:
+        population_base = population_base.replace(0, pd.NA)
         enriched["aps_capacity_per_10k_population"] = enriched["aps_capacidade_equipe"] / population_base * 10000
 
     if "cobertura_aps_pct" in enriched.columns:
-        enriched["coverage_gap_pct"] = 100 - enriched["cobertura_aps_pct"]
+        enriched["cobertura_aps_capped_pct"] = enriched["cobertura_aps_pct"].clip(upper=100)
+        enriched["coverage_gap_pct"] = (100 - enriched["cobertura_aps_pct"]).clip(lower=0)
+        enriched["nominal_capacity_excess_pct"] = (enriched["cobertura_aps_pct"] - 100).clip(lower=0)
 
     if {"ubs_per_10k_population", "cobertura_aps_pct", "coordinate_validity_pct"}.issubset(enriched.columns):
         ubs_pressure = 1 - enriched["ubs_per_10k_population"].rank(pct=True)
@@ -240,11 +276,43 @@ def build_outputs(ubs_territory_path: Path, aps_file_path: Path, output_dir: Pat
                 agg_cols[col] = (col, "sum")
         if "cobertura_aps_pct" in enriched.columns:
             agg_cols["cobertura_aps_media_pct"] = ("cobertura_aps_pct", "mean")
+        if "cobertura_aps_capped_pct" in enriched.columns:
+            agg_cols["cobertura_aps_capped_media_pct"] = ("cobertura_aps_capped_pct", "mean")
+        if "coverage_gap_pct" in enriched.columns:
+            agg_cols["coverage_gap_media_pct"] = ("coverage_gap_pct", "mean")
+        if "nominal_capacity_excess_pct" in enriched.columns:
+            agg_cols["nominal_capacity_excess_media_pct"] = ("nominal_capacity_excess_pct", "mean")
         if "aps_priority_score" in enriched.columns:
             agg_cols["aps_priority_score"] = ("aps_priority_score", "mean")
 
         group_cols = [c for c in ["uf_sigla", "uf_nome", "regiao_nome"] if c in enriched.columns]
-        uf_summary = enriched.groupby(group_cols, dropna=False).agg(**agg_cols).reset_index()
+        summary_ready = enriched.copy()
+        if "uf_sigla" in summary_ready.columns:
+            summary_ready = summary_ready[
+                summary_ready["uf_sigla"].notna()
+                & (summary_ready["uf_sigla"].astype(str).str.upper() != "NAN")
+            ].copy()
+        uf_summary = summary_ready.groupby(group_cols, dropna=False).agg(**agg_cols).reset_index()
+        if {"aps_capacidade_equipe", "aps_populacao"}.issubset(uf_summary.columns):
+            population = uf_summary["aps_populacao"].replace(0, pd.NA)
+            uf_summary["cobertura_aps_ponderada_pct"] = uf_summary["aps_capacidade_equipe"] / population * 100
+        if {"aps_capacidade_equipe", "aps_populacao"}.issubset(summary_ready.columns):
+            capped = summary_ready.assign(
+                capped_capacity=summary_ready[["aps_capacidade_equipe", "aps_populacao"]].min(axis=1)
+            )
+            capped_summary = (
+                capped.groupby(group_cols, dropna=False)
+                .agg(capped_capacity=("capped_capacity", "sum"), capped_population=("aps_populacao", "sum"))
+                .reset_index()
+            )
+            capped_summary["cobertura_aps_ponderada_capped_pct"] = (
+                capped_summary["capped_capacity"] / capped_summary["capped_population"].replace(0, pd.NA) * 100
+            )
+            uf_summary = uf_summary.merge(
+                capped_summary[group_cols + ["cobertura_aps_ponderada_capped_pct"]],
+                on=group_cols,
+                how="left",
+            )
         uf_summary.to_csv(output_dir / "uf_ubs_aps_coverage_summary.csv", index=False)
 
     metadata["municipality_level_join"] = True
@@ -253,6 +321,13 @@ def build_outputs(ubs_territory_path: Path, aps_file_path: Path, output_dir: Pat
         "municipality_ubs_aps_coverage.csv",
         "uf_ubs_aps_coverage_summary.csv",
     ]
+    if "cobertura_aps_pct" in enriched.columns:
+        metadata["coverage_interpretation"] = {
+            "cobertura_aps_pct": "Nominal potential coverage from the source file. Values above 100% are kept as capacity signals.",
+            "cobertura_aps_capped_pct": "Coverage capped at 100% for population coverage interpretation.",
+            "coverage_gap_pct": "Positive gap below 100%; values above 100% do not create a negative gap.",
+            "nominal_capacity_excess_pct": "Nominal excess above 100%, useful as a capacity-over-population signal.",
+        }
     (output_dir / "aps_enrichment_metadata.json").write_text(json.dumps(metadata, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Done. APS coverage outputs saved to: {output_dir}")
 

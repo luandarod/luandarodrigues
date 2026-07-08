@@ -29,10 +29,42 @@ IBGE_UF_TO_SIGLA = {
 }
 
 
+def read_ubs_csv(path: str | Path) -> pd.DataFrame:
+    encodings = ["utf-8-sig", "utf-8", "latin1"]
+    separators = [None, ";", ",", "\t"]
+    last_error: Exception | None = None
+
+    for encoding in encodings:
+        for sep in separators:
+            try:
+                df = pd.read_csv(
+                    path,
+                    sep=sep,
+                    engine="python" if sep is None else "c",
+                    encoding=encoding,
+                )
+                normalized_cols = [str(c).strip().lower() for c in df.columns]
+                if "ibge" in normalized_cols:
+                    return df
+                if len(df.columns) == 1:
+                    continue
+            except Exception as exc:  # noqa: BLE001
+                last_error = exc
+
+    raise ValueError(f"Could not read UBS CSV with an IBGE column. Last error: {last_error}")
+
+
 def normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     df.columns = [c.strip().lower() for c in df.columns]
     return df
+
+
+def normalize_decimal_series(series: pd.Series) -> pd.Series:
+    text = series.astype(str).str.strip()
+    text = text.str.replace(" ", "", regex=False).str.replace(",", ".", regex=False)
+    text = text.replace({"": pd.NA, "nan": pd.NA, "None": pd.NA})
+    return pd.to_numeric(text, errors="coerce")
 
 
 def add_region(df: pd.DataFrame) -> pd.DataFrame:
@@ -49,12 +81,12 @@ def main(input_path: str, output_dir: str = "outputs") -> None:
     output = Path(output_dir)
     output.mkdir(parents=True, exist_ok=True)
 
-    df = pd.read_csv(input_path)
+    df = read_ubs_csv(input_path)
     df = normalize_columns(df)
     df = add_region(df)
 
-    df["latitude"] = pd.to_numeric(df["latitude"], errors="coerce")
-    df["longitude"] = pd.to_numeric(df["longitude"], errors="coerce")
+    df["latitude"] = normalize_decimal_series(df["latitude"])
+    df["longitude"] = normalize_decimal_series(df["longitude"])
     df["has_valid_coordinates"] = df["latitude"].between(-34, 6) & df["longitude"].between(-74, -34)
 
     total = len(df)
