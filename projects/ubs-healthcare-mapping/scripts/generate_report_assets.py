@@ -50,6 +50,8 @@ def save_charts(project_dir: Path) -> None:
     sensitivity = pd.read_csv(sensitivity_path) if sensitivity_path.exists() else pd.DataFrame()
     timeseries_path = project_dir / "data" / "aps_national_timeseries.csv"
     timeseries = pd.read_csv(timeseries_path) if timeseries_path.exists() else pd.DataFrame()
+    spatial_path = project_dir / "data" / "spatial_validation_by_uf.csv"
+    spatial = pd.read_csv(spatial_path) if spatial_path.exists() else pd.DataFrame()
 
     uf = uf.merge(
         aps[
@@ -174,6 +176,21 @@ def save_charts(project_dir: Path) -> None:
         )
         fig.tight_layout(pad=2.4)
         fig.savefig(out / "06_aps_national_timeseries.png", bbox_inches="tight")
+        plt.close(fig)
+
+    if not spatial.empty:
+        plot = spatial.sort_values("spatial_issue_pct", ascending=True)
+        fig, ax = plt.subplots(figsize=(10.5, 8), dpi=180)
+        ax.barh(plot["uf_sigla"], plot["spatial_issue_pct"], color="#b35c37", alpha=0.9)
+        ax.set_xlabel("UBS com problema espacial ou coordenada ausente (%)")
+        finish(
+            ax,
+            "Validação espacial por município declarado",
+            "O teste usa point-in-polygon com malhas municipais simplificadas do IBGE para separar coordenadas plausíveis de coordenadas municipalmente consistentes.",
+            "Fonte: Cadastro UBS + API de Malhas Geográficas do IBGE; malha mínima por UF.",
+        )
+        fig.tight_layout(pad=2.4)
+        fig.savefig(out / "07_spatial_validation_by_uf.png", bbox_inches="tight")
         plt.close(fig)
 
 

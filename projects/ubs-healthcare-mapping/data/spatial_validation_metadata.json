@@ -1,0 +1,11 @@
+{
+  "generated_at_utc": "2026-07-08T17:23:57.825583+00:00",
+  "source": "IBGE API de malhas geograficas",
+  "source_url_template": "https://servicodados.ibge.gov.br/api/v3/malhas/estados/{uf_id}?formato=application/vnd.geo+json&qualidade=minima&intrarregiao=municipio",
+  "geometry_quality": "minima",
+  "intrarregiao": "municipio",
+  "cached_polygons": 5570,
+  "ubs_records": 47714,
+  "suspect_records": 3997,
+  "method": "Point-in-polygon against the declared IBGE municipality polygon; simplified IBGE meshes are used for screening, not cadastral precision."
+}

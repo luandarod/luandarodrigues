@@ -1,40 +1,70 @@
-# Auditoria de publicação
+# Auditoria de publicacao
 
-Data da revisão: 2026-07-07
+Data da revisao: 2026-07-08
 
 ## Status
 
-O projeto está publicável como análise exploratória de dados em saúde pública, desde que as limitações continuem visíveis no README e no dashboard.
+O projeto esta publicavel como analise exploratoria de dados em saude publica. Ele ficou mais forte depois da validacao espacial, mas ainda nao deve ser apresentado como diagnostico de acesso real a Atencao Primaria.
 
-Ele não deve ser apresentado como diagnóstico de acesso real à Atenção Primária.
+O que ele sustenta bem:
 
-## O que foi corrigido ou evoluído
+- comparacao territorial de registros de UBS;
+- disponibilidade relativa por populacao e area;
+- cobertura potencial APS ponderada por populacao;
+- qualidade cadastral das coordenadas;
+- triagem de UFs e municipios que merecem investigacao.
+
+O que ele ainda nao sustenta:
+
+- funcionamento real de cada UBS;
+- qualidade do cuidado;
+- tempo real de deslocamento;
+- capacidade operacional diaria;
+- causalidade entre cobertura, UBS e resultado de saude.
+
+## O que foi corrigido ou evoluido
 
 | Ponto | Antes | Depois |
 |---|---|---|
-| Join IBGE/SIDRA | UBS usava código municipal de 6 dígitos e IBGE/SIDRA usavam 7, quebrando população e área | pipeline mantém as duas chaves e junta pelo código de 6 dígitos |
-| Área territorial | parser removia todos os pontos e inflava áreas como AC para `164173431` | parser preserva ponto decimal e aceita formato brasileiro |
-| Coordenadas | `analyze_ubs.py` não lia vírgula decimal | latitude e longitude são normalizadas antes da validação |
-| Síntese por UF | havia grupo nulo com população e área zero | linhas sem UF ficam documentadas, mas saem da agregação por UF |
-| Cobertura APS | média simples municipal escondia diferença de população | síntese traz cobertura ponderada, capada e excesso nominal |
-| Atualidade da APS | arquivo manual de `01/2021` | extração oficial via endpoint público, competência `04/2026` |
-| Score | triagem com um único conjunto de pesos | análise de sensibilidade com quatro cenários de pesos |
-| Dashboard | números de UF estavam hardcoded e divergiam dos CSVs | dashboard carrega CSVs locais versionados |
-| Série temporal | APS era analisada como uma competência isolada | série nacional de 64 competências foi adicionada |
-| Coordenadas | só havia percentual geral de validade | auditoria por UF separa ausentes, fora do bounding box e repetidas |
-| Proveniência | fontes eram descritas, mas sem manifesto técnico | manifesto registra linhas, colunas, bytes e SHA-256 |
-| Testes | não havia proteção mínima | foram adicionados testes de parsing, SIDRA, APS oficial, outputs territoriais e cobertura |
+| Join IBGE/SIDRA | UBS usava codigo municipal de 6 digitos e IBGE/SIDRA usavam 7 | pipeline mantem as duas chaves e junta corretamente |
+| Area territorial | parser podia inflar valores do SIDRA | parser preserva ponto decimal e aceita formato brasileiro |
+| Coordenadas | havia apenas checagem ampla de latitude/longitude | agora ha auditoria por UF e validacao point-in-polygon com malhas municipais do IBGE |
+| Sintese por UF | havia risco de grupo nulo | linhas sem UF ficam documentadas, mas saem da agregacao por UF |
+| Cobertura APS | media simples municipal podia enganar | sintese usa cobertura ponderada, capada e excesso nominal |
+| Atualidade da APS | arquivo manual antigo | extracao oficial via endpoint publico, competencia `04/2026` |
+| Serie temporal | APS era uma foto unica | serie nacional de 64 competencias foi adicionada |
+| Score | um unico conjunto de pesos | analise de sensibilidade com quatro cenarios |
+| Dashboard | alguns numeros estavam hardcoded | dashboard carrega CSVs locais versionados |
+| Proveniencia | fontes descritas sem manifesto tecnico | manifesto registra linhas, colunas, bytes e SHA-256 |
+| Testes | protecao minima ausente | testes cobrem parsing, SIDRA, APS, outputs territoriais e validacao espacial |
+
+## Validacao espacial
+
+O script `validate_ubs_municipal_geometry.py` baixa 5.570 poligonos municipais simplificados pela API de Malhas Geograficas do IBGE e testa cada UBS contra o municipio declarado.
+
+Resultado atual:
+
+| Status | Registros |
+|---|---:|
+| Dentro do municipio declarado | 43.717 |
+| Fora do municipio declarado | 2.062 |
+| Sem coordenada completa | 1.929 |
+| Fora do bounding box do Brasil | 3 |
+| Sem poligono municipal correspondente | 3 |
+
+Essa etapa resolve o limite anterior mais importante da qualidade espacial: coordenada valida no Brasil nao e a mesma coisa que coordenada consistente com o municipio do cadastro.
+
+Limite remanescente: a malha usada e simplificada. Casos de fronteira municipal devem ser lidos como suspeitos para revisao, nao como erro cadastral definitivo.
 
 ## Fragilidades que continuam
 
-- A validação de coordenadas ainda não usa polígonos municipais. Ela agora separa ausentes, fora do bounding box e repetidas, mas não prova que o ponto está dentro do município correto.
-- A competência APS mais recente foi obtida do endpoint público em 2026-07-07. Para decisão operacional, a extração precisa ser refeita no dia da análise.
-- O cadastro UBS não prova atividade da unidade, produção, equipe em funcionamento ou qualidade do atendimento.
-- O score de prioridade continua sendo uma triagem exploratória. A sensibilidade ajuda, mas não transforma o score em ranking oficial.
-- A série temporal APS foi adicionada no nível Brasil. Ainda falta série municipal ou por UF.
-- A análise ainda não tem mapa com polígonos municipais ou distância até serviços.
+- O cadastro UBS nao prova atividade da unidade, producao, equipe em funcionamento ou qualidade do atendimento.
+- A competencia APS mais recente foi obtida em 2026-07-07; para uso operacional, a extracao deve ser refeita no dia da analise.
+- A serie temporal APS ainda esta no nivel Brasil; falta serie por UF ou municipio.
+- O score de prioridade continua sendo triagem exploratoria. A sensibilidade ajuda, mas nao transforma o score em ranking oficial.
+- A analise ainda nao integra vulnerabilidade social, distancias reais por rede viaria ou producao ambulatorial recente.
 
-## Verificações executadas
+## Verificacoes executadas
 
 ```bash
 python projects/ubs-healthcare-mapping/scripts/analyze_ubs.py \
@@ -55,6 +85,7 @@ python projects/ubs-healthcare-mapping/scripts/enrich_with_aps_coverage.py \
 
 python projects/ubs-healthcare-mapping/scripts/priority_sensitivity_analysis.py
 python projects/ubs-healthcare-mapping/scripts/coordinate_quality_audit.py
+python projects/ubs-healthcare-mapping/scripts/validate_ubs_municipal_geometry.py
 python projects/ubs-healthcare-mapping/scripts/generate_report_assets.py
 python projects/ubs-healthcare-mapping/scripts/build_dashboard_data.py
 python projects/ubs-healthcare-mapping/scripts/build_data_lineage.py
@@ -62,12 +93,12 @@ python -m unittest discover -s projects/ubs-healthcare-mapping/tests
 python -m compileall projects/ubs-healthcare-mapping/scripts projects/ubs-healthcare-mapping/tests
 ```
 
-Resultado: testes passaram, scripts compilaram e o dashboard renderizou sem erro de console no smoke test local.
+Resultado esperado: testes passando, scripts compilando e dashboard renderizando sem erro de console.
 
-## Próximo salto de qualidade
+## Proximo salto de qualidade
 
-1. Validar coordenadas com polígonos municipais do IBGE.
-2. Criar série temporal da APS, não só uma foto de `04/2026`.
-3. Adicionar produção ambulatorial e equipes ativas por competência.
-4. Levar a sensibilidade do score para intervalos de incerteza.
-5. Publicar uma seção curta explicando por que média simples de cobertura APS pode enganar.
+1. Integrar CNES ativo, equipes por competencia e producao ambulatorial SIA/SUS.
+2. Criar serie temporal APS por UF ou municipio.
+3. Adicionar vulnerabilidade socioeconomica e estimativas de distancia/acesso.
+4. Revisar os 2.062 registros fora do poligono municipal declarado.
+5. Evoluir o score para uma analise multicriterio mais formal.

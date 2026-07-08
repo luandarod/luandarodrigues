@@ -93,12 +93,22 @@ class PipelineSanityTests(unittest.TestCase):
         timeseries = pd.read_csv(DATA_DIR / "aps_national_timeseries.csv")
         coordinate_audit = pd.read_csv(DATA_DIR / "coordinate_quality_by_uf.csv")
         lineage = pd.read_csv(DATA_DIR / "data_lineage_manifest.csv")
+        spatial = pd.read_csv(DATA_DIR / "spatial_validation_by_uf.csv")
 
         self.assertGreaterEqual(len(timeseries), 60)
         self.assertIn("coverage_weighted_pct", timeseries.columns)
         self.assertEqual(len(coordinate_audit), 27)
         self.assertTrue({"missing_latitude", "out_of_brazil_bbox", "duplicated_valid_coordinates"}.issubset(coordinate_audit.columns))
         self.assertTrue({"path", "rows", "columns", "sha256"}.issubset(lineage.columns))
+        self.assertEqual(len(spatial), 27)
+        self.assertTrue(
+            {
+                "inside_declared_municipality",
+                "outside_declared_municipality",
+                "inside_declared_municipality_pct",
+            }.issubset(spatial.columns)
+        )
+        self.assertGreater(int(spatial["inside_declared_municipality"].sum()), 40000)
 
 
 if __name__ == "__main__":

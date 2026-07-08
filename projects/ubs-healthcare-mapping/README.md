@@ -1,68 +1,70 @@
 # UBS + IBGE + Cobertura Potencial APS
 
-Projeto de análise territorial em saúde pública. A ideia é cruzar três camadas que costumam ser lidas separadamente: o cadastro físico de Unidades Básicas de Saúde, o contexto populacional e territorial do IBGE/SIDRA, e a cobertura potencial da Atenção Primária à Saúde.
+Projeto de analise territorial em saude publica. A ideia e cruzar quatro camadas que costumam ser lidas separadamente: o cadastro fisico de Unidades Basicas de Saude, o contexto populacional e territorial do IBGE/SIDRA, a cobertura potencial da Atencao Primaria a Saude e a consistencia espacial das coordenadas.
 
-O resultado não tenta dizer se um território está bem atendido. Essa resposta exigiria produção assistencial, equipes ativas por período, demanda, distância real até os serviços e qualidade do cuidado. Aqui o objetivo é mais cuidadoso: montar uma base comparável, mostrar onde a leitura por volume de UBS engana e apontar lugares que merecem investigação.
+O resultado nao tenta dizer se um territorio esta bem atendido. Essa resposta exigiria producao assistencial, equipes ativas por periodo, demanda, distancia real ate os servicos e qualidade do cuidado. Aqui o objetivo e mais cuidadoso: montar uma base comparavel, mostrar onde a leitura por volume de UBS engana e apontar lugares que merecem investigacao.
 
 ## Dashboard
 
 [Abrir dashboard interativo](https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/)
 
-O dashboard é uma camada de apresentação estática em GitHub Pages. Os dados usados nele ficam versionados em `docs/dashboards/ubs-healthcare-mapping/data/`, para evitar diferença entre o relatório e os CSVs do projeto.
+O dashboard e uma camada estatica em GitHub Pages. Os dados usados nele ficam versionados em `docs/dashboards/ubs-healthcare-mapping/data/`, para evitar diferenca entre o relatorio e os CSVs do projeto.
 
 ## Pergunta
 
-Contar UBS responde onde existem registros de unidades. Não responde, sozinho, se existe capacidade suficiente de atenção primária.
+Contar UBS responde onde existem registros de unidades. Nao responde, sozinho, se existe capacidade suficiente de atencao primaria.
 
-A pergunta deste projeto é:
-
-> O que muda quando o cadastro de UBS é analisado junto com população, território e cobertura potencial da APS?
+> O que muda quando o cadastro de UBS e analisado junto com populacao, territorio, cobertura potencial da APS e qualidade espacial das coordenadas?
 
 ## Dados
 
-| Camada | Fonte | Como entra na análise |
+| Camada | Fonte | Como entra na analise |
 |---|---|---|
-| Cadastro de UBS | Arquivo público `Unidades_Basicas_Saude-UBS.csv` | Registros de unidades, CNES, UF, município e coordenadas |
-| IBGE Localidades | API oficial de municípios do IBGE | Nome oficial do município, UF e região |
-| SIDRA 4714 | Tabela do IBGE/SIDRA | População residente, área territorial e densidade |
-| Cobertura APS | Relatório público de Cobertura Potencial APS | População, equipes, capacidade estimada e cobertura potencial |
+| Cadastro de UBS | Arquivo publico `Unidades_Basicas_Saude-UBS.csv` | Registros de unidades, CNES, UF, municipio e coordenadas |
+| IBGE Localidades | API oficial de municipios do IBGE | Nome oficial do municipio, UF e regiao |
+| IBGE Malhas | API oficial de malhas geograficas do IBGE | Poligonos municipais simplificados para validacao espacial |
+| SIDRA 4714 | Tabela do IBGE/SIDRA | Populacao residente, area territorial e densidade |
+| Cobertura APS | Relatorio publico de Cobertura Potencial APS | Populacao, equipes, capacidade estimada e cobertura potencial |
 
-Referências de origem:
+Referencias de origem:
 
 - IBGE Localidades: https://servicodados.ibge.gov.br/api/docs/localidades
+- IBGE Malhas: https://servicodados.ibge.gov.br/api/docs/malhas?versao=3
 - SIDRA API usada no pipeline: https://apisidra.ibge.gov.br/values/t/4714/n6/all/p/last
-- Relatórios Públicos APS: https://relatorioaps.saude.gov.br/cobertura/aps
+- Relatorios Publicos APS: https://relatorioaps.saude.gov.br/cobertura/aps
 
-## Números principais
+## Numeros principais
 
 | Indicador | Valor |
 |---|---:|
 | Registros de UBS | 47.714 |
-| CNES únicos | 47.714 |
+| CNES unicos | 47.714 |
 | UFs representadas | 27 |
-| Municípios no cadastro UBS | 5.483 |
-| Registros com coordenadas válidas | 45.782, ou 95,95% |
+| Municipios no cadastro UBS | 5.483 |
+| Registros com coordenadas validas no Brasil | 45.782, ou 95,95% |
+| Registros dentro do municipio declarado | 43.717, ou 91,62% |
+| Registros fora do poligono municipal declarado | 2.062 |
 | Registros com match territorial IBGE/SIDRA | 47.710 |
-| Registros sem match territorial | 4 registros em 2 municípios |
-| Competência APS | 04/2026 |
-| Municípios no arquivo APS oficial | 5.567 |
-| População no arquivo APS | 213,4 milhões |
-| Capacidade estimada APS | 211,4 milhões |
-| Cobertura APS ponderada por população | 99,1% |
+| Registros sem match territorial | 4 registros em 2 municipios |
+| Competencia APS | 04/2026 |
+| Municipios no arquivo APS oficial | 5.567 |
+| Populacao no arquivo APS | 213,4 milhoes |
+| Capacidade estimada APS | 211,4 milhoes |
+| Cobertura APS ponderada por populacao | 99,1% |
 
-## Gráficos do relatório
+## Graficos do relatorio
 
-### 1. Distribuição regional das UBS
+### 1. Distribuicao regional das UBS
 
-![Distribuição de UBS por região](assets/01_ubs_distribution_by_region.png)
+![Distribuicao de UBS por regiao](assets/01_ubs_distribution_by_region.png)
 
-Nordeste e Sudeste concentram a maior parte dos registros. Isso é esperado em parte pela distribuição populacional, mas não deve ser lido como suficiência de oferta. A leitura melhora quando o denominador entra.
+Nordeste e Sudeste concentram a maior parte dos registros. Isso e esperado em parte pela distribuicao populacional, mas nao deve ser lido como suficiencia de oferta. A leitura melhora quando o denominador entra.
 
-### 2. UBS por população
+### 2. UBS por populacao
 
-![UBS por população](assets/02_ubs_per_population_extremes.png)
+![UBS por populacao](assets/02_ubs_per_population_extremes.png)
 
-Quando a contagem passa a ser ajustada por população, o ranking muda. Estados com muitos registros absolutos podem ter disponibilidade relativa menor, enquanto estados menores aparecem com mais UBS por 100 mil habitantes.
+Quando a contagem passa a ser ajustada por populacao, o ranking muda. Estados com muitos registros absolutos podem ter disponibilidade relativa menor, enquanto estados menores aparecem com mais UBS por 100 mil habitantes.
 
 ### 3. Cobertura APS ponderada
 
@@ -71,45 +73,50 @@ Quando a contagem passa a ser ajustada por população, o ranking muda. Estados 
 A cobertura APS do arquivo tem muitos valores municipais acima de 100%. Por isso o projeto guarda duas leituras:
 
 - cobertura nominal ponderada, que preserva valores acima de 100% como sinal de capacidade informada;
-- cobertura capada em 100%, usada quando a pergunta é proporção da população potencialmente coberta.
+- cobertura capada em 100%, usada quando a pergunta e proporcao da populacao potencialmente coberta.
 
-Essa separação evita interpretar capacidade nominal excedente como acesso real.
+Essa separacao evita interpretar capacidade nominal excedente como acesso real.
 
-Os KPIs de APS usam o arquivo oficial completo. A tabela integrada usa a interseção entre APS e o cadastro UBS, porque depende da junção com a camada territorial do projeto.
+### 4. Sinais para investigacao
 
-### 4. Sinais para investigação
+![Score exploratorio de prioridade](assets/04_priority_screening_top10.png)
 
-![Score exploratório de prioridade](assets/04_priority_screening_top10.png)
-
-O score é uma triagem, não um ranking de política pública. Ele combina baixa disponibilidade relativa de UBS, gap positivo de APS e qualidade de coordenadas. O papel dele é indicar onde uma análise mais profunda faria sentido.
+O score e uma triagem, nao um ranking de politica publica. Ele combina baixa disponibilidade relativa de UBS, gap positivo de APS e qualidade de coordenadas. O papel dele e indicar onde uma analise mais profunda faria sentido.
 
 ### 5. Sensibilidade do score
 
 ![Sensibilidade do score por UF](assets/05_priority_sensitivity.png)
 
-O score foi testado em quatro cenários: base, cobertura, território e qualidade cadastral. Quando uma UF muda muito de posição entre cenários, o resultado deve ser lido com mais cautela. Quando permanece alta em vários cenários, o sinal é mais estável.
+O score foi testado em quatro cenarios: base, cobertura, territorio e qualidade cadastral. Quando uma UF muda muito de posicao entre cenarios, o resultado deve ser lido com mais cautela. Quando permanece alta em varios cenarios, o sinal e mais estavel.
 
-### 6. Série nacional da APS
+### 6. Serie nacional da APS
 
 ![Cobertura APS nacional no tempo](assets/06_aps_national_timeseries.png)
 
-A série nacional reduz o limite de olhar apenas uma competência. Ela mostra a cobertura potencial ponderada entre 2021 e 2026, com a competência mais recente destacada.
+A serie nacional reduz o limite de olhar apenas uma competencia. Ela mostra a cobertura potencial ponderada entre 2021 e 2026, com a competencia mais recente destacada.
 
-## Método
+### 7. Validacao espacial
 
-A justificativa bibliográfica do método está em [METHODOLOGICAL_REFERENCES.md](METHODOLOGICAL_REFERENCES.md).
+![Validacao espacial por UF](assets/07_spatial_validation_by_uf.png)
 
-1. Ler o cadastro UBS com detecção de separador e encoding.
-2. Padronizar UF, município, latitude e longitude.
+A validacao espacial usa malhas municipais simplificadas do IBGE e um teste point-in-polygon. O objetivo e separar coordenadas apenas plausiveis de coordenadas consistentes com o municipio declarado. O resultado deve ser lido como triagem de qualidade cadastral, porque a malha usada e simplificada e nao substitui auditoria local.
+
+## Metodo
+
+A justificativa bibliografica do metodo esta em [METHODOLOGICAL_REFERENCES.md](METHODOLOGICAL_REFERENCES.md).
+
+1. Ler o cadastro UBS com deteccao de separador e encoding.
+2. Padronizar UF, municipio, latitude e longitude.
 3. Validar coordenadas com uma checagem ampla de bounding box do Brasil.
-4. Agregar UBS por município, UF e região.
-5. Normalizar a chave municipal: UBS e APS usam código IBGE de 6 dígitos, enquanto IBGE/SIDRA usam o código oficial de 7 dígitos.
-6. Juntar IBGE Localidades e SIDRA 4714.
-7. Calcular UBS por 10 mil habitantes, UBS por 1.000 km² e validade de coordenadas.
-8. Normalizar o arquivo de Cobertura APS.
-9. Calcular cobertura nominal, cobertura capada em 100%, gap positivo e excesso nominal.
-10. Rodar análise de sensibilidade do score.
-11. Gerar CSVs, gráficos e dashboard.
+4. Validar se o ponto da UBS cai dentro do poligono municipal declarado.
+5. Agregar UBS por municipio, UF e regiao.
+6. Normalizar a chave municipal: UBS e APS usam codigo IBGE de 6 digitos, enquanto IBGE/SIDRA usam o codigo oficial de 7 digitos.
+7. Juntar IBGE Localidades e SIDRA 4714.
+8. Calcular UBS por 10 mil habitantes, UBS por 1.000 km2 e validade de coordenadas.
+9. Normalizar o arquivo de Cobertura APS.
+10. Calcular cobertura nominal, cobertura capada em 100%, gap positivo e excesso nominal.
+11. Rodar analise de sensibilidade do score.
+12. Gerar CSVs, graficos e dashboard.
 
 ## Como reproduzir
 
@@ -123,7 +130,6 @@ python projects/ubs-healthcare-mapping/scripts/enrich_with_ibge.py \
   --output-dir projects/ubs-healthcare-mapping/data/enriched
 
 python projects/ubs-healthcare-mapping/scripts/fetch_latest_aps_coverage.py
-
 python projects/ubs-healthcare-mapping/scripts/fetch_aps_national_timeseries.py
 
 python projects/ubs-healthcare-mapping/scripts/enrich_with_aps_coverage.py \
@@ -132,13 +138,10 @@ python projects/ubs-healthcare-mapping/scripts/enrich_with_aps_coverage.py \
   --output-dir projects/ubs-healthcare-mapping/data/enriched
 
 python projects/ubs-healthcare-mapping/scripts/priority_sensitivity_analysis.py
-
 python projects/ubs-healthcare-mapping/scripts/coordinate_quality_audit.py
-
+python projects/ubs-healthcare-mapping/scripts/validate_ubs_municipal_geometry.py
 python projects/ubs-healthcare-mapping/scripts/generate_report_assets.py
-
 python projects/ubs-healthcare-mapping/scripts/build_dashboard_data.py
-
 python projects/ubs-healthcare-mapping/scripts/build_data_lineage.py
 ```
 
@@ -152,66 +155,66 @@ python -m unittest discover -s projects/ubs-healthcare-mapping/tests
 
 ```text
 projects/ubs-healthcare-mapping/
-├── README.md
-├── DATA_ENRICHMENT.md
-├── METHODOLOGICAL_REFERENCES.md
-├── PUBLICATION_AUDIT.md
-├── requirements.txt
-├── assets/
-│   ├── 01_ubs_distribution_by_region.png
-│   ├── 02_ubs_per_population_extremes.png
-│   ├── 03_aps_weighted_coverage_by_uf.png
-│   ├── 04_priority_screening_top10.png
-│   ├── 05_priority_sensitivity.png
-│   └── 06_aps_national_timeseries.png
-├── data/
-│   ├── Unidades_Basicas_Saude-UBS.csv
-│   ├── cobertura-aps-geral.xlsx
-│   ├── cobertura-aps-latest.csv
-│   ├── aps_api_metadata.json
-│   ├── aps_national_timeseries.csv
-│   ├── aps_timeseries_metadata.json
-│   ├── coordinate_quality_by_uf.csv
-│   ├── data_lineage_manifest.csv
-│   ├── data_quality_summary.csv
-│   ├── region_distribution.csv
-│   ├── state_distribution.csv
-│   └── enriched/
-├── scripts/
-│   ├── analyze_ubs.py
-│   ├── build_dashboard_data.py
-│   ├── build_data_lineage.py
-│   ├── coordinate_quality_audit.py
-│   ├── enrich_with_ibge.py
-│   ├── enrich_with_aps_coverage.py
-│   ├── fetch_aps_national_timeseries.py
-│   ├── fetch_latest_aps_coverage.py
-│   ├── generate_report_assets.py
-│   └── priority_sensitivity_analysis.py
-└── tests/
-    └── test_pipeline_sanity.py
+|-- README.md
+|-- DATA_ENRICHMENT.md
+|-- METHODOLOGICAL_REFERENCES.md
+|-- PUBLICATION_AUDIT.md
+|-- requirements.txt
+|-- assets/
+|   |-- 01_ubs_distribution_by_region.png
+|   |-- 02_ubs_per_population_extremes.png
+|   |-- 03_aps_weighted_coverage_by_uf.png
+|   |-- 04_priority_screening_top10.png
+|   |-- 05_priority_sensitivity.png
+|   |-- 06_aps_national_timeseries.png
+|   `-- 07_spatial_validation_by_uf.png
+|-- data/
+|   |-- Unidades_Basicas_Saude-UBS.csv
+|   |-- cobertura-aps-latest.csv
+|   |-- aps_national_timeseries.csv
+|   |-- coordinate_quality_by_uf.csv
+|   |-- spatial_validation_by_uf.csv
+|   |-- spatial_validation_suspect_ubs.csv
+|   |-- spatial_validation_metadata.json
+|   |-- data_lineage_manifest.csv
+|   |-- geodata/
+|   `-- enriched/
+|-- scripts/
+|   |-- analyze_ubs.py
+|   |-- build_dashboard_data.py
+|   |-- build_data_lineage.py
+|   |-- coordinate_quality_audit.py
+|   |-- enrich_with_ibge.py
+|   |-- enrich_with_aps_coverage.py
+|   |-- fetch_aps_national_timeseries.py
+|   |-- fetch_latest_aps_coverage.py
+|   |-- generate_report_assets.py
+|   |-- priority_sensitivity_analysis.py
+|   `-- validate_ubs_municipal_geometry.py
+`-- tests/
+    `-- test_pipeline_sanity.py
 ```
 
 ## Limites e ajustes feitos
 
-| Limite | Como foi reduzido nesta versão | O que ainda falta |
+| Limite | Como foi reduzido nesta versao | O que ainda falta |
 |---|---|---|
-| Coordenada válida não prova município correto | foi criada auditoria por UF com coordenada ausente, fora do bounding box e coordenadas repetidas | validar ponto contra polígono municipal do IBGE |
-| APS era uma foto única | foi adicionada série nacional de 64 competências entre 2021 e 2026 | criar série municipal ou por UF |
-| UBS é cadastro, não operação real | o texto separa presença física, capacidade potencial e acesso real | integrar CNES ativo, equipes por competência e produção ambulatorial |
-| Score depende de pesos | foi adicionada sensibilidade com quatro cenários | calibrar pesos com especialistas ou análise multicritério formal |
-| Agregação por UF pode esconder heterogeneidade municipal | há dados municipais enriquecidos e alerta metodológico | publicar mapa municipal e análise espacial local |
-| Proveniência dos dados podia ser fraca | foi criado manifesto com linhas, colunas, bytes e SHA-256 dos principais arquivos | adicionar data de download e licença quando cada fonte trouxer esse metadado explicitamente |
-| Dois municípios do cadastro UBS não fecharam com IBGE/SIDRA | os casos ficam documentados no metadata e saem da síntese por UF | tratar mudanças municipais recentes ou divergências cadastrais caso a caso |
+| Coordenada valida nao prova municipio correto | foi adicionada validacao point-in-polygon com malhas municipais simplificadas do IBGE; 43.717 registros caem dentro do municipio declarado | refinar casos de fronteira com malha de maior detalhe e auditoria local |
+| APS era uma foto unica | foi adicionada serie nacional de 64 competencias entre 2021 e 2026 | criar serie municipal ou por UF |
+| UBS e cadastro, nao operacao real | o texto separa presenca fisica, capacidade potencial e acesso real | integrar CNES ativo, equipes por competencia e producao ambulatorial |
+| Score depende de pesos | foi adicionada sensibilidade com quatro cenarios | calibrar pesos com especialistas ou analise multicriterio formal |
+| Agregacao por UF pode esconder heterogeneidade municipal | ha dados municipais enriquecidos e alerta metodologico | publicar mapa municipal e analise espacial local |
+| Proveniencia dos dados podia ser fraca | foi criado manifesto com linhas, colunas, bytes e SHA-256 dos principais arquivos | adicionar data de download e licenca quando cada fonte trouxer esse metadado explicitamente |
+| Dois municipios do cadastro UBS nao fecharam com IBGE/SIDRA | os casos ficam documentados no metadata e saem da sintese por UF | tratar mudancas municipais recentes ou divergencias cadastrais caso a caso |
 
-## Próximos passos
+## Proximos passos
 
-- Comparar a série temporal da APS, em vez de olhar apenas a competência mais recente.
-- Validar coordenadas por distância ao centróide municipal ou polígono oficial.
-- Integrar produção ambulatorial, equipes ativas e indicadores socioeconômicos.
-- Evoluir a sensibilidade do score para análise de incerteza com intervalos e pesos definidos com especialistas.
-- Adicionar mapa com polígonos municipais e leitura regional.
+- Revisar os 2.062 registros fora do poligono municipal declarado, separando erro cadastral, ponto em fronteira e unidade regionalizada.
+- Integrar producao ambulatorial, equipes ativas e indicadores socioeconomicos.
+- Criar serie temporal APS por UF ou municipio.
+- Evoluir a sensibilidade do score para analise de incerteza com intervalos e pesos definidos com especialistas.
+- Adicionar mapa municipal para leitura local.
 
 ## Stack
 
-Python, Pandas, Requests, OpenPyXL, Matplotlib, IBGE APIs, SIDRA, HTML, CSS, JavaScript, GitHub Pages, análise territorial, qualidade de dados e saúde pública.
+Python, Pandas, Requests, OpenPyXL, Matplotlib, IBGE APIs, SIDRA, HTML, CSS, JavaScript, GitHub Pages, analise territorial, qualidade de dados e saude publica.
