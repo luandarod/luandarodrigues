@@ -25,6 +25,8 @@ Contar UBS responde onde existem registros de unidades. Nao responde, sozinho, s
 | IBGE Malhas | API oficial de malhas geograficas do IBGE | Poligonos municipais simplificados para validacao espacial |
 | SIDRA 4714 | Tabela do IBGE/SIDRA | Populacao residente, area territorial e densidade |
 | Cobertura APS | Relatorio publico de Cobertura Potencial APS | Populacao, equipes, capacidade estimada e cobertura potencial |
+| CNES/ST | FTP publico DATASUS/CNES | Presenca do estabelecimento no cadastro mensal mais recente |
+| SIA/SUS PA | FTP publico DATASUS/SIASUS | Producao ambulatorial registrada por CNES na competencia mais recente |
 
 Referencias de origem:
 
@@ -32,6 +34,7 @@ Referencias de origem:
 - IBGE Malhas: https://servicodados.ibge.gov.br/api/docs/malhas?versao=3
 - SIDRA API usada no pipeline: https://apisidra.ibge.gov.br/values/t/4714/n6/all/p/last
 - Relatorios Publicos APS: https://relatorioaps.saude.gov.br/cobertura/aps
+- FTP DATASUS: ftp://ftp.datasus.gov.br/dissemin/publicos/
 
 ## Numeros principais
 
@@ -44,6 +47,9 @@ Referencias de origem:
 | Registros com coordenadas validas no Brasil | 45.782, ou 95,95% |
 | Registros dentro do municipio declarado | 43.717, ou 91,62% |
 | Registros fora do poligono municipal declarado | 2.062 |
+| Registros presentes no CNES/ST mais recente | 43.578, ou 91,33% |
+| Registros com producao SIA/PA recente | 7.145, ou 14,97% |
+| Registros com CNES/ST e SIA/PA recente | 7.144, ou 14,97% |
 | Registros com match territorial IBGE/SIDRA | 47.710 |
 | Registros sem match territorial | 4 registros em 2 municipios |
 | Competencia APS | 04/2026 |
@@ -101,6 +107,12 @@ A serie nacional reduz o limite de olhar apenas uma competencia. Ela mostra a co
 
 A validacao espacial usa malhas municipais simplificadas do IBGE e um teste point-in-polygon. O objetivo e separar coordenadas apenas plausiveis de coordenadas consistentes com o municipio declarado. O resultado deve ser lido como triagem de qualidade cadastral, porque a malha usada e simplificada e nao substitui auditoria local.
 
+### 8. Sinal operacional recente
+
+![Sinal operacional recente por UF](assets/08_operational_status_by_uf.png)
+
+Esta camada separa tres ideias que antes ficavam misturadas: estar no cadastro original do projeto, aparecer no CNES/ST mais recente e ter producao SIA/SUS PA na competencia mais recente. O resultado e uma proxy conservadora de atividade registrada. Ausencia de producao SIA/PA no mes mais recente nao prova unidade fechada: pode refletir atraso, centralizacao de registro, regra local de faturamento ou producao registrada em outro CNES.
+
 ## Metodo
 
 A justificativa bibliografica do metodo esta em [METHODOLOGICAL_REFERENCES.md](METHODOLOGICAL_REFERENCES.md).
@@ -115,8 +127,9 @@ A justificativa bibliografica do metodo esta em [METHODOLOGICAL_REFERENCES.md](M
 8. Calcular UBS por 10 mil habitantes, UBS por 1.000 km2 e validade de coordenadas.
 9. Normalizar o arquivo de Cobertura APS.
 10. Calcular cobertura nominal, cobertura capada em 100%, gap positivo e excesso nominal.
-11. Rodar analise de sensibilidade do score.
-12. Gerar CSVs, graficos e dashboard.
+11. Cruzar CNES/ST e SIA/SUS PA para criar uma proxy operacional.
+12. Rodar analise de sensibilidade do score.
+13. Gerar CSVs, graficos e dashboard.
 
 ## Como reproduzir
 
@@ -140,6 +153,7 @@ python projects/ubs-healthcare-mapping/scripts/enrich_with_aps_coverage.py \
 python projects/ubs-healthcare-mapping/scripts/priority_sensitivity_analysis.py
 python projects/ubs-healthcare-mapping/scripts/coordinate_quality_audit.py
 python projects/ubs-healthcare-mapping/scripts/validate_ubs_municipal_geometry.py
+python projects/ubs-healthcare-mapping/scripts/fetch_ubs_operational_status.py
 python projects/ubs-healthcare-mapping/scripts/generate_report_assets.py
 python projects/ubs-healthcare-mapping/scripts/build_dashboard_data.py
 python projects/ubs-healthcare-mapping/scripts/build_data_lineage.py
@@ -167,7 +181,8 @@ projects/ubs-healthcare-mapping/
 |   |-- 04_priority_screening_top10.png
 |   |-- 05_priority_sensitivity.png
 |   |-- 06_aps_national_timeseries.png
-|   `-- 07_spatial_validation_by_uf.png
+|   |-- 07_spatial_validation_by_uf.png
+|   `-- 08_operational_status_by_uf.png
 |-- data/
 |   |-- Unidades_Basicas_Saude-UBS.csv
 |   |-- cobertura-aps-latest.csv
@@ -176,6 +191,9 @@ projects/ubs-healthcare-mapping/
 |   |-- spatial_validation_by_uf.csv
 |   |-- spatial_validation_suspect_ubs.csv
 |   |-- spatial_validation_metadata.json
+|   |-- ubs_operational_status.csv
+|   |-- ubs_operational_status_by_uf.csv
+|   |-- ubs_operational_status_metadata.json
 |   |-- data_lineage_manifest.csv
 |   |-- geodata/
 |   `-- enriched/
@@ -188,6 +206,7 @@ projects/ubs-healthcare-mapping/
 |   |-- enrich_with_aps_coverage.py
 |   |-- fetch_aps_national_timeseries.py
 |   |-- fetch_latest_aps_coverage.py
+|   |-- fetch_ubs_operational_status.py
 |   |-- generate_report_assets.py
 |   |-- priority_sensitivity_analysis.py
 |   `-- validate_ubs_municipal_geometry.py
@@ -202,6 +221,7 @@ projects/ubs-healthcare-mapping/
 | Coordenada valida nao prova municipio correto | foi adicionada validacao point-in-polygon com malhas municipais simplificadas do IBGE; 43.717 registros caem dentro do municipio declarado | refinar casos de fronteira com malha de maior detalhe e auditoria local |
 | APS era uma foto unica | foi adicionada serie nacional de 64 competencias entre 2021 e 2026 | criar serie municipal ou por UF |
 | UBS e cadastro, nao operacao real | o texto separa presenca fisica, capacidade potencial e acesso real | integrar CNES ativo, equipes por competencia e producao ambulatorial |
+| Cadastro nao prova atividade recente | foi criada proxy com CNES/ST mais recente e producao SIA/SUS PA; 43.578 aparecem no CNES/ST e 7.144 combinam CNES/ST com producao PA recente | ampliar para janela de 3 a 6 meses, equipes CNES e outros blocos de producao |
 | Score depende de pesos | foi adicionada sensibilidade com quatro cenarios | calibrar pesos com especialistas ou analise multicriterio formal |
 | Agregacao por UF pode esconder heterogeneidade municipal | ha dados municipais enriquecidos e alerta metodologico | publicar mapa municipal e analise espacial local |
 | Proveniencia dos dados podia ser fraca | foi criado manifesto com linhas, colunas, bytes e SHA-256 dos principais arquivos | adicionar data de download e licenca quando cada fonte trouxer esse metadado explicitamente |
@@ -210,7 +230,7 @@ projects/ubs-healthcare-mapping/
 ## Proximos passos
 
 - Revisar os 2.062 registros fora do poligono municipal declarado, separando erro cadastral, ponto em fronteira e unidade regionalizada.
-- Integrar producao ambulatorial, equipes ativas e indicadores socioeconomicos.
+- Expandir o sinal operacional para janela de 3 a 6 meses e comparar SIA/PA com equipes ativas CNES.
 - Criar serie temporal APS por UF ou municipio.
 - Evoluir a sensibilidade do score para analise de incerteza com intervalos e pesos definidos com especialistas.
 - Adicionar mapa municipal para leitura local.

@@ -52,6 +52,8 @@ def save_charts(project_dir: Path) -> None:
     timeseries = pd.read_csv(timeseries_path) if timeseries_path.exists() else pd.DataFrame()
     spatial_path = project_dir / "data" / "spatial_validation_by_uf.csv"
     spatial = pd.read_csv(spatial_path) if spatial_path.exists() else pd.DataFrame()
+    operational_path = project_dir / "data" / "ubs_operational_status_by_uf.csv"
+    operational = pd.read_csv(operational_path) if operational_path.exists() else pd.DataFrame()
 
     uf = uf.merge(
         aps[
@@ -191,6 +193,29 @@ def save_charts(project_dir: Path) -> None:
         )
         fig.tight_layout(pad=2.4)
         fig.savefig(out / "07_spatial_validation_by_uf.png", bbox_inches="tight")
+        plt.close(fig)
+
+    if not operational.empty:
+        plot = operational.sort_values("active_with_recent_sia_production_pct", ascending=True)
+        fig, ax = plt.subplots(figsize=(10.5, 8), dpi=180)
+        ax.barh(plot["uf_sigla"], plot["cnes_active_proxy_pct"], color="#d6d0c6", alpha=0.95, label="Presente no CNES/ST")
+        ax.barh(
+            plot["uf_sigla"],
+            plot["active_with_recent_sia_production_pct"],
+            color="#1f6f78",
+            alpha=0.95,
+            label="CNES/ST + producao SIA/PA",
+        )
+        ax.set_xlabel("UBS do cadastro do projeto (%)")
+        ax.legend(frameon=False, loc="lower right")
+        finish(
+            ax,
+            "Sinal operacional recente por UF",
+            "A barra clara mostra presenca no CNES/ST mais recente; a barra escura exige tambem producao no SIA/PA mais recente.",
+            "Fonte: Cadastro UBS + CNES/ST 202605 + SIA/SUS PA 202604; proxy operacional, nao auditoria de funcionamento.",
+        )
+        fig.tight_layout(pad=2.4)
+        fig.savefig(out / "08_operational_status_by_uf.png", bbox_inches="tight")
         plt.close(fig)
 
 

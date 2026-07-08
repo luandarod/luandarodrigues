@@ -94,6 +94,7 @@ class PipelineSanityTests(unittest.TestCase):
         coordinate_audit = pd.read_csv(DATA_DIR / "coordinate_quality_by_uf.csv")
         lineage = pd.read_csv(DATA_DIR / "data_lineage_manifest.csv")
         spatial = pd.read_csv(DATA_DIR / "spatial_validation_by_uf.csv")
+        operational = pd.read_csv(DATA_DIR / "ubs_operational_status_by_uf.csv")
 
         self.assertGreaterEqual(len(timeseries), 60)
         self.assertIn("coverage_weighted_pct", timeseries.columns)
@@ -109,6 +110,15 @@ class PipelineSanityTests(unittest.TestCase):
             }.issubset(spatial.columns)
         )
         self.assertGreater(int(spatial["inside_declared_municipality"].sum()), 40000)
+        self.assertEqual(len(operational), 27)
+        self.assertTrue(
+            {
+                "cnes_active_proxy",
+                "recent_sia_production",
+                "active_with_recent_sia_production_pct",
+            }.issubset(operational.columns)
+        )
+        self.assertGreater(int(operational["cnes_active_proxy"].sum()), 40000)
 
 
 if __name__ == "__main__":

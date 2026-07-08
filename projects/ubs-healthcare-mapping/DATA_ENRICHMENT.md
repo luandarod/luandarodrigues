@@ -24,6 +24,8 @@ Para dados vindos do IBGE/SIDRA, o codigo de 7 digitos e convertido para 6 digit
 | IBGE Malhas | `servicodados.ibge.gov.br/api/v3/malhas` | `ibge_municipio_7` | poligonos municipais simplificados |
 | SIDRA 4714 | `apisidra.ibge.gov.br` | `ibge_municipio_7` | populacao, area e densidade |
 | Cobertura APS | `data/cobertura-aps-latest.csv` | `ibge_municipio` | equipes, populacao, capacidade e cobertura |
+| CNES/ST | FTP DATASUS/CNES | `CNES` | presenca cadastral no arquivo mensal mais recente |
+| SIA/SUS PA | FTP DATASUS/SIASUS | `PA_CODUNI` | producao ambulatorial recente por CNES |
 
 ## Atualizacao da APS
 
@@ -118,6 +120,39 @@ O score exploratorio e calculado com pesos. Para nao tratar esses pesos como ver
 
 Essa etapa ajuda a separar sinais estaveis de resultados que dependem demais da escolha dos pesos.
 
+## Proxy operacional CNES + SIA/SUS
+
+O script `fetch_ubs_operational_status.py` cruza o CNES de cada UBS do projeto com duas bases do DATASUS:
+
+- CNES/ST mais recente: se o CNES aparece nesse arquivo, o projeto marca `cnes_present_latest_st = True`.
+- SIA/SUS PA mais recente: se o CNES aparece com producao ambulatorial, o projeto marca `sia_recent_production = True` e agrega quantidade, valor e numero de registros.
+
+Saidas:
+
+```text
+data/ubs_operational_status.csv
+data/ubs_operational_status_by_uf.csv
+data/ubs_operational_status_metadata.json
+```
+
+O campo `operational_status` usa quatro categorias:
+
+- `cadastral_active_with_recent_sia_production`
+- `cadastral_active_without_recent_sia_production`
+- `not_in_latest_cnes_st_but_has_recent_sia_production`
+- `registered_only_no_current_cnes_or_sia_signal`
+
+Resultado atual:
+
+| Indicador | Registros |
+|---|---:|
+| UBS do cadastro do projeto | 47.714 |
+| Presentes no CNES/ST mais recente | 43.578 |
+| Com producao SIA/PA recente | 7.145 |
+| Com CNES/ST e producao SIA/PA recente | 7.144 |
+
+Essa e uma proxy operacional conservadora. SIA/SUS PA e registro de producao/faturamento, nao prova de funcionamento completo. A ausencia de producao em uma competencia pode refletir atraso, regra local de registro, producao consolidada em outro CNES ou servicos que nao entram nessa leitura.
+
 ## Saidas
 
 ```text
@@ -143,6 +178,7 @@ data/enriched/
 - serie nacional APS para reduzir leitura de competencia isolada;
 - auditoria de coordenadas por UF, separando ausentes, fora do bounding box e repetidas;
 - validacao point-in-polygon contra malhas municipais do IBGE;
+- proxy operacional com CNES/ST e SIA/SUS PA;
 - manifesto de lineage com linhas, colunas, tamanho e SHA-256;
 - join IBGE/SIDRA com conversao 7 digitos para 6 digitos;
 - exclusao de linhas sem UF da sintese por UF;

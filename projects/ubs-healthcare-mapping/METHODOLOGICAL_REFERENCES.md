@@ -12,6 +12,7 @@ Este projeto nao usa referencias como enfeite. Cada bloco metodologico existe pa
 | Validar coordenadas em duas camadas | Qualidade de dados; geografia da saude | Primeiro vem a checagem de plausibilidade no Brasil. Depois vem o teste point-in-polygon contra o municipio declarado. |
 | Separar problemas de coordenada | Wang e Strong; qualidade contextual dos dados | A auditoria distingue coordenada ausente, fora do bounding box, repetida e fora do municipio declarado. |
 | Usar malhas municipais simplificadas | IBGE API de Malhas Geograficas | As malhas servem para triagem espacial reproduzivel. Casos de fronteira nao sao tratados como erro definitivo. |
+| Criar proxy operacional | Donabedian; WHO SARA; DATASUS | Presenca no CNES/ST e tratada como sinal cadastral. Producao SIA/SUS PA e tratada como sinal de atividade registrada, nao como prova de qualidade ou acesso. |
 | Evitar inferencia individual a partir de UF ou municipio | Robinson; falacia ecologica | O projeto fala de sinais territoriais agregados, nao de comportamento ou acesso individual. |
 | Alertar sobre agregacao espacial | Openshaw; MAUP | Rankings por UF sao tratados como leitura agregada e sensivel a escala. |
 | Reduzir leitura de foto unica | Analise temporal descritiva | A serie nacional APS acompanha 64 competencias, em vez de depender apenas de `04/2026`. |
@@ -58,6 +59,9 @@ Este projeto nao usa referencias como enfeite. Cada bloco metodologico existe pa
 12. IBGE/SIDRA. *Tabela 4714: populacao residente, area territorial e densidade demografica*.  
     Endpoint usado no script: https://apisidra.ibge.gov.br/values/t/4714/n6/all/p/last
 
+13. DATASUS. *Transferencia de arquivos: CNES e SIA/SUS*.  
+    FTP publico usado no script: ftp://ftp.datasus.gov.br/dissemin/publicos/
+
 ## Leitura pratica
 
 O projeto fica defensavel quando e apresentado como analise de sinais:
@@ -66,6 +70,8 @@ O projeto fica defensavel quando e apresentado como analise de sinais:
 - Cobertura APS indica capacidade potencial informada.
 - A serie APS nacional mostra contexto temporal para a competencia mais recente.
 - A validacao espacial mostra se a coordenada e consistente com o municipio declarado.
+- CNES/ST mostra presenca cadastral recente.
+- SIA/SUS PA mostra producao ambulatorial registrada na competencia recente.
 - Indicadores por UF e municipio sao agregados territoriais.
 - O score e triagem exploratoria.
 - A sensibilidade dos pesos mostra onde a conclusao e mais ou menos estavel.
