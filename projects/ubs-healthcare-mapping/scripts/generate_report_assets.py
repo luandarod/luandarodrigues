@@ -48,6 +48,8 @@ def save_charts(project_dir: Path) -> None:
     region = pd.read_csv(base / "region_ubs_territory_summary.csv")
     sensitivity_path = base / "priority_sensitivity_uf_scores.csv"
     sensitivity = pd.read_csv(sensitivity_path) if sensitivity_path.exists() else pd.DataFrame()
+    timeseries_path = project_dir / "data" / "aps_national_timeseries.csv"
+    timeseries = pd.read_csv(timeseries_path) if timeseries_path.exists() else pd.DataFrame()
 
     uf = uf.merge(
         aps[
@@ -154,6 +156,24 @@ def save_charts(project_dir: Path) -> None:
         )
         fig.tight_layout(pad=2.4)
         fig.savefig(out / "05_priority_sensitivity.png", bbox_inches="tight")
+        plt.close(fig)
+
+    if not timeseries.empty:
+        timeseries["competence"] = pd.to_datetime(timeseries["competence"])
+        fig, ax = plt.subplots(figsize=(10.5, 5.8), dpi=180)
+        ax.plot(timeseries["competence"], timeseries["coverage_weighted_pct"], color="#1f6f78", linewidth=2.4)
+        ax.scatter(timeseries["competence"].iloc[-1], timeseries["coverage_weighted_pct"].iloc[-1], color="#b35c37", s=42, zorder=5)
+        ax.axhline(100, color="#3b352f", linestyle="--", linewidth=1)
+        ax.set_ylabel("Cobertura APS ponderada (%)")
+        ax.set_xlabel("Competência")
+        finish(
+            ax,
+            "Cobertura APS nacional no tempo",
+            "A série reduz a leitura de foto única e mostra a mudança da capacidade potencial desde 2021.",
+            "Fonte: Relatórios Públicos APS; unidade geográfica Brasil.",
+        )
+        fig.tight_layout(pad=2.4)
+        fig.savefig(out / "06_aps_national_timeseries.png", bbox_inches="tight")
         plt.close(fig)
 
 

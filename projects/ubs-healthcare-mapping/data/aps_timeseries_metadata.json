@@ -1,0 +1,9 @@
+{
+  "source": "Relatorios Publicos APS",
+  "base_url": "https://relatorioaps-prd.saude.gov.br",
+  "unit": "BRASIL",
+  "start": "202101",
+  "end": "202604",
+  "rows": 64,
+  "output": "projects\\ubs-healthcare-mapping\\data\\aps_national_timeseries.csv"
+}

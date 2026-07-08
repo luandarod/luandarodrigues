@@ -24,7 +24,10 @@ SCENARIOS = {
 
 def build_components(df: pd.DataFrame) -> pd.DataFrame:
     result = df.copy()
-    result = result[result["uf_sigla"].notna()].copy()
+    result = result[
+        result["uf_sigla"].notna()
+        & (result["uf_sigla"].astype(str).str.upper() != "NAN")
+    ].copy()
     result["ubs_pressure"] = 1 - result["ubs_per_10k_population"].rank(pct=True)
     result["coverage_gap"] = result["coverage_gap_pct"].rank(pct=True)
     result["coord_gap"] = 1 - result["coordinate_validity_pct"] / 100

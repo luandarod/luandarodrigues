@@ -10,8 +10,10 @@ Este projeto não usa as referências como enfeite. Cada bloco metodológico exi
 | Tratar cobertura APS acima de 100% com cuidado | Nota técnica da APS; lógica de capacidade potencial | Valores acima de 100% são preservados como capacidade nominal, mas também existe uma versão capada em 100% para leitura populacional. |
 | Usar cobertura ponderada por população | Estatística descritiva para taxas agregadas | A média simples municipal é mantida como informação secundária. A leitura principal usa `sum(capacidade) / sum(população)`. |
 | Validar coordenadas sem exagerar a conclusão | Qualidade de dados; geografia da saúde | Coordenada válida significa ponto em faixa plausível, não localização municipal comprovada. |
+| Separar problemas de coordenada | Wang e Strong; qualidade contextual dos dados | A auditoria distingue coordenada ausente, fora do bounding box e repetida. |
 | Evitar inferência individual a partir de UF ou município | Robinson; falácia ecológica | O projeto fala de sinais territoriais agregados, não de comportamento ou acesso individual. |
 | Alertar sobre agregação espacial | Openshaw; MAUP | Rankings por UF são tratados como leitura agregada. O próximo passo recomendado é validar em escala municipal e com polígonos. |
+| Reduzir leitura de foto única | Análise temporal descritiva | A série nacional APS acompanha 64 competências, em vez de depender apenas de 04/2026. |
 | Usar score como triagem, não ranking oficial | OECD/JRC; indicadores compostos | O score é documentado como instrumento exploratório. Os pesos são testados em cenários. |
 | Fazer sensibilidade do score | OECD/JRC; Saltelli/Saisana/Tarantola | O projeto compara quatro cenários de pesos para ver quais UFs são estáveis e quais dependem da escolha do peso. |
 | Testar parsing, joins e saídas | Boas práticas de reprodutibilidade em dados | Foram adicionados testes de sanidade para parsing decimal, SIDRA, APS oficial, outputs territoriais e cobertura ponderada. |
@@ -58,6 +60,7 @@ O projeto fica defensável quando é apresentado como análise de sinais:
 
 - UBS registrada indica estrutura física cadastrada.
 - Cobertura APS indica capacidade potencial informada.
+- A série APS nacional mostra contexto temporal para a competência mais recente.
 - Indicadores por UF e município são agregados territoriais.
 - O score é triagem exploratória.
 - A sensibilidade dos pesos mostra onde a conclusão é mais ou menos estável.

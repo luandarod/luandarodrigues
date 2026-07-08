@@ -89,6 +89,12 @@ O score é uma triagem, não um ranking de política pública. Ele combina baixa
 
 O score foi testado em quatro cenários: base, cobertura, território e qualidade cadastral. Quando uma UF muda muito de posição entre cenários, o resultado deve ser lido com mais cautela. Quando permanece alta em vários cenários, o sinal é mais estável.
 
+### 6. Série nacional da APS
+
+![Cobertura APS nacional no tempo](assets/06_aps_national_timeseries.png)
+
+A série nacional reduz o limite de olhar apenas uma competência. Ela mostra a cobertura potencial ponderada entre 2021 e 2026, com a competência mais recente destacada.
+
 ## Método
 
 A justificativa bibliográfica do método está em [METHODOLOGICAL_REFERENCES.md](METHODOLOGICAL_REFERENCES.md).
@@ -118,6 +124,8 @@ python projects/ubs-healthcare-mapping/scripts/enrich_with_ibge.py \
 
 python projects/ubs-healthcare-mapping/scripts/fetch_latest_aps_coverage.py
 
+python projects/ubs-healthcare-mapping/scripts/fetch_aps_national_timeseries.py
+
 python projects/ubs-healthcare-mapping/scripts/enrich_with_aps_coverage.py \
   --ubs-territory projects/ubs-healthcare-mapping/data/enriched/municipality_ubs_territory.csv \
   --aps-file projects/ubs-healthcare-mapping/data/cobertura-aps-latest.csv \
@@ -125,9 +133,13 @@ python projects/ubs-healthcare-mapping/scripts/enrich_with_aps_coverage.py \
 
 python projects/ubs-healthcare-mapping/scripts/priority_sensitivity_analysis.py
 
+python projects/ubs-healthcare-mapping/scripts/coordinate_quality_audit.py
+
 python projects/ubs-healthcare-mapping/scripts/generate_report_assets.py
 
 python projects/ubs-healthcare-mapping/scripts/build_dashboard_data.py
+
+python projects/ubs-healthcare-mapping/scripts/build_data_lineage.py
 ```
 
 Testes de sanidade:
@@ -150,12 +162,17 @@ projects/ubs-healthcare-mapping/
 │   ├── 02_ubs_per_population_extremes.png
 │   ├── 03_aps_weighted_coverage_by_uf.png
 │   ├── 04_priority_screening_top10.png
-│   └── 05_priority_sensitivity.png
+│   ├── 05_priority_sensitivity.png
+│   └── 06_aps_national_timeseries.png
 ├── data/
 │   ├── Unidades_Basicas_Saude-UBS.csv
 │   ├── cobertura-aps-geral.xlsx
 │   ├── cobertura-aps-latest.csv
 │   ├── aps_api_metadata.json
+│   ├── aps_national_timeseries.csv
+│   ├── aps_timeseries_metadata.json
+│   ├── coordinate_quality_by_uf.csv
+│   ├── data_lineage_manifest.csv
 │   ├── data_quality_summary.csv
 │   ├── region_distribution.csv
 │   ├── state_distribution.csv
@@ -163,8 +180,11 @@ projects/ubs-healthcare-mapping/
 ├── scripts/
 │   ├── analyze_ubs.py
 │   ├── build_dashboard_data.py
+│   ├── build_data_lineage.py
+│   ├── coordinate_quality_audit.py
 │   ├── enrich_with_ibge.py
 │   ├── enrich_with_aps_coverage.py
+│   ├── fetch_aps_national_timeseries.py
 │   ├── fetch_latest_aps_coverage.py
 │   ├── generate_report_assets.py
 │   └── priority_sensitivity_analysis.py
@@ -172,14 +192,17 @@ projects/ubs-healthcare-mapping/
     └── test_pipeline_sanity.py
 ```
 
-## Fragilidades conhecidas
+## Limites e ajustes feitos
 
-- Coordenada válida significa apenas latitude e longitude dentro de uma faixa plausível para o Brasil. Não garante que o ponto esteja no município correto.
-- O cadastro UBS mostra presença registrada, não unidade ativa, produção, equipe disponível ou horário de funcionamento.
-- A Cobertura APS usada está na competência 04/2026, a mais recente retornada pelo endpoint público no momento desta execução. Ainda assim, decisões operacionais exigem checagem da fonte oficial no dia da análise.
-- Valores de cobertura APS acima de 100% foram mantidos como sinal nominal de capacidade. Para falar de população coberta, o projeto também calcula uma versão capada em 100%.
-- O score de prioridade é exploratório. Ele não substitui avaliação local, análise espacial fina ou validação com gestores e bases assistenciais.
-- Dois municípios do cadastro UBS não fecharam com a camada territorial do IBGE/SIDRA nesta versão. Eles ficam documentados no metadata e não entram na síntese por UF.
+| Limite | Como foi reduzido nesta versão | O que ainda falta |
+|---|---|---|
+| Coordenada válida não prova município correto | foi criada auditoria por UF com coordenada ausente, fora do bounding box e coordenadas repetidas | validar ponto contra polígono municipal do IBGE |
+| APS era uma foto única | foi adicionada série nacional de 64 competências entre 2021 e 2026 | criar série municipal ou por UF |
+| UBS é cadastro, não operação real | o texto separa presença física, capacidade potencial e acesso real | integrar CNES ativo, equipes por competência e produção ambulatorial |
+| Score depende de pesos | foi adicionada sensibilidade com quatro cenários | calibrar pesos com especialistas ou análise multicritério formal |
+| Agregação por UF pode esconder heterogeneidade municipal | há dados municipais enriquecidos e alerta metodológico | publicar mapa municipal e análise espacial local |
+| Proveniência dos dados podia ser fraca | foi criado manifesto com linhas, colunas, bytes e SHA-256 dos principais arquivos | adicionar data de download e licença quando cada fonte trouxer esse metadado explicitamente |
+| Dois municípios do cadastro UBS não fecharam com IBGE/SIDRA | os casos ficam documentados no metadata e saem da síntese por UF | tratar mudanças municipais recentes ou divergências cadastrais caso a caso |
 
 ## Próximos passos
 

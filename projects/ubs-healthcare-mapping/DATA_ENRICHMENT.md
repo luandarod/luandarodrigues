@@ -41,6 +41,14 @@ data/aps_api_metadata.json
 
 O arquivo antigo `data/cobertura-aps-geral.xlsx` foi mantido como insumo manual de referência, mas o pipeline atual usa a extração oficial mais recente.
 
+Além da competência mais recente, o projeto também salva uma série nacional:
+
+```bash
+python projects/ubs-healthcare-mapping/scripts/fetch_aps_national_timeseries.py
+```
+
+Essa saída reduz o risco de interpretar a APS como uma foto isolada.
+
 ## Indicadores territoriais
 
 | Indicador | Fórmula | Leitura |
@@ -100,6 +108,9 @@ data/enriched/
 - normalização de latitude e longitude com vírgula decimal;
 - preservação de números decimais do SIDRA, como `164173.431`;
 - leitura do formato retornado pelo endpoint público da APS;
+- série nacional APS para reduzir leitura de competência isolada;
+- auditoria de coordenadas por UF, separando ausentes, fora do bounding box e repetidas;
+- manifesto de lineage com linhas, colunas, tamanho e SHA-256;
 - join IBGE/SIDRA com conversão 7 dígitos para 6 dígitos;
 - exclusão de linhas sem UF da síntese por UF;
 - teste para garantir 27 UFs na saída territorial;

@@ -89,6 +89,17 @@ class PipelineSanityTests(unittest.TestCase):
         self.assertEqual(normalized.loc[0, "uf_sigla"], "AC")
         self.assertAlmostEqual(normalized.loc[0, "cobertura_aps_pct"], 142.74)
 
+    def test_new_limit_mitigation_outputs_exist(self):
+        timeseries = pd.read_csv(DATA_DIR / "aps_national_timeseries.csv")
+        coordinate_audit = pd.read_csv(DATA_DIR / "coordinate_quality_by_uf.csv")
+        lineage = pd.read_csv(DATA_DIR / "data_lineage_manifest.csv")
+
+        self.assertGreaterEqual(len(timeseries), 60)
+        self.assertIn("coverage_weighted_pct", timeseries.columns)
+        self.assertEqual(len(coordinate_audit), 27)
+        self.assertTrue({"missing_latitude", "out_of_brazil_bbox", "duplicated_valid_coordinates"}.issubset(coordinate_audit.columns))
+        self.assertTrue({"path", "rows", "columns", "sha256"}.issubset(lineage.columns))
+
 
 if __name__ == "__main__":
     unittest.main()
