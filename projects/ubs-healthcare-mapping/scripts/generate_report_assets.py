@@ -54,6 +54,8 @@ def save_charts(project_dir: Path) -> None:
     spatial = pd.read_csv(spatial_path) if spatial_path.exists() else pd.DataFrame()
     operational_path = project_dir / "data" / "ubs_operational_status_by_uf.csv"
     operational = pd.read_csv(operational_path) if operational_path.exists() else pd.DataFrame()
+    robust_path = project_dir / "data" / "enriched" / "robust_priority_index_uf.csv"
+    robust = pd.read_csv(robust_path) if robust_path.exists() else pd.DataFrame()
 
     uf = uf.merge(
         aps[
@@ -211,11 +213,37 @@ def save_charts(project_dir: Path) -> None:
         finish(
             ax,
             "Sinal operacional recente por UF",
-            "A barra clara mostra presenca no CNES/ST mais recente; a barra escura exige tambem producao no SIA/PA mais recente.",
-            "Fonte: Cadastro UBS + CNES/ST 202605 + SIA/SUS PA 202604; proxy operacional, nao auditoria de funcionamento.",
+            "A barra clara mostra presenca no CNES/ST mais recente; a barra escura exige tambem producao no SIA/PA em 3 competencias recentes.",
+            "Fonte: Cadastro UBS + CNES/ST 202605 + SIA/SUS PA 202602-202604; proxy operacional, nao auditoria de funcionamento.",
         )
         fig.tight_layout(pad=2.4)
         fig.savefig(out / "08_operational_status_by_uf.png", bbox_inches="tight")
+        plt.close(fig)
+
+    if not robust.empty:
+        plot = robust.nlargest(10, "robust_priority_balanced").sort_values("robust_priority_balanced")
+        fig, ax = plt.subplots(figsize=(10.5, 6.8), dpi=180)
+        lower = plot["robust_priority_balanced"] - plot["robust_priority_min"]
+        upper = plot["robust_priority_max"] - plot["robust_priority_balanced"]
+        ax.barh(plot["uf_sigla"], plot["robust_priority_balanced"], color="#6d5dfc", alpha=0.9)
+        ax.errorbar(
+            plot["robust_priority_balanced"],
+            plot["uf_sigla"],
+            xerr=[lower, upper],
+            fmt="none",
+            ecolor="#16120f",
+            elinewidth=1.2,
+            capsize=3,
+        )
+        ax.set_xlabel("Indice robusto de prioridade")
+        finish(
+            ax,
+            "Indice robusto de prioridade",
+            "A barra mostra o cenario balanceado; a linha mostra a faixa entre cenarios alternativos de pesos.",
+            "Fonte: UBS/populacao, APS, SIA/PA 3 meses, validacao espacial e proxy de vulnerabilidade territorial.",
+        )
+        fig.tight_layout(pad=2.4)
+        fig.savefig(out / "09_robust_priority_index.png", bbox_inches="tight")
         plt.close(fig)
 
 

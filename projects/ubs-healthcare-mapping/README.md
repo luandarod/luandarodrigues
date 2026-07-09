@@ -48,8 +48,8 @@ Referencias de origem:
 | Registros dentro do municipio declarado | 43.717, ou 91,62% |
 | Registros fora do poligono municipal declarado | 2.062 |
 | Registros presentes no CNES/ST mais recente | 43.578, ou 91,33% |
-| Registros com producao SIA/PA recente | 7.145, ou 14,97% |
-| Registros com CNES/ST e SIA/PA recente | 7.144, ou 14,97% |
+| Registros com producao SIA/PA em 3 competencias recentes | 11.335, ou 23,76% |
+| Registros com CNES/ST e SIA/PA em 3 competencias recentes | 11.333, ou 23,75% |
 | Registros com match territorial IBGE/SIDRA | 47.710 |
 | Registros sem match territorial | 4 registros em 2 municipios |
 | Competencia APS | 04/2026 |
@@ -111,7 +111,13 @@ A validacao espacial usa malhas municipais simplificadas do IBGE e um teste poin
 
 ![Sinal operacional recente por UF](assets/08_operational_status_by_uf.png)
 
-Esta camada separa tres ideias que antes ficavam misturadas: estar no cadastro original do projeto, aparecer no CNES/ST mais recente e ter producao SIA/SUS PA na competencia mais recente. O resultado e uma proxy conservadora de atividade registrada. Ausencia de producao SIA/PA no mes mais recente nao prova unidade fechada: pode refletir atraso, centralizacao de registro, regra local de faturamento ou producao registrada em outro CNES.
+Esta camada separa tres ideias que antes ficavam misturadas: estar no cadastro original do projeto, aparecer no CNES/ST mais recente e ter producao SIA/SUS PA em uma janela de 3 competencias recentes. O resultado e uma proxy conservadora de atividade registrada. Ausencia de producao SIA/PA nessa janela nao prova unidade fechada: pode refletir atraso, centralizacao de registro, regra local de faturamento ou producao registrada em outro CNES.
+
+### 9. Indice robusto de prioridade
+
+![Indice robusto de prioridade](assets/09_robust_priority_index.png)
+
+O indice robusto combina cinco dimensoes: UBS por populacao, gap de cobertura APS, sinal operacional recente, qualidade espacial e uma proxy de vulnerabilidade territorial. A proxy de vulnerabilidade usa densidade populacional e dispersao territorial de UBS; ela nao substitui renda, pobreza, saneamento ou outros indicadores sociais. Por isso o indice deve ser lido como triagem territorial para investigacao, nao como ranking oficial de necessidade.
 
 ## Metodo
 
@@ -127,8 +133,8 @@ A justificativa bibliografica do metodo esta em [METHODOLOGICAL_REFERENCES.md](M
 8. Calcular UBS por 10 mil habitantes, UBS por 1.000 km2 e validade de coordenadas.
 9. Normalizar o arquivo de Cobertura APS.
 10. Calcular cobertura nominal, cobertura capada em 100%, gap positivo e excesso nominal.
-11. Cruzar CNES/ST e SIA/SUS PA para criar uma proxy operacional.
-12. Rodar analise de sensibilidade do score.
+11. Cruzar CNES/ST e SIA/SUS PA em janela de 3 competencias para criar uma proxy operacional.
+12. Rodar indice robusto de prioridade e sensibilidade por cenarios.
 13. Gerar CSVs, graficos e dashboard.
 
 ## Como reproduzir
@@ -154,6 +160,7 @@ python projects/ubs-healthcare-mapping/scripts/priority_sensitivity_analysis.py
 python projects/ubs-healthcare-mapping/scripts/coordinate_quality_audit.py
 python projects/ubs-healthcare-mapping/scripts/validate_ubs_municipal_geometry.py
 python projects/ubs-healthcare-mapping/scripts/fetch_ubs_operational_status.py
+python projects/ubs-healthcare-mapping/scripts/robust_priority_index.py
 python projects/ubs-healthcare-mapping/scripts/generate_report_assets.py
 python projects/ubs-healthcare-mapping/scripts/build_dashboard_data.py
 python projects/ubs-healthcare-mapping/scripts/build_data_lineage.py
@@ -182,7 +189,8 @@ projects/ubs-healthcare-mapping/
 |   |-- 05_priority_sensitivity.png
 |   |-- 06_aps_national_timeseries.png
 |   |-- 07_spatial_validation_by_uf.png
-|   `-- 08_operational_status_by_uf.png
+|   |-- 08_operational_status_by_uf.png
+|   `-- 09_robust_priority_index.png
 |-- data/
 |   |-- Unidades_Basicas_Saude-UBS.csv
 |   |-- cobertura-aps-latest.csv
@@ -197,6 +205,8 @@ projects/ubs-healthcare-mapping/
 |   |-- data_lineage_manifest.csv
 |   |-- geodata/
 |   `-- enriched/
+|       |-- robust_priority_index_uf.csv
+|       `-- robust_priority_sensitivity_uf.csv
 |-- scripts/
 |   |-- analyze_ubs.py
 |   |-- build_dashboard_data.py
@@ -209,6 +219,7 @@ projects/ubs-healthcare-mapping/
 |   |-- fetch_ubs_operational_status.py
 |   |-- generate_report_assets.py
 |   |-- priority_sensitivity_analysis.py
+|   |-- robust_priority_index.py
 |   `-- validate_ubs_municipal_geometry.py
 `-- tests/
     `-- test_pipeline_sanity.py
@@ -221,7 +232,8 @@ projects/ubs-healthcare-mapping/
 | Coordenada valida nao prova municipio correto | foi adicionada validacao point-in-polygon com malhas municipais simplificadas do IBGE; 43.717 registros caem dentro do municipio declarado | refinar casos de fronteira com malha de maior detalhe e auditoria local |
 | APS era uma foto unica | foi adicionada serie nacional de 64 competencias entre 2021 e 2026 | criar serie municipal ou por UF |
 | UBS e cadastro, nao operacao real | o texto separa presenca fisica, capacidade potencial e acesso real | integrar CNES ativo, equipes por competencia e producao ambulatorial |
-| Cadastro nao prova atividade recente | foi criada proxy com CNES/ST mais recente e producao SIA/SUS PA; 43.578 aparecem no CNES/ST e 7.144 combinam CNES/ST com producao PA recente | ampliar para janela de 3 a 6 meses, equipes CNES e outros blocos de producao |
+| Cadastro nao prova atividade recente | foi criada proxy com CNES/ST mais recente e producao SIA/SUS PA em 3 competencias; 43.578 aparecem no CNES/ST e 11.333 combinam CNES/ST com producao PA recente | ampliar para 6 meses, equipes CNES e outros blocos de producao |
+| Prioridade territorial dependia de um score simples | foi criado indice robusto com 5 componentes e 5 cenarios de sensibilidade | incluir vulnerabilidade socioeconomica direta quando a base municipal estiver consolidada |
 | Score depende de pesos | foi adicionada sensibilidade com quatro cenarios | calibrar pesos com especialistas ou analise multicriterio formal |
 | Agregacao por UF pode esconder heterogeneidade municipal | ha dados municipais enriquecidos e alerta metodologico | publicar mapa municipal e analise espacial local |
 | Proveniencia dos dados podia ser fraca | foi criado manifesto com linhas, colunas, bytes e SHA-256 dos principais arquivos | adicionar data de download e licenca quando cada fonte trouxer esse metadado explicitamente |

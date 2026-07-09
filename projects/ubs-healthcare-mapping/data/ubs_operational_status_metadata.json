@@ -1,8 +1,9 @@
 {
-  "generated_at_utc": "2026-07-08T19:14:58.251933+00:00",
-  "method": "CNES active proxy is presence in the latest CNES ST file. Recent production signal is presence in the latest SIA/SUS PA file.",
+  "generated_at_utc": "2026-07-09T17:09:57.873575+00:00",
+  "method": "CNES active proxy is presence in the latest CNES ST file. Recent production signal is presence in SIA/SUS PA over a 3-competence window.",
   "cnes_source_dir": "/dissemin/publicos/CNES/200508_/Dados/ST",
   "sia_source_dir": "/dissemin/publicos/SIASUS/200801_/Dados",
+  "sia_month_window": 3,
   "cnes_latest_files": {
     "AC": "STAC2605.dbc",
     "AL": "STAL2605.dbc",
@@ -32,39 +33,147 @@
     "SP": "STSP2605.dbc",
     "TO": "STTO2605.dbc"
   },
-  "sia_latest_files": {
-    "AC": "PAAC2604.dbc",
-    "AL": "PAAL2604.dbc",
-    "AM": "PAAM2604.dbc",
-    "AP": "PAAP2604.dbc",
-    "BA": "PABA2604.dbc",
-    "CE": "PACE2604.dbc",
-    "DF": "PADF2604.dbc",
-    "ES": "PAES2604.dbc",
-    "GO": "PAGO2604.dbc",
-    "MA": "PAMA2604.dbc",
-    "MG": "PAMG2604c.dbc",
-    "MS": "PAMS2604.dbc",
-    "MT": "PAMT2604.dbc",
-    "PA": "PAPA2604.dbc",
-    "PB": "PAPB2604.dbc",
-    "PE": "PAPE2604.dbc",
-    "PI": "PAPI2604.dbc",
-    "PR": "PAPR2604.dbc",
-    "RJ": "PARJ2604c.dbc",
-    "RN": "PARN2604.dbc",
-    "RO": "PARO2604.dbc",
-    "RR": "PARR2604.dbc",
-    "RS": "PARS2604.dbc",
-    "SC": "PASC2604.dbc",
-    "SE": "PASE2604.dbc",
-    "SP": "PASP2604d.dbc",
-    "TO": "PATO2604.dbc"
+  "sia_recent_files": {
+    "AC": [
+      "PAAC2603.dbc",
+      "PAAC2604.dbc",
+      "PAAC2605.dbc"
+    ],
+    "AL": [
+      "PAAL2603.dbc",
+      "PAAL2604.dbc",
+      "PAAL2605.dbc"
+    ],
+    "AM": [
+      "PAAM2603.dbc",
+      "PAAM2604.dbc",
+      "PAAM2605.dbc"
+    ],
+    "AP": [
+      "PAAP2603.dbc",
+      "PAAP2604.dbc",
+      "PAAP2605.dbc"
+    ],
+    "BA": [
+      "PABA2603.dbc",
+      "PABA2604.dbc",
+      "PABA2605.dbc"
+    ],
+    "CE": [
+      "PACE2603.dbc",
+      "PACE2604.dbc",
+      "PACE2605.dbc"
+    ],
+    "DF": [
+      "PADF2603.dbc",
+      "PADF2604.dbc",
+      "PADF2605.dbc"
+    ],
+    "ES": [
+      "PAES2603.dbc",
+      "PAES2604.dbc",
+      "PAES2605.dbc"
+    ],
+    "GO": [
+      "PAGO2603.dbc",
+      "PAGO2604.dbc",
+      "PAGO2605.dbc"
+    ],
+    "MA": [
+      "PAMA2602.dbc",
+      "PAMA2603.dbc",
+      "PAMA2604.dbc"
+    ],
+    "MG": [
+      "PAMG2604a.dbc",
+      "PAMG2604b.dbc",
+      "PAMG2604c.dbc"
+    ],
+    "MS": [
+      "PAMS2602.dbc",
+      "PAMS2603.dbc",
+      "PAMS2604.dbc"
+    ],
+    "MT": [
+      "PAMT2602.dbc",
+      "PAMT2603.dbc",
+      "PAMT2604.dbc"
+    ],
+    "PA": [
+      "PAPA2602.dbc",
+      "PAPA2603.dbc",
+      "PAPA2604.dbc"
+    ],
+    "PB": [
+      "PAPB2602.dbc",
+      "PAPB2603.dbc",
+      "PAPB2604.dbc"
+    ],
+    "PE": [
+      "PAPE2602.dbc",
+      "PAPE2603.dbc",
+      "PAPE2604.dbc"
+    ],
+    "PI": [
+      "PAPI2602.dbc",
+      "PAPI2603.dbc",
+      "PAPI2604.dbc"
+    ],
+    "PR": [
+      "PAPR2602.dbc",
+      "PAPR2603.dbc",
+      "PAPR2604.dbc"
+    ],
+    "RJ": [
+      "PARJ2604a.dbc",
+      "PARJ2604b.dbc",
+      "PARJ2604c.dbc"
+    ],
+    "RN": [
+      "PARN2602.dbc",
+      "PARN2603.dbc",
+      "PARN2604.dbc"
+    ],
+    "RO": [
+      "PARO2602.dbc",
+      "PARO2603.dbc",
+      "PARO2604.dbc"
+    ],
+    "RR": [
+      "PARR2602.dbc",
+      "PARR2603.dbc",
+      "PARR2604.dbc"
+    ],
+    "RS": [
+      "PARS2603a.dbc",
+      "PARS2603b.dbc",
+      "PARS2604.dbc"
+    ],
+    "SC": [
+      "PASC2602.dbc",
+      "PASC2603.dbc",
+      "PASC2604.dbc"
+    ],
+    "SE": [
+      "PASE2602.dbc",
+      "PASE2603.dbc",
+      "PASE2604.dbc"
+    ],
+    "SP": [
+      "PASP2604b.dbc",
+      "PASP2604c.dbc",
+      "PASP2604d.dbc"
+    ],
+    "TO": [
+      "PATO2602.dbc",
+      "PATO2603.dbc",
+      "PATO2604.dbc"
+    ]
   },
   "ubs_records": 47714,
   "cnes_active_proxy_records": 43578,
-  "recent_sia_production_records": 7145,
-  "active_with_recent_sia_production_records": 7144,
+  "recent_sia_production_records": 11335,
+  "active_with_recent_sia_production_records": 11333,
   "processed_files": [
     {
       "source": "CNES_ST",
@@ -76,9 +185,23 @@
     {
       "source": "SIA_PA",
       "uf": "AC",
+      "file": "PAAC2605.dbc",
+      "compressed_bytes": 4021653,
+      "dbf_bytes": 72296397
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "AC",
       "file": "PAAC2604.dbc",
-      "compressed_bytes": 4989503,
-      "dbf_bytes": 72685023
+      "compressed_bytes": 4896053,
+      "dbf_bytes": 72878538
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "AC",
+      "file": "PAAC2603.dbc",
+      "compressed_bytes": 4923447,
+      "dbf_bytes": 70080750
     },
     {
       "source": "CNES_ST",
@@ -90,9 +213,23 @@
     {
       "source": "SIA_PA",
       "uf": "AL",
+      "file": "PAAL2605.dbc",
+      "compressed_bytes": 15020645,
+      "dbf_bytes": 287738442
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "AL",
       "file": "PAAL2604.dbc",
-      "compressed_bytes": 26371461,
-      "dbf_bytes": 318620643
+      "compressed_bytes": 27373638,
+      "dbf_bytes": 333241200
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "AL",
+      "file": "PAAL2603.dbc",
+      "compressed_bytes": 31918093,
+      "dbf_bytes": 365287284
     },
     {
       "source": "CNES_ST",
@@ -104,9 +241,23 @@
     {
       "source": "SIA_PA",
       "uf": "AM",
+      "file": "PAAM2605.dbc",
+      "compressed_bytes": 19819011,
+      "dbf_bytes": 334310520
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "AM",
       "file": "PAAM2604.dbc",
-      "compressed_bytes": 32524101,
-      "dbf_bytes": 334709520
+      "compressed_bytes": 31138407,
+      "dbf_bytes": 358171119
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "AM",
+      "file": "PAAM2603.dbc",
+      "compressed_bytes": 41199298,
+      "dbf_bytes": 399400986
     },
     {
       "source": "CNES_ST",
@@ -118,9 +269,23 @@
     {
       "source": "SIA_PA",
       "uf": "AP",
+      "file": "PAAP2605.dbc",
+      "compressed_bytes": 2247967,
+      "dbf_bytes": 43316229
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "AP",
       "file": "PAAP2604.dbc",
-      "compressed_bytes": 2838642,
-      "dbf_bytes": 44198418
+      "compressed_bytes": 3064642,
+      "dbf_bytes": 48231510
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "AP",
+      "file": "PAAP2603.dbc",
+      "compressed_bytes": 3716205,
+      "dbf_bytes": 54153468
     },
     {
       "source": "CNES_ST",
@@ -132,9 +297,23 @@
     {
       "source": "SIA_PA",
       "uf": "BA",
+      "file": "PABA2605.dbc",
+      "compressed_bytes": 70348776,
+      "dbf_bytes": 1076455707
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "BA",
       "file": "PABA2604.dbc",
-      "compressed_bytes": 101457556,
-      "dbf_bytes": 1040668599
+      "compressed_bytes": 99622360,
+      "dbf_bytes": 1086579135
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "BA",
+      "file": "PABA2603.dbc",
+      "compressed_bytes": 121502667,
+      "dbf_bytes": 1177309341
     },
     {
       "source": "CNES_ST",
@@ -146,9 +325,23 @@
     {
       "source": "SIA_PA",
       "uf": "CE",
+      "file": "PACE2605.dbc",
+      "compressed_bytes": 52334046,
+      "dbf_bytes": 980473863
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "CE",
       "file": "PACE2604.dbc",
-      "compressed_bytes": 80615420,
-      "dbf_bytes": 906974472
+      "compressed_bytes": 78227615,
+      "dbf_bytes": 962507691
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "CE",
+      "file": "PACE2603.dbc",
+      "compressed_bytes": 100778129,
+      "dbf_bytes": 1078535295
     },
     {
       "source": "CNES_ST",
@@ -160,9 +353,23 @@
     {
       "source": "SIA_PA",
       "uf": "DF",
+      "file": "PADF2605.dbc",
+      "compressed_bytes": 11831506,
+      "dbf_bytes": 222756903
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "DF",
       "file": "PADF2604.dbc",
-      "compressed_bytes": 15919699,
+      "compressed_bytes": 15622387,
       "dbf_bytes": 213515664
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "DF",
+      "file": "PADF2603.dbc",
+      "compressed_bytes": 17803051,
+      "dbf_bytes": 228236370
     },
     {
       "source": "CNES_ST",
@@ -174,9 +381,23 @@
     {
       "source": "SIA_PA",
       "uf": "ES",
+      "file": "PAES2605.dbc",
+      "compressed_bytes": 23725138,
+      "dbf_bytes": 394621764
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "ES",
       "file": "PAES2604.dbc",
-      "compressed_bytes": 30348617,
-      "dbf_bytes": 371786196
+      "compressed_bytes": 35009571,
+      "dbf_bytes": 447727866
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "ES",
+      "file": "PAES2603.dbc",
+      "compressed_bytes": 44059819,
+      "dbf_bytes": 505673439
     },
     {
       "source": "CNES_ST",
@@ -188,9 +409,23 @@
     {
       "source": "SIA_PA",
       "uf": "GO",
+      "file": "PAGO2605.dbc",
+      "compressed_bytes": 38608466,
+      "dbf_bytes": 691185297
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "GO",
       "file": "PAGO2604.dbc",
-      "compressed_bytes": 30593140,
-      "dbf_bytes": 322837275
+      "compressed_bytes": 68932146,
+      "dbf_bytes": 809225058
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "GO",
+      "file": "PAGO2603.dbc",
+      "compressed_bytes": 78123291,
+      "dbf_bytes": 814394901
     },
     {
       "source": "CNES_ST",
@@ -207,6 +442,20 @@
       "dbf_bytes": 423697692
     },
     {
+      "source": "SIA_PA",
+      "uf": "MA",
+      "file": "PAMA2603.dbc",
+      "compressed_bytes": 49198986,
+      "dbf_bytes": 476702049
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "MA",
+      "file": "PAMA2602.dbc",
+      "compressed_bytes": 37245589,
+      "dbf_bytes": 417717480
+    },
+    {
       "source": "CNES_ST",
       "uf": "MG",
       "file": "STMG2605.dbc",
@@ -219,6 +468,20 @@
       "file": "PAMG2604c.dbc",
       "compressed_bytes": 6581063,
       "dbf_bytes": 62824536
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "MG",
+      "file": "PAMG2604b.dbc",
+      "compressed_bytes": 193494912,
+      "dbf_bytes": 1915016850
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "MG",
+      "file": "PAMG2604a.dbc",
+      "compressed_bytes": 155795583,
+      "dbf_bytes": 1844060685
     },
     {
       "source": "CNES_ST",
@@ -235,6 +498,20 @@
       "dbf_bytes": 301304442
     },
     {
+      "source": "SIA_PA",
+      "uf": "MS",
+      "file": "PAMS2603.dbc",
+      "compressed_bytes": 44615290,
+      "dbf_bytes": 499810932
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "MS",
+      "file": "PAMS2602.dbc",
+      "compressed_bytes": 33740640,
+      "dbf_bytes": 401192496
+    },
+    {
       "source": "CNES_ST",
       "uf": "MT",
       "file": "STMT2605.dbc",
@@ -247,6 +524,20 @@
       "file": "PAMT2604.dbc",
       "compressed_bytes": 38236716,
       "dbf_bytes": 491525697
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "MT",
+      "file": "PAMT2603.dbc",
+      "compressed_bytes": 73381133,
+      "dbf_bytes": 822259989
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "MT",
+      "file": "PAMT2602.dbc",
+      "compressed_bytes": 59506292,
+      "dbf_bytes": 756148881
     },
     {
       "source": "CNES_ST",
@@ -263,6 +554,20 @@
       "dbf_bytes": 553257780
     },
     {
+      "source": "SIA_PA",
+      "uf": "PA",
+      "file": "PAPA2603.dbc",
+      "compressed_bytes": 72383158,
+      "dbf_bytes": 719687064
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "PA",
+      "file": "PAPA2602.dbc",
+      "compressed_bytes": 56312996,
+      "dbf_bytes": 663117243
+    },
+    {
       "source": "CNES_ST",
       "uf": "PB",
       "file": "STPB2605.dbc",
@@ -275,6 +580,20 @@
       "file": "PAPB2604.dbc",
       "compressed_bytes": 59673105,
       "dbf_bytes": 639038391
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "PB",
+      "file": "PAPB2603.dbc",
+      "compressed_bytes": 79849542,
+      "dbf_bytes": 795644694
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "PB",
+      "file": "PAPB2602.dbc",
+      "compressed_bytes": 55310506,
+      "dbf_bytes": 656368557
     },
     {
       "source": "CNES_ST",
@@ -291,6 +610,20 @@
       "dbf_bytes": 786197172
     },
     {
+      "source": "SIA_PA",
+      "uf": "PE",
+      "file": "PAPE2603.dbc",
+      "compressed_bytes": 84981642,
+      "dbf_bytes": 886559637
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "PE",
+      "file": "PAPE2602.dbc",
+      "compressed_bytes": 64395102,
+      "dbf_bytes": 748515213
+    },
+    {
       "source": "CNES_ST",
       "uf": "PI",
       "file": "STPI2605.dbc",
@@ -303,6 +636,20 @@
       "file": "PAPI2604.dbc",
       "compressed_bytes": 13732456,
       "dbf_bytes": 156661755
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "PI",
+      "file": "PAPI2603.dbc",
+      "compressed_bytes": 16122475,
+      "dbf_bytes": 170816280
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "PI",
+      "file": "PAPI2602.dbc",
+      "compressed_bytes": 12027651,
+      "dbf_bytes": 144046572
     },
     {
       "source": "CNES_ST",
@@ -319,6 +666,20 @@
       "dbf_bytes": 1523376804
     },
     {
+      "source": "SIA_PA",
+      "uf": "PR",
+      "file": "PAPR2603.dbc",
+      "compressed_bytes": 179173114,
+      "dbf_bytes": 1881869526
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "PR",
+      "file": "PAPR2602.dbc",
+      "compressed_bytes": 139425784,
+      "dbf_bytes": 1668547767
+    },
+    {
       "source": "CNES_ST",
       "uf": "RJ",
       "file": "STRJ2605.dbc",
@@ -331,6 +692,20 @@
       "file": "PARJ2604c.dbc",
       "compressed_bytes": 135905958,
       "dbf_bytes": 1489913472
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "RJ",
+      "file": "PARJ2604b.dbc",
+      "compressed_bytes": 674823,
+      "dbf_bytes": 6817704
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "RJ",
+      "file": "PARJ2604a.dbc",
+      "compressed_bytes": 176333006,
+      "dbf_bytes": 1915188420
     },
     {
       "source": "CNES_ST",
@@ -347,6 +722,20 @@
       "dbf_bytes": 254813361
     },
     {
+      "source": "SIA_PA",
+      "uf": "RN",
+      "file": "PARN2603.dbc",
+      "compressed_bytes": 32807461,
+      "dbf_bytes": 316895766
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "RN",
+      "file": "PARN2602.dbc",
+      "compressed_bytes": 24218549,
+      "dbf_bytes": 267847893
+    },
+    {
       "source": "CNES_ST",
       "uf": "RO",
       "file": "STRO2605.dbc",
@@ -359,6 +748,20 @@
       "file": "PARO2604.dbc",
       "compressed_bytes": 16379143,
       "dbf_bytes": 188408190
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "RO",
+      "file": "PARO2603.dbc",
+      "compressed_bytes": 24980723,
+      "dbf_bytes": 247054806
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "RO",
+      "file": "PARO2602.dbc",
+      "compressed_bytes": 18874317,
+      "dbf_bytes": 216002232
     },
     {
       "source": "CNES_ST",
@@ -375,6 +778,20 @@
       "dbf_bytes": 10514838
     },
     {
+      "source": "SIA_PA",
+      "uf": "RR",
+      "file": "PARR2603.dbc",
+      "compressed_bytes": 899027,
+      "dbf_bytes": 11059473
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "RR",
+      "file": "PARR2602.dbc",
+      "compressed_bytes": 804001,
+      "dbf_bytes": 10632942
+    },
+    {
       "source": "CNES_ST",
       "uf": "RS",
       "file": "STRS2605.dbc",
@@ -387,6 +804,20 @@
       "file": "PARS2604.dbc",
       "compressed_bytes": 142421920,
       "dbf_bytes": 1389211857
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "RS",
+      "file": "PARS2603b.dbc",
+      "compressed_bytes": 8255080,
+      "dbf_bytes": 64322382
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "RS",
+      "file": "PARS2603a.dbc",
+      "compressed_bytes": 206417739,
+      "dbf_bytes": 1914172167
     },
     {
       "source": "CNES_ST",
@@ -403,6 +834,20 @@
       "dbf_bytes": 1507722438
     },
     {
+      "source": "SIA_PA",
+      "uf": "SC",
+      "file": "PASC2603.dbc",
+      "compressed_bytes": 174130147,
+      "dbf_bytes": 1651125831
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "SC",
+      "file": "PASC2602.dbc",
+      "compressed_bytes": 126264449,
+      "dbf_bytes": 1396829565
+    },
+    {
       "source": "CNES_ST",
       "uf": "SE",
       "file": "STSE2605.dbc",
@@ -415,6 +860,20 @@
       "file": "PASE2604.dbc",
       "compressed_bytes": 38411258,
       "dbf_bytes": 417640074
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "SE",
+      "file": "PASE2603.dbc",
+      "compressed_bytes": 43499704,
+      "dbf_bytes": 443553927
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "SE",
+      "file": "PASE2602.dbc",
+      "compressed_bytes": 28205829,
+      "dbf_bytes": 373307583
     },
     {
       "source": "CNES_ST",
@@ -431,6 +890,20 @@
       "dbf_bytes": 838648914
     },
     {
+      "source": "SIA_PA",
+      "uf": "SP",
+      "file": "PASP2604c.dbc",
+      "compressed_bytes": 164294145,
+      "dbf_bytes": 1910698872
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "SP",
+      "file": "PASP2604b.dbc",
+      "compressed_bytes": 148169311,
+      "dbf_bytes": 1898835006
+    },
+    {
       "source": "CNES_ST",
       "uf": "TO",
       "file": "STTO2605.dbc",
@@ -443,7 +916,21 @@
       "file": "PATO2604.dbc",
       "compressed_bytes": 11728092,
       "dbf_bytes": 144333852
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "TO",
+      "file": "PATO2603.dbc",
+      "compressed_bytes": 16064093,
+      "dbf_bytes": 172617765
+    },
+    {
+      "source": "SIA_PA",
+      "uf": "TO",
+      "file": "PATO2602.dbc",
+      "compressed_bytes": 12611240,
+      "dbf_bytes": 153343671
     }
   ],
-  "important_limit": "SIA/SUS PA is a billing/production record, not direct proof of service quality, opening hours or team availability. Lack of recent PA production may reflect reporting lag or local recording practices."
+  "important_limit": "SIA/SUS PA is a billing/production record, not direct proof of service quality, opening hours or team availability. Lack of PA production in the selected window may reflect reporting lag or local recording practices."
 }

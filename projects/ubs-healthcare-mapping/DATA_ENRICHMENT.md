@@ -125,7 +125,7 @@ Essa etapa ajuda a separar sinais estaveis de resultados que dependem demais da 
 O script `fetch_ubs_operational_status.py` cruza o CNES de cada UBS do projeto com duas bases do DATASUS:
 
 - CNES/ST mais recente: se o CNES aparece nesse arquivo, o projeto marca `cnes_present_latest_st = True`.
-- SIA/SUS PA mais recente: se o CNES aparece com producao ambulatorial, o projeto marca `sia_recent_production = True` e agrega quantidade, valor e numero de registros.
+- SIA/SUS PA em 3 competencias recentes: se o CNES aparece com producao ambulatorial nessa janela, o projeto marca `sia_recent_production = True` e agrega quantidade, valor e numero de registros.
 
 Saidas:
 
@@ -148,10 +148,33 @@ Resultado atual:
 |---|---:|
 | UBS do cadastro do projeto | 47.714 |
 | Presentes no CNES/ST mais recente | 43.578 |
-| Com producao SIA/PA recente | 7.145 |
-| Com CNES/ST e producao SIA/PA recente | 7.144 |
+| Com producao SIA/PA em 3 competencias recentes | 11.335 |
+| Com CNES/ST e producao SIA/PA em 3 competencias recentes | 11.333 |
 
-Essa e uma proxy operacional conservadora. SIA/SUS PA e registro de producao/faturamento, nao prova de funcionamento completo. A ausencia de producao em uma competencia pode refletir atraso, regra local de registro, producao consolidada em outro CNES ou servicos que nao entram nessa leitura.
+Essa e uma proxy operacional conservadora. SIA/SUS PA e registro de producao/faturamento, nao prova de funcionamento completo. A ausencia de producao nessa janela pode refletir atraso, regra local de registro, producao consolidada em outro CNES ou servicos que nao entram nessa leitura.
+
+## Indice robusto de prioridade
+
+O script `robust_priority_index.py` cria um indice por UF com cinco componentes:
+
+| Componente | Leitura |
+|---|---|
+| `ubs_population_gap` | menor disponibilidade de UBS por populacao |
+| `aps_coverage_gap` | distancia ate 100% de cobertura APS ponderada e capada |
+| `operational_gap` | menor percentual de UBS com CNES/ST e producao SIA/PA recente |
+| `spatial_quality_gap` | maior percentual de problema espacial ou coordenada ausente |
+| `territorial_vulnerability_proxy` | proxy baseada em densidade populacional e dispersao territorial de UBS |
+
+Saidas:
+
+```text
+data/enriched/robust_priority_index_uf.csv
+data/enriched/robust_priority_sensitivity_uf.csv
+```
+
+O indice roda cinco cenarios de pesos: balanceado, cobertura, operacao, qualidade de dados e vulnerabilidade territorial. O campo `priority_stability_flag` mostra se a posicao da UF e estavel ou sensivel aos pesos.
+
+A proxy de vulnerabilidade e territorial, nao socioeconomica. Ela ajuda a nao ignorar pressao urbana e dispersao territorial, mas nao substitui renda, pobreza, saneamento, estrutura etaria ou outras camadas sociais.
 
 ## Saidas
 

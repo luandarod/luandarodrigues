@@ -13,6 +13,8 @@ Este projeto nao usa referencias como enfeite. Cada bloco metodologico existe pa
 | Separar problemas de coordenada | Wang e Strong; qualidade contextual dos dados | A auditoria distingue coordenada ausente, fora do bounding box, repetida e fora do municipio declarado. |
 | Usar malhas municipais simplificadas | IBGE API de Malhas Geograficas | As malhas servem para triagem espacial reproduzivel. Casos de fronteira nao sao tratados como erro definitivo. |
 | Criar proxy operacional | Donabedian; WHO SARA; DATASUS | Presenca no CNES/ST e tratada como sinal cadastral. Producao SIA/SUS PA e tratada como sinal de atividade registrada, nao como prova de qualidade ou acesso. |
+| Criar indice robusto de prioridade | OECD/JRC; analise de sensibilidade | O indice combina 5 componentes e testa 5 cenarios de pesos para diferenciar sinais estaveis de resultados dependentes de pesos. |
+| Usar vulnerabilidade territorial proxy | Geografia da saude; MAUP | A proxy usa densidade populacional e dispersao territorial de UBS. Ela e explicitamente separada de vulnerabilidade socioeconomica direta. |
 | Evitar inferencia individual a partir de UF ou municipio | Robinson; falacia ecologica | O projeto fala de sinais territoriais agregados, nao de comportamento ou acesso individual. |
 | Alertar sobre agregacao espacial | Openshaw; MAUP | Rankings por UF sao tratados como leitura agregada e sensivel a escala. |
 | Reduzir leitura de foto unica | Analise temporal descritiva | A serie nacional APS acompanha 64 competencias, em vez de depender apenas de `04/2026`. |
@@ -71,7 +73,8 @@ O projeto fica defensavel quando e apresentado como analise de sinais:
 - A serie APS nacional mostra contexto temporal para a competencia mais recente.
 - A validacao espacial mostra se a coordenada e consistente com o municipio declarado.
 - CNES/ST mostra presenca cadastral recente.
-- SIA/SUS PA mostra producao ambulatorial registrada na competencia recente.
+- SIA/SUS PA mostra producao ambulatorial registrada em 3 competencias recentes.
+- O indice robusto combina disponibilidade, APS, operacao, qualidade espacial e vulnerabilidade territorial proxy.
 - Indicadores por UF e municipio sao agregados territoriais.
 - O score e triagem exploratoria.
 - A sensibilidade dos pesos mostra onde a conclusao e mais ou menos estavel.

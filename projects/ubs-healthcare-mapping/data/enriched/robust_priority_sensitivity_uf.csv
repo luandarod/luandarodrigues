@@ -1,0 +1,136 @@
+scenario,uf_sigla,uf_nome,regiao_nome,robust_priority_score,rank
+balanced,AC,Acre,Norte,26.997738875117385,25.0
+balanced,AL,Alagoas,Nordeste,29.06754494964805,23.0
+balanced,AM,Amazonas,Norte,46.86433327543204,4.0
+balanced,AP,Amapá,Norte,44.255018803075444,8.0
+balanced,BA,Bahia,Nordeste,35.75371577016974,17.0
+balanced,CE,Ceará,Nordeste,37.72748593280949,14.0
+balanced,DF,Distrito Federal,Centro-Oeste,58.59650567679475,1.0
+balanced,ES,Espírito Santo,Sudeste,36.42901186790462,15.0
+balanced,GO,Goiás,Centro-Oeste,45.029006977111244,6.0
+balanced,MA,Maranhão,Nordeste,30.279898537613274,21.0
+balanced,MG,Minas Gerais,Sudeste,35.00681667569717,18.0
+balanced,MS,Mato Grosso do Sul,Centro-Oeste,43.176193633039205,11.0
+balanced,MT,Mato Grosso,Centro-Oeste,36.25334338542011,16.0
+balanced,PA,Pará,Norte,44.957452702506785,7.0
+balanced,PB,Paraíba,Nordeste,21.92640604827403,27.0
+balanced,PE,Pernambuco,Nordeste,33.70885833762712,19.0
+balanced,PI,Piauí,Nordeste,28.474096594168525,24.0
+balanced,PR,Paraná,Sul,43.558248887159564,10.0
+balanced,RJ,Rio de Janeiro,Sudeste,51.74282475788138,3.0
+balanced,RN,Rio Grande do Norte,Nordeste,29.463012452871475,22.0
+balanced,RO,Rondônia,Norte,43.977317980111174,9.0
+balanced,RR,Roraima,Norte,40.76058201058201,12.0
+balanced,RS,Rio Grande do Sul,Sul,46.28920822839099,5.0
+balanced,SC,Santa Catarina,Sul,31.679404282757094,20.0
+balanced,SE,Sergipe,Nordeste,39.38346003609982,13.0
+balanced,SP,São Paulo,Sudeste,55.14703910907781,2.0
+balanced,TO,Tocantins,Norte,26.01270352270974,26.0
+coverage_led,AC,Acre,Norte,23.896434365028718,25.0
+coverage_led,AL,Alagoas,Nordeste,26.282963694328647,23.0
+coverage_led,AM,Amazonas,Norte,41.17986955377488,4.0
+coverage_led,AP,Amapá,Norte,35.832721442945406,11.0
+coverage_led,BA,Bahia,Nordeste,32.0511289189927,16.0
+coverage_led,CE,Ceará,Nordeste,32.608879698071554,15.0
+coverage_led,DF,Distrito Federal,Centro-Oeste,51.66453722048788,1.0
+coverage_led,ES,Espírito Santo,Sudeste,31.151717408085943,17.0
+coverage_led,GO,Goiás,Centro-Oeste,40.38284815903286,5.0
+coverage_led,MA,Maranhão,Nordeste,27.556396639328444,20.0
+coverage_led,MG,Minas Gerais,Sudeste,30.612032819474784,18.0
+coverage_led,MS,Mato Grosso do Sul,Centro-Oeste,37.23954370574841,10.0
+coverage_led,MT,Mato Grosso,Centro-Oeste,32.769922079645575,14.0
+coverage_led,PA,Pará,Norte,38.77145716138386,7.0
+coverage_led,PB,Paraíba,Nordeste,19.593808215642625,27.0
+coverage_led,PE,Pernambuco,Nordeste,30.573689350237345,19.0
+coverage_led,PI,Piauí,Nordeste,24.724582647732213,24.0
+coverage_led,PR,Paraná,Sul,37.38873405947782,9.0
+coverage_led,RJ,Rio de Janeiro,Sudeste,45.76644735055481,3.0
+coverage_led,RN,Rio Grande do Norte,Nordeste,26.51703137833885,22.0
+coverage_led,RO,Rondônia,Norte,37.72962600506286,8.0
+coverage_led,RR,Roraima,Norte,33.44047619047619,12.0
+coverage_led,RS,Rio Grande do Sul,Sul,39.88039698308941,6.0
+coverage_led,SC,Santa Catarina,Sul,26.609263673023897,21.0
+coverage_led,SE,Sergipe,Nordeste,33.03318070240436,13.0
+coverage_led,SP,São Paulo,Sudeste,50.343791776803705,2.0
+coverage_led,TO,Tocantins,Norte,21.57730444920959,26.0
+operations_led,AC,Acre,Norte,38.766384509646336,22.0
+operations_led,AL,Alagoas,Nordeste,36.72599056110479,24.0
+operations_led,AM,Amazonas,Norte,50.502093329415885,10.0
+operations_led,AP,Amapá,Norte,52.70311971105382,8.0
+operations_led,BA,Bahia,Nordeste,49.456363823841166,13.0
+operations_led,CE,Ceará,Nordeste,49.58192791335639,12.0
+operations_led,DF,Distrito Federal,Centro-Oeste,68.47995275501206,1.0
+operations_led,ES,Espírito Santo,Sudeste,38.325703831515526,23.0
+operations_led,GO,Goiás,Centro-Oeste,50.764646662253796,9.0
+operations_led,MA,Maranhão,Nordeste,45.16199380048958,20.0
+operations_led,MG,Minas Gerais,Sudeste,46.46373515693739,17.0
+operations_led,MS,Mato Grosso do Sul,Centro-Oeste,54.7418234445652,6.0
+operations_led,MT,Mato Grosso,Centro-Oeste,46.50182189204413,16.0
+operations_led,PA,Pará,Norte,55.67776527385864,4.0
+operations_led,PB,Paraíba,Nordeste,33.92936880516744,26.0
+operations_led,PE,Pernambuco,Nordeste,47.827969857894544,14.0
+operations_led,PI,Piauí,Nordeste,45.75498939454462,19.0
+operations_led,PR,Paraná,Sul,45.968191839228055,18.0
+operations_led,RJ,Rio de Janeiro,Sudeste,55.99558081475562,3.0
+operations_led,RN,Rio Grande do Norte,Nordeste,42.86037826611641,21.0
+operations_led,RO,Rondônia,Norte,47.55144998184818,15.0
+operations_led,RR,Roraima,Norte,54.0,7.0
+operations_led,RS,Rio Grande do Sul,Sul,54.88925556546715,5.0
+operations_led,SC,Santa Catarina,Sul,36.497995153157845,25.0
+operations_led,SE,Sergipe,Nordeste,50.0391242590249,11.0
+operations_led,SP,São Paulo,Sudeste,58.04146034412822,2.0
+operations_led,TO,Tocantins,Norte,32.34011208705456,27.0
+data_quality_led,AC,Acre,Norte,22.297683414184675,25.0
+data_quality_led,AL,Alagoas,Nordeste,25.350255185369413,22.0
+data_quality_led,AM,Amazonas,Norte,36.07008199797112,7.0
+data_quality_led,AP,Amapá,Norte,36.3450950196958,5.0
+data_quality_led,BA,Bahia,Nordeste,29.212601180550536,16.0
+data_quality_led,CE,Ceará,Nordeste,30.75969677370951,15.0
+data_quality_led,DF,Distrito Federal,Centro-Oeste,45.34356518260554,1.0
+data_quality_led,ES,Espírito Santo,Sudeste,30.903198523659903,14.0
+data_quality_led,GO,Goiás,Centro-Oeste,36.2640259297895,6.0
+data_quality_led,MA,Maranhão,Nordeste,25.655597908799578,21.0
+data_quality_led,MG,Minas Gerais,Sudeste,28.99160798658633,17.0
+data_quality_led,MS,Mato Grosso do Sul,Centro-Oeste,34.9871471855724,9.0
+data_quality_led,MT,Mato Grosso,Centro-Oeste,28.81738580967766,18.0
+data_quality_led,PA,Pará,Norte,35.644227956844006,8.0
+data_quality_led,PB,Paraíba,Nordeste,19.24051720188631,27.0
+data_quality_led,PE,Pernambuco,Nordeste,27.943729043374844,19.0
+data_quality_led,PI,Piauí,Nordeste,23.732349199490642,24.0
+data_quality_led,PR,Paraná,Sul,34.77786653293317,11.0
+data_quality_led,RJ,Rio de Janeiro,Sudeste,42.742007545155346,3.0
+data_quality_led,RN,Rio Grande do Norte,Nordeste,25.154112969983277,23.0
+data_quality_led,RO,Rondônia,Norte,34.895536003353556,10.0
+data_quality_led,RR,Roraima,Norte,33.66666666666667,13.0
+data_quality_led,RS,Rio Grande do Sul,Sul,37.373016249227845,4.0
+data_quality_led,SC,Santa Catarina,Sul,26.772558973176203,20.0
+data_quality_led,SE,Sergipe,Nordeste,33.72305819295884,12.0
+data_quality_led,SP,São Paulo,Sudeste,43.93710289602076,2.0
+data_quality_led,TO,Tocantins,Norte,21.869709369926944,26.0
+vulnerability_led,AC,Acre,Norte,31.901230623365684,26.0
+vulnerability_led,AL,Alagoas,Nordeste,34.47028330539754,24.0
+vulnerability_led,AM,Amazonas,Norte,49.16896983765216,5.0
+vulnerability_led,AP,Amapá,Norte,48.29571230364642,8.0
+vulnerability_led,BA,Bahia,Nordeste,40.642785241887665,16.0
+vulnerability_led,CE,Ceará,Nordeste,42.22459184534616,14.0
+vulnerability_led,DF,Distrito Federal,Centro-Oeste,59.218060531034546,1.0
+vulnerability_led,ES,Espírito Santo,Sudeste,41.9234863273872,15.0
+vulnerability_led,GO,Goiás,Centro-Oeste,48.47714407586853,6.0
+vulnerability_led,MA,Maranhão,Nordeste,35.83211518237567,21.0
+vulnerability_led,MG,Minas Gerais,Sudeste,39.54438138896052,18.0
+vulnerability_led,MS,Mato Grosso do Sul,Centro-Oeste,46.557251102438904,10.0
+vulnerability_led,MT,Mato Grosso,Centro-Oeste,40.469976311750756,17.0
+vulnerability_led,PA,Pará,Norte,48.42558544824469,7.0
+vulnerability_led,PB,Paraíba,Nordeste,27.362378996566893,27.0
+vulnerability_led,PE,Pernambuco,Nordeste,38.54997074324204,19.0
+vulnerability_led,PI,Piauí,Nordeste,34.672730019181806,23.0
+vulnerability_led,PR,Paraná,Sul,46.455658393234536,11.0
+vulnerability_led,RJ,Rio de Janeiro,Sudeste,52.386445741259514,3.0
+vulnerability_led,RN,Rio Grande do Norte,Nordeste,34.69286317393171,22.0
+vulnerability_led,RO,Rondônia,Norte,48.16630824186774,9.0
+vulnerability_led,RR,Roraima,Norte,44.82870370370371,12.0
+vulnerability_led,RS,Rio Grande do Sul,Sul,49.32686240307399,4.0
+vulnerability_led,SC,Santa Catarina,Sul,37.49754501901787,20.0
+vulnerability_led,SE,Sergipe,Nordeste,43.87226990467056,13.0
+vulnerability_led,SP,São Paulo,Sudeste,57.16277826232113,2.0
+vulnerability_led,TO,Tocantins,Norte,32.246953426210304,25.0

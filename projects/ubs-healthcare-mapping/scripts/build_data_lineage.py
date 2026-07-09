@@ -25,6 +25,8 @@ DEFAULT_FILES = [
     "data/enriched/uf_ubs_territory_summary.csv",
     "data/enriched/uf_ubs_aps_coverage_summary.csv",
     "data/enriched/priority_sensitivity_uf_scores.csv",
+    "data/enriched/robust_priority_index_uf.csv",
+    "data/enriched/robust_priority_sensitivity_uf.csv",
 ]
 
 

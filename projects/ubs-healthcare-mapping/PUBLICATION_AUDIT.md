@@ -13,6 +13,7 @@ O que ele sustenta bem:
 - cobertura potencial APS ponderada por populacao;
 - qualidade cadastral das coordenadas;
 - proxy operacional com CNES/ST e SIA/SUS PA;
+- indice robusto com sensibilidade por cenarios;
 - triagem de UFs e municipios que merecem investigacao.
 
 O que ele ainda nao sustenta:
@@ -30,7 +31,8 @@ O que ele ainda nao sustenta:
 | Join IBGE/SIDRA | UBS usava codigo municipal de 6 digitos e IBGE/SIDRA usavam 7 | pipeline mantem as duas chaves e junta corretamente |
 | Area territorial | parser podia inflar valores do SIDRA | parser preserva ponto decimal e aceita formato brasileiro |
 | Coordenadas | havia apenas checagem ampla de latitude/longitude | agora ha auditoria por UF e validacao point-in-polygon com malhas municipais do IBGE |
-| Operacao da UBS | cadastro era tratado apenas como presenca fisica | agora ha proxy operacional com CNES/ST mais recente e producao SIA/SUS PA |
+| Operacao da UBS | cadastro era tratado apenas como presenca fisica | agora ha proxy operacional com CNES/ST mais recente e producao SIA/SUS PA em 3 competencias recentes |
+| Prioridade territorial | havia score simples e sensibilidade separada | agora ha indice robusto com 5 componentes e 5 cenarios de pesos |
 | Sintese por UF | havia risco de grupo nulo | linhas sem UF ficam documentadas, mas saem da agregacao por UF |
 | Cobertura APS | media simples municipal podia enganar | sintese usa cobertura ponderada, capada e excesso nominal |
 | Atualidade da APS | arquivo manual antigo | extracao oficial via endpoint publico, competencia `04/2026` |
@@ -67,11 +69,21 @@ Resultado atual:
 | Status | Registros |
 |---|---:|
 | Presente no CNES/ST mais recente | 43.578 |
-| Com producao SIA/PA recente | 7.145 |
-| Com CNES/ST e producao SIA/PA recente | 7.144 |
+| Com producao SIA/PA em 3 competencias recentes | 11.335 |
+| Com CNES/ST e producao SIA/PA em 3 competencias recentes | 11.333 |
 | Cadastro do projeto sem sinal atual CNES/ST ou SIA/PA | 4.135 |
 
-Leitura correta: esse e um sinal de atividade registrada, nao uma auditoria de funcionamento. O SIA/SUS PA e uma base de producao/faturamento; ausencia de registro no mes mais recente pode refletir atraso, centralizacao de producao, regra local de registro ou producao vinculada a outro CNES.
+Leitura correta: esse e um sinal de atividade registrada, nao uma auditoria de funcionamento. O SIA/SUS PA e uma base de producao/faturamento; ausencia de registro em 3 competencias recentes pode refletir atraso, centralizacao de producao, regra local de registro ou producao vinculada a outro CNES.
+
+## Indice robusto
+
+O script `robust_priority_index.py` combina UBS por populacao, cobertura APS, atividade recente, qualidade espacial e vulnerabilidade territorial proxy. Ele gera:
+
+- `robust_priority_index_uf.csv`
+- `robust_priority_sensitivity_uf.csv`
+- grafico `09_robust_priority_index.png`
+
+Top 3 no cenario balanceado: DF, SP e RJ. Os tres permanecem estaveis nos cenarios de sensibilidade. A proxy de vulnerabilidade usada aqui e territorial, baseada em densidade populacional e dispersao de UBS; ela nao substitui indicadores socioeconomicos diretos.
 
 ## Fragilidades que continuam
 
@@ -79,7 +91,7 @@ Leitura correta: esse e um sinal de atividade registrada, nao uma auditoria de f
 - A competencia APS mais recente foi obtida em 2026-07-07; para uso operacional, a extracao deve ser refeita no dia da analise.
 - A serie temporal APS ainda esta no nivel Brasil; falta serie por UF ou municipio.
 - O score de prioridade continua sendo triagem exploratoria. A sensibilidade ajuda, mas nao transforma o score em ranking oficial.
-- A analise ainda nao integra vulnerabilidade social, distancias reais por rede viaria ou producao ambulatorial recente.
+- A analise ainda nao integra vulnerabilidade socioeconomica direta nem distancias reais por rede viaria.
 
 ## Verificacoes executadas
 
@@ -103,7 +115,8 @@ python projects/ubs-healthcare-mapping/scripts/enrich_with_aps_coverage.py \
 python projects/ubs-healthcare-mapping/scripts/priority_sensitivity_analysis.py
 python projects/ubs-healthcare-mapping/scripts/coordinate_quality_audit.py
 python projects/ubs-healthcare-mapping/scripts/validate_ubs_municipal_geometry.py
-python projects/ubs-healthcare-mapping/scripts/fetch_ubs_operational_status.py
+python projects/ubs-healthcare-mapping/scripts/fetch_ubs_operational_status.py --sia-month-window 3
+python projects/ubs-healthcare-mapping/scripts/robust_priority_index.py
 python projects/ubs-healthcare-mapping/scripts/generate_report_assets.py
 python projects/ubs-healthcare-mapping/scripts/build_dashboard_data.py
 python projects/ubs-healthcare-mapping/scripts/build_data_lineage.py
@@ -115,8 +128,8 @@ Resultado esperado: testes passando, scripts compilando e dashboard renderizando
 
 ## Proximo salto de qualidade
 
-1. Ampliar o SIA/SUS para janela de 3 a 6 meses e investigar outros blocos de producao.
+1. Ampliar o SIA/SUS para 6 meses e investigar outros blocos de producao.
 2. Integrar equipes CNES por competencia.
 3. Criar serie temporal APS por UF ou municipio.
-4. Adicionar vulnerabilidade socioeconomica e estimativas de distancia/acesso.
+4. Adicionar vulnerabilidade socioeconomica direta e estimativas de distancia/acesso.
 5. Revisar os 2.062 registros fora do poligono municipal declarado.

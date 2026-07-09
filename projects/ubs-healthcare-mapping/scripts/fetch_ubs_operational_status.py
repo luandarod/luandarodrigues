@@ -11,7 +11,6 @@ from __future__ import annotations
 import argparse
 import json
 import re
-import shutil
 import tempfile
 from collections import defaultdict
 from datetime import UTC, datetime
@@ -61,6 +60,23 @@ def discover_latest_files(ftp: FTP, remote_dir: str, prefix: str) -> dict[str, s
         if current is None or yymm > current[0] or (yymm == current[0] and name > current[1]):
             latest[uf] = (yymm, name)
     return {uf: name for uf, (_yymm, name) in latest.items()}
+
+
+def discover_recent_files(ftp: FTP, remote_dir: str, prefix: str, month_window: int) -> dict[str, list[str]]:
+    ftp.cwd(remote_dir)
+    names = ftp.nlst()
+    by_uf: dict[str, list[tuple[str, str]]] = defaultdict(list)
+    pattern = re.compile(rf"^{prefix}([A-Z]{{2}})(\d{{4}})[a-z]?\.dbc$", re.IGNORECASE)
+    for name in names:
+        match = pattern.match(name)
+        if not match:
+            continue
+        uf, yymm = match.groups()
+        by_uf[uf].append((yymm, name))
+    return {
+        uf: [name for _yymm, name in sorted(files, reverse=True)[:month_window]]
+        for uf, files in by_uf.items()
+    }
 
 
 def download_file(ftp: FTP, remote_dir: str, name: str, output_dir: Path) -> Path:
@@ -144,12 +160,14 @@ def process_sia_pa(dbf_path: Path, target_cnes: set[str]) -> dict[str, dict[str,
         quantities[cnes] += numeric(row.get("PA_QTDPRO"))
         values[cnes] += numeric(row.get("PA_VALPRO"))
         municipality[cnes] = row.get("PA_UFMUN")
-        competence[cnes] = row.get("PA_CMP")
+        current_competence = row.get("PA_CMP")
+        previous = competence.get(cnes)
+        competence[cnes] = max([value for value in [previous, current_competence] if value])
 
     return {
         cnes: {
             "sia_recent_production": True,
-            "sia_competence": competence.get(cnes),
+            "sia_latest_competence": competence.get(cnes),
             "sia_municipality": municipality.get(cnes),
             "sia_records": rows[cnes],
             "sia_quantity": quantities[cnes],
@@ -157,6 +175,24 @@ def process_sia_pa(dbf_path: Path, target_cnes: set[str]) -> dict[str, dict[str,
         }
         for cnes in rows
     }
+
+
+def merge_sia_status(base: dict[str, dict[str, object]], update: dict[str, dict[str, object]]) -> None:
+    for cnes, info in update.items():
+        if cnes not in base:
+            merged = info.copy()
+            merged["sia_competence_count"] = 1
+            base[cnes] = merged
+            continue
+        current = base[cnes]
+        current["sia_recent_production"] = True
+        current["sia_records"] = int(current.get("sia_records", 0)) + int(info.get("sia_records", 0))
+        current["sia_quantity"] = float(current.get("sia_quantity", 0.0)) + float(info.get("sia_quantity", 0.0))
+        current["sia_value"] = float(current.get("sia_value", 0.0)) + float(info.get("sia_value", 0.0))
+        current["sia_latest_competence"] = max(
+            [value for value in [current.get("sia_latest_competence"), info.get("sia_latest_competence")] if value]
+        )
+        current["sia_competence_count"] = int(current.get("sia_competence_count", 1)) + 1
 
 
 def status_label(cnes_present: bool, sia_present: bool) -> str:
@@ -176,13 +212,12 @@ def build_operational_status(
     output_metadata: Path,
     work_dir: Path | None = None,
     keep_raw: bool = False,
+    sia_month_window: int = 6,
 ) -> None:
     ubs = add_region(normalize_columns(read_ubs_csv(ubs_path)))
     ubs["cnes"] = ubs["cnes"].map(normalize_cnes)
     ubs = ubs.loc[ubs["cnes"].ne("")].copy()
     target_by_uf = {uf: set(ubs.loc[ubs["uf_sigla"].eq(uf), "cnes"]) for uf in UFS}
-    all_cnes = set(ubs["cnes"])
-
     temp_context = tempfile.TemporaryDirectory() if work_dir is None else None
     raw_dir = Path(temp_context.name if temp_context else work_dir)
     raw_dir.mkdir(parents=True, exist_ok=True)
@@ -194,7 +229,7 @@ def build_operational_status(
     ftp = FTP("ftp.datasus.gov.br", timeout=120)
     ftp.login()
     cnes_files = discover_latest_files(ftp, CNES_ST_DIR, "ST")
-    sia_files = discover_latest_files(ftp, SIA_PA_DIR, "PA")
+    sia_files = discover_recent_files(ftp, SIA_PA_DIR, "PA", sia_month_window)
 
     try:
         for uf in UFS:
@@ -202,29 +237,33 @@ def build_operational_status(
             if not uf_targets:
                 continue
 
-            for source, remote_dir, files, processor, sink in [
-                ("CNES_ST", CNES_ST_DIR, cnes_files, process_cnes_st, cnes_rows),
-                ("SIA_PA", SIA_PA_DIR, sia_files, process_sia_pa, sia_rows),
+            for source, remote_dir, names, processor, sink in [
+                ("CNES_ST", CNES_ST_DIR, [cnes_files.get(uf)] if cnes_files.get(uf) else [], process_cnes_st, cnes_rows),
+                ("SIA_PA", SIA_PA_DIR, sia_files.get(uf, []), process_sia_pa, sia_rows),
             ]:
-                name = files.get(uf)
-                if not name:
-                    continue
-                source_dir = raw_dir / source.lower()
-                dbc_path = download_file(ftp, remote_dir, name, source_dir)
-                dbf_path = convert_to_dbf(dbc_path)
-                sink.update(processor(dbf_path, uf_targets))
-                processed_files.append(
-                    {
-                        "source": source,
-                        "uf": uf,
-                        "file": name,
-                        "compressed_bytes": dbc_path.stat().st_size,
-                        "dbf_bytes": dbf_path.stat().st_size,
-                    }
-                )
-                if not keep_raw:
-                    dbc_path.unlink(missing_ok=True)
-                    dbf_path.unlink(missing_ok=True)
+                for name in names:
+                    if not name:
+                        continue
+                    source_dir = raw_dir / source.lower()
+                    dbc_path = download_file(ftp, remote_dir, name, source_dir)
+                    dbf_path = convert_to_dbf(dbc_path)
+                    processed = processor(dbf_path, uf_targets)
+                    if source == "SIA_PA":
+                        merge_sia_status(sink, processed)
+                    else:
+                        sink.update(processed)
+                    processed_files.append(
+                        {
+                            "source": source,
+                            "uf": uf,
+                            "file": name,
+                            "compressed_bytes": dbc_path.stat().st_size,
+                            "dbf_bytes": dbf_path.stat().st_size,
+                        }
+                    )
+                    if not keep_raw:
+                        dbc_path.unlink(missing_ok=True)
+                        dbf_path.unlink(missing_ok=True)
     finally:
         ftp.quit()
         if temp_context is not None:
@@ -234,7 +273,16 @@ def build_operational_status(
     for row in ubs[["cnes", "uf_sigla", "region", "ibge", "nome"]].drop_duplicates("cnes").itertuples(index=False):
         cnes = row.cnes
         cnes_info = cnes_rows.get(cnes, {"cnes_present_latest_st": False})
-        sia_info = sia_rows.get(cnes, {"sia_recent_production": False, "sia_records": 0, "sia_quantity": 0.0, "sia_value": 0.0})
+        sia_info = sia_rows.get(
+            cnes,
+            {
+                "sia_recent_production": False,
+                "sia_records": 0,
+                "sia_quantity": 0.0,
+                "sia_value": 0.0,
+                "sia_competence_count": 0,
+            },
+        )
         cnes_present = bool(cnes_info.get("cnes_present_latest_st"))
         sia_present = bool(sia_info.get("sia_recent_production"))
         rows.append(
@@ -280,11 +328,12 @@ def build_operational_status(
 
     metadata = {
         "generated_at_utc": datetime.now(UTC).isoformat(),
-        "method": "CNES active proxy is presence in the latest CNES ST file. Recent production signal is presence in the latest SIA/SUS PA file.",
+        "method": "CNES active proxy is presence in the latest CNES ST file. Recent production signal is presence in SIA/SUS PA files over the selected competence window.",
         "cnes_source_dir": CNES_ST_DIR,
         "sia_source_dir": SIA_PA_DIR,
         "cnes_latest_files": cnes_files,
-        "sia_latest_files": sia_files,
+        "sia_month_window": sia_month_window,
+        "sia_recent_files": sia_files,
         "ubs_records": int(len(status)),
         "cnes_active_proxy_records": int(status["cnes_present_latest_st"].sum()),
         "recent_sia_production_records": int(status["sia_recent_production"].sum()),
@@ -292,7 +341,7 @@ def build_operational_status(
             status["operational_status"].eq("cadastral_active_with_recent_sia_production").sum()
         ),
         "processed_files": processed_files,
-        "important_limit": "SIA/SUS PA is a billing/production record, not direct proof of service quality, opening hours or team availability. Lack of recent PA production may reflect reporting lag or local recording practices.",
+        "important_limit": "SIA/SUS PA is a billing/production record, not direct proof of service quality, opening hours or team availability. Lack of PA production in the selected window may reflect reporting lag or local recording practices.",
     }
     output_metadata.write_text(json.dumps(metadata, indent=2, ensure_ascii=False), encoding="utf-8")
 
@@ -305,6 +354,7 @@ def main() -> None:
     parser.add_argument("--metadata", default="projects/ubs-healthcare-mapping/data/ubs_operational_status_metadata.json")
     parser.add_argument("--work-dir", default=None)
     parser.add_argument("--keep-raw", action="store_true")
+    parser.add_argument("--sia-month-window", type=int, default=3)
     args = parser.parse_args()
 
     build_operational_status(
@@ -314,6 +364,7 @@ def main() -> None:
         Path(args.metadata),
         Path(args.work_dir) if args.work_dir else None,
         args.keep_raw,
+        args.sia_month_window,
     )
     print(f"Saved UBS operational status to {args.output_cnes} and {args.output_by_uf}")
 

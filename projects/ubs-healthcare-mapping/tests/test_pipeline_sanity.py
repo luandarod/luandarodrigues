@@ -95,6 +95,7 @@ class PipelineSanityTests(unittest.TestCase):
         lineage = pd.read_csv(DATA_DIR / "data_lineage_manifest.csv")
         spatial = pd.read_csv(DATA_DIR / "spatial_validation_by_uf.csv")
         operational = pd.read_csv(DATA_DIR / "ubs_operational_status_by_uf.csv")
+        robust = pd.read_csv(ENRICHED_DIR / "robust_priority_index_uf.csv")
 
         self.assertGreaterEqual(len(timeseries), 60)
         self.assertIn("coverage_weighted_pct", timeseries.columns)
@@ -119,6 +120,15 @@ class PipelineSanityTests(unittest.TestCase):
             }.issubset(operational.columns)
         )
         self.assertGreater(int(operational["cnes_active_proxy"].sum()), 40000)
+        self.assertGreater(int(operational["recent_sia_production"].sum()), 10000)
+        self.assertEqual(len(robust), 27)
+        self.assertTrue(
+            {
+                "robust_priority_balanced",
+                "territorial_vulnerability_proxy",
+                "priority_stability_flag",
+            }.issubset(robust.columns)
+        )
 
 
 if __name__ == "__main__":
