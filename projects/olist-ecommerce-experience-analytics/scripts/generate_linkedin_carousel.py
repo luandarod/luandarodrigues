@@ -140,12 +140,12 @@ def load_metrics(project_dir: Path) -> dict:
 
 def slide_1(m):
     img, d = base_slide(1)
-    kicker(d, "Marketplace operations")
-    big_serif(d, ["Quando a", "entrega vira", "review ruim"], 210, 96)
+    kicker(d, "Marketplace / customer experience")
+    big_serif(d, ["A nota baixa", "nasce antes", "do review"], 205, 94)
     draw_wrapped(
         d,
-        "Peguei 99.441 pedidos da Olist para olhar uma coisa simples: em que ponto a entrega começa a azedar o review?",
-        (84, 690),
+        "Antes do comentário aparecer, o pedido já passou por uma fila de pequenos atritos: prazo, frete, distância, categoria e espera.",
+        (84, 700),
         820,
         font(34, "sans"),
         fill=MUTED,
@@ -159,13 +159,13 @@ def slide_1(m):
 
 def slide_2(m):
     img, d = base_slide(2)
-    kicker(d, "A pergunta")
-    big_serif(d, ["A média", "esconde o", "problema"], 205, 94)
+    kicker(d, "Primeira leitura")
+    big_serif(d, ["A média", "parece", "tranquila"], 205, 94)
     d.text((84, 595), "4,09", font=font(128, "mono", True), fill=INK)
     d.text((88, 735), "nota média parece saudável", font=font(34, "sans", True), fill=INK)
     draw_wrapped(
         d,
-        "Só que média alisa o problema. O incômodo aparece quando o pedido atrasa, cruza estado, pesa no frete e chega com cara de experiência ruim.",
+        "O agregado passa uma sensação de ordem. Mas pedido não sofre na média. Ele sofre no caminho, no prazo e no custo que o cliente sente.",
         (88, 815),
         820,
         font(34, "sans"),
@@ -177,20 +177,21 @@ def slide_2(m):
 
 def slide_3(m):
     img, d = base_slide(3)
-    kicker(d, "O sinal operacional")
-    big_serif(d, ["A distância", "aparece", "na conta"], 180, 92)
-    d.text((95, 590), "Mesmo estado", font=font(28, "mono", True), fill=INK)
+    kicker(d, "O caminho")
+    big_serif(d, ["O pedido", "muda quando", "cruza estado"], 165, 86)
+    d.text((95, 560), "Mesmo estado", font=font(28, "mono", True), fill=INK)
     same_value = f"{m['same_days']:.1f}".replace(".", ",")
-    d.text((95, 638), same_value, font=font(92, "mono", True), fill=SAGE_DARK)
-    d.text((95 + int(d.textlength(same_value, font=font(92, "mono", True))) + 26, 668), "dias", font=font(32, "sans"), fill=MUTED)
-    d.text((95, 760), "Estados diferentes", font=font(28, "mono", True), fill=INK)
+    d.text((95, 608), same_value, font=font(92, "mono", True), fill=SAGE_DARK)
+    d.text((95 + int(d.textlength(same_value, font=font(92, "mono", True))) + 26, 638), "dias", font=font(32, "sans"), fill=MUTED)
+    d.line((98, 745, 850, 745), fill=LINE, width=3)
+    d.text((95, 790), "Estados diferentes", font=font(28, "mono", True), fill=INK)
     cross_value = f"{m['cross_days']:.1f}".replace(".", ",")
-    d.text((95, 808), cross_value, font=font(92, "mono", True), fill=RUST)
-    d.text((95 + int(d.textlength(cross_value, font=font(92, "mono", True))) + 26, 838), "dias", font=font(32, "sans"), fill=MUTED)
+    d.text((95, 838), cross_value, font=font(92, "mono", True), fill=RUST)
+    d.text((95 + int(d.textlength(cross_value, font=font(92, "mono", True))) + 26, 868), "dias", font=font(32, "sans"), fill=MUTED)
     draw_wrapped(
         d,
-        f"No mesmo estado, o frete médio fica em {br_money(m['same_freight'])}. Entre estados, sobe para {br_money(m['cross_freight'])}.",
-        (95, 965),
+        f"O frete acompanha: {br_money(m['same_freight'])} no mesmo estado e {br_money(m['cross_freight'])} quando a entrega atravessa UF.",
+        (95, 1030),
         800,
         font(32, "sans"),
         fill=MUTED,
@@ -201,8 +202,8 @@ def slide_3(m):
 
 def slide_4(m):
     img, d = base_slide(4)
-    kicker(d, "O modelo confirma")
-    big_serif(d, ["O atraso", "aparece", "primeiro"], 165, 96)
+    kicker(d, "Rastros antes da nota")
+    big_serif(d, ["O modelo", "achou o", "incômodo"], 165, 96)
     features = list(m["features"].itertuples())
     max_value = max(row.importance for row in features)
     labels = {
@@ -219,7 +220,7 @@ def slide_4(m):
         bar(d, 95, y, 590, row.importance, max_value, color=SAGE_DARK if i < 2 else WARM, label=label, digits=2)
     draw_wrapped(
         d,
-        "Não usei o modelo para decidir pelo cliente. Usei para ver quais sinais aparecem antes da nota baixa.",
+        "Atraso e tempo total aparecem na frente. Não é surpresa, mas é bom quando o dado confirma a parte menos glamourosa da operação.",
         (95, 1100),
         800,
         font(30, "sans"),
@@ -231,8 +232,8 @@ def slide_4(m):
 
 def slide_5(m):
     img, d = base_slide(5)
-    kicker(d, "Categorias sob pressão")
-    big_serif(d, ["Volume alto", "também pode", "carregar atrito"], 155, 86)
+    kicker(d, "Nem todo atrito é igual")
+    big_serif(d, ["Algumas", "categorias já", "chegam tensas"], 155, 86)
     categories = list(m["categories"].itertuples())
     max_rate = max(row.low_review_rate for row in categories)
     names = {
@@ -248,7 +249,7 @@ def slide_5(m):
         bar(d, 95, y, 560, row.low_review_rate * 100, max_rate * 100, color=RUST, label=label, suffix="%")
     draw_wrapped(
         d,
-        "Aqui tem uma fila de atenção: categoria com volume alto, expectativa difícil e mais chance de nota baixa.",
+        "Volume sozinho não explica. Algumas categorias misturam expectativa, frete, prazo e chance maior de nota baixa.",
         (95, 1075),
         820,
         font(30, "sans"),
@@ -260,13 +261,13 @@ def slide_5(m):
 
 def slide_6(m):
     img, d = base_slide(6)
-    kicker(d, "Resposta prática")
-    big_serif(d, ["O modelo", "não é o", "começo"], 160, 88)
+    kicker(d, "O que eu faria com isso")
+    big_serif(d, ["O score", "não manda", "sozinho"], 160, 88)
     items = [
-        ("01", "ver atraso antes da reclamação"),
-        ("02", "separar entregas interestaduais"),
-        ("03", "olhar categorias que acumulam atrito"),
-        ("04", "criar scorecards de seller"),
+        ("01", "puxar atraso para o começo da tela"),
+        ("02", "separar rota interestadual"),
+        ("03", "abrir categoria antes do total"),
+        ("04", "cruzar seller, entrega e review"),
     ]
     for i, (num, text) in enumerate(items):
         y = 575 + i * 112
@@ -278,11 +279,11 @@ def slide_6(m):
 
 def slide_7(m):
     img, d = base_slide(7)
-    kicker(d, "Conclusão")
-    big_serif(d, ["A resposta", "passa pela", "logística"], 170, 94)
+    kicker(d, "Fechamento")
+    big_serif(d, ["O review", "é o fim da", "história"], 170, 94)
     draw_wrapped(
         d,
-        "O projeto não tenta reduzir o cliente a um score. Ele mostra onde a operação deixa marcas: atraso, distância, frete, categoria e complexidade do pedido.",
+        "A experiência começa antes: no prazo prometido, no custo do frete, na distância percorrida e na complexidade do pedido.",
         (90, 590),
         820,
         font(36, "sans"),
@@ -293,7 +294,7 @@ def slide_7(m):
     d.text((90, 945), f"ROC-AUC {m['rf'].roc_auc:.3f}".replace(".", ","), font=font(60, "mono", True), fill=SAGE_DARK)
     draw_wrapped(
         d,
-        "O score ajuda, mas não manda. A leitura boa é encontrar risco operacional antes que ele vire insatisfação.",
+        "O modelo ajuda a encontrar rastros. A decisão boa ainda é operacional: agir antes que o cliente precise escrever a reclamação.",
         (90, 1040),
         820,
         font(30, "sans"),

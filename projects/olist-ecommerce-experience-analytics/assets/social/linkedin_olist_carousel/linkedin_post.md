@@ -1,28 +1,39 @@
-Peguei o dataset público da Olist porque queria olhar um problema bem pé no chão:
+A nota baixa do cliente raramente nasce no momento em que ele escreve o review.
 
-em que ponto uma compra online começa a virar experiência ruim?
+Ela começa antes.
 
-A base tem 99.441 pedidos do marketplace brasileiro. Dá para cruzar entrega, frete, seller, categoria, pagamento e review. O tipo de dado que parece simples até você tentar juntar tudo numa leitura só.
+No pedido que atravessa estado.
+No frete que fica pesado para uma entrega lenta.
+No pacote que demora mais do que deveria.
+Na categoria em que expectativa e logística já chegam meio desalinhadas.
 
-A primeira média engana um pouco. O review médio fica em 4,09.
+Foi isso que fui procurar no dataset público da Olist.
 
-Bonito.
+A base tem 99.441 pedidos do marketplace brasileiro. No agregado, tudo parece razoável: review médio de 4,09. Só que média é uma superfície lisa. Ela não mostra onde a operação arranha.
 
-Só que a operação aparece nas bordas. Entregas no mesmo estado levaram, em média, 7,9 dias. Entregas entre estados foram para 15,0 dias. O frete médio saiu de R$ 13 para R$ 24 quando a entrega virou interestadual.
+Quando separei as entregas, a diferença apareceu rápido.
 
-Aí a história muda de tom.
+Pedidos dentro do mesmo estado levaram, em média, 7,9 dias.
+Pedidos entre estados foram para 15,0 dias.
 
-Quando treinei um modelo para risco de review baixo, os sinais mais fortes vieram do caminho logístico: atraso, tempo total de entrega, quantidade de itens, frete, categoria e localização do cliente.
+O frete médio também mudou de patamar: R$ 13 no mesmo estado contra R$ 24 em entregas interestaduais.
 
-Não li isso como “vamos prever o cliente”.
+Depois treinei um modelo para risco de review baixo. O ponto não era "prever o cliente". Cliente não é uma célula obediente numa tabela.
 
-Cliente não é variável obediente.
+Eu queria ver quais sinais apareciam antes da insatisfação.
 
-Li como uma forma de enxergar onde a operação começa a deixar rastro antes da reclamação aparecer. Atraso. Distância. Pedido mais complexo. Categoria que já carrega expectativa difícil.
+E eles vieram do caminho logístico: atraso, tempo total de entrega, quantidade de itens, frete, categoria e localização do cliente.
 
-O Random Forest chegou a ROC-AUC de 0,759. Útil, mas não mágico. A parte que eu mais usaria numa operação real não é o score isolado. É a fila de atenção que sai dele: olhar atraso cedo, separar entregas interestaduais, acompanhar categorias com volume e atrito, e montar scorecards de seller juntando entrega e review.
+O Random Forest chegou a ROC-AUC de 0,759. Bom o bastante para servir como camada de leitura. Não bom o bastante para virar decisão automática.
 
-No fim, a satisfação do cliente não quebra só no atendimento.
+A parte útil está em outra coisa: transformar review ruim em fila de investigação operacional.
+
+Olhar atraso antes da reclamação.
+Separar entregas interestaduais.
+Acompanhar categorias com volume e atrito.
+Juntar seller, entrega e review no mesmo scorecard.
+
+A satisfação do cliente não quebra só no atendimento.
 
 Às vezes ela começa a quebrar no caminho até a porta.
 
