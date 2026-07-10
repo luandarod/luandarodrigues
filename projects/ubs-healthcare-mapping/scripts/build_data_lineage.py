@@ -29,6 +29,7 @@ DEFAULT_FILES = [
     "data/enriched/priority_sensitivity_uf_scores.csv",
     "data/enriched/robust_priority_index_uf.csv",
     "data/enriched/robust_priority_sensitivity_uf.csv",
+    "data/enriched/municipality_pharmacy_access_gap.csv",
 ]
 
 

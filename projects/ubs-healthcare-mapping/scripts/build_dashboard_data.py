@@ -58,6 +58,9 @@ def build_dashboard_data(project_dir: Path, dashboard_dir: Path) -> None:
         pharmacy_file = project_dir / "data" / name
         if pharmacy_file.exists():
             shutil.copy2(pharmacy_file, dst / name)
+    gap_file = src / "municipality_pharmacy_access_gap.csv"
+    if gap_file.exists():
+        shutil.copy2(gap_file, dst / gap_file.name)
 
 
 def main() -> None:

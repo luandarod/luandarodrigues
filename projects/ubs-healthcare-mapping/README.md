@@ -171,6 +171,8 @@ python projects/ubs-healthcare-mapping/scripts/build_pharmacy_layer.py \
   caminho/para/farmacias.csv \
   --output-dir projects/ubs-healthcare-mapping/data
 
+python projects/ubs-healthcare-mapping/scripts/analyze_pharmacy_access_gap.py
+
 # Copia os artefatos versionados para o dashboard:
 python projects/ubs-healthcare-mapping/scripts/build_dashboard_data.py
 ```
@@ -184,6 +186,8 @@ O importador aceita CSV ou XLSX e reconhece variantes comuns de colunas oficiais
 - `data/pharmacies.geojson`: somente pontos com coordenadas plausiveis no Brasil.
 
 O arquivo oficial de entrada nao e baixado automaticamente porque o endereco e o formato de publicacao podem mudar. A competencia, a URL e a data de download devem ser registradas junto ao arquivo de origem. Credenciamento indica presenca cadastral no programa; nao comprova estoque, horario de funcionamento ou disponibilidade de todos os medicamentos.
+
+O arquivo `data/enriched/municipality_pharmacy_access_gap.csv` identifica municipios no terco inferior de UBS por 100 mil habitantes e, ao mesmo tempo, no terco superior de farmacias por 100 mil. O sinal `doctor_harder_pharmacy_easier` e uma proxy de descompasso cadastral, nao uma afirmacao sobre tempo real de viagem. Para medir dificuldade de deslocamento serao necessarios grade populacional, rede viaria e tempos de rota.
 
 Testes de sanidade:
 
@@ -228,6 +232,7 @@ projects/ubs-healthcare-mapping/
 |       `-- robust_priority_sensitivity_uf.csv
 |-- scripts/
 |   |-- analyze_ubs.py
+|   |-- analyze_pharmacy_access_gap.py
 |   |-- build_dashboard_data.py
 |   |-- build_data_lineage.py
 |   |-- build_pharmacy_layer.py
