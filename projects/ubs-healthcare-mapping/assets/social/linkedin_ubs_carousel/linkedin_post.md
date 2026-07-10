@@ -1,33 +1,31 @@
-Eu queria que esse projeto respondesse uma pergunta, nao apenas mostrasse um painel:
+Eu comecei esse projeto tentando responder uma pergunta bem prática:
 
-com os dados publicos disponiveis, onde vale investigar primeiro a rede de UBS?
+com os dados públicos que existem hoje, onde faz sentido investigar primeiro a rede de UBS?
 
-A resposta que encontrei nao e "onde tem menos UBS". Isso seria simples demais e provavelmente errado.
+Não era para virar só um painel com números. Painel mostra. Eu queria que a análise ajudasse a decidir.
 
-A resposta mais defensavel e procurar territorios onde varios sinais entram em tensao ao mesmo tempo: quantidade de UBS por populacao, cobertura potencial da APS, atividade recente, qualidade das coordenadas e uma proxy territorial de vulnerabilidade.
+A resposta também não podia ser “onde tem menos UBS”. Isso seria rápido, mas frágil. Uma unidade cadastrada não garante acesso. Uma coordenada no mapa não garante que o ponto esteja certo. E ausência de produção recente no SIA/SUS não prova que uma UBS esteja fechada.
 
-Alguns achados mudaram a leitura:
+Então eu fui montando a leitura por camadas.
 
-47.714 UBS aparecem no cadastro analisado.
+Primeiro, o cadastro: 47.714 UBS.
 
-43.717 estao dentro do municipio declarado, o que da 91,6%. Mas 2.062 tinham coordenada valida no Brasil e, ainda assim, caiam fora do poligono municipal informado.
+Depois, território. Das unidades analisadas, 43.717 caem dentro do município declarado, o que dá 91,6%. Mas 2.062 tinham coordenada válida no Brasil e, ainda assim, apareciam fora do polígono municipal informado.
 
-43.578 aparecem no CNES/ST mais recente.
+Depois, sinal operacional. 43.578 aparecem no CNES/ST mais recente. Já 11.333 combinam presença cadastral recente com produção ambulatorial registrada no SIA/SUS em 3 competências.
 
-11.333 combinam presenca no CNES/ST com producao ambulatorial registrada no SIA/SUS em 3 competencias recentes.
+Por fim, cruzei isso com UBS por população, cobertura potencial da APS, qualidade espacial e uma proxy territorial de vulnerabilidade.
 
-Quando juntei essas camadas num indice robusto de prioridade, DF, SP e RJ apareceram como sinais estaveis no cenario balanceado e tambem nas analises de sensibilidade.
+Quando rodei o índice de prioridade e testei sensibilidade nos pesos, DF, SP e RJ apareceram como sinais estáveis no topo.
 
-Essa e a parte mais importante: isso nao prova falta de acesso. Tambem nao prova que uma UBS sem producao recente esteja fechada. O dado publico nao autoriza esse salto.
+Isso não fecha diagnóstico. E esse cuidado importa.
 
-Mas ele permite uma resposta pratica:
+O que o projeto entrega é uma fila de investigação mais honesta: olhar primeiro para os lugares onde estrutura, atividade recente, cobertura, território e qualidade do dado contam histórias diferentes.
 
-em vez de olhar para o cadastro bruto, da para construir uma fila de auditoria mais inteligente, priorizando os lugares onde estrutura, atividade, cobertura, territorio e qualidade do dado contam historias diferentes.
-
-Foi isso que eu tentei fazer aqui: transformar dados publicos imperfeitos em uma pergunta melhor, uma resposta reproduzivel e limites metodologicos declarados sem maquiagem.
+Para mim, essa é a parte mais interessante da análise de dados aplicada a problema público. O dado raramente vem pronto para responder. A resposta aparece quando a gente cruza, testa, desconfia e declara o limite sem tentar parecer mais certo do que é.
 
 Repo: https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/ubs-healthcare-mapping
 
-Imagem: carrossel com a pergunta, os filtros e a conclusao do projeto.
+Imagem: carrossel com a pergunta, os filtros e a conclusão do projeto.
 
 #DataScience #SaudePublica #AnaliseDeDados #Python #OpenData #SUS #Portfolio

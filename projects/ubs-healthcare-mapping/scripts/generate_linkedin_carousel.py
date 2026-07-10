@@ -153,7 +153,7 @@ def slide_1(m):
     d.text((78, 955), "primeiro?", font=font(116, bold=True, narrow=True), fill=INK)
     draw_wrapped(
         d,
-        "A resposta do projeto: priorizar territorios onde estrutura, atividade recente, cobertura e qualidade do dado entram em tensao.",
+        "A resposta do projeto: priorizar territórios onde estrutura, atividade recente, cobertura e qualidade do dado entram em tensão.",
         (82, 1110),
         820,
         font(30, narrow=True),
@@ -170,19 +170,19 @@ def slide_2(m):
     d.text((86, 390), "registros de UBS", font=font(46, bold=True, narrow=True), fill=INK)
     draw_wrapped(
         d,
-        "Esse numero responde quantas unidades aparecem no cadastro. Nao responde se o ponto esta correto, se ha producao recente ou onde a pressao territorial e maior.",
+        "Esse número responde uma parte pequena da história. Ele não diz se o ponto está correto, se houve produção recente ou onde a pressão territorial pesa mais.",
         (86, 500),
         800,
         font(38, narrow=True),
         fill=MUTED,
         line_gap=14,
     )
-    for i, label in enumerate(["CADASTRO", "TERRITORIO", "APS", "CNES", "SIA"]):
+    for i, label in enumerate(["CADASTRO", "TERRITÓRIO", "APS", "CNES", "SIA"]):
         x = 92 + i * 176
         d.rectangle((x, 815, x + 132, 880), outline=GRID, width=2)
         d.text((x + 18, 834), label, font=font(23, bold=True, narrow=True), fill=TEAL if i else INK)
     line(d, (92, 960, 988, 960), fill=GRID, width=2)
-    d.text((92, 990), "a analise vira resposta quando cada camada reduz uma incerteza", font=font(30, narrow=True), fill=MUTED)
+    d.text((92, 990), "a análise vira resposta quando cada camada reduz uma incerteza", font=font(30, narrow=True), fill=MUTED)
     return img
 
 
@@ -196,7 +196,7 @@ def slide_3(m):
     d.text((90, 650), f"{fmt_int(m['outside'])} fora do polígono municipal", font=font(38, bold=True, narrow=True), fill=RUST)
     draw_wrapped(
         d,
-        "Resposta pratica: antes de ranquear territorio, eu separo o que parece espacialmente consistente do que precisa de auditoria cadastral.",
+        "Resposta prática: antes de ranquear território, eu separo o que parece espacialmente consistente do que precisa de auditoria cadastral.",
         (90, 780),
         820,
         font(34, narrow=True),
@@ -212,12 +212,12 @@ def slide_4(m):
     d.text((90, 205), "CNES/ST", font=font(42, bold=True, narrow=True), fill=INK)
     draw_big_number(d, fmt_pct(m["cnes_pct"]), (90, 260), size=132, fill=INK)
     draw_bar(d, 90, 430, 820, 30, m["cnes_pct"] / 100, fill="#BDB6AA")
-    d.text((90, 525), "SIA/PA em 3 competencias", font=font(42, bold=True, narrow=True), fill=INK)
+    d.text((90, 525), "SIA/PA em 3 competências", font=font(42, bold=True, narrow=True), fill=INK)
     draw_big_number(d, fmt_pct(m["both_pct"]), (90, 580), size=132, fill=TEAL_DARK)
     draw_bar(d, 90, 750, 820, 30, m["both_pct"] / 100, fill=TEAL)
     draw_wrapped(
         d,
-        f"{fmt_int(m['both'])} unidades combinam presenca cadastral recente com producao ambulatorial registrada. A resposta nao e fechar diagnostico: e separar sinal operacional de cadastro puro.",
+        f"{fmt_int(m['both'])} unidades combinam presença cadastral recente com produção ambulatorial registrada. Ainda não é diagnóstico. É um jeito de separar sinal operacional de cadastro puro.",
         (90, 870),
         800,
         font(34, narrow=True),
@@ -229,7 +229,7 @@ def slide_4(m):
 
 def slide_5(m):
     img, d = base_slide(5)
-    d.text((80, 92), "FILTRO 3 / COBERTURA NAO E ACESSO", font=font(24, bold=True, narrow=True), fill=TEAL)
+    d.text((80, 92), "FILTRO 3 / COBERTURA NÃO É ACESSO", font=font(24, bold=True, narrow=True), fill=TEAL)
     draw_big_number(d, fmt_pct(m["aps_cov"]), (78, 220), size=166)
     d.text((86, 395), "APS ponderada por população", font=font(42, bold=True, narrow=True), fill=INK)
     for i in range(12):
@@ -239,7 +239,7 @@ def slide_5(m):
     line(d, (90, 820, 960, 820), fill=GRID, width=2)
     draw_wrapped(
         d,
-        "A resposta aqui e conservadora: cobertura potencial ajuda a priorizar, mas nao substitui deslocamento, capacidade real da equipe ou qualidade do cuidado.",
+        "A leitura aqui precisa ser cuidadosa. Cobertura potencial ajuda a priorizar, mas não substitui deslocamento, equipe em campo ou qualidade do cuidado.",
         (90, 920),
         790,
         font(34, narrow=True),
@@ -252,10 +252,10 @@ def slide_5(m):
 def slide_6(m):
     img, d = base_slide(6)
     d.text((80, 92), "A RESPOSTA OPERACIONAL", font=font(24, bold=True, narrow=True), fill=TEAL)
-    d.text((80, 190), "Indice de", font=font(96, bold=True, narrow=True), fill=INK)
+    d.text((80, 190), "Índice de", font=font(96, bold=True, narrow=True), fill=INK)
     d.text((80, 285), "prioridade", font=font(96, bold=True, narrow=True), fill=INK)
     labels = [
-        "UBS / populacao",
+        "UBS / população",
         "gap APS",
         "atividade recente",
         "qualidade espacial",
@@ -268,7 +268,7 @@ def slide_6(m):
         d.text((150, y + 42), "componente do score", font=font(22, narrow=True), fill=MUTED)
     draw_wrapped(
         d,
-        "O indice nao diz quem esta certo ou errado. Ele transforma dados publicos incompletos numa fila defensavel de investigacao.",
+        "O índice não aponta culpados. Ele organiza dados públicos incompletos numa fila defensável de investigação.",
         (90, 1035),
         790,
         font(32, narrow=True),
@@ -286,7 +286,7 @@ def slide_7(m):
     draw_rank_chart(d, m["top"], x=90, y=350, width=600)
     draw_wrapped(
         d,
-        "DF, SP e RJ aparecem no topo do cenario balanceado e continuam altos quando os pesos mudam. Essa e a resposta publicavel: primeiro investigar os sinais mais estaveis, nao vender certeza falsa.",
+        "DF, SP e RJ aparecem no topo do cenário balanceado e continuam altos quando os pesos mudam. A resposta publicável é esta: investigar primeiro os sinais mais estáveis, sem vender certeza falsa.",
         (90, 875),
         820,
         font(34, narrow=True),
@@ -298,9 +298,9 @@ def slide_7(m):
 
 def slide_8(m):
     img, d = base_slide(8)
-    d.text((80, 92), "CONCLUSAO", font=font(24, bold=True, narrow=True), fill=TEAL)
+    d.text((80, 92), "CONCLUSÃO", font=font(24, bold=True, narrow=True), fill=TEAL)
     d.text((80, 190), "A resposta", font=font(88, bold=True, narrow=True), fill=INK)
-    d.text((80, 280), "e uma fila", font=font(88, bold=True, narrow=True), fill=INK)
+    d.text((80, 280), "é uma fila", font=font(88, bold=True, narrow=True), fill=INK)
     d.text((80, 370), "de auditoria", font=font(88, bold=True, narrow=True), fill=INK)
     items = [
         "equipe ativa por escala",
@@ -314,7 +314,7 @@ def slide_8(m):
         d.text((160, y - 8), item, font=font(34, bold=True, narrow=True), fill=INK)
     draw_wrapped(
         d,
-        "O projeto nao prova falta de acesso. Ele entrega uma resposta acionavel: onde o dado publico recomenda olhar primeiro e quais limites precisam ser declarados.",
+        "O projeto não prova falta de acesso. Ele entrega uma resposta acionável: onde o dado público recomenda olhar primeiro e quais limites precisam aparecer na mesa.",
         (90, 965),
         820,
         font(34, narrow=True),
