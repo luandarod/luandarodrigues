@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import shutil
 from pathlib import Path
 
 import pandas as pd
@@ -50,6 +51,13 @@ def build_dashboard_data(project_dir: Path, dashboard_dir: Path) -> None:
     pd.read_csv(src / "region_ubs_territory_summary.csv").to_csv(dst / "region_ubs_territory_summary.csv", index=False)
     pd.read_csv(src / "aps_coverage_normalized.csv").to_csv(dst / "aps_coverage_normalized.csv", index=False)
     pd.read_csv(src / "uf_ubs_aps_coverage_summary.csv").to_csv(dst / "uf_ubs_aps_coverage_summary.csv", index=False)
+
+    # Pharmacy artifacts are optional until an official Farmacia Popular extract
+    # has been supplied. When present, keep the GitHub Pages copy in sync.
+    for name in ("pharmacies.csv", "pharmacies_by_uf.csv", "pharmacies.geojson"):
+        pharmacy_file = project_dir / "data" / name
+        if pharmacy_file.exists():
+            shutil.copy2(pharmacy_file, dst / name)
 
 
 def main() -> None:

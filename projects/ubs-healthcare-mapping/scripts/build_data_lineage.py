@@ -20,6 +20,8 @@ DEFAULT_FILES = [
     "data/ubs_operational_status.csv",
     "data/ubs_operational_status_by_uf.csv",
     "data/ubs_operational_status_metadata.json",
+    "data/pharmacies.csv",
+    "data/pharmacies_by_uf.csv",
     "data/enriched/municipality_ubs_territory.csv",
     "data/enriched/municipality_ubs_aps_coverage.csv",
     "data/enriched/uf_ubs_territory_summary.csv",

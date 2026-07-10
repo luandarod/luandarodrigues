@@ -27,6 +27,7 @@ Contar UBS responde onde existem registros de unidades. Nao responde, sozinho, s
 | Cobertura APS | Relatorio publico de Cobertura Potencial APS | Populacao, equipes, capacidade estimada e cobertura potencial |
 | CNES/ST | FTP publico DATASUS/CNES | Presenca do estabelecimento no cadastro mensal mais recente |
 | SIA/SUS PA | FTP publico DATASUS/SIASUS | Producao ambulatorial registrada por CNES na competencia mais recente |
+| Farmacia Popular | Extrato oficial do Ministerio da Saude fornecido ao pipeline | Presenca cadastral de estabelecimentos credenciados, com validacao de coordenadas |
 
 Referencias de origem:
 
@@ -164,7 +165,25 @@ python projects/ubs-healthcare-mapping/scripts/robust_priority_index.py
 python projects/ubs-healthcare-mapping/scripts/generate_report_assets.py
 python projects/ubs-healthcare-mapping/scripts/build_dashboard_data.py
 python projects/ubs-healthcare-mapping/scripts/build_data_lineage.py
+
+# Depois de baixar o extrato oficial do Farmacia Popular:
+python projects/ubs-healthcare-mapping/scripts/build_pharmacy_layer.py \
+  caminho/para/farmacias.csv \
+  --output-dir projects/ubs-healthcare-mapping/data
+
+# Copia os artefatos versionados para o dashboard:
+python projects/ubs-healthcare-mapping/scripts/build_dashboard_data.py
 ```
+
+### Camada Farmacia Popular
+
+O importador aceita CSV ou XLSX e reconhece variantes comuns de colunas oficiais em portugues, incluindo CNPJ, CNES, razao social, municipio, codigo IBGE, UF, endereco, latitude e longitude. Ele gera:
+
+- `data/pharmacies.csv`: esquema canonico e indicador de coordenada valida;
+- `data/pharmacies_by_uf.csv`: contagem e qualidade geografica por UF;
+- `data/pharmacies.geojson`: somente pontos com coordenadas plausiveis no Brasil.
+
+O arquivo oficial de entrada nao e baixado automaticamente porque o endereco e o formato de publicacao podem mudar. A competencia, a URL e a data de download devem ser registradas junto ao arquivo de origem. Credenciamento indica presenca cadastral no programa; nao comprova estoque, horario de funcionamento ou disponibilidade de todos os medicamentos.
 
 Testes de sanidade:
 
@@ -211,6 +230,7 @@ projects/ubs-healthcare-mapping/
 |   |-- analyze_ubs.py
 |   |-- build_dashboard_data.py
 |   |-- build_data_lineage.py
+|   |-- build_pharmacy_layer.py
 |   |-- coordinate_quality_audit.py
 |   |-- enrich_with_ibge.py
 |   |-- enrich_with_aps_coverage.py
