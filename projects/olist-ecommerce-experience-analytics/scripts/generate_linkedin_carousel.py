@@ -144,7 +144,7 @@ def slide_1(m):
     big_serif(d, ["Quando a", "entrega vira", "review ruim"], 210, 96)
     draw_wrapped(
         d,
-        "Olist mostra uma pergunta bem prática: onde o atrito logístico começa a aparecer na experiência do cliente?",
+        "Peguei 99.441 pedidos da Olist para olhar uma coisa simples: em que ponto a entrega começa a azedar o review?",
         (84, 690),
         820,
         font(34, "sans"),
@@ -165,7 +165,7 @@ def slide_2(m):
     d.text((88, 735), "nota média parece saudável", font=font(34, "sans", True), fill=INK)
     draw_wrapped(
         d,
-        "Só que média não mostra onde a operação quebra. A leitura útil começa quando o pedido vira atraso, frete maior, distância maior e risco de nota baixa.",
+        "Só que média alisa o problema. O incômodo aparece quando o pedido atrasa, cruza estado, pesa no frete e chega com cara de experiência ruim.",
         (88, 815),
         820,
         font(34, "sans"),
@@ -178,7 +178,7 @@ def slide_2(m):
 def slide_3(m):
     img, d = base_slide(3)
     kicker(d, "O sinal operacional")
-    big_serif(d, ["A distância", "cobra sua", "conta"], 180, 92)
+    big_serif(d, ["A distância", "aparece", "na conta"], 180, 92)
     d.text((95, 590), "Mesmo estado", font=font(28, "mono", True), fill=INK)
     same_value = f"{m['same_days']:.1f}".replace(".", ",")
     d.text((95, 638), same_value, font=font(92, "mono", True), fill=SAGE_DARK)
@@ -189,7 +189,7 @@ def slide_3(m):
     d.text((95 + int(d.textlength(cross_value, font=font(92, "mono", True))) + 26, 838), "dias", font=font(32, "sans"), fill=MUTED)
     draw_wrapped(
         d,
-        f"Frete médio também sobe: {br_money(m['same_freight'])} no mesmo estado contra {br_money(m['cross_freight'])} em entregas interestaduais.",
+        f"No mesmo estado, o frete médio fica em {br_money(m['same_freight'])}. Entre estados, sobe para {br_money(m['cross_freight'])}.",
         (95, 965),
         800,
         font(32, "sans"),
@@ -219,7 +219,7 @@ def slide_4(m):
         bar(d, 95, y, 590, row.importance, max_value, color=SAGE_DARK if i < 2 else WARM, label=label, digits=2)
     draw_wrapped(
         d,
-        "A classificação não é produto final. Ela serve para enxergar quais variáveis puxam o risco de experiência ruim.",
+        "Não usei o modelo para decidir pelo cliente. Usei para ver quais sinais aparecem antes da nota baixa.",
         (95, 1100),
         800,
         font(30, "sans"),
@@ -248,7 +248,7 @@ def slide_5(m):
         bar(d, 95, y, 560, row.low_review_rate * 100, max_rate * 100, color=RUST, label=label, suffix="%")
     draw_wrapped(
         d,
-        "Algumas categorias combinam volume, frete e expectativa difícil. Esse é o tipo de corte que vira pauta de operação, não só gráfico bonito.",
+        "Aqui tem uma fila de atenção: categoria com volume alto, expectativa difícil e mais chance de nota baixa.",
         (95, 1075),
         820,
         font(30, "sans"),
@@ -260,12 +260,12 @@ def slide_5(m):
 
 def slide_6(m):
     img, d = base_slide(6)
-    kicker(d, "Resposta decisória")
-    big_serif(d, ["A fila de", "ação não começa", "pelo modelo"], 160, 88)
+    kicker(d, "Resposta prática")
+    big_serif(d, ["O modelo", "não é o", "começo"], 160, 88)
     items = [
-        ("01", "monitorar atraso antes da reclamação"),
+        ("01", "ver atraso antes da reclamação"),
         ("02", "separar entregas interestaduais"),
-        ("03", "priorizar categorias com mais atrito"),
+        ("03", "olhar categorias que acumulam atrito"),
         ("04", "criar scorecards de seller"),
     ]
     for i, (num, text) in enumerate(items):
@@ -279,10 +279,10 @@ def slide_6(m):
 def slide_7(m):
     img, d = base_slide(7)
     kicker(d, "Conclusão")
-    big_serif(d, ["A resposta", "é logística", "visível"], 170, 94)
+    big_serif(d, ["A resposta", "passa pela", "logística"], 170, 94)
     draw_wrapped(
         d,
-        "O projeto não tenta prever o cliente como se ele fosse simples. Ele mostra onde a operação deixa marcas: atraso, distância, frete, categoria e complexidade do pedido.",
+        "O projeto não tenta reduzir o cliente a um score. Ele mostra onde a operação deixa marcas: atraso, distância, frete, categoria e complexidade do pedido.",
         (90, 590),
         820,
         font(36, "sans"),
@@ -293,7 +293,7 @@ def slide_7(m):
     d.text((90, 945), f"ROC-AUC {m['rf'].roc_auc:.3f}".replace(".", ","), font=font(60, "mono", True), fill=SAGE_DARK)
     draw_wrapped(
         d,
-        "Não é uma decisão automática. É uma camada para encontrar risco operacional antes que ele vire insatisfação.",
+        "O score ajuda, mas não manda. A leitura boa é encontrar risco operacional antes que ele vire insatisfação.",
         (90, 1040),
         820,
         font(30, "sans"),

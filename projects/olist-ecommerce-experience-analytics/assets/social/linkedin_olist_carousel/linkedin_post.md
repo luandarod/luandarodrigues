@@ -1,29 +1,30 @@
-Eu queria sair um pouco da saúde e pegar um problema bem operacional:
+Peguei o dataset público da Olist porque queria olhar um problema bem pé no chão:
 
-quando uma compra online vira experiência ruim?
+em que ponto uma compra online começa a virar experiência ruim?
 
-Usei o dataset público da Olist, com 99.441 pedidos do marketplace brasileiro, para olhar entrega, frete, seller, categoria, pagamento e review na mesma leitura.
+A base tem 99.441 pedidos do marketplace brasileiro. Dá para cruzar entrega, frete, seller, categoria, pagamento e review. O tipo de dado que parece simples até você tentar juntar tudo numa leitura só.
 
-A média até parece confortável. O review médio fica em 4,09.
+A primeira média engana um pouco. O review médio fica em 4,09.
 
-Mas média esconde atrito.
+Bonito.
 
-Quando eu separo a operação, a história fica mais concreta. Entregas no mesmo estado levaram, em média, 7,9 dias. Entregas entre estados foram para 15,0 dias. O frete médio também quase dobra: R$ 13 no mesmo estado contra R$ 24 em entregas interestaduais.
+Só que a operação aparece nas bordas. Entregas no mesmo estado levaram, em média, 7,9 dias. Entregas entre estados foram para 15,0 dias. O frete médio saiu de R$ 13 para R$ 24 quando a entrega virou interestadual.
 
-E o modelo reforça o que a operação já sugeria. As variáveis mais fortes para risco de review baixo aparecem no caminho logístico: atraso, tempo total de entrega, quantidade de itens, frete, categoria e localização do cliente.
+Aí a história muda de tom.
 
-Não li esse projeto como “vamos prever o cliente”.
+Quando treinei um modelo para risco de review baixo, os sinais mais fortes vieram do caminho logístico: atraso, tempo total de entrega, quantidade de itens, frete, categoria e localização do cliente.
 
-Li como uma forma de encontrar onde a operação começa a deixar marca na experiência. Atraso, distância, categoria difícil, pedido mais complexo. Tudo isso aparece antes do review ruim.
+Não li isso como “vamos prever o cliente”.
 
-O modelo de Random Forest chegou a ROC-AUC de 0,759. É útil como camada analítica, mas não como decisão automática. A parte mais importante é menos o score e mais a fila de ação que ele ajuda a organizar:
+Cliente não é variável obediente.
 
-monitorar atraso antes da reclamação;
-separar entregas interestaduais;
-olhar categorias com volume e atrito;
-criar scorecards de seller com entrega e review juntos.
+Li como uma forma de enxergar onde a operação começa a deixar rastro antes da reclamação aparecer. Atraso. Distância. Pedido mais complexo. Categoria que já carrega expectativa difícil.
 
-No fim, o projeto responde uma pergunta simples: a satisfação do cliente não quebra só no atendimento. Muitas vezes ela começa a quebrar na logística.
+O Random Forest chegou a ROC-AUC de 0,759. Útil, mas não mágico. A parte que eu mais usaria numa operação real não é o score isolado. É a fila de atenção que sai dele: olhar atraso cedo, separar entregas interestaduais, acompanhar categorias com volume e atrito, e montar scorecards de seller juntando entrega e review.
+
+No fim, a satisfação do cliente não quebra só no atendimento.
+
+Às vezes ela começa a quebrar no caminho até a porta.
 
 Repo: https://github.com/luandarodrigues/luandarodrigues/tree/main/projects/olist-ecommerce-experience-analytics
 
