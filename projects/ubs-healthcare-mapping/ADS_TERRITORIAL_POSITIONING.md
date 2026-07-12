@@ -4,16 +4,17 @@
 
 Usar sinais municipais agregados para decidir onde testar campanhas, sem inferir condição médica, vulnerabilidade ou intenção individual.
 
-O arquivo operacional é `data/enriched/telemedicine_ads_geo_shortlist.csv`. Ele contém os 100 primeiros municípios que permanecem no primeiro decil nos três cenários fixos, ordenados pela robustez Monte Carlo e pelo cenário equilibrado.
+O arquivo operacional atualizado é `data/enriched/telemedicine_phase1_ads_geo_shortlist.csv`. Ele contém os 100 municípios elegíveis com maior probabilidade Monte Carlo de permanecer no primeiro decil, desempate pelo cenário equilibrado. A shortlist anterior é preservada para comparação de versões.
 
 ## Uso recomendado
 
 1. Selecionar de 6 a 12 municípios da shortlist, preservando diversidade de região e porte;
 2. confirmar cobertura comercial, disponibilidade médica, regras de atendimento e parceiros locais;
 3. validar manualmente pelo menos duas farmácias por município;
-4. executar teste geográfico com orçamento e criativos equivalentes;
-5. medir funil completo e comparar com municípios-controle pareados;
-6. recalibrar o índice somente após acumular desfechos suficientes.
+4. confirmar internet, privacidade, acessibilidade e equipe em cada estabelecimento participante;
+5. executar teste geográfico com orçamento e criativos equivalentes;
+6. medir funil completo e comparar com municípios-controle pareados;
+7. recalibrar o índice somente após acumular desfechos suficientes.
 
 ## Mensagem por segmento
 
@@ -48,4 +49,3 @@ Não otimizar apenas por clique. Cliques podem favorecer curiosidade e não aces
 ## Leitura correta
 
 O índice serve para escolher onde aprender primeiro. Ele não demonstra que residentes de um município desejam telemedicina, que uma farmácia aceitará parceria ou que a campanha será rentável. Conversão e impacto precisam ser medidos no experimento.
-

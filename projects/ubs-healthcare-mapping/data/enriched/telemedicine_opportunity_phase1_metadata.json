@@ -1,0 +1,54 @@
+{
+  "generated_at_utc": "2026-07-12T22:39:22.355760+00:00",
+  "index_version": "phase1-v1",
+  "design": "ecological cross-sectional municipal screening",
+  "need_weights": {
+    "uncovered_volume": 0.45,
+    "aps_gap": 0.2,
+    "ubs_scarcity": 0.15,
+    "physician_fte_scarcity": 0.2
+  },
+  "digital_weights": {
+    "household_internet": 0.5,
+    "mobile_4g5g": 0.3,
+    "fixed_broadband": 0.2
+  },
+  "feasibility_weights": {
+    "pharmacy": 0.7,
+    "digital": 0.3
+  },
+  "scenarios": {
+    "balanced": {
+      "need": 0.5,
+      "feasibility": 0.5
+    },
+    "equity_led": {
+      "need": 0.7,
+      "feasibility": 0.3
+    },
+    "deployment_led": {
+      "need": 0.4,
+      "feasibility": 0.6
+    }
+  },
+  "aggregation": "weighted geometric mean after winsorized empirical percentile normalization",
+  "sia_role": "audit evidence only; all-procedure quantity is not consultation-specific and is not scored",
+  "monte_carlo": {
+    "iterations": 1000,
+    "seed": 20260712,
+    "need_weights": "Dirichlet(9,4,3,4)",
+    "digital_weights": "Dirichlet(5,3,2)",
+    "pharmacy_weights": "Dirichlet(5,5)",
+    "pharmacy_feasibility_share": "Uniform(0.60,0.80)",
+    "overall_need_share": "Uniform(0.40,0.70)",
+    "interpretation": "exploratory robustness assumptions, not empirical priors"
+  },
+  "unmeasured": [
+    "travel time",
+    "individual clinical demand",
+    "pharmacy site readiness",
+    "causal impact"
+  ],
+  "allowed_use": "hypothesis generation, municipal screening and aggregate geo-experiment planning",
+  "ads_shortlist_rule": "top 100 eligible municipalities by Monte Carlo top-decile probability, then balanced score"
+}

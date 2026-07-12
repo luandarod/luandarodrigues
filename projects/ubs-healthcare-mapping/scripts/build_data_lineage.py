@@ -48,6 +48,10 @@ DEFAULT_FILES = [
     "data/enriched/municipality_ibge_internet_readiness_metadata.json",
     "data/enriched/municipality_anatel_connectivity.csv",
     "data/enriched/municipality_anatel_connectivity_metadata.json",
+    "data/enriched/telemedicine_opportunity_phase1.csv",
+    "data/enriched/telemedicine_opportunity_phase1_monte_carlo.csv",
+    "data/enriched/telemedicine_phase1_ads_geo_shortlist.csv",
+    "data/enriched/telemedicine_opportunity_phase1_metadata.json",
 ]
 
 

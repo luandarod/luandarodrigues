@@ -85,3 +85,7 @@ Ter internet no domicílio não comprova velocidade, estabilidade, letramento di
 ### Limites
 
 A cobertura móvel é uma estimativa de propagação baseada em estações, antenas, potência, edificações e relevo. Ela pode diferir de medições de campo e não mede estabilidade, franquia ou preço. A densidade fixa conta acessos, não pessoas únicas; pode superar 100 e não informa velocidade ou qualidade. Nenhuma das duas fontes comprova conectividade dentro da farmácia nem letramento digital. Por isso, ambas entram como proxies de viabilidade de implantação, e não como necessidade de saúde ou tempo de viagem.
+
+## Fechamento analítico da Fase 1
+
+O script `build_telemedicine_phase1_index.py` integra as quatro aquisições sem substituir o índice preliminar. Médico FTE entra no pilar de necessidade; IBGE e Anatel entram na prontidão digital; produção SIA permanece apenas como auditoria. Todas as fórmulas e distribuições de sensibilidade ficam no protocolo e no JSON de metadados. O tempo de viagem permanece explicitamente fora do escopo desta fase.

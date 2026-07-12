@@ -141,6 +141,50 @@ Selecionar municípios em quatro quadrantes de necessidade e capilaridade, com d
 
 O relato deve seguir STROBE e RECORD para a fase observacional. Dados individuais ou intervenção com pacientes exigem avaliação ética, governança e proteção de dados.
 
+## Adendo pré-especificado — índice Fase 1 v1
+
+O índice preliminar 0.1 é preservado para rastreabilidade. A versão `phase1-v1` incorpora capacidade médica cadastrada e conectividade municipal, sem reescrever retroativamente o resultado original.
+
+### Estrutura conceitual
+
+```text
+necessidade = média geométrica ponderada(
+  volume potencialmente descoberto 45%,
+  gap relativo de APS 20%,
+  escassez de UBS por 100 mil 15%,
+  escassez de médico FTE por 100 mil 20%
+)
+
+prontidão digital = média geométrica ponderada(
+  domicílios com internet 50%,
+  moradores estimados com cobertura 4G/5G 30%,
+  acessos fixos por 100 habitantes 20%
+)
+
+viabilidade = farmácias 70% × prontidão digital 30%
+oportunidade equilibrada = necessidade 50% × viabilidade 50%
+```
+
+Os pesos são normativos e devem ser apresentados com a análise de sensibilidade. A necessidade não contém conectividade: um município com barreira digital continua podendo ter alta necessidade, mas terá menor viabilidade de implantação imediata. A média geométrica limita compensação completa entre pilares.
+
+### Produção assistencial
+
+`sia_quantity_all_procedures` e cobertura de reporte são carregadas para auditoria, mas recebem `sia_score_role = audit_only_not_scored`. A quantidade PA não é chamada de consulta e não entra em nenhuma fórmula até existir uma seleção de procedimentos vinculada ao SIGTAP de cada competência.
+
+### Sensibilidade Fase 1
+
+São feitas 1.000 simulações com semente `20260712`: necessidade `Dirichlet(9,4,3,4)`, digital `Dirichlet(5,3,2)`, farmácias `Dirichlet(5,5)`, participação farmacêutica na viabilidade `Uniforme(0,60; 0,80)` e participação da necessidade no total `Uniforme(0,40; 0,70)`. Essas distribuições são hipóteses de robustez, não priors empíricos.
+
+### Resultado reproduzido da Fase 1
+
+- 5.571 municípios preservados;
+- 4.988 elegíveis, 578 sem PFPB observado e 5 incompletos;
+- Goiânia: necessidade 96,97; prontidão digital 92,73; viabilidade 78,90; oportunidade equilibrada 87,47; posição 3;
+- o resultado de Goiânia é conduzido por população grande, gap APS e oferta relativa de médico/UBS, e não por uma contagem absoluta isolada;
+- tempo de viagem, prontidão do estabelecimento farmacêutico e demanda clínica individual continuam não medidos.
+
+Esta versão continua com grau `B_enhanced_ecological_proxy`. Grau A permanece condicionado a validação espacial/operacional e a dados de desfecho.
+
 ## Referências metodológicas essenciais
 
 1. [OECD/JRC. Handbook on Constructing Composite Indicators](https://doi.org/10.1787/9789264043466-en).
@@ -151,4 +195,3 @@ O relato deve seguir STROBE e RECORD para a fase observacional. Dados individuai
 6. [Digital divide in Brazil and barriers to telehealth](https://doi.org/10.2196/42483).
 7. [Impact of the Programa Farmácia Popular on chronic disease outcomes](https://pubmed.ncbi.nlm.nih.gov/30726501/).
 8. [Community pharmacies and pharmacists in Brazil](https://pubmed.ncbi.nlm.nih.gov/34221207/).
-

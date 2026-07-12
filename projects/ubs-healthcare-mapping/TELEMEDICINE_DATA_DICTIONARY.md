@@ -67,3 +67,24 @@ Arquivo principal: `data/enriched/telemedicine_pre_paper_analytic.csv`.
 
 Os status `spatial_access_status`, `digital_readiness_status` e `clinical_demand_status` permanecem `not_measured` para impedir que essas dimensões sejam inferidas indevidamente.
 
+## Extensão Fase 1 v1
+
+Arquivo: `data/enriched/telemedicine_opportunity_phase1.csv`.
+
+| Campo | Unidade | Interpretação |
+|---|---:|---|
+| `physician_fte_per_100k` | FTE 40h/100 mil | carga ambulatorial médica cadastrada no CNES, não presença observada |
+| `households_with_internet_pct` | % | domicílios com internet no Censo 2022 |
+| `mobile_4g5g_resident_coverage_pct` | % | moradores estimados cobertos pela união 4G/5G da Anatel |
+| `fixed_broadband_accesses_per_100_people` | acessos/100 | densidade de acessos fixos; pode superar 100 |
+| `phase1_need_score` | 0–100 | necessidade potencial com escassez de médico FTE |
+| `digital_readiness_score` | 0–100 | prontidão digital municipal relativa, não prontidão da farmácia |
+| `phase1_pharmacy_launchability_score` | 0–100 | capilaridade PFPB recalculada no universo completo da Fase 1 |
+| `phase1_deployment_feasibility_score` | 0–100 | farmácias 70% e prontidão digital 30% |
+| `telemedicine_phase1_*` | 0–100 | cenários equilibrado, equidade e implantação |
+| `phase1_rank_*` | posição | posição somente entre elegíveis |
+| `phase1_eligibility` | categoria | elegível, sem PFPB ou dados insuficientes |
+| `sia_score_role` | categoria | sempre `audit_only_not_scored` nesta versão |
+| `spatial_travel_time_status` | categoria | `not_measured` até a Fase 2 |
+
+Ausências em profissional, internet ou conectividade não são imputadas como zero. Os campos SIA permanecem na base somente para verificação operacional.

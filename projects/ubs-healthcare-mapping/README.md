@@ -196,6 +196,10 @@ O projeto inclui uma trilha separada para pre-paper e planejamento territorial a
 ```bash
 python projects/ubs-healthcare-mapping/scripts/fetch_ibge_municipality_universe.py
 python projects/ubs-healthcare-mapping/scripts/build_telemedicine_opportunity_index.py
+python projects/ubs-healthcare-mapping/scripts/fetch_cnes_workforce_teams.py
+python projects/ubs-healthcare-mapping/scripts/fetch_ibge_internet_readiness.py
+python projects/ubs-healthcare-mapping/scripts/fetch_anatel_connectivity.py
+python projects/ubs-healthcare-mapping/scripts/build_telemedicine_phase1_index.py
 python projects/ubs-healthcare-mapping/scripts/build_data_lineage.py
 ```
 
@@ -209,6 +213,15 @@ O pipeline reconcilia o universo oficial do IBGE, estima populacao potencialment
 - `ADS_TERRITORIAL_POSITIONING.md`: uso permitido em planejamento de midia agregada.
 
 O termo `pharmacy_launchability_score` significa apenas capilaridade municipal observada. Tempo de viagem, prontidao digital, sala privada, equipe e demanda clinica permanecem explicitamente como `not_measured`.
+
+A extensão `phase1-v1` preserva o índice preliminar e acrescenta escassez de médico FTE, internet domiciliar, cobertura móvel e banda larga fixa. Produção SIA de todos os procedimentos é evidência de auditoria e não entra no score. Novos artefatos:
+
+- `data/enriched/telemedicine_opportunity_phase1.csv`: painel municipal completo da Fase 1;
+- `data/enriched/telemedicine_opportunity_phase1_monte_carlo.csv`: incerteza dos pesos e posições;
+- `data/enriched/telemedicine_phase1_ads_geo_shortlist.csv`: 100 municípios para desenho de geoexperimento, não targeting individual;
+- `data/enriched/telemedicine_opportunity_phase1_metadata.json`: fórmula, pesos, semente e usos permitidos.
+
+Mesmo na Fase 1, `spatial_travel_time_status` permanece `not_measured`: cobertura municipal e densidade de serviços não substituem roteamento em rede viária.
 
 Testes de sanidade:
 
