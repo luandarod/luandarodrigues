@@ -29,12 +29,16 @@ class DashboardPharmacyMapTests(unittest.TestCase):
             "pharmacies_per_100k": 2.4, "access_mismatch_score": 88,
             "access_mismatch_flag": "consistent_mismatch", "evidence_level": "complete",
             "threshold_active_ubs_per_100k_q25": 9, "threshold_pharmacies_per_100k_median": 2,
+            "nearest_ubs_geodesic_km": 8, "nearest_pharmacy_geodesic_km": 1,
+            "hard_ubs_easy_pharmacy_flag": True, "telemedicine_phase2_balanced": 72,
+            "phase2_spatial_target_rank": 1,
         }])
 
         result = module.build_gap_geojson(geometries, gap)
 
         self.assertEqual(result["type"], "FeatureCollection")
         self.assertEqual(result["features"][0]["properties"]["pharmacies"], 20)
+        self.assertTrue(result["features"][0]["properties"]["hard_ubs_easy_pharmacy_flag"])
         self.assertEqual(result["features"][0]["geometry"]["type"], "MultiPolygon")
 
 

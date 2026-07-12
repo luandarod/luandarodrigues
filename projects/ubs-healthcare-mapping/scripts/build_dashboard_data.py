@@ -20,6 +20,10 @@ def build_gap_geojson(geometries: dict, gap: pd.DataFrame) -> dict:
         "active_ubs_per_100k", "aps_coverage_capped_pct", "pharmacies", "pharmacies_per_100k",
         "access_mismatch_score", "access_mismatch_flag", "evidence_level",
         "threshold_active_ubs_per_100k_q25", "threshold_pharmacies_per_100k_median",
+        "nearest_ubs_geodesic_km", "nearest_pharmacy_geodesic_km",
+        "hard_ubs_easy_pharmacy_flag", "hard_ubs_easy_pharmacy_flag_3km_2km",
+        "hard_ubs_easy_pharmacy_flag_10km_5km", "telemedicine_phase2_balanced",
+        "phase2_spatial_target_rank", "travel_time_status",
     ]
     features = []
     for ibge7, item in geometries.items():
@@ -91,7 +95,20 @@ def build_dashboard_data(project_dir: Path, dashboard_dir: Path) -> None:
         geometry_file = project_dir / "data" / "geodata" / "ibge_malhas_municipais_minima.json"
         if geometry_file.exists():
             geometries = json.loads(geometry_file.read_text(encoding="utf-8"))
-            gap_geojson = build_gap_geojson(geometries, pd.read_csv(gap_file))
+            gap = pd.read_csv(gap_file)
+            phase2_file = src / "telemedicine_opportunity_phase2.csv"
+            if phase2_file.exists():
+                phase2 = pd.read_csv(phase2_file, low_memory=False)
+                gap["ibge_municipio"] = gap["ibge_municipio"].astype("string").str.replace(r"\.0$", "", regex=True).str[:6]
+                phase2["ibge_municipio"] = phase2["ibge_municipio"].astype("string").str.replace(r"\.0$", "", regex=True).str[:6]
+                phase2_fields = [
+                    "ibge_municipio", "nearest_ubs_geodesic_km", "nearest_pharmacy_geodesic_km",
+                    "hard_ubs_easy_pharmacy_flag", "hard_ubs_easy_pharmacy_flag_3km_2km",
+                    "hard_ubs_easy_pharmacy_flag_10km_5km", "telemedicine_phase2_balanced",
+                    "phase2_spatial_target_rank", "travel_time_status",
+                ]
+                gap = gap.merge(phase2[phase2_fields], on="ibge_municipio", how="left", validate="one_to_one")
+            gap_geojson = build_gap_geojson(geometries, gap)
             (dst / "municipality_pharmacy_access_gap.geojson").write_text(
                 json.dumps(gap_geojson, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"
             )
