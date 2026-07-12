@@ -1,0 +1,9 @@
+{
+  "generated_at_utc": "2026-07-12T21:58:16.741677+00:00",
+  "source": "projects\\ubs-healthcare-mapping\\data\\ubs_operational_status.csv",
+  "rows": 5483,
+  "scope": "UBS records in project with recent SIA/SUS PA evidence",
+  "window": "three latest available PA files per UF in the source snapshot",
+  "important_limit": "PA_QTDPRO aggregates all outpatient procedures and is not a consultation count.",
+  "score_use": "evidence and reporting coverage only; excluded from opportunity score"
+}

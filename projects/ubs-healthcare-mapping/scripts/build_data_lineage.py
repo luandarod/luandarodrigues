@@ -40,6 +40,8 @@ DEFAULT_FILES = [
     "data/enriched/telemedicine_opportunity_candidates.csv",
     "data/enriched/telemedicine_ads_geo_shortlist.csv",
     "data/enriched/telemedicine_opportunity_metadata.json",
+    "data/enriched/municipality_sia_assisted_production.csv",
+    "data/enriched/municipality_sia_assisted_production_metadata.json",
 ]
 
 
