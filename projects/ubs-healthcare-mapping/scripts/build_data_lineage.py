@@ -46,6 +46,8 @@ DEFAULT_FILES = [
     "data/enriched/municipality_cnes_workforce_teams_metadata.json",
     "data/enriched/municipality_ibge_internet_readiness.csv",
     "data/enriched/municipality_ibge_internet_readiness_metadata.json",
+    "data/enriched/municipality_anatel_connectivity.csv",
+    "data/enriched/municipality_anatel_connectivity_metadata.json",
 ]
 
 

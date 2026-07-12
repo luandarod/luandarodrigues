@@ -63,3 +63,25 @@ CNES mede carga cadastrada, não presença real. Uma única competência não in
 ### Limites
 
 Ter internet no domicílio não comprova velocidade, estabilidade, letramento digital ou conectividade da farmácia. Municípios criados após a malha de 2022 permanecem ausentes, nunca recebem zero.
+
+## Conectividade municipal — Anatel
+
+### Fontes e competências
+
+- Cobertura Móvel, dados abertos da Anatel, arquivo municipal de março de 2026;
+- Densidade de Banda Larga Fixa, dados abertos da Anatel, maio de 2026;
+- URLs, membros internos dos ZIPs e datas efetivamente usadas ficam registrados no JSON de metadados;
+- o coletor lê o diretório central dos ZIPs por HTTP Range e baixa somente os dois CSVs necessários. Assim, a execução é reproduzível sem transferir os arquivos históricos completos, que somam mais de 1 GB.
+
+### Regras
+
+- cobertura móvel principal: percentual estimado de moradores cobertos pela união de redes 4G/5G;
+- operadora: linha agregada `Todas`; coberturas de operadoras individuais não são somadas;
+- 5G permanece em coluna separada para análise, sem substituir o requisito mínimo 4G/5G;
+- banda larga fixa: acessos em serviço por 100 habitantes na competência municipal mais recente;
+- cobertura originalmente publicada como fração entre 0 e 1 é convertida para percentual entre 0 e 100;
+- ausência de registro permanece nula, nunca é convertida em zero.
+
+### Limites
+
+A cobertura móvel é uma estimativa de propagação baseada em estações, antenas, potência, edificações e relevo. Ela pode diferir de medições de campo e não mede estabilidade, franquia ou preço. A densidade fixa conta acessos, não pessoas únicas; pode superar 100 e não informa velocidade ou qualidade. Nenhuma das duas fontes comprova conectividade dentro da farmácia nem letramento digital. Por isso, ambas entram como proxies de viabilidade de implantação, e não como necessidade de saúde ou tempo de viagem.

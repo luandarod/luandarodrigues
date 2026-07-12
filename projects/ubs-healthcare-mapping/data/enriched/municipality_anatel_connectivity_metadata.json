@@ -1,0 +1,19 @@
+{
+  "generated_at_utc": "2026-07-12T22:34:05.484287+00:00",
+  "source": "Anatel open data",
+  "mobile_url": "https://www.anatel.gov.br/dadosabertos/paineis_de_dados/infraestrutura/cobertura_movel.zip",
+  "mobile_member": "Cobertura_2026_03_Municipios.csv",
+  "mobile_reference_period": "2026-03",
+  "mobile_definition": "Resident coverage by the union of 4G/5G networks, aggregate operator 'Todas'.",
+  "fixed_url": "https://www.anatel.gov.br/dadosabertos/paineis_de_dados/acessos/acessos_banda_larga_fixa.zip",
+  "fixed_member": "Densidade_Banda_Larga_Fixa.csv",
+  "fixed_reference_period": "2026-05",
+  "fixed_definition": "Fixed-broadband accesses in service per 100 inhabitants.",
+  "official_universe_rows": 5571,
+  "complete_rows": 5570,
+  "important_limits": [
+    "Mobile coverage is model-estimated and may differ from field conditions.",
+    "Fixed density counts accesses, not unique people, speed, stability or affordability.",
+    "Neither measure proves pharmacy-site connectivity or digital literacy."
+  ]
+}
