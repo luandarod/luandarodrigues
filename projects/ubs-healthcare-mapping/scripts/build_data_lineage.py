@@ -42,6 +42,8 @@ DEFAULT_FILES = [
     "data/enriched/telemedicine_opportunity_metadata.json",
     "data/enriched/municipality_sia_assisted_production.csv",
     "data/enriched/municipality_sia_assisted_production_metadata.json",
+    "data/enriched/municipality_cnes_workforce_teams.csv",
+    "data/enriched/municipality_cnes_workforce_teams_metadata.json",
 ]
 
 

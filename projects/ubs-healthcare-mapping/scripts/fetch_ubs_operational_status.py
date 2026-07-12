@@ -84,9 +84,16 @@ def download_file(ftp: FTP, remote_dir: str, name: str, output_dir: Path) -> Pat
     target = output_dir / name
     if target.exists() and target.stat().st_size > 0:
         return target
+    partial = target.with_suffix(target.suffix + ".part")
+    partial.unlink(missing_ok=True)
     ftp.cwd(remote_dir)
-    with target.open("wb") as handle:
-        ftp.retrbinary(f"RETR {name}", handle.write)
+    try:
+        with partial.open("wb") as handle:
+            ftp.retrbinary(f"RETR {name}", handle.write)
+        partial.replace(target)
+    except Exception:
+        partial.unlink(missing_ok=True)
+        raise
     return target
 
 

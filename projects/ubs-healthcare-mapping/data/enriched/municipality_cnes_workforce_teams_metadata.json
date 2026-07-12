@@ -1,0 +1,453 @@
+{
+  "generated_at_utc": "2026-07-12T22:13:49.007835+00:00",
+  "professional_source_dir": "/dissemin/publicos/CNES/200508_/Dados/PF",
+  "team_source_dir": "/dissemin/publicos/CNES/200508_/Dados/EP",
+  "pf_files": {
+    "AC": "PFAC2605.dbc",
+    "AL": "PFAL2605.dbc",
+    "AM": "PFAM2605.dbc",
+    "AP": "PFAP2605.dbc",
+    "BA": "PFBA2605.dbc",
+    "CE": "PFCE2605.dbc",
+    "DF": "PFDF2605.dbc",
+    "ES": "PFES2605.dbc",
+    "GO": "PFGO2605.dbc",
+    "MA": "PFMA2605.dbc",
+    "MG": "PFMG2605.dbc",
+    "MS": "PFMS2605.dbc",
+    "MT": "PFMT2605.dbc",
+    "PA": "PFPA2605.dbc",
+    "PB": "PFPB2605.dbc",
+    "PE": "PFPE2605.dbc",
+    "PI": "PFPI2605.dbc",
+    "PR": "PFPR2605.dbc",
+    "RJ": "PFRJ2605.dbc",
+    "RN": "PFRN2605.dbc",
+    "RO": "PFRO2605.dbc",
+    "RR": "PFRR2605.dbc",
+    "RS": "PFRS2605.dbc",
+    "SC": "PFSC2605.dbc",
+    "SE": "PFSE2605.dbc",
+    "SP": "PFSP2605.dbc",
+    "TO": "PFTO2605.dbc"
+  },
+  "ep_files": {
+    "AC": "EPAC2605.dbc",
+    "AL": "EPAL2605.dbc",
+    "AM": "EPAM2605.dbc",
+    "AP": "EPAP2605.dbc",
+    "BA": "EPBA2605.dbc",
+    "CE": "EPCE2605.dbc",
+    "DF": "EPDF2605.dbc",
+    "ES": "EPES2605.dbc",
+    "GO": "EPGO2605.dbc",
+    "MA": "EPMA2605.dbc",
+    "MG": "EPMG2605.dbc",
+    "MS": "EPMS2605.dbc",
+    "MT": "EPMT2605.dbc",
+    "PA": "EPPA2605.dbc",
+    "PB": "EPPB2605.dbc",
+    "PE": "EPPE2605.dbc",
+    "PI": "EPPI2605.dbc",
+    "PR": "EPPR2605.dbc",
+    "RJ": "EPRJ2605.dbc",
+    "RN": "EPRN2605.dbc",
+    "RO": "EPRO2605.dbc",
+    "RR": "EPRR2605.dbc",
+    "RS": "EPRS2605.dbc",
+    "SC": "EPSC2605.dbc",
+    "SE": "EPSE2605.dbc",
+    "SP": "EPSP2605.dbc",
+    "TO": "EPTO2605.dbc"
+  },
+  "processed_files": [
+    {
+      "source": "CNES_PF",
+      "uf": "AC",
+      "file": "PFAC2605.dbc",
+      "compressed_bytes": 1251921,
+      "dbf_bytes": 5674264
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "AC",
+      "file": "EPAC2605.dbc",
+      "compressed_bytes": 25428,
+      "dbf_bytes": 241178
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "AL",
+      "file": "PFAL2605.dbc",
+      "compressed_bytes": 4538395,
+      "dbf_bytes": 20837474
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "AL",
+      "file": "EPAL2605.dbc",
+      "compressed_bytes": 84602,
+      "dbf_bytes": 960347
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "AM",
+      "file": "PFAM2605.dbc",
+      "compressed_bytes": 5364823,
+      "dbf_bytes": 24898584
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "AM",
+      "file": "EPAM2605.dbc",
+      "compressed_bytes": 91631,
+      "dbf_bytes": 1042561
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "AP",
+      "file": "PFAP2605.dbc",
+      "compressed_bytes": 1362077,
+      "dbf_bytes": 6190384
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "AP",
+      "file": "EPAP2605.dbc",
+      "compressed_bytes": 21104,
+      "dbf_bytes": 246469
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "BA",
+      "file": "PFBA2605.dbc",
+      "compressed_bytes": 19600691,
+      "dbf_bytes": 90497114
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "BA",
+      "file": "EPBA2605.dbc",
+      "compressed_bytes": 366093,
+      "dbf_bytes": 4083665
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "CE",
+      "file": "PFCE2605.dbc",
+      "compressed_bytes": 12291255,
+      "dbf_bytes": 55477084
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "CE",
+      "file": "EPCE2605.dbc",
+      "compressed_bytes": 228418,
+      "dbf_bytes": 2718180
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "DF",
+      "file": "PFDF2605.dbc",
+      "compressed_bytes": 6565457,
+      "dbf_bytes": 30011944
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "DF",
+      "file": "EPDF2605.dbc",
+      "compressed_bytes": 43158,
+      "dbf_bytes": 466249
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "ES",
+      "file": "PFES2605.dbc",
+      "compressed_bytes": 7314815,
+      "dbf_bytes": 32359094
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "ES",
+      "file": "EPES2605.dbc",
+      "compressed_bytes": 90812,
+      "dbf_bytes": 1022618
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "GO",
+      "file": "PFGO2605.dbc",
+      "compressed_bytes": 10167949,
+      "dbf_bytes": 45477604
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "GO",
+      "file": "EPGO2605.dbc",
+      "compressed_bytes": 146582,
+      "dbf_bytes": 1683179
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "MA",
+      "file": "PFMA2605.dbc",
+      "compressed_bytes": 8412096,
+      "dbf_bytes": 38502164
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "MA",
+      "file": "EPMA2605.dbc",
+      "compressed_bytes": 190250,
+      "dbf_bytes": 2250537
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "MG",
+      "file": "PFMG2605.dbc",
+      "compressed_bytes": 39861018,
+      "dbf_bytes": 180840654
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "MG",
+      "file": "EPMG2605.dbc",
+      "compressed_bytes": 513338,
+      "dbf_bytes": 5736899
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "MS",
+      "file": "PFMS2605.dbc",
+      "compressed_bytes": 4979844,
+      "dbf_bytes": 22371804
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "MS",
+      "file": "EPMS2605.dbc",
+      "compressed_bytes": 68931,
+      "dbf_bytes": 734055
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "MT",
+      "file": "PFMT2605.dbc",
+      "compressed_bytes": 5927218,
+      "dbf_bytes": 26101944
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "MT",
+      "file": "EPMT2605.dbc",
+      "compressed_bytes": 84514,
+      "dbf_bytes": 905809
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "PA",
+      "file": "PFPA2605.dbc",
+      "compressed_bytes": 8512783,
+      "dbf_bytes": 38826234
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "PA",
+      "file": "EPPA2605.dbc",
+      "compressed_bytes": 171281,
+      "dbf_bytes": 1915983
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "PB",
+      "file": "PFPB2605.dbc",
+      "compressed_bytes": 6215255,
+      "dbf_bytes": 27705504
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "PB",
+      "file": "EPPB2605.dbc",
+      "compressed_bytes": 135568,
+      "dbf_bytes": 1570440
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "PE",
+      "file": "PFPE2605.dbc",
+      "compressed_bytes": 13009018,
+      "dbf_bytes": 58704214
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "PE",
+      "file": "EPPE2605.dbc",
+      "compressed_bytes": 219050,
+      "dbf_bytes": 2546019
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "PI",
+      "file": "PFPI2605.dbc",
+      "compressed_bytes": 4178987,
+      "dbf_bytes": 18977004
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "PI",
+      "file": "EPPI2605.dbc",
+      "compressed_bytes": 115234,
+      "dbf_bytes": 1298971
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "PR",
+      "file": "PFPR2605.dbc",
+      "compressed_bytes": 19698899,
+      "dbf_bytes": 87377164
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "PR",
+      "file": "EPPR2605.dbc",
+      "compressed_bytes": 244151,
+      "dbf_bytes": 2778823
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "RJ",
+      "file": "PFRJ2605.dbc",
+      "compressed_bytes": 29229717,
+      "dbf_bytes": 129892664
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "RJ",
+      "file": "EPRJ2605.dbc",
+      "compressed_bytes": 241766,
+      "dbf_bytes": 2842315
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "RN",
+      "file": "PFRN2605.dbc",
+      "compressed_bytes": 5446119,
+      "dbf_bytes": 24730684
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "RN",
+      "file": "EPRN2605.dbc",
+      "compressed_bytes": 96211,
+      "dbf_bytes": 1145939
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "RO",
+      "file": "PFRO2605.dbc",
+      "compressed_bytes": 2836627,
+      "dbf_bytes": 12500434
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "RO",
+      "file": "EPRO2605.dbc",
+      "compressed_bytes": 37050,
+      "dbf_bytes": 353103
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "RR",
+      "file": "PFRR2605.dbc",
+      "compressed_bytes": 972193,
+      "dbf_bytes": 4497584
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "RR",
+      "file": "EPRR2605.dbc",
+      "compressed_bytes": 18388,
+      "dbf_bytes": 195187
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "RS",
+      "file": "PFRS2605.dbc",
+      "compressed_bytes": 20764985,
+      "dbf_bytes": 92651064
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "RS",
+      "file": "EPRS2605.dbc",
+      "compressed_bytes": 241415,
+      "dbf_bytes": 2630675
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "SC",
+      "file": "PFSC2605.dbc",
+      "compressed_bytes": 14889747,
+      "dbf_bytes": 66096644
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "SC",
+      "file": "EPSC2605.dbc",
+      "compressed_bytes": 189752,
+      "dbf_bytes": 2206174
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "SE",
+      "file": "PFSE2605.dbc",
+      "compressed_bytes": 3681375,
+      "dbf_bytes": 17217044
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "SE",
+      "file": "EPSE2605.dbc",
+      "compressed_bytes": 58518,
+      "dbf_bytes": 640038
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "SP",
+      "file": "PFSP2605.dbc",
+      "compressed_bytes": 80201893,
+      "dbf_bytes": 357326554
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "SP",
+      "file": "EPSP2605.dbc",
+      "compressed_bytes": 669548,
+      "dbf_bytes": 7708000
+    },
+    {
+      "source": "CNES_PF",
+      "uf": "TO",
+      "file": "PFTO2605.dbc",
+      "compressed_bytes": 2602760,
+      "dbf_bytes": 12041814
+    },
+    {
+      "source": "CNES_EP",
+      "uf": "TO",
+      "file": "EPTO2605.dbc",
+      "compressed_bytes": 51937,
+      "dbf_bytes": 578581
+    }
+  ],
+  "physician_rule": "CBO starts with 225",
+  "fte_rule": "sum of deduplicated weekly ambulatory hours divided by 40",
+  "active_team_rule": "DT_DESAT is blank or uses the CNES active sentinel 900001",
+  "physician_fte_per_100k_review_threshold_p99": 258.78121453483806,
+  "privacy": "Professional identifiers were used only in memory for deduplication and are not persisted.",
+  "important_limits": [
+    "CNES describes registered workload and does not prove attendance or availability.",
+    "Latest snapshot does not measure turnover or longitudinal persistence.",
+    "All active EP team types are counted; eSF/eAP financed teams come from e-Gestor APS separately."
+  ]
+}

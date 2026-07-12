@@ -23,3 +23,23 @@ Este documento registra fonte, competência, transformação, uso e limites de c
 
 `PA_QTDPRO` mistura procedimentos ambulatoriais. Nesta etapa não é chamada de consulta e não compõe o score. A métrica entra apenas como evidência de reporte e operação. Uma contagem de consultas exigirá seleção de procedimentos pela versão do SIGTAP de cada competência.
 
+## Profissionais e equipes CNES
+
+### Fonte
+
+- profissionais: arquivos CNES/PF, competência mais recente por UF;
+- equipes: arquivos CNES/EP, competência mais recente por UF;
+- escopo: estabelecimentos UBS presentes no cadastro do projeto.
+
+### Regras
+
+- médico: CBO iniciado por `225`;
+- vínculo duplicado profissional–CNES–CBO: preserva a maior carga horária ambulatorial;
+- FTE médico: soma de horas ambulatoriais semanais dividida por 40;
+- equipe ativa: `DT_DESAT` vazio ou sentinela CNES `900001`;
+- nenhum CPF, CNS, nome ou registro profissional é gravado no produto final;
+- valores de FTE por 100 mil acima do percentil 99 recebem flag de revisão.
+
+### Limites
+
+CNES mede carga cadastrada, não presença real. Uma única competência não informa rotatividade. As equipes EP incluem todos os tipos; os quantitativos financiados de eSF/eAP continuam vindo do e-Gestor APS.
