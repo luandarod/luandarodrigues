@@ -3,10 +3,35 @@
 from __future__ import annotations
 
 import argparse
+import json
 import shutil
 from pathlib import Path
 
 import pandas as pd
+
+
+def build_gap_geojson(geometries: dict, gap: pd.DataFrame) -> dict:
+    """Attach municipal pharmacy/UBS indicators to simplified IBGE geometry."""
+    rows = gap.copy()
+    rows["ibge_key"] = rows["ibge_municipio"].astype("string").str.replace(r"\.0$", "", regex=True).str[:6]
+    lookup = rows.set_index("ibge_key").to_dict("index")
+    fields = [
+        "municipio_nome_ibge", "uf_sigla", "ubs_records", "pharmacies",
+        "ubs_per_100k", "pharmacies_per_100k", "access_mismatch_score", "access_mismatch_flag",
+    ]
+    features = []
+    for ibge7, item in geometries.items():
+        row = lookup.get(str(ibge7)[:6])
+        if row is None:
+            continue
+        properties = {field: (None if pd.isna(row.get(field)) else row.get(field)) for field in fields}
+        properties["ibge_municipio_7"] = str(ibge7)
+        features.append({
+            "type": "Feature",
+            "geometry": {"type": "MultiPolygon", "coordinates": item["coordinates"]},
+            "properties": properties,
+        })
+    return {"type": "FeatureCollection", "features": features}
 
 
 def build_dashboard_data(project_dir: Path, dashboard_dir: Path) -> None:
@@ -54,13 +79,20 @@ def build_dashboard_data(project_dir: Path, dashboard_dir: Path) -> None:
 
     # Pharmacy artifacts are optional until an official Farmacia Popular extract
     # has been supplied. When present, keep the GitHub Pages copy in sync.
-    for name in ("pharmacies.csv", "pharmacies_by_uf.csv", "pharmacies.geojson"):
+    for name in ("pharmacies_by_uf.csv",):
         pharmacy_file = project_dir / "data" / name
         if pharmacy_file.exists():
             shutil.copy2(pharmacy_file, dst / name)
     gap_file = src / "municipality_pharmacy_access_gap.csv"
     if gap_file.exists():
         shutil.copy2(gap_file, dst / gap_file.name)
+        geometry_file = project_dir / "data" / "geodata" / "ibge_malhas_municipais_minima.json"
+        if geometry_file.exists():
+            geometries = json.loads(geometry_file.read_text(encoding="utf-8"))
+            gap_geojson = build_gap_geojson(geometries, pd.read_csv(gap_file))
+            (dst / "municipality_pharmacy_access_gap.geojson").write_text(
+                json.dumps(gap_geojson, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"
+            )
 
 
 def main() -> None:
