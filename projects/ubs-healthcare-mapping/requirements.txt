@@ -4,3 +4,4 @@ openpyxl>=3.1
 matplotlib>=3.8
 pyreaddbc>=2.0.4
 pysus>=2.6.4
+pyshp>=2.3,<3

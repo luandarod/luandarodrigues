@@ -56,6 +56,8 @@ DEFAULT_FILES = [
     "data/spatial/osm_pharmacies_metadata.json",
     "data/enriched/municipality_phase2_spatial_access.csv",
     "data/enriched/municipality_phase2_spatial_access_metadata.json",
+    "data/reference/ibge_municipal_seats_2022.csv",
+    "data/reference/ibge_municipal_seats_2022_metadata.json",
 ]
 
 

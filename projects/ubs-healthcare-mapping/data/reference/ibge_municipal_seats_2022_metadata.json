@@ -1,0 +1,9 @@
+{
+  "generated_at_utc": "2026-07-12T23:02:11.168493+00:00",
+  "source": "IBGE Censo Demografico 2022 - Localidades do Brasil",
+  "source_url": "https://geoftp.ibge.gov.br/organizacao_do_territorio/estrutura_territorial/localidades/Localidades_do_Brasil/2022/Localidades_Brasil_shp.zip",
+  "selection": "SCT_LOCALI equals Sede Municipal",
+  "records": 5571,
+  "coordinate_reference": "SIRGAS 2000 geographic coordinates",
+  "important_limit": "A municipal seat is an urban reference point, not a population-weighted origin and not representative of all rural residents."
+}

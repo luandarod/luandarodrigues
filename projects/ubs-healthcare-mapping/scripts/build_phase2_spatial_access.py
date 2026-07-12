@@ -72,21 +72,37 @@ def main_ring_centroid(coordinates: object) -> tuple[float, float, bool]:
     return longitude, latitude, _point_in_ring(longitude, latitude, ring)
 
 
-def build_origins(geometry: dict, universe: pd.DataFrame) -> pd.DataFrame:
+def build_origins(geometry: dict, universe: pd.DataFrame, seats: pd.DataFrame | None = None) -> pd.DataFrame:
     rows = []
     for code, item in geometry.items():
         longitude, latitude, inside = main_ring_centroid(item["coordinates"])
         rows.append({
             "ibge_municipio_7": str(code),
-            "origin_longitude": longitude,
-            "origin_latitude": latitude,
-            "origin_inside_main_polygon": inside,
-            "origin_method": "centroid_of_largest_simplified_municipal_polygon",
+            "centroid_longitude": longitude,
+            "centroid_latitude": latitude,
+            "centroid_inside_main_polygon": inside,
         })
     origins = pd.DataFrame(rows)
     official = universe.copy()
     official["ibge_municipio_7"] = official["ibge_municipio_7"].astype("string").str.replace(r"\.0$", "", regex=True)
-    return official.merge(origins, on="ibge_municipio_7", how="left", validate="one_to_one")
+    result = official.merge(origins, on="ibge_municipio_7", how="left", validate="one_to_one")
+    if seats is not None:
+        seat_frame = seats.copy()
+        seat_frame["ibge_municipio_7"] = seat_frame["ibge_municipio_7"].astype("string").str.replace(r"\.0$", "", regex=True)
+        result = result.merge(
+            seat_frame[["ibge_municipio_7", "seat_latitude", "seat_longitude"]],
+            on="ibge_municipio_7", how="left", validate="one_to_one",
+        )
+    else:
+        result["seat_latitude"] = np.nan
+        result["seat_longitude"] = np.nan
+    seat_available = result["seat_latitude"].notna() & result["seat_longitude"].notna()
+    result["origin_latitude"] = result["seat_latitude"].fillna(result["centroid_latitude"])
+    result["origin_longitude"] = result["seat_longitude"].fillna(result["centroid_longitude"])
+    result["origin_method"] = "centroid_of_largest_simplified_municipal_polygon"
+    result.loc[seat_available, "origin_method"] = "official_ibge_2022_municipal_seat"
+    result["origin_quality_valid"] = seat_available | result["centroid_inside_main_polygon"].eq(True)
+    return result
 
 
 def _sphere_points(latitude: pd.Series, longitude: pd.Series) -> np.ndarray:
@@ -121,12 +137,16 @@ def classify_mismatch(frame: pd.DataFrame) -> pd.DataFrame:
     pharmacy_threshold = result.loc[complete, "nearest_pharmacy_geodesic_km"].quantile(0.25)
     result["phase2_ubs_far_threshold_km_p75"] = ubs_threshold
     result["phase2_pharmacy_near_threshold_km_p25"] = pharmacy_threshold
-    result["hard_ubs_easy_pharmacy_flag"] = (
+    pfpb_present = pd.to_numeric(result["pharmacies"], errors="coerce").gt(0)
+    result["relative_hard_ubs_easy_pharmacy_flag"] = (
         complete
         & result["nearest_ubs_geodesic_km"].ge(ubs_threshold)
         & result["nearest_pharmacy_geodesic_km"].le(pharmacy_threshold)
-        & pd.to_numeric(result["pharmacies"], errors="coerce").gt(0)
+        & pfpb_present
     )
+    result["hard_ubs_easy_pharmacy_flag_3km_2km"] = complete & result["nearest_ubs_geodesic_km"].ge(3) & result["nearest_pharmacy_geodesic_km"].le(2) & pfpb_present
+    result["hard_ubs_easy_pharmacy_flag"] = complete & result["nearest_ubs_geodesic_km"].ge(5) & result["nearest_pharmacy_geodesic_km"].le(2) & pfpb_present
+    result["hard_ubs_easy_pharmacy_flag_10km_5km"] = complete & result["nearest_ubs_geodesic_km"].ge(10) & result["nearest_pharmacy_geodesic_km"].le(5) & pfpb_present
     result["spatial_access_status"] = "geodesic_centroid_proxy_not_travel_time"
     result.loc[~complete, "spatial_access_status"] = "insufficient_spatial_data"
     return result
@@ -156,6 +176,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Build Phase 2 municipal spatial-access proxies.")
     parser.add_argument("--geometry", type=Path, default=root / "data/geodata/ibge_malhas_municipais_minima.json")
     parser.add_argument("--universe", type=Path, default=root / "data/reference/ibge_municipality_universe.csv")
+    parser.add_argument("--seats", type=Path, default=root / "data/reference/ibge_municipal_seats_2022.csv")
     parser.add_argument("--ubs", type=Path, default=root / "data/Unidades_Basicas_Saude-UBS.csv")
     parser.add_argument("--operations", type=Path, default=root / "data/ubs_operational_status.csv")
     parser.add_argument("--suspects", type=Path, default=root / "data/spatial_validation_suspect_ubs.csv")
@@ -166,7 +187,7 @@ def main() -> None:
     args = parser.parse_args()
 
     geometry = json.loads(args.geometry.read_text(encoding="utf-8"))
-    origins = build_origins(geometry, pd.read_csv(args.universe, dtype=str))
+    origins = build_origins(geometry, pd.read_csv(args.universe, dtype=str), pd.read_csv(args.seats, dtype=str))
     active_ubs = load_active_ubs(args.ubs, args.operations, args.suspects)
     osm = pd.read_csv(args.osm_pharmacies)
     osm = osm.loc[osm["valid_coordinates"].eq(True)].copy()
@@ -185,13 +206,13 @@ def main() -> None:
     result.to_csv(args.output, index=False)
     metadata = {
         "generated_at_utc": datetime.now(UTC).isoformat(),
-        "origin": "centroid of largest polygon in simplified IBGE municipal geometry",
+        "origin": "official IBGE 2022 municipal seat; largest-polygon centroid retained as fallback and audit",
         "ubs_facilities": len(active_ubs),
         "ubs_rule": "present in latest CNES/ST and not listed by the existing municipal-geometry suspect audit",
         "pharmacy_facilities": len(osm),
         "pharmacy_rule": "OpenStreetMap amenity=pharmacy; independent from official PFPB accreditation",
         "distance": "great-circle/geodesic distance in kilometres",
-        "hard_ubs_easy_pharmacy_rule": "UBS distance >= national P75, pharmacy distance <= national P25, and at least one official PFPB record",
+        "hard_ubs_easy_pharmacy_rule": "primary conservative screen: UBS geodesic distance >= 5 km, pharmacy distance <= 2 km, and at least one official PFPB record; 3/2 km and 10/5 km sensitivity flags are also published",
         "important_limit": "This is not travel time, a road-network route, or population-weighted access. Municipal geometric centroids may not represent where residents live.",
     }
     args.metadata.write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf-8")

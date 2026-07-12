@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-07-12T22:56:07.820345+00:00",
-  "origin": "centroid of largest polygon in simplified IBGE municipal geometry",
+  "generated_at_utc": "2026-07-12T23:03:38.517245+00:00",
+  "origin": "official IBGE 2022 municipal seat; largest-polygon centroid retained as fallback and audit",
   "ubs_facilities": 41597,
   "ubs_rule": "present in latest CNES/ST and not listed by the existing municipal-geometry suspect audit",
   "pharmacy_facilities": 14776,
   "pharmacy_rule": "OpenStreetMap amenity=pharmacy; independent from official PFPB accreditation",
   "distance": "great-circle/geodesic distance in kilometres",
-  "hard_ubs_easy_pharmacy_rule": "UBS distance >= national P75, pharmacy distance <= national P25, and at least one official PFPB record",
+  "hard_ubs_easy_pharmacy_rule": "primary conservative screen: UBS geodesic distance >= 5 km, pharmacy distance <= 2 km, and at least one official PFPB record; 3/2 km and 10/5 km sensitivity flags are also published",
   "important_limit": "This is not travel time, a road-network route, or population-weighted access. Municipal geometric centroids may not represent where residents live."
 }

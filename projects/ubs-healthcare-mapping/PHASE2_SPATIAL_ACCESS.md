@@ -23,9 +23,9 @@ O OpenStreetMap tem completude desigual. Ausência de feição não significa au
 
 ### Origem
 
-Para cada município é calculado o centroide do maior polígono da malha municipal simplificada do IBGE. O campo `origin_inside_main_polygon` verifica se o ponto resultante permanece dentro desse polígono. Municípios sem geometria não são imputados.
+A origem principal é o ponto oficial da sede municipal no produto IBGE “Localidades do Brasil — Censo 2022”, selecionando `Sede Municipal`, `Capital Federal` e o Distrito Estadual de Fernando de Noronha. O centroide do maior polígono da malha simplificada permanece como fallback e campo de auditoria.
 
-Esse centroide é geométrico, não populacional. Ele não representa necessariamente a sede, bairros mais habitados ou população rural. A escolha permite uma triagem nacional reproduzível, mas não substitui uma grade populacional.
+A sede representa melhor o núcleo urbano que o centro geométrico, mas ainda não é uma origem ponderada pela população e não representa todos os bairros ou moradores rurais. A escolha permite uma triagem nacional reproduzível, mas não substitui uma grade populacional.
 
 ### UBS
 
@@ -40,18 +40,17 @@ As distâncias são de grande círculo, em quilômetros, entre o centroide munic
 ### Sinal “UBS difícil, farmácia fácil”
 
 ```text
-UBS distante     = distância à UBS >= percentil nacional 75
-farmácia próxima = distância à farmácia OSM <= percentil nacional 25
+UBS distante     = distância geodésica à UBS >= 5 km
+farmácia próxima = distância geodésica à farmácia OSM <= 2 km
 PFPB presente    = ao menos um credenciamento oficial observado no município
 ```
 
-O sinal exige as três condições. Os limiares e as distâncias individuais ficam publicados no arquivo analítico, evitando uma classificação opaca.
+O sinal exige as três condições. Também são publicados cenários de sensibilidade 3/2 km e 10/5 km, além dos percentis nacionais P75/P25 para comparação relativa. Os limites absolutos são regras operacionais conservadoras e não equivalem a 30 minutos de viagem.
 
 ### Resultado da extração
 
 - 5.571 municípios no universo;
-- 5.570 com geometria e ambas as distâncias;
-- 48 centroides do maior polígono ficaram fora de polígonos côncavos e recebem flag de qualidade;
-- 66 municípios satisfazem o sinal relativo de descompasso espacial;
-- Boa Esperança do Norte não aparece na malha simplificada anterior à sua criação e permanece ausente;
-- Goiânia: 0,41 km até a UBS ativa mais próxima e 0,50 km até a farmácia OSM mais próxima; não satisfaz o sinal espacial.
+- 5.571 sedes oficiais e ambas as distâncias;
+- 40 municípios satisfazem a regra conservadora 5/2 km;
+- 51 satisfazem a sensibilidade 3/2 km e 24 a sensibilidade 10/5 km;
+- Goiânia: 1,80 km até a UBS ativa mais próxima e 0,40 km até a farmácia OSM mais próxima; não satisfaz a regra conservadora.
