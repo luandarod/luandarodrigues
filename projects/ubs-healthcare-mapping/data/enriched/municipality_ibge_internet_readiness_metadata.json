@@ -1,0 +1,10 @@
+{
+  "generated_at_utc": "2026-07-12T22:17:30.040322+00:00",
+  "source": "IBGE SIDRA",
+  "table": 9936,
+  "year": 2022,
+  "api_url": "https://servicodados.ibge.gov.br/api/v3/agregados/9936/periodos/2022/variaveis/381%7C1000381?localidades=N6%5Ball%5D&classificacao=2072%5B77584,77585,77586%5D%7C63%5B95826%5D%7C125%5B2932%5D",
+  "official_universe_rows": 5571,
+  "available_rows": 5570,
+  "important_limit": "Household access does not measure connection speed, stability, digital literacy or pharmacy site readiness."
+}

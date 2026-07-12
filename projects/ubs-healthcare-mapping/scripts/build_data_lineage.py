@@ -44,6 +44,8 @@ DEFAULT_FILES = [
     "data/enriched/municipality_sia_assisted_production_metadata.json",
     "data/enriched/municipality_cnes_workforce_teams.csv",
     "data/enriched/municipality_cnes_workforce_teams_metadata.json",
+    "data/enriched/municipality_ibge_internet_readiness.csv",
+    "data/enriched/municipality_ibge_internet_readiness_metadata.json",
 ]
 
 

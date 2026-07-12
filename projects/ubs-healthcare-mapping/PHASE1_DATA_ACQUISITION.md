@@ -43,3 +43,23 @@ Este documento registra fonte, competência, transformação, uso e limites de c
 ### Limites
 
 CNES mede carga cadastrada, não presença real. Uma única competência não informa rotatividade. As equipes EP incluem todos os tipos; os quantitativos financiados de eSF/eAP continuam vindo do e-Gestor APS.
+
+## Internet domiciliar — IBGE
+
+### Fonte
+
+- Censo Demográfico 2022;
+- SIDRA, tabela 9936;
+- variável de domicílios particulares permanentes ocupados por existência de conexão domiciliar à internet;
+- condição de ocupação e tipo de domicílio mantidos em `Total`.
+
+### Métricas
+
+- domicílios totais;
+- domicílios com e sem internet;
+- percentual de domicílios com e sem internet;
+- readiness municipal normalizada entre 0 e 1.
+
+### Limites
+
+Ter internet no domicílio não comprova velocidade, estabilidade, letramento digital ou conectividade da farmácia. Municípios criados após a malha de 2022 permanecem ausentes, nunca recebem zero.
