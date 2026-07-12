@@ -52,6 +52,8 @@ DEFAULT_FILES = [
     "data/enriched/telemedicine_opportunity_phase1_monte_carlo.csv",
     "data/enriched/telemedicine_phase1_ads_geo_shortlist.csv",
     "data/enriched/telemedicine_opportunity_phase1_metadata.json",
+    "data/spatial/osm_pharmacies.csv",
+    "data/spatial/osm_pharmacies_metadata.json",
 ]
 
 

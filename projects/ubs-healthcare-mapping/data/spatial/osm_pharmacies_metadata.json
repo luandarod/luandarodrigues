@@ -1,0 +1,15 @@
+{
+  "generated_at_utc": "2026-07-12T22:53:12.021585+00:00",
+  "source": "OpenStreetMap contributors via Overpass API",
+  "license": "ODbL 1.0",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "query": "[out:json][timeout:900];\narea[\"ISO3166-1\"=\"BR\"][admin_level=2]->.br;\nnwr[\"amenity\"=\"pharmacy\"](area.br);\nout center tags;\n",
+  "osm_timestamp": "2026-07-12T22:49:28Z",
+  "records": 14776,
+  "valid_coordinate_records": 14776,
+  "important_limits": [
+    "OSM completeness varies geographically and is not an official pharmacy registry.",
+    "The layer is not equivalent to Programa Farmacia Popular accreditation.",
+    "A mapped pharmacy may be closed, duplicated, inaccessible or operationally unsuitable."
+  ]
+}
