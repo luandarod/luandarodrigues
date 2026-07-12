@@ -54,3 +54,22 @@ O sinal exige as três condições. Também são publicados cenários de sensibi
 - 40 municípios satisfazem a regra conservadora 5/2 km;
 - 51 satisfazem a sensibilidade 3/2 km e 24 a sensibilidade 10/5 km;
 - Goiânia: 1,80 km até a UBS ativa mais próxima e 0,40 km até a farmácia OSM mais próxima; não satisfaz a regra conservadora.
+
+## Índice Fase 2 geodésico v1
+
+O índice preserva os pilares da Fase 1 e acrescenta um pilar espacial contínuo. Ele não substitui a necessidade assistencial por distância.
+
+```text
+spatial_mismatch = UBS_distance_percentile ^ 0.60
+                   × pharmacy_distance_inverse_percentile ^ 0.40
+
+balanced       = need ^ 0.45 × spatial_mismatch ^ 0.30 × feasibility ^ 0.25
+equity_led     = need ^ 0.60 × spatial_mismatch ^ 0.25 × feasibility ^ 0.15
+deployment_led = need ^ 0.35 × spatial_mismatch ^ 0.25 × feasibility ^ 0.40
+```
+
+As médias são geométricas e os três cenários são obrigatórios. O Monte Carlo usa 1.000 sorteios `Dirichlet(9,6,5)` para necessidade, descompasso espacial e viabilidade; trata-se de sensibilidade normativa, não de prior empírico.
+
+O ranking geral continua exploratório. A shortlist operacional é mais restrita: exige a regra conservadora 5/2 km, PFPB presente e necessidade positiva. Apenas seis municípios satisfazem simultaneamente essas condições nesta fotografia: Guapimirim/RJ, Angatuba/SP, Arroio do Meio/RS, Arraial do Cabo/RJ, Sananduva/RS e Santa Maria Madalena/RJ. Todos exigem validação de rota e estabelecimento antes de investimento.
+
+Goiânia mantém alta oportunidade geral pelos pilares de necessidade e viabilidade, mas não recebe `phase2_spatial_target_rank`. Assim, não deve ser descrita como caso comprovado de “médico longe, farmácia perto”.

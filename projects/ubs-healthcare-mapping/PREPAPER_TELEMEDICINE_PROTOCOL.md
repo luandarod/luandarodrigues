@@ -185,6 +185,14 @@ São feitas 1.000 simulações com semente `20260712`: necessidade `Dirichlet(9,
 
 Esta versão continua com grau `B_enhanced_ecological_proxy`. Grau A permanece condicionado a validação espacial/operacional e a dados de desfecho.
 
+## Adendo Fase 2 — acesso geodésico
+
+A versão `phase2-geodesic-v1` adiciona coordenadas oficiais das sedes municipais do IBGE, UBS ativas com geometria auditada e farmácias comuns mapeadas no OpenStreetMap. Distâncias são de grande círculo e não recebem interpretação de tempo de viagem.
+
+O sinal conservador exige UBS a pelo menos 5 km, farmácia OSM a até 2 km e PFPB oficial presente. São publicados cenários 3/2 km e 10/5 km. O índice geral combina necessidade Fase 1, descompasso espacial e viabilidade em três cenários, com 1.000 simulações de sensibilidade.
+
+Dos 40 municípios que atendem ao sinal espacial 5/2 km, seis também apresentam necessidade positiva no modelo e formam a shortlist de investigação. O resultado é hipótese para validação de rotas, não comprovação de dificuldade real. Goiânia não atende ao sinal espacial conservador.
+
 ## Referências metodológicas essenciais
 
 1. [OECD/JRC. Handbook on Constructing Composite Indicators](https://doi.org/10.1787/9789264043466-en).

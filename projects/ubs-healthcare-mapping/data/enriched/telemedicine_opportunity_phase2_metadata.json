@@ -1,0 +1,40 @@
+{
+  "generated_at_utc": "2026-07-12T23:04:43.856515+00:00",
+  "index_version": "phase2-geodesic-v1",
+  "design": "ecological municipal screening with centroid-based geodesic access proxy",
+  "spatial_mismatch_weights": {
+    "ubs_barrier": 0.6,
+    "pharmacy_ease": 0.4
+  },
+  "scenarios": {
+    "balanced": {
+      "need": 0.45,
+      "spatial_mismatch": 0.3,
+      "feasibility": 0.25
+    },
+    "equity_led": {
+      "need": 0.6,
+      "spatial_mismatch": 0.25,
+      "feasibility": 0.15
+    },
+    "deployment_led": {
+      "need": 0.35,
+      "spatial_mismatch": 0.25,
+      "feasibility": 0.4
+    }
+  },
+  "aggregation": "weighted geometric mean after national winsorized percentile normalization",
+  "monte_carlo": {
+    "iterations": 1000,
+    "seed": 20260712,
+    "weights": "Dirichlet(9,6,5) for need, spatial mismatch, feasibility"
+  },
+  "travel_time_status": "not measured; geodesic distance is not routing",
+  "primary_spatial_target_rule": "nearest active UBS >= 5 km, nearest OSM pharmacy <= 2 km, official PFPB present",
+  "important_limits": [
+    "Municipal geometric centroids are not population-weighted origins.",
+    "OSM pharmacy completeness is heterogeneous.",
+    "PFPB coordinates remain unavailable; accreditation is used only as a municipal gate.",
+    "The score is exploratory and cannot support individual targeting or causal claims."
+  ]
+}

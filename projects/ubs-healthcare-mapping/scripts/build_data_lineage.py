@@ -58,6 +58,10 @@ DEFAULT_FILES = [
     "data/enriched/municipality_phase2_spatial_access_metadata.json",
     "data/reference/ibge_municipal_seats_2022.csv",
     "data/reference/ibge_municipal_seats_2022_metadata.json",
+    "data/enriched/telemedicine_opportunity_phase2.csv",
+    "data/enriched/telemedicine_opportunity_phase2_monte_carlo.csv",
+    "data/enriched/telemedicine_phase2_ads_geo_shortlist.csv",
+    "data/enriched/telemedicine_opportunity_phase2_metadata.json",
 ]
 
 

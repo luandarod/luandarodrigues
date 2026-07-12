@@ -223,6 +223,20 @@ A extensão `phase1-v1` preserva o índice preliminar e acrescenta escassez de m
 
 Mesmo na Fase 1, `spatial_travel_time_status` permanece `not_measured`: cobertura municipal e densidade de serviços não substituem roteamento em rede viária.
 
+## Fase 2 — triagem espacial geodésica
+
+```bash
+python projects/ubs-healthcare-mapping/scripts/fetch_osm_pharmacies.py
+python projects/ubs-healthcare-mapping/scripts/fetch_ibge_municipal_seats.py
+python projects/ubs-healthcare-mapping/scripts/build_phase2_spatial_access.py
+python projects/ubs-healthcare-mapping/scripts/build_telemedicine_phase2_index.py
+python projects/ubs-healthcare-mapping/scripts/build_dashboard_data.py
+```
+
+A Fase 2 usa sedes municipais oficiais, UBS ativas auditadas e 14.776 farmácias comuns mapeadas no OSM. O sinal conservador exige UBS ≥5 km, farmácia ≤2 km, PFPB presente e necessidade positiva. A shortlist contém seis municípios para investigação de rota e operação. Goiânia continua relevante no índice geral, mas não satisfaz esse sinal espacial.
+
+Os quilômetros publicados são geodésicos, não tempo de viagem. O próximo incremento necessário para elevar a evidência é uma matriz populacional de origens e roteamento em rede viária.
+
 Testes de sanidade:
 
 ```bash

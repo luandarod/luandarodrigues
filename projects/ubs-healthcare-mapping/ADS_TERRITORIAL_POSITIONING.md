@@ -4,7 +4,7 @@
 
 Usar sinais municipais agregados para decidir onde testar campanhas, sem inferir condição médica, vulnerabilidade ou intenção individual.
 
-O arquivo operacional atualizado é `data/enriched/telemedicine_phase1_ads_geo_shortlist.csv`. Ele contém os 100 municípios elegíveis com maior probabilidade Monte Carlo de permanecer no primeiro decil, desempate pelo cenário equilibrado. A shortlist anterior é preservada para comparação de versões.
+O arquivo operacional conservador atualizado é `data/enriched/telemedicine_phase2_ads_geo_shortlist.csv`. Ele contém somente municípios com UBS ≥5 km, farmácia OSM ≤2 km, PFPB presente e necessidade positiva, ordenados pela robustez Monte Carlo e pelo cenário equilibrado. As shortlists anteriores são preservadas para comparação de versões.
 
 ## Uso recomendado
 

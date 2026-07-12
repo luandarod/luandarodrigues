@@ -88,3 +88,22 @@ Arquivo: `data/enriched/telemedicine_opportunity_phase1.csv`.
 | `spatial_travel_time_status` | categoria | `not_measured` até a Fase 2 |
 
 Ausências em profissional, internet ou conectividade não são imputadas como zero. Os campos SIA permanecem na base somente para verificação operacional.
+
+## Extensão Fase 2 geodésica
+
+Arquivo: `data/enriched/telemedicine_opportunity_phase2.csv`.
+
+| Campo | Unidade | Interpretação |
+|---|---:|---|
+| `origin_latitude`, `origin_longitude` | graus | sede municipal oficial do IBGE 2022 |
+| `nearest_ubs_geodesic_km` | km | linha geodésica até UBS ativa auditada mais próxima |
+| `nearest_pharmacy_geodesic_km` | km | linha geodésica até farmácia OSM mais próxima |
+| `hard_ubs_easy_pharmacy_flag` | booleano | regra conservadora UBS ≥5 km, farmácia ≤2 km e PFPB presente |
+| `hard_ubs_easy_pharmacy_flag_3km_2km` | booleano | sensibilidade mais inclusiva |
+| `hard_ubs_easy_pharmacy_flag_10km_5km` | booleano | sensibilidade territorial alternativa |
+| `phase2_spatial_mismatch_score` | 0–100 | combinação relativa de barreira UBS e facilidade farmacêutica |
+| `telemedicine_phase2_*` | 0–100 | cenários com necessidade, espaço e viabilidade |
+| `phase2_spatial_target_rank` | posição | somente municípios 5/2 km com necessidade positiva |
+| `travel_time_status` | categoria | `not_measured_geodesic_only` |
+
+`nearest_*_geodesic_km` não é distância rodoviária, tempo de carro, caminhada ou transporte público.
