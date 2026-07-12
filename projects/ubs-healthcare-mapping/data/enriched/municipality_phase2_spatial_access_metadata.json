@@ -1,0 +1,11 @@
+{
+  "generated_at_utc": "2026-07-12T22:56:07.820345+00:00",
+  "origin": "centroid of largest polygon in simplified IBGE municipal geometry",
+  "ubs_facilities": 41597,
+  "ubs_rule": "present in latest CNES/ST and not listed by the existing municipal-geometry suspect audit",
+  "pharmacy_facilities": 14776,
+  "pharmacy_rule": "OpenStreetMap amenity=pharmacy; independent from official PFPB accreditation",
+  "distance": "great-circle/geodesic distance in kilometres",
+  "hard_ubs_easy_pharmacy_rule": "UBS distance >= national P75, pharmacy distance <= national P25, and at least one official PFPB record",
+  "important_limit": "This is not travel time, a road-network route, or population-weighted access. Municipal geometric centroids may not represent where residents live."
+}
