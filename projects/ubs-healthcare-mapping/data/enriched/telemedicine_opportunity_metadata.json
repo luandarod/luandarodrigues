@@ -1,0 +1,49 @@
+{
+  "index_name": "Preliminary Municipal Telemedicine Opportunity Index",
+  "unit_of_analysis": "Brazilian municipality",
+  "design": "ecological cross-sectional screening",
+  "row_count": 5571,
+  "invalid_source_code_count": 1,
+  "need_components": {
+    "potentially_uncovered_population_percentile": 0.5,
+    "aps_relative_gap_percentile": 0.25,
+    "active_ubs_per_100k_inverse_percentile": 0.25
+  },
+  "launchability_components": {
+    "pfpb_absolute_count_percentile": 0.5,
+    "pfpb_per_100k_percentile": 0.5
+  },
+  "aggregation": "weighted geometric mean",
+  "normalization": "1st/99th percentile winsorization plus empirical percentile rank; log1p for counts",
+  "scenarios": {
+    "balanced": {
+      "need": 0.5,
+      "launchability": 0.5
+    },
+    "equity_led": {
+      "need": 0.7,
+      "launchability": 0.3
+    },
+    "deployment_led": {
+      "need": 0.4,
+      "launchability": 0.6
+    }
+  },
+  "monte_carlo": {
+    "iterations": 1000,
+    "seed": 20260712,
+    "need_component_weights": "Dirichlet(10,5,5)",
+    "launchability_component_weights": "Dirichlet(5,5)",
+    "overall_need_weight": "Uniform(0.40,0.70)",
+    "interpretation": "exploratory robustness assumptions, not empirical priors"
+  },
+  "not_measured": [
+    "travel time to UBS or pharmacy",
+    "physician FTE and consultation production",
+    "digital and site readiness",
+    "individual clinical demand",
+    "causal impact of telemedicine"
+  ],
+  "allowed_use": "hypothesis generation, municipal screening, aggregate media planning",
+  "prohibited_interpretation": "individual targeting, diagnosis, observed demand, real geographic proximity, causal effect"
+}

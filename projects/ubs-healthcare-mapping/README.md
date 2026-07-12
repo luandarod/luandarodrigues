@@ -189,6 +189,27 @@ O arquivo oficial de entrada nao e baixado automaticamente porque o endereco e o
 
 O arquivo `data/enriched/municipality_pharmacy_access_gap.csv` usa uma regra municipal explicita. O sinal `consistent_mismatch` exige simultaneamente: UBS presentes no CNES recente por 100 mil habitantes abaixo do primeiro quartil nacional; cobertura potencial APS abaixo de 80%; e Farmacias Populares por 100 mil habitantes na mediana nacional ou acima. Farmacias sao deduplicadas por CNPJ e as juncoes usam codigo IBGE de 6 digitos. O resultado e uma proxy cadastral com nivel de evidencia, nao uma afirmacao sobre tempo real de viagem. Para medir deslocamento serao necessarios grade populacional, rede viaria e tempos de rota.
 
+## Indice preliminar de oportunidade para telemedicina
+
+O projeto inclui uma trilha separada para pre-paper e planejamento territorial agregado. Ela nao substitui o indicador de descompasso e nao afirma demanda individual ou proximidade real.
+
+```bash
+python projects/ubs-healthcare-mapping/scripts/fetch_ibge_municipality_universe.py
+python projects/ubs-healthcare-mapping/scripts/build_telemedicine_opportunity_index.py
+python projects/ubs-healthcare-mapping/scripts/build_data_lineage.py
+```
+
+O pipeline reconcilia o universo oficial do IBGE, estima populacao potencialmente descoberta, calcula eixos separados de necessidade e capilaridade PFPB, publica tres cenarios de pesos e executa 1.000 simulacoes de sensibilidade. Os arquivos principais sao:
+
+- `data/enriched/telemedicine_pre_paper_analytic.csv`: base municipal selecionada para analise;
+- `data/enriched/telemedicine_opportunity_monte_carlo.csv`: incerteza de pontuacao e ranking;
+- `data/enriched/telemedicine_ads_geo_shortlist.csv`: shortlist de 100 municipios para validacao operacional e testes geograficos;
+- `PREPAPER_TELEMEDICINE_PROTOCOL.md`: protocolo, formulas, hipoteses e limitacoes;
+- `TELEMEDICINE_DATA_DICTIONARY.md`: definicoes de campos;
+- `ADS_TERRITORIAL_POSITIONING.md`: uso permitido em planejamento de midia agregada.
+
+O termo `pharmacy_launchability_score` significa apenas capilaridade municipal observada. Tempo de viagem, prontidao digital, sala privada, equipe e demanda clinica permanecem explicitamente como `not_measured`.
+
 Testes de sanidade:
 
 ```bash

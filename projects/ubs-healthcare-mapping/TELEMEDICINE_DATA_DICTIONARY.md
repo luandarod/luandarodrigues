@@ -1,0 +1,69 @@
+# Dicionário do dado analítico de telemedicina
+
+Arquivo principal: `data/enriched/telemedicine_pre_paper_analytic.csv`.
+
+## Identificação e cobertura
+
+| Campo | Definição |
+|---|---|
+| `ibge_municipio` | código municipal de seis dígitos usado nas integrações |
+| `ibge_municipio_7` | código oficial IBGE de sete dígitos |
+| `municipio_nome_ibge` | nome oficial ou nome integrado validado |
+| `uf_sigla` | unidade federativa |
+| `regiao_nome_oficial` | macrorregião IBGE |
+| `universe_status` | `matched_source` ou `missing_source_record` |
+| `academic_eligibility` | elegibilidade para cálculo: proxy elegível, ausência de PFPB ou dados insuficientes |
+| `evidence_grade` | `B_proxy_only` ou `C_incomplete`; grau A é reservado para dados espaciais e operacionais validados |
+
+## Variáveis observadas
+
+| Campo | Unidade | Interpretação |
+|---|---:|---|
+| `populacao_residente` | pessoas | população integrada do IBGE |
+| `aps_coverage_capped_pct` | % | cobertura potencial APS truncada em 100% |
+| `ubs_records` | estabelecimentos | UBS cadastradas na fonte-base |
+| `active_ubs` | estabelecimentos | UBS presentes no CNES/ST recente |
+| `active_ubs_per_100k` | por 100 mil | oferta cadastral recente relativa |
+| `pharmacies` | CNPJs | estabelecimentos únicos credenciados no PFPB |
+| `pharmacies_per_100k` | por 100 mil | densidade municipal PFPB |
+
+## Variáveis derivadas
+
+| Campo | Escala | Interpretação |
+|---|---:|---|
+| `aps_relative_gap` | 0–1 | complemento da cobertura potencial truncada |
+| `potentially_uncovered_population` | pessoas | estimativa ecológica, não contagem observada |
+| `uncovered_volume_percentile` | 0–1 | percentil nacional do volume com transformação logarítmica |
+| `aps_gap_percentile` | 0–1 | percentil nacional do gap relativo |
+| `active_ubs_scarcity_percentile` | 0–1 | percentil inverso de UBS recentes por 100 mil |
+| `pharmacy_count_percentile` | 0–1 | percentil da quantidade absoluta PFPB |
+| `pharmacy_density_percentile` | 0–1 | percentil de PFPB por 100 mil |
+| `need_score` | 0–100 | eixo de necessidade potencial |
+| `pharmacy_launchability_score` | 0–100 | proxy de capilaridade municipal; não mede prontidão real |
+
+## Cenários e incerteza
+
+| Campo | Interpretação |
+|---|---|
+| `telemedicine_opportunity_balanced` | necessidade 50% e capilaridade 50% |
+| `telemedicine_opportunity_equity_led` | necessidade 70% e capilaridade 30% |
+| `telemedicine_opportunity_deployment_led` | necessidade 40% e capilaridade 60% |
+| `rank_*` | posição entre municípios elegíveis no cenário indicado |
+| `rank_best`, `rank_worst`, `rank_range` | estabilidade nos três cenários fixos |
+| `mc_score_median`, `mc_score_p05`, `mc_score_p95` | distribuição da pontuação em 1.000 simulações |
+| `mc_rank_median`, `mc_rank_p05`, `mc_rank_p95` | distribuição da posição nas simulações |
+| `mc_probability_top_decile` | proporção das simulações no primeiro decil |
+
+## Segmentação territorial
+
+| Valor | Uso permitido |
+|---|---|
+| `pilot_candidate` | investigar município com alta necessidade e alta capilaridade relativas |
+| `high_need_build_supply` | alta necessidade, mas capilaridade inferior; requer parceiros ou outro canal |
+| `launchable_secondary` | boa capilaridade, menor prioridade de necessidade |
+| `monitor` | fora dos quadrantes superiores nesta versão |
+| `infrastructure_gap` | nenhuma Farmácia Popular observada; não é alvo de implantação farmacêutica imediata |
+| `insufficient_data` | não pontuar nem interpretar |
+
+Os status `spatial_access_status`, `digital_readiness_status` e `clinical_demand_status` permanecem `not_measured` para impedir que essas dimensões sejam inferidas indevidamente.
+

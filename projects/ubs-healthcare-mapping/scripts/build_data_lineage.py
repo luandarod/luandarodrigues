@@ -31,6 +31,15 @@ DEFAULT_FILES = [
     "data/enriched/robust_priority_index_uf.csv",
     "data/enriched/robust_priority_sensitivity_uf.csv",
     "data/enriched/municipality_pharmacy_access_gap.csv",
+    "data/reference/ibge_municipality_universe.csv",
+    "data/quality/telemedicine_index_invalid_codes.csv",
+    "data/enriched/telemedicine_opportunity_preliminary.csv",
+    "data/enriched/telemedicine_pre_paper_analytic.csv",
+    "data/enriched/telemedicine_opportunity_scenarios.csv",
+    "data/enriched/telemedicine_opportunity_monte_carlo.csv",
+    "data/enriched/telemedicine_opportunity_candidates.csv",
+    "data/enriched/telemedicine_ads_geo_shortlist.csv",
+    "data/enriched/telemedicine_opportunity_metadata.json",
 ]
 
 
