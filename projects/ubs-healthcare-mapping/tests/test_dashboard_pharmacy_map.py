@@ -24,9 +24,11 @@ class DashboardPharmacyMapTests(unittest.TestCase):
         geometries = {"3550308": {"uf_id": 35, "uf_sigla": "SP", "coordinates": [[[[0, 0], [1, 0], [1, 1], [0, 0]]]]}}
         gap = pd.DataFrame([{
             "ibge_municipio": "355030", "municipio_nome_ibge": "São Paulo", "uf_sigla": "SP",
-            "ubs_records": 10, "pharmacies": 20, "ubs_per_100k": 1.2,
+            "populacao_residente": 100000, "ubs_records": 10, "active_ubs": 8, "active_ubs_per_100k": 8,
+            "aps_coverage_capped_pct": 70, "pharmacies": 20, "ubs_per_100k": 1.2,
             "pharmacies_per_100k": 2.4, "access_mismatch_score": 88,
-            "access_mismatch_flag": "doctor_harder_pharmacy_easier",
+            "access_mismatch_flag": "consistent_mismatch", "evidence_level": "complete",
+            "threshold_active_ubs_per_100k_q25": 9, "threshold_pharmacies_per_100k_median": 2,
         }])
 
         result = module.build_gap_geojson(geometries, gap)

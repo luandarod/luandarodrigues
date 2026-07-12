@@ -19,4 +19,4 @@ data/enriched/uf_ubs_aps_coverage_summary.csv,7141,27.0,27.0,ddec898c5f0f9a41276
 data/enriched/priority_sensitivity_uf_scores.csv,4111,27.0,15.0,823894121b1c9dc61de95022445b25a690905fe9003d214ace29c2cc8dfc1e3f
 data/enriched/robust_priority_index_uf.csv,11834,27.0,29.0,86c2f1cf4de7ffa616258245ddf5db3efa4508d1f8c0f081ccedb12106fe1497
 data/enriched/robust_priority_sensitivity_uf.csv,8201,135.0,6.0,3ebae98f33bfee20170fe4d9dbeb708592d1dac08587920cc9b7a065ea2ec4da
-data/enriched/municipality_pharmacy_access_gap.csv,2143318,5569.0,42.0,2881af0613ebf1e6569fad43ec5c4badc2246eb2a9f76b091e09084c0a4c7f5c
+data/enriched/municipality_pharmacy_access_gap.csv,2828491,5569.0,54.0,245d5b4cf99c1659d55a4acb960dc5da392dd8320c496b842f07a4cfce86b0ca

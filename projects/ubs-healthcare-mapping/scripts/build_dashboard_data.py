@@ -16,8 +16,10 @@ def build_gap_geojson(geometries: dict, gap: pd.DataFrame) -> dict:
     rows["ibge_key"] = rows["ibge_municipio"].astype("string").str.replace(r"\.0$", "", regex=True).str[:6]
     lookup = rows.set_index("ibge_key").to_dict("index")
     fields = [
-        "municipio_nome_ibge", "uf_sigla", "ubs_records", "pharmacies",
-        "ubs_per_100k", "pharmacies_per_100k", "access_mismatch_score", "access_mismatch_flag",
+        "municipio_nome_ibge", "uf_sigla", "populacao_residente", "ubs_records", "active_ubs",
+        "active_ubs_per_100k", "aps_coverage_capped_pct", "pharmacies", "pharmacies_per_100k",
+        "access_mismatch_score", "access_mismatch_flag", "evidence_level",
+        "threshold_active_ubs_per_100k_q25", "threshold_pharmacies_per_100k_median",
     ]
     features = []
     for ibge7, item in geometries.items():

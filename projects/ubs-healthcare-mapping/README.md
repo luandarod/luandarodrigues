@@ -187,7 +187,7 @@ O importador aceita CSV ou XLSX e reconhece variantes comuns de colunas oficiais
 
 O arquivo oficial de entrada nao e baixado automaticamente porque o endereco e o formato de publicacao podem mudar. A competencia, a URL e a data de download devem ser registradas junto ao arquivo de origem. Credenciamento indica presenca cadastral no programa; nao comprova estoque, horario de funcionamento ou disponibilidade de todos os medicamentos.
 
-O arquivo `data/enriched/municipality_pharmacy_access_gap.csv` identifica municipios no terco inferior de UBS por 100 mil habitantes e, ao mesmo tempo, no terco superior de farmacias por 100 mil. O sinal `doctor_harder_pharmacy_easier` e uma proxy de descompasso cadastral, nao uma afirmacao sobre tempo real de viagem. Para medir dificuldade de deslocamento serao necessarios grade populacional, rede viaria e tempos de rota.
+O arquivo `data/enriched/municipality_pharmacy_access_gap.csv` usa uma regra municipal explicita. O sinal `consistent_mismatch` exige simultaneamente: UBS presentes no CNES recente por 100 mil habitantes abaixo do primeiro quartil nacional; cobertura potencial APS abaixo de 80%; e Farmacias Populares por 100 mil habitantes na mediana nacional ou acima. Farmacias sao deduplicadas por CNPJ e as juncoes usam codigo IBGE de 6 digitos. O resultado e uma proxy cadastral com nivel de evidencia, nao uma afirmacao sobre tempo real de viagem. Para medir deslocamento serao necessarios grade populacional, rede viaria e tempos de rota.
 
 Testes de sanidade:
 
