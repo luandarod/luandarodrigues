@@ -14,11 +14,13 @@ import pandas as pd
 ALIASES = {
     "cnpj": {"cnpj", "nr_cnpj", "numero_cnpj"},
     "cnes": {"cnes", "codigo_cnes", "co_cnes"},
-    "name": {"nome", "razao_social", "nome_fantasia", "estabelecimento"},
+    "name": {"nome", "razao_social", "nome_fantasia", "estabelecimento", "farmacia"},
     "municipality": {"municipio", "nome_municipio", "no_municipio"},
-    "ibge_municipality": {"codigo_ibge", "cod_ibge", "ibge", "co_municipio_ibge"},
+    "ibge_municipality": {"codigo_ibge", "cod_ibge", "ibge", "co_municipio_ibge", "cod_municipio"},
     "uf": {"uf", "sigla_uf", "sg_uf"},
     "address": {"endereco", "logradouro", "ds_endereco"},
+    "neighborhood": {"bairro"},
+    "accreditation_date": {"data_do_credenciamento", "data_credenciamento"},
     "latitude": {"latitude", "lat"},
     "longitude": {"longitude", "lon", "lng"},
 }
@@ -64,7 +66,7 @@ def normalize_pharmacies(df: pd.DataFrame, source: str = "official input") -> pd
     result.loc[missing_id, "facility_id"] = "pharmacy-" + result.index[missing_id].astype(str)
     return result[
         ["facility_id", "facility_type", "cnes", "cnpj", "name", "ibge_municipality", "municipality",
-         "uf", "address", "latitude", "longitude", "valid_coordinates", "source"]
+         "uf", "address", "neighborhood", "accreditation_date", "latitude", "longitude", "valid_coordinates", "source"]
     ]
 
 
@@ -106,7 +108,15 @@ def build_layer(raw: pd.DataFrame, output_dir: Path, source: str = "official inp
 
 def read_table(path: Path) -> pd.DataFrame:
     if path.suffix.lower() in {".xlsx", ".xls"}:
-        return pd.read_excel(path)
+        preview = pd.read_excel(path, header=None, nrows=40)
+        header_rows = preview.apply(
+            lambda row: row.astype("string").map(_key).eq("uf").any()
+            and row.astype("string").map(_key).isin({"cnpj", "farmacia"}).any(),
+            axis=1,
+        )
+        if not header_rows.any():
+            raise ValueError("Could not find the pharmacy table header in the workbook")
+        return pd.read_excel(path, header=int(header_rows.idxmax())).dropna(how="all")
     return pd.read_csv(path, sep=None, engine="python", encoding_errors="replace")
 
 

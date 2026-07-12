@@ -12,6 +12,26 @@ def _municipality_key(values: pd.Series) -> pd.Series:
     return values.astype("string").str.replace(r"\.0$", "", regex=True).str.replace(r"\D", "", regex=True).str[:6]
 
 
+def extend_with_aps_universe(territory: pd.DataFrame, aps: pd.DataFrame) -> pd.DataFrame:
+    """Add municipalities present in APS but absent from the UBS register."""
+    base = territory.copy()
+    base["ibge_municipio"] = _municipality_key(base["ibge_municipio"])
+    coverage = aps.copy()
+    coverage["ibge_municipio"] = _municipality_key(coverage["ibge_municipio"])
+    missing = coverage.loc[~coverage["ibge_municipio"].isin(set(base["ibge_municipio"]))].copy()
+    if missing.empty:
+        return base
+    additions = pd.DataFrame({
+        "ibge_municipio": missing["ibge_municipio"],
+        "uf_sigla": missing["uf_sigla"],
+        "municipio_nome_ibge": missing["municipio_nome_aps"],
+        "populacao_residente": missing["aps_populacao"],
+        "ubs_records": 0,
+        "area_km2": pd.NA,
+    })
+    return pd.concat([base, additions], ignore_index=True, sort=False)
+
+
 def analyze_gap(territory: pd.DataFrame, pharmacies: pd.DataFrame) -> pd.DataFrame:
     """Build a municipal, population-adjusted accessibility mismatch proxy.
 
@@ -54,9 +74,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Compare municipal UBS and pharmacy availability.")
     parser.add_argument("--territory", type=Path, default=Path("projects/ubs-healthcare-mapping/data/enriched/municipality_ubs_territory.csv"))
     parser.add_argument("--pharmacies", type=Path, default=Path("projects/ubs-healthcare-mapping/data/pharmacies.csv"))
+    parser.add_argument("--aps", type=Path, default=Path("projects/ubs-healthcare-mapping/data/enriched/aps_coverage_normalized.csv"))
     parser.add_argument("--output", type=Path, default=Path("projects/ubs-healthcare-mapping/data/enriched/municipality_pharmacy_access_gap.csv"))
     args = parser.parse_args()
-    output = analyze_gap(pd.read_csv(args.territory), pd.read_csv(args.pharmacies))
+    territory = extend_with_aps_universe(pd.read_csv(args.territory), pd.read_csv(args.aps))
+    output = analyze_gap(territory, pd.read_csv(args.pharmacies))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     output.to_csv(args.output, index=False)
     print(f"Saved {len(output):,} municipalities to {args.output}")

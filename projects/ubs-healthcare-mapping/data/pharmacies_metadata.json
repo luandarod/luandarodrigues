@@ -1,0 +1,13 @@
+{
+  "source_name": "Lista de Farmacias Credenciadas ao Programa Farmacia Popular do Brasil",
+  "publisher": "Ministerio da Saude",
+  "source_url": "https://www.gov.br/saude/pt-br/composicao/sectics/farmacia-popular/publicacoes/farmacias_credenciadas_pfpb_atualizada.xlsx/@@download/file",
+  "reference_date": "2026-06-01",
+  "downloaded_at": "2026-07-12",
+  "source_format": "XLSX",
+  "normalized_records": 28225,
+  "records_matched_to_analysis_universe": 28222,
+  "unmatched_records": 3,
+  "coordinates_in_source": false,
+  "important_limit": "Credenciamento nao comprova conexao ativa ao sistema autorizador, estoque, horario ou dispensacao. A propria planilha informa que algumas farmacias podem estar com conexao suspensa."
+}

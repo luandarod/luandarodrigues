@@ -60,6 +60,16 @@ class PharmacyAccessGapTests(unittest.TestCase):
         self.assertEqual(int(sparse["popular_pharmacies"]), 2)
         self.assertEqual(int(sparse["other_pharmacies"]), 1)
 
+    def test_extends_territory_with_aps_municipalities_without_ubs(self):
+        module = load_module()
+        aps = pd.DataFrame([{"ibge_municipio": 100004, "uf_sigla": "CC", "municipio_nome_aps": "Sem UBS", "aps_populacao": 12000}])
+
+        result = module.extend_with_aps_universe(self.territory, aps)
+
+        added = result.loc[result["ibge_municipio"].astype(str).eq("100004")].iloc[0]
+        self.assertEqual(int(added["ubs_records"]), 0)
+        self.assertEqual(int(added["populacao_residente"]), 12000)
+
 
 if __name__ == "__main__":
     unittest.main()

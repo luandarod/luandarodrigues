@@ -76,6 +76,21 @@ class PharmacyMappingTests(unittest.TestCase):
             self.assertTrue((output / "pharmacies_by_uf.csv").exists())
             self.assertEqual(json.loads((output / "pharmacies.geojson").read_text(encoding="utf-8"))["type"], "FeatureCollection")
 
+    def test_reads_official_workbook_with_institutional_header(self):
+        module = load_module()
+        rows = [[None] * 8 for _ in range(12)]
+        rows.append(["UF", "CÓD. \nMUNICÍPIO", "MUNICÍPIO", "CNPJ", "FARMÁCIA", "ENDEREÇO", "BAIRRO", "Data do Credenciamento"])
+        rows.append(["SP", "355030", "SAO PAULO", "12345678000190", "FARMACIA TESTE", "RUA A, 1", "CENTRO", "2026-01-01"])
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "official.xlsx"
+            pd.DataFrame(rows).to_excel(path, index=False, header=False)
+            raw = module.read_table(path)
+            result = module.normalize_pharmacies(raw)
+
+        self.assertEqual(result.loc[0, "ibge_municipality"], "355030")
+        self.assertEqual(result.loc[0, "name"], "FARMACIA TESTE")
+        self.assertEqual(result.loc[0, "neighborhood"], "CENTRO")
+
 
 if __name__ == "__main__":
     unittest.main()
