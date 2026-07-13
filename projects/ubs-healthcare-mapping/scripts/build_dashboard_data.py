@@ -23,6 +23,9 @@ def build_gap_geojson(geometries: dict, gap: pd.DataFrame) -> dict:
         "nearest_ubs_geodesic_km", "nearest_pharmacy_geodesic_km",
         "hard_ubs_easy_pharmacy_flag", "hard_ubs_easy_pharmacy_flag_3km_2km",
         "hard_ubs_easy_pharmacy_flag_10km_5km", "telemedicine_phase2_balanced",
+        "telemedicine_phase2_equity_led", "telemedicine_phase2_deployment_led",
+        "phase2_rank_balanced", "phase2_rank_equity_led", "phase2_rank_deployment_led",
+        "phase2_need_pillar", "phase2_feasibility_pillar", "phase2_eligibility",
         "phase2_spatial_target_rank", "travel_time_status",
         "active_ubs_travel_time_minutes", "osm_pharmacy_travel_time_minutes",
         "telemedicine_phase4_routed_validation", "phase4_routed_target_rank",
@@ -109,6 +112,9 @@ def build_dashboard_data(project_dir: Path, dashboard_dir: Path) -> None:
                     "ibge_municipio", "nearest_ubs_geodesic_km", "nearest_pharmacy_geodesic_km",
                     "hard_ubs_easy_pharmacy_flag", "hard_ubs_easy_pharmacy_flag_3km_2km",
                     "hard_ubs_easy_pharmacy_flag_10km_5km", "telemedicine_phase2_balanced",
+                    "telemedicine_phase2_equity_led", "telemedicine_phase2_deployment_led",
+                    "phase2_rank_balanced", "phase2_rank_equity_led", "phase2_rank_deployment_led",
+                    "phase2_need_pillar", "phase2_feasibility_pillar", "phase2_eligibility",
                     "phase2_spatial_target_rank", "travel_time_status",
                 ]
                 gap = gap.merge(phase2[phase2_fields], on="ibge_municipio", how="left", validate="one_to_one")

@@ -31,6 +31,9 @@ class DashboardPharmacyMapTests(unittest.TestCase):
             "threshold_active_ubs_per_100k_q25": 9, "threshold_pharmacies_per_100k_median": 2,
             "nearest_ubs_geodesic_km": 8, "nearest_pharmacy_geodesic_km": 1,
             "hard_ubs_easy_pharmacy_flag": True, "telemedicine_phase2_balanced": 72,
+            "telemedicine_phase2_equity_led": 74, "telemedicine_phase2_deployment_led": 70,
+            "phase2_rank_balanced": 12, "phase2_rank_equity_led": 10, "phase2_rank_deployment_led": 14,
+            "phase2_need_pillar": 75, "phase2_feasibility_pillar": 65, "phase2_eligibility": "eligible_phase2_geodesic_proxy",
             "phase2_spatial_target_rank": 1, "active_ubs_travel_time_minutes": 24,
             "osm_pharmacy_travel_time_minutes": 1, "telemedicine_phase4_routed_validation": 80,
             "phase4_need_pillar": 70, "phase4_feasibility_pillar": 60,
@@ -43,6 +46,7 @@ class DashboardPharmacyMapTests(unittest.TestCase):
         self.assertEqual(result["features"][0]["properties"]["pharmacies"], 20)
         self.assertTrue(result["features"][0]["properties"]["hard_ubs_easy_pharmacy_flag"])
         self.assertEqual(result["features"][0]["properties"]["phase4_interpretation"], "phase4_primary_routed_target")
+        self.assertEqual(result["features"][0]["properties"]["phase2_rank_balanced"], 12)
         self.assertEqual(result["features"][0]["properties"]["phase4_need_pillar"], 70)
         self.assertEqual(result["features"][0]["geometry"]["type"], "MultiPolygon")
 

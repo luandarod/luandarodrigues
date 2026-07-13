@@ -10,6 +10,8 @@ O resultado nao tenta dizer se um territorio esta bem atendido. Essa resposta ex
 
 O dashboard e uma camada estatica em GitHub Pages. Os dados usados nele ficam versionados em `docs/dashboards/ubs-healthcare-mapping/data/`, para evitar diferenca entre o relatorio e os CSVs do projeto.
 
+Para evitar confundir mercado-alvo amplo com piloto operacional, a leitura foi separada em duas visoes: oportunidade nacional de telemedicina e piloto farmacia assistida. Ver: [`TELEMEDICINE_DASHBOARD_VIEWS.md`](TELEMEDICINE_DASHBOARD_VIEWS.md).
+
 ## Pergunta
 
 Contar UBS responde onde existem registros de unidades. Nao responde, sozinho, se existe capacidade suficiente de atencao primaria.
