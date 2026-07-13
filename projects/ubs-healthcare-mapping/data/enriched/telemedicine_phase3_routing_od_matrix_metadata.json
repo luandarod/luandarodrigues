@@ -1,0 +1,9 @@
+{
+  "generated_at_utc": "2026-07-13T17:42:14.857664+00:00",
+  "phase": "phase3-routing-preparation",
+  "source_shortlist": "projects\\ubs-healthcare-mapping\\data\\enriched\\telemedicine_phase2_ads_geo_shortlist.csv",
+  "rows": 12,
+  "municipalities": 6,
+  "routing_status": "pending; no travel-time estimate is produced by this script",
+  "recommended_next_step": "Route each OD pair with a documented OSRM/ORS profile and timestamp."
+}

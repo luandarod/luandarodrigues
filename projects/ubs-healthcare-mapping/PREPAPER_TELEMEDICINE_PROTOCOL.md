@@ -193,6 +193,14 @@ O sinal conservador exige UBS a pelo menos 5 km, farmácia OSM a até 2 km e PFP
 
 Dos 40 municípios que atendem ao sinal espacial 5/2 km, seis também apresentam necessidade positiva no modelo e formam a shortlist de investigação. O resultado é hipótese para validação de rotas, não comprovação de dificuldade real. Goiânia não atende ao sinal espacial conservador.
 
+## Adendo Fase 3 - preparação para tempo de viagem
+
+A versão `phase3-routing-prep-v1` cria uma matriz origem-destino para os seis municípios da shortlist conservadora da Fase 2. Cada município recebe dois pares: sede municipal oficial do IBGE 2022 até a UBS ativa mais próxima e sede municipal até a farmácia OSM mais próxima.
+
+O arquivo `data/enriched/telemedicine_phase3_routing_od_matrix.csv` tem 12 pares prontos para roteamento. Nesta versão, `travel_time_minutes` e `network_distance_km` permanecem vazios. O status correto é `ready_for_network_routing`, não tempo medido.
+
+O cálculo de rota deve ser feito por motor documentado, preferencialmente OSRM local com extrato OSM versionado, registrando endpoint, perfil de transporte, data de execução e falhas. Enquanto isso não for executado, a evidência espacial continua grau B e deve ser descrita como proxy geodésica com matriz OD preparada.
+
 ## Referências metodológicas essenciais
 
 1. [OECD/JRC. Handbook on Constructing Composite Indicators](https://doi.org/10.1787/9789264043466-en).

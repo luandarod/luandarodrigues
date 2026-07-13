@@ -309,6 +309,7 @@ projects/ubs-healthcare-mapping/
 | Prioridade territorial dependia de um score simples | foi criado indice robusto com 5 componentes e 5 cenarios de sensibilidade | incluir vulnerabilidade socioeconomica direta quando a base municipal estiver consolidada |
 | Score depende de pesos | foi adicionada sensibilidade com quatro cenarios | calibrar pesos com especialistas ou analise multicriterio formal |
 | Agregacao por UF pode esconder heterogeneidade municipal | ha dados municipais enriquecidos e alerta metodologico | publicar mapa municipal e analise espacial local |
+| Distancia geodesica nao mede tempo de viagem | foi criada matriz OD da Fase 3 para roteamento dos alvos conservadores | executar OSRM/ORS documentado e, depois, origem ponderada por populacao |
 | Proveniencia dos dados podia ser fraca | foi criado manifesto com linhas, colunas, bytes e SHA-256 dos principais arquivos | adicionar data de download e licenca quando cada fonte trouxer esse metadado explicitamente |
 | Dois municipios do cadastro UBS nao fecharam com IBGE/SIDRA | os casos ficam documentados no metadata e saem da sintese por UF | tratar mudancas municipais recentes ou divergencias cadastrais caso a caso |
 
@@ -319,6 +320,7 @@ projects/ubs-healthcare-mapping/
 - Criar serie temporal APS por UF ou municipio.
 - Evoluir a sensibilidade do score para analise de incerteza com intervalos e pesos definidos com especialistas.
 - Adicionar mapa municipal para leitura local.
+- Rodar `data/enriched/telemedicine_phase3_routing_od_matrix.csv` em OSRM/ORS local e documentar endpoint, perfil e timestamp.
 
 ## Stack
 

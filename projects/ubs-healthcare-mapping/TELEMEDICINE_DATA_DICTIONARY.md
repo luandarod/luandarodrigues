@@ -107,3 +107,24 @@ Arquivo: `data/enriched/telemedicine_opportunity_phase2.csv`.
 | `travel_time_status` | categoria | `not_measured_geodesic_only` |
 
 `nearest_*_geodesic_km` não é distância rodoviária, tempo de carro, caminhada ou transporte público.
+
+## Extensão Fase 3 - roteamento
+
+Arquivo: `data/enriched/telemedicine_phase3_routing_od_matrix.csv`.
+
+| Campo | Unidade | Interpretação |
+|---|---:|---|
+| `od_pair_id` | identificador | par origem-destino único |
+| `destination_type` | categoria | `active_ubs` ou `osm_pharmacy` |
+| `destination_id` | identificador | CNES da UBS ou ID da feição OSM |
+| `destination_latitude`, `destination_longitude` | graus | coordenada do destino usado no roteamento |
+| `phase2_geodesic_km` | km | distância de linha geodésica herdada da Fase 2 |
+| `routing_profile` | categoria | perfil planejado, inicialmente `driving` |
+| `routing_readiness_status` | categoria | `ready_for_network_routing`, `missing_coordinate_for_routing` ou `routed` |
+| `travel_time_minutes` | minutos | vazio até execução documentada de OSRM/ORS |
+| `network_distance_km` | km | vazio até execução documentada de OSRM/ORS |
+| `routing_source` | texto | endpoint ou motor usado no roteamento |
+| `routing_measured_at_utc` | timestamp | momento da medição de rota |
+| `academic_interpretation` | categoria | `phase3_od_pair_pending_travel_time` ou `phase3_network_travel_time_proxy` |
+
+Enquanto `travel_time_minutes` estiver vazio, a Fase 3 é somente preparação de dados, não evidência de tempo de deslocamento.

@@ -6,15 +6,18 @@ Usar sinais municipais agregados para decidir onde testar campanhas, sem inferir
 
 O arquivo operacional conservador atualizado é `data/enriched/telemedicine_phase2_ads_geo_shortlist.csv`. Ele contém somente municípios com UBS ≥5 km, farmácia OSM ≤2 km, PFPB presente e necessidade positiva, ordenados pela robustez Monte Carlo e pelo cenário equilibrado. As shortlists anteriores são preservadas para comparação de versões.
 
+Para validação espacial antes de compra de mídia, use também `data/enriched/telemedicine_phase3_routing_od_matrix.csv`. Ele lista os pares sede municipal → UBS e sede municipal → farmácia que devem receber tempo de viagem em OSRM/ORS. Sem `travel_time_minutes` preenchido, o arquivo não deve ser apresentado como prova de deslocamento real.
+
 ## Uso recomendado
 
 1. Selecionar de 6 a 12 municípios da shortlist, preservando diversidade de região e porte;
 2. confirmar cobertura comercial, disponibilidade médica, regras de atendimento e parceiros locais;
 3. validar manualmente pelo menos duas farmácias por município;
-4. confirmar internet, privacidade, acessibilidade e equipe em cada estabelecimento participante;
-5. executar teste geográfico com orçamento e criativos equivalentes;
-6. medir funil completo e comparar com municípios-controle pareados;
-7. recalibrar o índice somente após acumular desfechos suficientes.
+4. calcular tempo de viagem dos pares da Fase 3 com motor documentado;
+5. confirmar internet, privacidade, acessibilidade e equipe em cada estabelecimento participante;
+6. executar teste geográfico com orçamento e criativos equivalentes;
+7. medir funil completo e comparar com municípios-controle pareados;
+8. recalibrar o índice somente após acumular desfechos suficientes.
 
 ## Mensagem por segmento
 
