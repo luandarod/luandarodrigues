@@ -1,0 +1,12 @@
+{
+  "generated_at_utc": "2026-07-13T21:50:30.138598+00:00",
+  "artifact": "ibge_2022_sector_source_manifest",
+  "phase": "phase5a_ibge_intramunicipal_origins",
+  "source_count": 29,
+  "uf_geometry_sources": 27,
+  "raw_cache_policy": "downloaded raw files live under data/raw/ibge_censo_2022_phase5 and are git-ignored",
+  "official_references": [
+    "https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais/26565-malhas-de-setores-censitarios-divisoes-intramunicipais.html",
+    "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/"
+  ]
+}

@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-07-13T21:35:42.270498+00:00",
+  "generated_at_utc": "2026-07-13T21:52:31.623956+00:00",
   "artifact": "telemedicine_precision_spatial_access",
   "phase": "phase5_spatial_precision",
-  "population_origins": 5571,
+  "population_origins": 18186,
   "municipalities": 5571,
   "ubs_facilities": 41597,
   "pharmacy_facilities": 14776,
@@ -21,7 +21,8 @@
     "phase5_population_per_pfpb_pharmacy"
   ],
   "precision_status_counts": {
-    "municipal_single_origin_proxy_not_intramunicipal": 5571
+    "intramunicipal_population_weighted_ready": 246,
+    "municipal_single_origin_proxy_not_intramunicipal": 5325
   },
   "academic_use_note": "Academic claims require intramunicipal IBGE 2022 sector/grid origins and, ideally, routed travel-time validation."
 }

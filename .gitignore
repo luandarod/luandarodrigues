@@ -3,3 +3,4 @@ dist/
 .astro/
 __pycache__/
 *.py[cod]
+projects/ubs-healthcare-mapping/data/raw/ibge_censo_2022_phase5/

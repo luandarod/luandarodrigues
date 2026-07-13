@@ -89,6 +89,18 @@ def normalize_manual_origins(origins: pd.DataFrame, allow_non_2022: bool = False
     return validate_origins(result)
 
 
+def blend_manual_with_proxy(manual_origins: pd.DataFrame, proxy_origins: pd.DataFrame) -> pd.DataFrame:
+    """Use manual intramunicipal origins where available and proxy elsewhere."""
+    manual = manual_origins.copy()
+    proxy = proxy_origins.copy()
+    manual["ibge_municipio_7"] = _normalise_ibge_code(manual["ibge_municipio_7"])
+    proxy["ibge_municipio_7"] = _normalise_ibge_code(proxy["ibge_municipio_7"])
+    manual_municipalities = set(manual["ibge_municipio_7"].dropna().astype(str))
+    kept_proxy = proxy.loc[~proxy["ibge_municipio_7"].astype(str).isin(manual_municipalities)].copy()
+    blended = pd.concat([manual, kept_proxy], ignore_index=True, sort=False)
+    return validate_origins(blended)
+
+
 def validate_origins(origins: pd.DataFrame) -> pd.DataFrame:
     result = origins.copy()
     missing = REQUIRED_COLUMNS.difference(result.columns)
@@ -116,6 +128,7 @@ def validate_origins(origins: pd.DataFrame) -> pd.DataFrame:
 def build_metadata(origins: pd.DataFrame, source_kind: str, source_path: Path | None) -> dict:
     by_granularity = origins["origin_granularity"].value_counts().sort_index()
     proxy_only = origins["origin_granularity"].eq("municipality_single_origin").all()
+    has_intramunicipal = origins["origin_granularity"].ne("municipality_single_origin").any()
     return {
         "generated_at_utc": datetime.now(UTC).isoformat(),
         "artifact": "telemedicine_population_origins",
@@ -129,8 +142,10 @@ def build_metadata(origins: pd.DataFrame, source_kind: str, source_path: Path | 
         "missing_population_origins": int(origins.get("origin_population_status", pd.Series(dtype=str)).eq("missing_population_not_scored").sum()),
         "origin_granularity_counts": {str(k): int(v) for k, v in by_granularity.items()},
         "precision_status": (
-            "manual_intramunicipal_origins_loaded"
-            if not proxy_only
+            "intramunicipal_origins_loaded_with_proxy_backfill"
+            if has_intramunicipal and not proxy_only and origins["origin_granularity"].eq("municipality_single_origin").any()
+            else "manual_intramunicipal_origins_loaded"
+            if has_intramunicipal
             else "municipal_single_origin_proxy_pending_ibge_2022_sector_or_grid_origins"
         ),
         "academic_use_note": (
@@ -150,14 +165,21 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--phase2-spatial", type=Path, default=PROJECT_ROOT / "data/enriched/municipality_phase2_spatial_access.csv")
     parser.add_argument("--manual-origins", type=Path, help="CSV with official 2022 origin_id, ibge_municipio_7, lat/lon and population.")
+    parser.add_argument("--blend-with-proxy", action="store_true", help="When manual origins cover only part of Brazil, keep Phase 2 proxy origins for other municipalities.")
     parser.add_argument("--allow-non-2022", action="store_true", help="Allow non-2022 source_year values and record that choice in metadata.")
     parser.add_argument("--output", type=Path, default=PROJECT_ROOT / "data/enriched/telemedicine_population_origins.csv")
     parser.add_argument("--metadata", type=Path, default=PROJECT_ROOT / "data/enriched/telemedicine_population_origins_metadata.json")
     args = parser.parse_args()
 
     if args.manual_origins:
-        origins = normalize_manual_origins(pd.read_csv(args.manual_origins), allow_non_2022=args.allow_non_2022)
-        source_kind = "manual_official_population_origins_csv"
+        manual = normalize_manual_origins(pd.read_csv(args.manual_origins), allow_non_2022=args.allow_non_2022)
+        if args.blend_with_proxy:
+            proxy = build_proxy_origins(pd.read_csv(args.phase2_spatial))
+            origins = blend_manual_with_proxy(manual, proxy)
+            source_kind = "manual_official_population_origins_with_municipal_proxy_backfill"
+        else:
+            origins = manual
+            source_kind = "manual_official_population_origins_csv"
         source_path = args.manual_origins
     else:
         origins = build_proxy_origins(pd.read_csv(args.phase2_spatial))

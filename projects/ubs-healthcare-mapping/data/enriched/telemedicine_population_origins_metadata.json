@@ -1,18 +1,19 @@
 {
-  "generated_at_utc": "2026-07-13T21:34:37.263583+00:00",
+  "generated_at_utc": "2026-07-13T21:51:31.610211+00:00",
   "artifact": "telemedicine_population_origins",
   "phase": "phase5_spatial_precision",
-  "source_kind": "municipal_single_origin_proxy",
-  "source_path": "projects\\ubs-healthcare-mapping\\data\\enriched\\municipality_phase2_spatial_access.csv",
+  "source_kind": "manual_official_population_origins_with_municipal_proxy_backfill",
+  "source_path": "projects\\ubs-healthcare-mapping\\data\\enriched\\telemedicine_population_origins_ibge2022_go_sectors.csv",
   "source_year_rule": "IBGE 2022 required unless --allow-non-2022 is explicitly used",
-  "origin_rows": 5571,
+  "origin_rows": 18186,
   "municipalities": 5571,
-  "total_origin_population": 203105684.0,
+  "total_origin_population": 203105527.0,
   "missing_population_origins": 4,
   "origin_granularity_counts": {
-    "municipality_single_origin": 5571
+    "census_sector": 12861,
+    "municipality_single_origin": 5325
   },
-  "precision_status": "municipal_single_origin_proxy_pending_ibge_2022_sector_or_grid_origins",
+  "precision_status": "intramunicipal_origins_loaded_with_proxy_backfill",
   "academic_use_note": "Use the proxy output only as a reproducible process scaffold. For academic spatial inference, supply IBGE 2022 census-sector or statistical-grid representative points with population.",
   "official_source_references": [
     "https://www.ibge.gov.br/estatisticas/downloads-estatisticas.html",

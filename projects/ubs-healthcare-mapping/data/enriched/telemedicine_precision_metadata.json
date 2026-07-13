@@ -1,11 +1,12 @@
 {
-  "generated_at_utc": "2026-07-13T21:35:43.642102+00:00",
+  "generated_at_utc": "2026-07-13T21:52:32.890547+00:00",
   "artifact": "telemedicine_precision_index",
   "phase": "phase5_spatial_precision",
   "index_version": "phase5-population-weighted-geodesic-v1",
   "eligible_municipalities": 4988,
   "precision_status_counts": {
-    "municipal_single_origin_proxy_not_intramunicipal": 5571
+    "intramunicipal_population_weighted_ready": 246,
+    "municipal_single_origin_proxy_not_intramunicipal": 5325
   },
   "weights": {
     "need": 0.45,

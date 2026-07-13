@@ -75,6 +75,48 @@ class Phase5PopulationOriginTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             module.normalize_manual_origins(origins, allow_non_2022=False)
 
+    def test_blend_manual_with_proxy_replaces_matching_municipality_only(self):
+        module = load_module()
+        manual = pd.DataFrame([
+            {
+                "origin_id": "sector-1",
+                "ibge_municipio_7": "5208707",
+                "origin_latitude": -16.7,
+                "origin_longitude": -49.2,
+                "origin_population": 100,
+                "origin_source": "IBGE 2022 setores",
+                "origin_granularity": "census_sector",
+                "source_year": 2022,
+            }
+        ])
+        proxy = pd.DataFrame([
+            {
+                "origin_id": "5208707_municipal_proxy",
+                "ibge_municipio_7": "5208707",
+                "origin_latitude": -16.68,
+                "origin_longitude": -49.25,
+                "origin_population": 1437366,
+                "origin_source": "proxy",
+                "origin_granularity": "municipality_single_origin",
+            },
+            {
+                "origin_id": "4106902_municipal_proxy",
+                "ibge_municipio_7": "4106902",
+                "origin_latitude": -25.42,
+                "origin_longitude": -49.27,
+                "origin_population": 1773718,
+                "origin_source": "proxy",
+                "origin_granularity": "municipality_single_origin",
+            },
+        ])
+
+        result = module.blend_manual_with_proxy(module.normalize_manual_origins(manual), proxy)
+
+        self.assertEqual(len(result), 2)
+        self.assertIn("sector-1", set(result["origin_id"]))
+        self.assertNotIn("5208707_municipal_proxy", set(result["origin_id"]))
+        self.assertIn("4106902_municipal_proxy", set(result["origin_id"]))
+
 
 if __name__ == "__main__":
     unittest.main()

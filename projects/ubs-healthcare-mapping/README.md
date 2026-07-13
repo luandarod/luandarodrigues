@@ -29,6 +29,7 @@ O resultado principal é um dashboard municipal e uma matriz de decisão. A leit
 | UFs no ranking estadual | 27 |
 | Pilotos farmácia assistida roteados | 4 |
 | Municípios com índice Fase 5 de precisão espacial | 4.988 |
+| Municípios com origem intramunicipal IBGE 2022 carregada | 246 |
 | Registros de UBS analisados | 47.714 |
 | UBS com coordenadas válidas no Brasil | 45.782 |
 | UBS dentro do município declarado | 43.717 |
@@ -135,7 +136,7 @@ Referências de origem:
 | Fase 2 | Sede municipal, UBS ativa, OSM farmácias | Distância geodésica; ainda não é tempo de viagem |
 | Fase 3 | Matriz origem-destino | Preparação para roteamento |
 | Fase 4 | OSRM público em subamostra | Validação roteada exploratória do piloto farmácia |
-| Fase 5 | Origens populacionais + acesso população-ponderado | Processo pronto para setores/grade IBGE 2022; execução atual B2 proxy municipal |
+| Fase 5 | Origens populacionais + acesso população-ponderado | Goiás com setores IBGE 2022; demais UFs com proxy municipal até nova carga |
 | Matriz de decisão | Classes interpretáveis | Uso operacional e acadêmico menos dependente de ranking |
 
 O método completo está distribuído em documentos específicos:

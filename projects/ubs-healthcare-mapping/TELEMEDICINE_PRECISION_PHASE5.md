@@ -16,11 +16,12 @@ Arquivos principais:
 - `data/enriched/telemedicine_precision_shortlist.csv`
 - `data/enriched/telemedicine_precision_metadata.json`
 
-Nesta execução, o projeto ainda usa uma origem única por município herdada da Fase 2. Por isso o grau de evidência publicado é:
+Nesta execução, Goiás já usa setores censitários IBGE 2022: 12.861 origens para 246 municípios. As demais UFs ainda usam uma origem única por município herdada da Fase 2. Por isso há dois graus de evidência:
 
-`B2_municipal_population_proxy`
+- `A_intramunicipal_population_weighted` para municípios de GO;
+- `B2_municipal_population_proxy` para municípios ainda em proxy.
 
-Isso é proposital. O pipeline fica pronto e auditável, mas o documento não afirma precisão intramunicipal enquanto os setores censitários ou a grade estatística do IBGE 2022 não forem carregados.
+Isso é proposital. O pipeline fica pronto e auditável, mas o documento só afirma precisão intramunicipal nos locais em que os setores censitários foram carregados.
 
 ## Como evolui para uso acadêmico forte
 
@@ -84,14 +85,26 @@ python projects/ubs-healthcare-mapping/scripts/build_telemedicine_precision_spat
 python projects/ubs-healthcare-mapping/scripts/build_telemedicine_precision_index.py
 ```
 
-Com origens oficiais IBGE 2022 já preparadas:
+Com origens oficiais IBGE 2022 já preparadas para parte do país:
 
 ```bash
 python projects/ubs-healthcare-mapping/scripts/build_telemedicine_population_origins.py ^
-  --manual-origins caminho/para/origens_ibge_2022.csv
+  --manual-origins caminho/para/origens_ibge_2022.csv ^
+  --blend-with-proxy
 
 python projects/ubs-healthcare-mapping/scripts/build_telemedicine_precision_spatial_access.py
 python projects/ubs-healthcare-mapping/scripts/build_telemedicine_precision_index.py
+```
+
+Para baixar e preparar uma UF a partir das fontes oficiais:
+
+```bash
+python projects/ubs-healthcare-mapping/scripts/fetch_ibge_2022_sector_sources.py --download --uf GO
+
+python projects/ubs-healthcare-mapping/scripts/prepare_ibge_2022_sector_origins.py ^
+  --sector-shapefile-zip projects/ubs-healthcare-mapping/data/raw/ibge_censo_2022_phase5/GO_setores_CD2022.zip ^
+  --basic-aggregate projects/ubs-healthcare-mapping/data/raw/ibge_censo_2022_phase5/Agregados_por_setores_basico_BR_20260520.zip ^
+  --output projects/ubs-healthcare-mapping/data/enriched/telemedicine_population_origins_ibge2022_go_sectors.csv
 ```
 
 Depois:

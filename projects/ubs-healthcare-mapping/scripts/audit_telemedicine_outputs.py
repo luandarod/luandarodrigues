@@ -101,6 +101,11 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
             if not precision.empty and "phase5_precision_status" in precision
             else {}
         ),
+        "phase5_evidence_grade_counts": (
+            {str(k): int(v) for k, v in precision["phase5_evidence_grade"].value_counts().sort_index().items()}
+            if not precision.empty and "phase5_evidence_grade" in precision
+            else {}
+        ),
         "phase5_metadata_status_counts": precision_metadata.get("precision_status_counts", {}),
         "dashboard_geojson_features": int(len(geojson.get("features", []))),
         "geojson_has_required_fields": required_geojson_fields.issubset(first_properties.keys()),
@@ -118,6 +123,7 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
         and summary["state_phase4_pilot_total"] == summary["phase4_primary_routed_targets"]
         and summary["phase5_precision_rows"] == summary["phase4_rows"]
         and summary["phase5_precision_eligible"] == summary["phase2_scored_municipalities"]
+        and summary["phase5_evidence_grade_counts"].get("A_intramunicipal_population_weighted") == 246
     )
     return summary
 

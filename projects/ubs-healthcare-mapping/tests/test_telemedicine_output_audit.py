@@ -38,6 +38,7 @@ class TelemedicineOutputAuditTests(unittest.TestCase):
         self.assertEqual(summary["phase5_precision_rows"], summary["phase4_rows"])
         self.assertEqual(summary["phase5_precision_eligible"], summary["phase2_scored_municipalities"])
         self.assertGreater(summary["phase5_precision_status_counts"].get("municipal_single_origin_proxy_not_intramunicipal", 0), 0)
+        self.assertEqual(summary["phase5_evidence_grade_counts"]["A_intramunicipal_population_weighted"], 246)
         self.assertEqual(summary["goiania"]["phase2_rank_balanced"], 1)
         self.assertIsNone(summary["goiania"]["phase4_routed_target_rank"])
 

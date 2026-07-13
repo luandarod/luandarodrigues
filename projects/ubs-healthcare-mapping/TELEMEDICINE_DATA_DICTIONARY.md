@@ -185,6 +185,6 @@ Arquivos:
 | `phase5_spatial_precision_mismatch_score` | 0-100 | combinação de p90 UBS, farmácia próxima e descompasso conjunto |
 | `telemedicine_precision_index` | 0-100 | necessidade 45%, precisão espacial 35% e viabilidade 20% |
 | `phase5_precision_rank` | posição | ranking entre municípios elegíveis Fase 5 |
-| `phase5_evidence_grade` | categoria | `B2_municipal_population_proxy` nesta execução; `A_intramunicipal_population_weighted` quando setores/grade forem carregados |
+| `phase5_evidence_grade` | categoria | `A_intramunicipal_population_weighted` para UFs com setores IBGE 2022 carregados; `B2_municipal_population_proxy` para UFs ainda em proxy |
 
-A execução atual usa uma origem municipal única e deve ser lida como scaffold metodológico. Para afirmações acadêmicas fortes, carregue origens intramunicipais IBGE 2022 e reexecute a Fase 5.
+A execução atual usa setores IBGE 2022 para Goiás e proxy municipal para as demais UFs. Para afirmações acadêmicas fortes nacionais, carregue as demais UFs e reexecute a Fase 5.
