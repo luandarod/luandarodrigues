@@ -11,6 +11,7 @@ O resultado principal é um dashboard municipal e uma matriz de decisão. A leit
 - [Dashboard interativo](https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/)
 - [Matriz de decisão municipal](TELEMEDICINE_DECISION_MATRIX.md)
 - [Ranking estadual de oportunidade](TELEMEDICINE_STATE_SUMMARY.md)
+- [Fase 5: precisão espacial](TELEMEDICINE_PRECISION_PHASE5.md)
 - [Protocolo pré-paper](PREPAPER_TELEMEDICINE_PROTOCOL.md)
 - [Dicionário de dados](TELEMEDICINE_DATA_DICTIONARY.md)
 - [Auditoria de evolução](PROJECT_IMPROVEMENT_AUDIT.md)
@@ -27,6 +28,7 @@ O resultado principal é um dashboard municipal e uma matriz de decisão. A leit
 | Oportunidades regionais adicionais | 395 |
 | UFs no ranking estadual | 27 |
 | Pilotos farmácia assistida roteados | 4 |
+| Municípios com índice Fase 5 de precisão espacial | 4.988 |
 | Registros de UBS analisados | 47.714 |
 | UBS com coordenadas válidas no Brasil | 45.782 |
 | UBS dentro do município declarado | 43.717 |
@@ -133,6 +135,7 @@ Referências de origem:
 | Fase 2 | Sede municipal, UBS ativa, OSM farmácias | Distância geodésica; ainda não é tempo de viagem |
 | Fase 3 | Matriz origem-destino | Preparação para roteamento |
 | Fase 4 | OSRM público em subamostra | Validação roteada exploratória do piloto farmácia |
+| Fase 5 | Origens populacionais + acesso população-ponderado | Processo pronto para setores/grade IBGE 2022; execução atual B2 proxy municipal |
 | Matriz de decisão | Classes interpretáveis | Uso operacional e acadêmico menos dependente de ranking |
 
 O método completo está distribuído em documentos específicos:
@@ -144,6 +147,7 @@ O método completo está distribuído em documentos específicos:
 - [PHASE3_TRAVEL_TIME_PLAN.md](PHASE3_TRAVEL_TIME_PLAN.md)
 - [PHASE4_ROUTED_VALIDATION.md](PHASE4_ROUTED_VALIDATION.md)
 - [PHASE4_OSRM_LOCAL_REPRODUCIBILITY.md](PHASE4_OSRM_LOCAL_REPRODUCIBILITY.md)
+- [TELEMEDICINE_PRECISION_PHASE5.md](TELEMEDICINE_PRECISION_PHASE5.md)
 
 ## Gráficos do relatório
 
@@ -204,6 +208,9 @@ python projects/ubs-healthcare-mapping/scripts/build_telemedicine_phase2_index.p
 python projects/ubs-healthcare-mapping/scripts/build_phase3_routing_od_matrix.py
 python projects/ubs-healthcare-mapping/scripts/build_phase3_routing_summary.py
 python projects/ubs-healthcare-mapping/scripts/build_telemedicine_phase4_index.py
+python projects/ubs-healthcare-mapping/scripts/build_telemedicine_population_origins.py
+python projects/ubs-healthcare-mapping/scripts/build_telemedicine_precision_spatial_access.py
+python projects/ubs-healthcare-mapping/scripts/build_telemedicine_precision_index.py
 python projects/ubs-healthcare-mapping/scripts/build_telemedicine_decision_matrix.py
 python projects/ubs-healthcare-mapping/scripts/build_telemedicine_state_summary.py
 ```

@@ -1,0 +1,22 @@
+{
+  "generated_at_utc": "2026-07-13T21:35:43.642102+00:00",
+  "artifact": "telemedicine_precision_index",
+  "phase": "phase5_spatial_precision",
+  "index_version": "phase5-population-weighted-geodesic-v1",
+  "eligible_municipalities": 4988,
+  "precision_status_counts": {
+    "municipal_single_origin_proxy_not_intramunicipal": 5571
+  },
+  "weights": {
+    "need": 0.45,
+    "spatial_precision": 0.35,
+    "feasibility": 0.2
+  },
+  "spatial_precision_components": {
+    "phase5_ubs_p90_barrier_percentile": 0.45,
+    "phase5_pharmacy_near_share_percentile": 0.25,
+    "phase5_hard_easy_share_percentile": 0.3
+  },
+  "distance_status": "geodesic_not_travel_time",
+  "academic_use_note": "Treat B2 municipal-proxy results as a reproducible scaffold. Use A-grade intramunicipal origins plus routed travel times for stronger academic claims."
+}

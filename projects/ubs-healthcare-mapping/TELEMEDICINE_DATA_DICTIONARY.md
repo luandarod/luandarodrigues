@@ -160,3 +160,31 @@ Arquivos:
 | `candidate_municipalities` | texto | municípios selecionados no cenário |
 
 A Fase 4 é uma validação de piloto; não é um ranking nacional.
+
+## Extensão Fase 5 - precisão espacial
+
+Arquivos:
+
+- `data/enriched/telemedicine_population_origins.csv`;
+- `data/enriched/telemedicine_precision_spatial_access.csv`;
+- `data/enriched/telemedicine_precision_index.csv`;
+- `data/enriched/telemedicine_precision_shortlist.csv`.
+
+| Campo | Unidade | Interpretação |
+|---|---:|---|
+| `origin_id` | identificador | origem populacional usada no cálculo; hoje proxy municipal, futuramente setor/grade IBGE 2022 |
+| `origin_population` | pessoas | população atribuída à origem |
+| `origin_granularity` | categoria | `municipality_single_origin`, `census_sector` ou `statistical_grid` |
+| `phase5_weighted_mean_ubs_km` | km | distância média até UBS ativa ponderada por população |
+| `phase5_weighted_p90_ubs_km` | km | p90 populacional da distância até UBS ativa |
+| `phase5_weighted_mean_pharmacy_km` | km | distância média até farmácia OSM ponderada por população |
+| `phase5_population_share_ubs_gt_5km` | proporção | população com UBS ativa mais próxima acima de 5 km |
+| `phase5_population_share_pharmacy_le_2km` | proporção | população com farmácia OSM a até 2 km |
+| `phase5_population_share_hard_ubs_easy_pharmacy` | proporção | população simultaneamente com UBS >5 km e farmácia <=2 km |
+| `phase5_population_per_active_ubs` | pessoas/UBS | campo preparatório para E2SFCA ou modelo gravitacional |
+| `phase5_spatial_precision_mismatch_score` | 0-100 | combinação de p90 UBS, farmácia próxima e descompasso conjunto |
+| `telemedicine_precision_index` | 0-100 | necessidade 45%, precisão espacial 35% e viabilidade 20% |
+| `phase5_precision_rank` | posição | ranking entre municípios elegíveis Fase 5 |
+| `phase5_evidence_grade` | categoria | `B2_municipal_population_proxy` nesta execução; `A_intramunicipal_population_weighted` quando setores/grade forem carregados |
+
+A execução atual usa uma origem municipal única e deve ser lida como scaffold metodológico. Para afirmações acadêmicas fortes, carregue origens intramunicipais IBGE 2022 e reexecute a Fase 5.

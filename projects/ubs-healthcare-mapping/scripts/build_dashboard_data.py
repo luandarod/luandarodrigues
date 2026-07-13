@@ -31,6 +31,12 @@ def build_gap_geojson(geometries: dict, gap: pd.DataFrame) -> dict:
         "telemedicine_phase4_routed_validation", "phase4_routed_target_rank",
         "phase4_need_pillar", "phase4_feasibility_pillar",
         "phase4_interpretation", "phase4_evidence_grade",
+        "telemedicine_precision_index", "phase5_precision_rank",
+        "phase5_spatial_precision_mismatch_score",
+        "phase5_weighted_p90_ubs_km", "phase5_weighted_mean_ubs_km",
+        "phase5_population_share_pharmacy_le_2km",
+        "phase5_population_share_hard_ubs_easy_pharmacy",
+        "phase5_precision_status", "phase5_evidence_grade",
         "decision_class", "decision_label", "ads_positioning_tier",
         "recommended_next_action", "primary_driver", "evidence_grade",
     ]
@@ -144,6 +150,28 @@ def build_dashboard_data(project_dir: Path, dashboard_dir: Path) -> None:
                     "recommended_next_action", "primary_driver", "evidence_grade",
                 ]
                 gap = gap.merge(matrix[matrix_fields], on="ibge_municipio", how="left", validate="one_to_one")
+            precision_file = src / "telemedicine_precision_index.csv"
+            if precision_file.exists():
+                shutil.copy2(precision_file, dst / precision_file.name)
+                for optional_name in (
+                    "telemedicine_population_origins.csv",
+                    "telemedicine_precision_spatial_access.csv",
+                    "telemedicine_precision_shortlist.csv",
+                ):
+                    optional_file = src / optional_name
+                    if optional_file.exists():
+                        shutil.copy2(optional_file, dst / optional_name)
+                precision = pd.read_csv(precision_file, low_memory=False)
+                precision["ibge_municipio"] = precision["ibge_municipio"].astype("string").str.replace(r"\.0$", "", regex=True).str[:6]
+                precision_fields = [
+                    "ibge_municipio", "telemedicine_precision_index", "phase5_precision_rank",
+                    "phase5_spatial_precision_mismatch_score",
+                    "phase5_weighted_p90_ubs_km", "phase5_weighted_mean_ubs_km",
+                    "phase5_population_share_pharmacy_le_2km",
+                    "phase5_population_share_hard_ubs_easy_pharmacy",
+                    "phase5_precision_status", "phase5_evidence_grade",
+                ]
+                gap = gap.merge(precision[precision_fields], on="ibge_municipio", how="left", validate="one_to_one")
             gap_geojson = build_gap_geojson(geometries, gap)
             (dst / "municipality_pharmacy_access_gap.geojson").write_text(
                 json.dumps(gap_geojson, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"

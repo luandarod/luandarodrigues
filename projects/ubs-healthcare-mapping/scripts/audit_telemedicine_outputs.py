@@ -28,6 +28,8 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
     phase4_path = enriched / "telemedicine_opportunity_phase4.csv"
     matrix_path = enriched / "telemedicine_decision_matrix.csv"
     state_summary_path = enriched / "telemedicine_state_opportunity_summary.csv"
+    precision_path = enriched / "telemedicine_precision_index.csv"
+    precision_metadata_path = enriched / "telemedicine_precision_metadata.json"
     geojson_path = dashboard_dir / "data" / "municipality_pharmacy_access_gap.geojson"
     dashboard_path = dashboard_dir / "index.html"
 
@@ -35,6 +37,8 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
     phase4 = pd.read_csv(phase4_path, low_memory=False)
     matrix = pd.read_csv(matrix_path) if matrix_path.exists() else pd.DataFrame()
     state_summary = pd.read_csv(state_summary_path) if state_summary_path.exists() else pd.DataFrame()
+    precision = pd.read_csv(precision_path, low_memory=False) if precision_path.exists() else pd.DataFrame()
+    precision_metadata = json.loads(precision_metadata_path.read_text(encoding="utf-8")) if precision_metadata_path.exists() else {}
     geojson = _read_geojson(geojson_path)
     dashboard_html = dashboard_path.read_text(encoding="utf-8")
 
@@ -63,9 +67,13 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
         "decision_class",
         "decision_label",
         "primary_driver",
+        "telemedicine_precision_index",
+        "phase5_precision_rank",
+        "phase5_evidence_grade",
     }
     required_dashboard_filters = {
         'value="national"',
+        'value="phase5"',
         'value="top100"',
         'value="phase4"',
     }
@@ -86,6 +94,14 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
         "state_top100_total": int(state_summary["top100_municipalities"].sum()) if not state_summary.empty else 0,
         "state_phase4_pilot_total": int(state_summary["pharmacy_assisted_pilot_count"].sum()) if not state_summary.empty else 0,
         "top_state": str(state_summary.sort_values("state_rank").iloc[0]["uf_sigla"]) if not state_summary.empty else None,
+        "phase5_precision_rows": int(len(precision)),
+        "phase5_precision_eligible": int(precision["phase5_index_eligibility"].eq("eligible_phase5_precision").sum()) if not precision.empty else 0,
+        "phase5_precision_status_counts": (
+            {str(k): int(v) for k, v in precision["phase5_precision_status"].value_counts().sort_index().items()}
+            if not precision.empty and "phase5_precision_status" in precision
+            else {}
+        ),
+        "phase5_metadata_status_counts": precision_metadata.get("precision_status_counts", {}),
         "dashboard_geojson_features": int(len(geojson.get("features", []))),
         "geojson_has_required_fields": required_geojson_fields.issubset(first_properties.keys()),
         "dashboard_has_separated_filters": all(token in dashboard_html for token in required_dashboard_filters),
@@ -100,6 +116,8 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
         and summary["state_summary_rows"] == 27
         and summary["state_top100_total"] == summary["phase2_top100_municipalities"]
         and summary["state_phase4_pilot_total"] == summary["phase4_primary_routed_targets"]
+        and summary["phase5_precision_rows"] == summary["phase4_rows"]
+        and summary["phase5_precision_eligible"] == summary["phase2_scored_municipalities"]
     )
     return summary
 
