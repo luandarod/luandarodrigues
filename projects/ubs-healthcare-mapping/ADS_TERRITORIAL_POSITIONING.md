@@ -8,6 +8,8 @@ O arquivo operacional conservador atualizado é `data/enriched/telemedicine_phas
 
 Para validação espacial antes de compra de mídia, use também `data/enriched/telemedicine_phase3_routing_summary.csv`. Na execução exploratória por OSRM público, quatro municípios mantêm o padrão UBS >= 15 min e farmácia <= 5 min: Guapimirim/RJ, Sananduva/RS, Angatuba/SP e Arraial do Cabo/RJ.
 
+O arquivo mais conservador para campanha piloto agora é `data/enriched/telemedicine_phase4_ads_routed_shortlist.csv`. Ele ordena apenas os alvos roteados, combinando necessidade, acesso por tempo e viabilidade.
+
 ## Uso recomendado
 
 1. Selecionar de 6 a 12 municípios da shortlist, preservando diversidade de região e porte;

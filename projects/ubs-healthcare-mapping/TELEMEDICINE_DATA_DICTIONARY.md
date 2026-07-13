@@ -134,3 +134,24 @@ Arquivos:
 | `phase3_access_interpretation` | categoria | leitura roteada municipal |
 
 Na execução atual, o roteamento usa OSRM público e perfil `driving`; deve ser tratado como proxy exploratória até rerodagem local versionada.
+
+## Extensão Fase 4 - validação roteada
+
+Arquivos:
+
+- `data/enriched/telemedicine_opportunity_phase4.csv`;
+- `data/enriched/telemedicine_phase4_ads_routed_shortlist.csv`.
+
+| Campo | Unidade | Interpretação |
+|---|---:|---|
+| `phase4_eligibility` | categoria | elegível somente se o município foi roteado na Fase 3 |
+| `phase4_evidence_grade` | categoria | `B_routed_public_osrm_proxy` ou `C_not_routed` |
+| `phase4_ubs_travel_barrier_percentile_routed_subset` | 0-1 | percentil de tempo até UBS apenas entre municípios roteados |
+| `phase4_pharmacy_travel_ease_percentile_routed_subset` | 0-1 | percentil inverso de tempo até farmácia apenas entre municípios roteados |
+| `phase4_routed_access_score` | 0-100 | barreira UBS 65% e facilidade farmácia 35% |
+| `telemedicine_phase4_routed_validation` | 0-100 | necessidade 45%, acesso roteado 35% e viabilidade 20% |
+| `phase4_routed_validation_rank` | posição | ranking somente entre municípios roteados |
+| `phase4_routed_target_rank` | posição | ranking somente entre alvos UBS >= 15 min e farmácia <= 5 min |
+| `phase4_interpretation` | categoria | leitura operacional da Fase 4 |
+
+A Fase 4 é uma validação de piloto; não é um ranking nacional.

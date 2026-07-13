@@ -24,6 +24,9 @@ def build_gap_geojson(geometries: dict, gap: pd.DataFrame) -> dict:
         "hard_ubs_easy_pharmacy_flag", "hard_ubs_easy_pharmacy_flag_3km_2km",
         "hard_ubs_easy_pharmacy_flag_10km_5km", "telemedicine_phase2_balanced",
         "phase2_spatial_target_rank", "travel_time_status",
+        "active_ubs_travel_time_minutes", "osm_pharmacy_travel_time_minutes",
+        "telemedicine_phase4_routed_validation", "phase4_routed_target_rank",
+        "phase4_interpretation", "phase4_evidence_grade",
     ]
     features = []
     for ibge7, item in geometries.items():
@@ -108,6 +111,16 @@ def build_dashboard_data(project_dir: Path, dashboard_dir: Path) -> None:
                     "phase2_spatial_target_rank", "travel_time_status",
                 ]
                 gap = gap.merge(phase2[phase2_fields], on="ibge_municipio", how="left", validate="one_to_one")
+            phase4_file = src / "telemedicine_opportunity_phase4.csv"
+            if phase4_file.exists():
+                phase4 = pd.read_csv(phase4_file, low_memory=False)
+                phase4["ibge_municipio"] = phase4["ibge_municipio"].astype("string").str.replace(r"\.0$", "", regex=True).str[:6]
+                phase4_fields = [
+                    "ibge_municipio", "active_ubs_travel_time_minutes", "osm_pharmacy_travel_time_minutes",
+                    "telemedicine_phase4_routed_validation", "phase4_routed_target_rank",
+                    "phase4_interpretation", "phase4_evidence_grade",
+                ]
+                gap = gap.merge(phase4[phase4_fields], on="ibge_municipio", how="left", validate="one_to_one")
             gap_geojson = build_gap_geojson(geometries, gap)
             (dst / "municipality_pharmacy_access_gap.geojson").write_text(
                 json.dumps(gap_geojson, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"

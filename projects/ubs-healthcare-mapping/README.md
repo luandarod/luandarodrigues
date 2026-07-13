@@ -310,6 +310,7 @@ projects/ubs-healthcare-mapping/
 | Score depende de pesos | foi adicionada sensibilidade com quatro cenarios | calibrar pesos com especialistas ou analise multicriterio formal |
 | Agregacao por UF pode esconder heterogeneidade municipal | ha dados municipais enriquecidos e alerta metodologico | publicar mapa municipal e analise espacial local |
 | Distancia geodesica nao mede tempo de viagem | foi criada e roteada matriz OD da Fase 3 para os alvos conservadores; 4/6 permanecem fortes por tempo de carro | rerodar OSRM local versionado e, depois, origem ponderada por populacao |
+| Roteamento precisava virar decisao operacional | foi criado indice Fase 4 restrito a subamostra roteada e shortlist com 4 alvos primarios | validar farmacias, internet, privacidade e agenda medica no campo |
 | Proveniencia dos dados podia ser fraca | foi criado manifesto com linhas, colunas, bytes e SHA-256 dos principais arquivos | adicionar data de download e licenca quando cada fonte trouxer esse metadado explicitamente |
 | Dois municipios do cadastro UBS nao fecharam com IBGE/SIDRA | os casos ficam documentados no metadata e saem da sintese por UF | tratar mudancas municipais recentes ou divergencias cadastrais caso a caso |
 
@@ -321,6 +322,7 @@ projects/ubs-healthcare-mapping/
 - Evoluir a sensibilidade do score para analise de incerteza com intervalos e pesos definidos com especialistas.
 - Adicionar mapa municipal para leitura local.
 - Rerodar `data/enriched/telemedicine_phase3_routing_od_matrix.csv` em OSRM local versionado e documentar extrato OSM, endpoint, perfil e timestamp.
+- Usar `data/enriched/telemedicine_phase4_ads_routed_shortlist.csv` como lista inicial de piloto, com validacao local antes de compra de midia.
 
 ## Stack
 

@@ -203,6 +203,14 @@ Pela regra operacional UBS >= 15 minutos e farmácia OSM <= 5 minutos, quatro mu
 
 Como a execução usou endpoint público, a evidência deve ser descrita como proxy exploratória de tempo de carro. O cálculo deve ser rerodado em OSRM local com extrato OSM versionado antes de submissão acadêmica.
 
+## Adendo Fase 4 - validação roteada
+
+A versão `phase4-routed-validation-v1` incorpora o tempo roteado à decisão operacional. O índice é restrito à subamostra roteada e não deve ser interpretado como ranking nacional.
+
+O sinal primário exige UBS >= 15 minutos e farmácia OSM <= 5 minutos. Quatro municípios permanecem como alvos roteados: Guapimirim/RJ, Angatuba/SP, Sananduva/RS e Arraial do Cabo/RJ.
+
+O score Fase 4 combina necessidade Fase 2, acesso roteado e viabilidade Fase 2 por média geométrica ponderada. A evidência permanece `B_routed_public_osrm_proxy` até rerodagem local versionada e validação do estabelecimento farmacêutico.
+
 ## Referências metodológicas essenciais
 
 1. [OECD/JRC. Handbook on Constructing Composite Indicators](https://doi.org/10.1787/9789264043466-en).

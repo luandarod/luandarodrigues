@@ -1,0 +1,22 @@
+{
+  "generated_at_utc": "2026-07-13T18:03:41.416754+00:00",
+  "index_version": "phase4-routed-validation-v1",
+  "scope": "validation subset only; not a national ranking because only Phase 2 conservative targets were routed",
+  "phase4_weights": {
+    "need": 0.45,
+    "routed_access": 0.35,
+    "feasibility": 0.2
+  },
+  "routed_access_weights": {
+    "ubs_travel_barrier": 0.65,
+    "pharmacy_travel_ease": 0.35
+  },
+  "primary_target_rule": "Phase 3 routed screen: UBS travel time >= 15 minutes and OSM pharmacy travel time <= 5 minutes",
+  "eligible_routed_municipalities": 6,
+  "primary_routed_targets": 4,
+  "important_limits": [
+    "Public OSRM routing must be rerun on a local, versioned OSM extract before academic submission.",
+    "Origins are municipal seats, not population-weighted grids.",
+    "The pharmacy layer is OSM geography plus municipal PFPB gate, not confirmed partner readiness."
+  ]
+}
