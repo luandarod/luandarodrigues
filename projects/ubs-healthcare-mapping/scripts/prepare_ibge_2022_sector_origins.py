@@ -123,17 +123,22 @@ def load_sector_geometry(shapefile_zip: Path) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def build_sector_origins(shapefile_zip: Path, aggregate_path: Path) -> pd.DataFrame:
-    geometry = load_sector_geometry(shapefile_zip)
+def build_sector_origins(shapefile_zip: Path | list[Path], aggregate_path: Path) -> pd.DataFrame:
+    shapefile_paths = [shapefile_zip] if isinstance(shapefile_zip, Path) else list(shapefile_zip)
+    geometry = pd.concat((load_sector_geometry(path) for path in shapefile_paths), ignore_index=True)
+    geometry = geometry.loc[
+        geometry["ibge_municipio_7"].astype("string").str.fullmatch(r"\d{7}")
+        & ~geometry["ibge_municipio_7"].astype("string").eq("0000000")
+    ].copy()
     population = load_basic_population(aggregate_path)
     result = geometry.merge(population, on="CD_SETOR", how="left", validate="one_to_one")
     missing_population = result["origin_population"].isna()
     result["origin_population"] = result["origin_population"].fillna(0)
     result["origin_id"] = result["CD_SETOR"]
-    result["origin_source"] = "IBGE Censo 2022 setores: malha setorial + agregado básico V0001"
+    result["origin_source"] = "IBGE_CD2022_SETOR_V0001"
     result["origin_granularity"] = "census_sector"
     result["source_year"] = 2022
-    result["representative_point_method"] = "largest_polygon_ring_centroid_from_sector_shapefile"
+    result["representative_point_method"] = "sector_largest_ring_centroid"
     result["origin_population_status"] = "available"
     result.loc[missing_population, "origin_population_status"] = "missing_sector_population_not_scored"
     result["precision_status"] = "intramunicipal_population_origins_loaded"
@@ -148,13 +153,21 @@ def build_sector_origins(shapefile_zip: Path, aggregate_path: Path) -> pd.DataFr
     return normalize_manual_origins(result[columns], allow_non_2022=False)
 
 
-def build_metadata(origins: pd.DataFrame, shapefile_zip: Path, aggregate_path: Path) -> dict:
+def build_metadata(origins: pd.DataFrame, shapefile_zip: Path | list[Path], aggregate_path: Path) -> dict:
+    shapefile_paths = [shapefile_zip] if isinstance(shapefile_zip, Path) else list(shapefile_zip)
+
+    def display_path(path: Path) -> str:
+        try:
+            return path.resolve().relative_to(PROJECT_ROOT.parent.parent.resolve()).as_posix()
+        except ValueError:
+            return path.name
+
     return {
         "generated_at_utc": datetime.now(UTC).isoformat(),
         "artifact": "ibge_2022_sector_population_origins",
         "phase": "phase5a_ibge_intramunicipal_origins",
-        "shapefile_zip": str(shapefile_zip),
-        "aggregate_path": str(aggregate_path),
+        "shapefile_zips": [display_path(path) for path in shapefile_paths],
+        "aggregate_path": display_path(aggregate_path),
         "origin_rows": int(len(origins)),
         "municipalities": int(origins["ibge_municipio_7"].nunique()),
         "total_origin_population": float(origins["origin_population"].sum()),
@@ -168,7 +181,7 @@ def build_metadata(origins: pd.DataFrame, shapefile_zip: Path, aggregate_path: P
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--sector-shapefile-zip", type=Path, required=True)
+    parser.add_argument("--sector-shapefile-zip", type=Path, action="append", required=True)
     parser.add_argument("--basic-aggregate", type=Path, required=True)
     parser.add_argument("--output", type=Path, default=PROJECT_ROOT / "data/enriched/telemedicine_population_origins_ibge2022_sectors.csv")
     parser.add_argument("--metadata", type=Path, default=PROJECT_ROOT / "data/enriched/telemedicine_population_origins_ibge2022_sectors_metadata.json")

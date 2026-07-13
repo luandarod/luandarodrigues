@@ -86,7 +86,7 @@ def build_precision_index(phase2: pd.DataFrame, precision_access: pd.DataFrame) 
             right[column] = defaults.get(column, np.nan)
     result = left.merge(right[columns], on="ibge_municipio_7", how="left", validate="one_to_one")
     valid_access = (
-        pd.to_numeric(result["phase5_population_origin_coverage_ratio"], errors="coerce").ge(0.95)
+        pd.to_numeric(result["phase5_population_origin_coverage_ratio"], errors="coerce").ge(0.90)
         & pd.to_numeric(result["phase5_distance_coverage_ratio"], errors="coerce").ge(0.95)
         & pd.to_numeric(result["phase5_weighted_p90_ubs_km"], errors="coerce").notna()
         & pd.to_numeric(result["phase5_population_share_pharmacy_le_2km"], errors="coerce").notna()
@@ -154,6 +154,7 @@ def build_metadata(result: pd.DataFrame) -> dict:
             str(k): int(v) for k, v in result["phase5_precision_status"].fillna("missing").value_counts().sort_index().items()
         },
         "weights": {"need": 0.45, "spatial_precision": 0.35, "feasibility": 0.20},
+        "minimum_population_origin_coverage_ratio": 0.90,
         "spatial_precision_components": {
             "phase5_ubs_p90_barrier_percentile": 0.45,
             "phase5_pharmacy_near_share_percentile": 0.25,

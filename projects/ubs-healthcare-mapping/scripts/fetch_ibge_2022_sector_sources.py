@@ -133,6 +133,7 @@ def main() -> None:
     parser.add_argument("--check-remote", action="store_true", help="HEAD-check remote URLs before writing the manifest.")
     parser.add_argument("--download", action="store_true", help="Download selected sources into the git-ignored raw cache.")
     parser.add_argument("--uf", action="append", choices=UF_CODES, help="UF geometry to download; repeatable. If omitted with --download, only BR aggregate and dictionary are downloaded.")
+    parser.add_argument("--all-ufs", action="store_true", help="Download geometry for all 27 UFs.")
     parser.add_argument("--manifest", type=Path, default=MANIFEST)
     parser.add_argument("--metadata", type=Path, default=METADATA)
     parser.add_argument("--raw-dir", type=Path, default=RAW_DIR)
@@ -145,12 +146,13 @@ def main() -> None:
     if args.download:
         roles = {"sector_basic_aggregate_population", "sector_aggregate_dictionary"}
         selected = manifest[manifest["source_role"].isin(roles)].copy()
-        if args.uf:
+        selected_ufs = UF_CODES if args.all_ufs else [uf.upper() for uf in args.uf or []]
+        if selected_ufs:
             selected = pd.concat([
                 selected,
                 manifest[
                     manifest["source_role"].eq("sector_geometry_shapefile_uf")
-                    & manifest["uf_sigla"].isin([uf.upper() for uf in args.uf])
+                    & manifest["uf_sigla"].isin(selected_ufs)
                 ],
             ], ignore_index=True)
         for url in selected["url"]:

@@ -64,6 +64,7 @@ class Phase5IBGESectorSourceTests(unittest.TestCase):
         self.assertEqual(origins.iloc[0]["origin_population"], 123)
         self.assertEqual(origins.iloc[0]["origin_granularity"], "census_sector")
         self.assertEqual(origins.iloc[0]["precision_status"], "intramunicipal_population_origins_loaded")
+        self.assertEqual(origins.iloc[0]["origin_source"], "IBGE_CD2022_SETOR_V0001")
         self.assertAlmostEqual(origins.iloc[0]["origin_latitude"], -16.67, places=2)
         self.assertAlmostEqual(origins.iloc[0]["origin_longitude"], -49.25, places=2)
 

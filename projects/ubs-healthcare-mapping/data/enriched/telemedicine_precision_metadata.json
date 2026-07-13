@@ -1,18 +1,19 @@
 {
-  "generated_at_utc": "2026-07-13T21:52:32.890547+00:00",
+  "generated_at_utc": "2026-07-13T22:17:06.498330+00:00",
   "artifact": "telemedicine_precision_index",
   "phase": "phase5_spatial_precision",
   "index_version": "phase5-population-weighted-geodesic-v1",
   "eligible_municipalities": 4988,
   "precision_status_counts": {
-    "intramunicipal_population_weighted_ready": 246,
-    "municipal_single_origin_proxy_not_intramunicipal": 5325
+    "intramunicipal_population_weighted_ready": 5570,
+    "municipal_single_origin_proxy_not_intramunicipal": 1
   },
   "weights": {
     "need": 0.45,
     "spatial_precision": 0.35,
     "feasibility": 0.2
   },
+  "minimum_population_origin_coverage_ratio": 0.9,
   "spatial_precision_components": {
     "phase5_ubs_p90_barrier_percentile": 0.45,
     "phase5_pharmacy_near_share_percentile": 0.25,

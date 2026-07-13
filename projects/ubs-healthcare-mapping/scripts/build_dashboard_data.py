@@ -154,7 +154,6 @@ def build_dashboard_data(project_dir: Path, dashboard_dir: Path) -> None:
             if precision_file.exists():
                 shutil.copy2(precision_file, dst / precision_file.name)
                 for optional_name in (
-                    "telemedicine_population_origins.csv",
                     "telemedicine_precision_spatial_access.csv",
                     "telemedicine_precision_shortlist.csv",
                 ):

@@ -167,7 +167,7 @@ def main() -> None:
     parser.add_argument("--manual-origins", type=Path, help="CSV with official 2022 origin_id, ibge_municipio_7, lat/lon and population.")
     parser.add_argument("--blend-with-proxy", action="store_true", help="When manual origins cover only part of Brazil, keep Phase 2 proxy origins for other municipalities.")
     parser.add_argument("--allow-non-2022", action="store_true", help="Allow non-2022 source_year values and record that choice in metadata.")
-    parser.add_argument("--output", type=Path, default=PROJECT_ROOT / "data/enriched/telemedicine_population_origins.csv")
+    parser.add_argument("--output", type=Path, default=PROJECT_ROOT / "data/enriched/telemedicine_population_origins.csv.gz")
     parser.add_argument("--metadata", type=Path, default=PROJECT_ROOT / "data/enriched/telemedicine_population_origins_metadata.json")
     args = parser.parse_args()
 

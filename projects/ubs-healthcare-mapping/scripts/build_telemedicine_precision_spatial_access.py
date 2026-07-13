@@ -151,7 +151,7 @@ def build_metadata(origins: pd.DataFrame, output: pd.DataFrame, active_ubs: pd.D
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--origins", type=Path, default=PROJECT_ROOT / "data/enriched/telemedicine_population_origins.csv")
+    parser.add_argument("--origins", type=Path, default=PROJECT_ROOT / "data/enriched/telemedicine_population_origins.csv.gz")
     parser.add_argument("--phase2", type=Path, default=PROJECT_ROOT / "data/enriched/telemedicine_opportunity_phase2.csv")
     parser.add_argument("--ubs", type=Path, default=PROJECT_ROOT / "data/Unidades_Basicas_Saude-UBS.csv")
     parser.add_argument("--operations", type=Path, default=PROJECT_ROOT / "data/ubs_operational_status.csv")
@@ -161,7 +161,7 @@ def main() -> None:
     parser.add_argument("--metadata", type=Path, default=PROJECT_ROOT / "data/enriched/telemedicine_precision_spatial_access_metadata.json")
     args = parser.parse_args()
 
-    origins = pd.read_csv(args.origins, dtype={"ibge_municipio_7": str})
+    origins = pd.read_csv(args.origins, dtype={"ibge_municipio_7": str}, low_memory=False)
     phase2 = pd.read_csv(args.phase2, dtype={"ibge_municipio_7": str}, low_memory=False)
     active_ubs = load_active_ubs(args.ubs, args.operations, args.suspects)
     pharmacies = pd.read_csv(args.osm_pharmacies)

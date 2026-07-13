@@ -123,7 +123,8 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
         and summary["state_phase4_pilot_total"] == summary["phase4_primary_routed_targets"]
         and summary["phase5_precision_rows"] == summary["phase4_rows"]
         and summary["phase5_precision_eligible"] == summary["phase2_scored_municipalities"]
-        and summary["phase5_evidence_grade_counts"].get("A_intramunicipal_population_weighted") == 246
+        and summary["phase5_evidence_grade_counts"].get("A_intramunicipal_population_weighted") == 5570
+        and summary["phase5_evidence_grade_counts"].get("B2_municipal_population_proxy") == 1
     )
     return summary
 

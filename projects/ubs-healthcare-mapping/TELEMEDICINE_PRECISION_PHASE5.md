@@ -10,18 +10,18 @@ Ela não substitui a Fase 2 nem a Fase 4. A Fase 2 segue como ranking nacional g
 
 Arquivos principais:
 
-- `data/enriched/telemedicine_population_origins.csv`
+- `data/enriched/telemedicine_population_origins.csv.gz`
 - `data/enriched/telemedicine_precision_spatial_access.csv`
 - `data/enriched/telemedicine_precision_index.csv`
 - `data/enriched/telemedicine_precision_shortlist.csv`
 - `data/enriched/telemedicine_precision_metadata.json`
 
-Nesta execução, Goiás já usa setores censitários IBGE 2022: 12.861 origens para 246 municípios. As demais UFs ainda usam uma origem única por município herdada da Fase 2. Por isso há dois graus de evidência:
+Nesta execução, o Brasil foi processado com setores censitários IBGE 2022: 468.097 setores válidos para 5.570 municípios. Um município novo do universo atual, Boa Esperança do Norte/MT, não aparece na malha/agregado setorial de 2022 e permanece com backfill municipal. Por isso há dois graus de evidência:
 
-- `A_intramunicipal_population_weighted` para municípios de GO;
-- `B2_municipal_population_proxy` para municípios ainda em proxy.
+- `A_intramunicipal_population_weighted` para 5.570 municípios;
+- `B2_municipal_population_proxy` para 1 município em backfill.
 
-Isso é proposital. O pipeline fica pronto e auditável, mas o documento só afirma precisão intramunicipal nos locais em que os setores censitários foram carregados.
+Isso é proposital. O pipeline só afirma precisão intramunicipal onde há setores censitários 2022 compatíveis.
 
 ## Como evolui para uso acadêmico forte
 

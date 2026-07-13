@@ -1,17 +1,17 @@
 {
-  "generated_at_utc": "2026-07-13T21:51:31.610211+00:00",
+  "generated_at_utc": "2026-07-13T22:15:53.779834+00:00",
   "artifact": "telemedicine_population_origins",
   "phase": "phase5_spatial_precision",
   "source_kind": "manual_official_population_origins_with_municipal_proxy_backfill",
-  "source_path": "projects\\ubs-healthcare-mapping\\data\\enriched\\telemedicine_population_origins_ibge2022_go_sectors.csv",
+  "source_path": "projects\\ubs-healthcare-mapping\\data\\enriched\\telemedicine_population_origins_ibge2022_br_sectors.csv.gz",
   "source_year_rule": "IBGE 2022 required unless --allow-non-2022 is explicitly used",
-  "origin_rows": 18186,
+  "origin_rows": 468098,
   "municipalities": 5571,
-  "total_origin_population": 203105527.0,
-  "missing_population_origins": 4,
+  "total_origin_population": 203080756.0,
+  "missing_population_origins": 1,
   "origin_granularity_counts": {
-    "census_sector": 12861,
-    "municipality_single_origin": 5325
+    "census_sector": 468097,
+    "municipality_single_origin": 1
   },
   "precision_status": "intramunicipal_origins_loaded_with_proxy_backfill",
   "academic_use_note": "Use the proxy output only as a reproducible process scaffold. For academic spatial inference, supply IBGE 2022 census-sector or statistical-grid representative points with population.",

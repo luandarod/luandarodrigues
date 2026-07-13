@@ -187,4 +187,4 @@ Arquivos:
 | `phase5_precision_rank` | posição | ranking entre municípios elegíveis Fase 5 |
 | `phase5_evidence_grade` | categoria | `A_intramunicipal_population_weighted` para UFs com setores IBGE 2022 carregados; `B2_municipal_population_proxy` para UFs ainda em proxy |
 
-A execução atual usa setores IBGE 2022 para Goiás e proxy municipal para as demais UFs. Para afirmações acadêmicas fortes nacionais, carregue as demais UFs e reexecute a Fase 5.
+A execução atual usa setores IBGE 2022 para 5.570 municípios e proxy municipal para 1 município novo ausente da malha/agregado setorial de 2022. A distância ainda é geodésica; para afirmações acadêmicas mais fortes, combine esta camada com roteamento local versionado.
