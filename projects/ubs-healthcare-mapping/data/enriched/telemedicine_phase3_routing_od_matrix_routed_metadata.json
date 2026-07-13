@@ -1,0 +1,11 @@
+{
+  "generated_at_utc": "2026-07-13T17:54:25.101378+00:00",
+  "source_matrix": "projects\\ubs-healthcare-mapping\\data\\enriched\\telemedicine_phase3_routing_od_matrix.csv",
+  "routing_endpoint": "https://router.project-osrm.org",
+  "routing_profile": [
+    "driving"
+  ],
+  "rows": 12,
+  "routed_rows": 12,
+  "important_limit": "Public OSRM routing is an exploratory network-time proxy unless rerun on a local, versioned OSM extract."
+}

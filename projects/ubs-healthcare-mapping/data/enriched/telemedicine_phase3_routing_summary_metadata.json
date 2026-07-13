@@ -1,0 +1,8 @@
+{
+  "generated_at_utc": "2026-07-13T17:54:32.029451+00:00",
+  "source": "projects\\ubs-healthcare-mapping\\data\\enriched\\telemedicine_phase3_routing_od_matrix_routed.csv",
+  "municipalities": 6,
+  "routed_hard_ubs_easy_pharmacy_candidates": 4,
+  "rule": "UBS travel time >= 15 minutes and OSM pharmacy travel time <= 5 minutes, using the routed matrix source.",
+  "important_limit": "Thresholds are operational screens for validation, not clinical access standards."
+}

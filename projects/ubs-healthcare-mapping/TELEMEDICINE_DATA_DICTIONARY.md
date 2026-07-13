@@ -110,7 +110,11 @@ Arquivo: `data/enriched/telemedicine_opportunity_phase2.csv`.
 
 ## Extensão Fase 3 - roteamento
 
-Arquivo: `data/enriched/telemedicine_phase3_routing_od_matrix.csv`.
+Arquivos:
+
+- `data/enriched/telemedicine_phase3_routing_od_matrix.csv`;
+- `data/enriched/telemedicine_phase3_routing_od_matrix_routed.csv`;
+- `data/enriched/telemedicine_phase3_routing_summary.csv`.
 
 | Campo | Unidade | Interpretação |
 |---|---:|---|
@@ -121,10 +125,12 @@ Arquivo: `data/enriched/telemedicine_phase3_routing_od_matrix.csv`.
 | `phase2_geodesic_km` | km | distância de linha geodésica herdada da Fase 2 |
 | `routing_profile` | categoria | perfil planejado, inicialmente `driving` |
 | `routing_readiness_status` | categoria | `ready_for_network_routing`, `missing_coordinate_for_routing` ou `routed` |
-| `travel_time_minutes` | minutos | vazio até execução documentada de OSRM/ORS |
-| `network_distance_km` | km | vazio até execução documentada de OSRM/ORS |
+| `travel_time_minutes` | minutos | tempo de rota quando `routing_readiness_status = routed` |
+| `network_distance_km` | km | distância viária quando `routing_readiness_status = routed` |
 | `routing_source` | texto | endpoint ou motor usado no roteamento |
 | `routing_measured_at_utc` | timestamp | momento da medição de rota |
 | `academic_interpretation` | categoria | `phase3_od_pair_pending_travel_time` ou `phase3_network_travel_time_proxy` |
+| `phase3_routed_hard_ubs_easy_pharmacy_flag` | booleano | UBS >= 15 min e farmácia <= 5 min na síntese municipal |
+| `phase3_access_interpretation` | categoria | leitura roteada municipal |
 
-Enquanto `travel_time_minutes` estiver vazio, a Fase 3 é somente preparação de dados, não evidência de tempo de deslocamento.
+Na execução atual, o roteamento usa OSRM público e perfil `driving`; deve ser tratado como proxy exploratória até rerodagem local versionada.

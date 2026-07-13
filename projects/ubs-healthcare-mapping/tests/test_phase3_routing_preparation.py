@@ -10,6 +10,7 @@ import pandas as pd
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 OD_SCRIPT = PROJECT_DIR / "scripts" / "build_phase3_routing_od_matrix.py"
 OSRM_SCRIPT = PROJECT_DIR / "scripts" / "fetch_phase3_osrm_travel_times.py"
+SUMMARY_SCRIPT = PROJECT_DIR / "scripts" / "build_phase3_routing_summary.py"
 
 
 def load_module(path: Path, name: str):
@@ -83,6 +84,64 @@ class Phase3RoutingPreparationTests(unittest.TestCase):
         self.assertEqual(result.loc[0, "routing_readiness_status"], "routed")
         self.assertEqual(result.loc[0, "routing_source"], "http://localhost:5000")
         mocked_get.assert_called_once()
+
+    def test_routing_summary_flags_hard_ubs_easy_pharmacy(self):
+        module = load_module(SUMMARY_SCRIPT, "build_phase3_routing_summary")
+        routed = pd.DataFrame([
+            {
+                "ibge_municipio_7": "1",
+                "municipio_nome_oficial": "Cidade A",
+                "uf_sigla_oficial": "AA",
+                "phase2_spatial_target_rank": 1,
+                "origin_method": "official_ibge_2022_municipal_seat",
+                "destination_type": "active_ubs",
+                "phase2_geodesic_km": 6,
+                "network_distance_km": 20,
+                "travel_time_minutes": 22,
+            },
+            {
+                "ibge_municipio_7": "1",
+                "municipio_nome_oficial": "Cidade A",
+                "uf_sigla_oficial": "AA",
+                "phase2_spatial_target_rank": 1,
+                "origin_method": "official_ibge_2022_municipal_seat",
+                "destination_type": "osm_pharmacy",
+                "phase2_geodesic_km": 0.2,
+                "network_distance_km": 0.5,
+                "travel_time_minutes": 2,
+            },
+            {
+                "ibge_municipio_7": "2",
+                "municipio_nome_oficial": "Cidade B",
+                "uf_sigla_oficial": "BB",
+                "phase2_spatial_target_rank": 2,
+                "origin_method": "official_ibge_2022_municipal_seat",
+                "destination_type": "active_ubs",
+                "phase2_geodesic_km": 8,
+                "network_distance_km": 28,
+                "travel_time_minutes": 25,
+            },
+            {
+                "ibge_municipio_7": "2",
+                "municipio_nome_oficial": "Cidade B",
+                "uf_sigla_oficial": "BB",
+                "phase2_spatial_target_rank": 2,
+                "origin_method": "official_ibge_2022_municipal_seat",
+                "destination_type": "osm_pharmacy",
+                "phase2_geodesic_km": 1,
+                "network_distance_km": 12,
+                "travel_time_minutes": 18,
+            },
+        ])
+
+        result = module.build_summary(routed)
+
+        flagged = result.loc[result["ibge_municipio_7"].eq("1")].iloc[0]
+        not_flagged = result.loc[result["ibge_municipio_7"].eq("2")].iloc[0]
+        self.assertTrue(flagged["phase3_routed_hard_ubs_easy_pharmacy_flag"])
+        self.assertEqual(flagged["phase3_access_interpretation"], "routed_hard_ubs_easy_pharmacy_candidate")
+        self.assertFalse(not_flagged["phase3_routed_hard_ubs_easy_pharmacy_flag"])
+        self.assertEqual(not_flagged["phase3_access_interpretation"], "routed_hard_ubs_but_not_easy_pharmacy")
 
 
 if __name__ == "__main__":

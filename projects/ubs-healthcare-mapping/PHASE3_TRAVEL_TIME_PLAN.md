@@ -11,11 +11,13 @@ O arquivo contém 12 pares origem-destino: seis municípios da shortlist conserv
 - sede municipal oficial do IBGE 2022 até a UBS ativa mais próxima;
 - sede municipal oficial do IBGE 2022 até a farmácia OSM mais próxima.
 
-Todos os pares estão com `routing_readiness_status = ready_for_network_routing`. Os campos `travel_time_minutes` e `network_distance_km` permanecem vazios até execução de um motor de roteamento documentado.
+Todos os pares foram roteados de forma exploratória em `data/enriched/telemedicine_phase3_routing_od_matrix_routed.csv`, usando `https://router.project-osrm.org`, perfil `driving`, em 13/07/2026 UTC. Para publicação acadêmica, esta etapa deve ser rerodada em OSRM local com extrato OSM versionado.
+
+A síntese municipal está em `data/enriched/telemedicine_phase3_routing_summary.csv`. Pela regra operacional UBS >= 15 min e farmácia <= 5 min, quatro municípios permanecem candidatos roteados: Guapimirim/RJ, Sananduva/RS, Angatuba/SP e Arraial do Cabo/RJ.
 
 ## Interpretação permitida
 
-Antes do roteamento, a Fase 3 só pode ser descrita como "matriz OD pronta para cálculo de rota". Ela não mede acesso real, trânsito, transporte público, caminhada, segurança viária ou disponibilidade de atendimento.
+Com roteamento público, a Fase 3 pode ser descrita como proxy exploratória de tempo de carro em rede viária. Ela ainda não mede trânsito em tempo real, transporte público, caminhada, segurança viária, disponibilidade de atendimento ou prontidão operacional da farmácia.
 
 Depois do roteamento, o tempo será uma proxy de deslocamento pelo perfil escolhido. Para uso acadêmico, o relatório deve informar:
 
@@ -36,6 +38,7 @@ Fluxo mínimo:
 python projects/ubs-healthcare-mapping/scripts/build_phase3_routing_od_matrix.py
 $env:OSRM_BASE_URL = "http://localhost:5000"
 python projects/ubs-healthcare-mapping/scripts/fetch_phase3_osrm_travel_times.py
+python projects/ubs-healthcare-mapping/scripts/build_phase3_routing_summary.py
 ```
 
 O script `fetch_phase3_osrm_travel_times.py` exige `--endpoint` ou `OSRM_BASE_URL` exatamente para impedir que o projeto use acidentalmente um serviço não documentado.

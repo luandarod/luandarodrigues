@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 from datetime import UTC, datetime
 from pathlib import Path
@@ -34,6 +35,9 @@ def parse_osrm_route(payload: dict) -> tuple[float, float, str]:
 
 def route_matrix(frame: pd.DataFrame, endpoint: str, timeout: int = 30) -> pd.DataFrame:
     result = frame.copy()
+    for column in ["routing_source", "routing_measured_at_utc", "academic_interpretation"]:
+        if column in result:
+            result[column] = result[column].astype("object")
     measured_at = datetime.now(UTC).isoformat()
     ready = result["routing_readiness_status"].eq("ready_for_network_routing")
     for index, row in result.loc[ready].iterrows():
@@ -57,6 +61,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Fetch OSRM travel times for Phase 3 OD pairs.")
     parser.add_argument("--input", type=Path, default=ROOT / "data/enriched/telemedicine_phase3_routing_od_matrix.csv")
     parser.add_argument("--output", type=Path, default=ROOT / "data/enriched/telemedicine_phase3_routing_od_matrix_routed.csv")
+    parser.add_argument("--metadata", type=Path, default=ROOT / "data/enriched/telemedicine_phase3_routing_od_matrix_routed_metadata.json")
     parser.add_argument("--endpoint", default=os.environ.get("OSRM_BASE_URL"))
     parser.add_argument("--timeout", type=int, default=30)
     args = parser.parse_args()
@@ -67,6 +72,16 @@ def main() -> None:
     routed = route_matrix(frame, args.endpoint, args.timeout)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     routed.to_csv(args.output, index=False)
+    metadata = {
+        "generated_at_utc": datetime.now(UTC).isoformat(),
+        "source_matrix": str(args.input),
+        "routing_endpoint": args.endpoint.rstrip("/"),
+        "routing_profile": sorted(routed["routing_profile"].dropna().unique().tolist()),
+        "rows": len(routed),
+        "routed_rows": int(routed["routing_readiness_status"].eq("routed").sum()),
+        "important_limit": "Public OSRM routing is an exploratory network-time proxy unless rerun on a local, versioned OSM extract.",
+    }
+    args.metadata.write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Saved routed Phase 3 matrix to {args.output}")
 
 

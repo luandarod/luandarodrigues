@@ -195,11 +195,13 @@ Dos 40 municípios que atendem ao sinal espacial 5/2 km, seis também apresentam
 
 ## Adendo Fase 3 - preparação para tempo de viagem
 
-A versão `phase3-routing-prep-v1` cria uma matriz origem-destino para os seis municípios da shortlist conservadora da Fase 2. Cada município recebe dois pares: sede municipal oficial do IBGE 2022 até a UBS ativa mais próxima e sede municipal até a farmácia OSM mais próxima.
+A versão `phase3-routing-v1` cria e executa uma matriz origem-destino para os seis municípios da shortlist conservadora da Fase 2. Cada município recebe dois pares: sede municipal oficial do IBGE 2022 até a UBS ativa mais próxima e sede municipal até a farmácia OSM mais próxima.
 
-O arquivo `data/enriched/telemedicine_phase3_routing_od_matrix.csv` tem 12 pares prontos para roteamento. Nesta versão, `travel_time_minutes` e `network_distance_km` permanecem vazios. O status correto é `ready_for_network_routing`, não tempo medido.
+O arquivo `data/enriched/telemedicine_phase3_routing_od_matrix_routed.csv` tem 12 pares roteados por OSRM público, perfil `driving`. A síntese municipal está em `data/enriched/telemedicine_phase3_routing_summary.csv`.
 
-O cálculo de rota deve ser feito por motor documentado, preferencialmente OSRM local com extrato OSM versionado, registrando endpoint, perfil de transporte, data de execução e falhas. Enquanto isso não for executado, a evidência espacial continua grau B e deve ser descrita como proxy geodésica com matriz OD preparada.
+Pela regra operacional UBS >= 15 minutos e farmácia OSM <= 5 minutos, quatro municípios permanecem como candidatos roteados: Guapimirim/RJ, Sananduva/RS, Angatuba/SP e Arraial do Cabo/RJ. Arroio do Meio/RS não atinge o limiar de UBS difícil por tempo; Santa Maria Madalena/RJ tem UBS difícil, mas a farmácia mais próxima também fica distante pela rede viária.
+
+Como a execução usou endpoint público, a evidência deve ser descrita como proxy exploratória de tempo de carro. O cálculo deve ser rerodado em OSRM local com extrato OSM versionado antes de submissão acadêmica.
 
 ## Referências metodológicas essenciais
 
