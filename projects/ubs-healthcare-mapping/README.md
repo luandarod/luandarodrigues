@@ -12,6 +12,8 @@ O dashboard e uma camada estatica em GitHub Pages. Os dados usados nele ficam ve
 
 Para evitar confundir mercado-alvo amplo com piloto operacional, a leitura foi separada em duas visoes: oportunidade nacional de telemedicina e piloto farmacia assistida. Ver: [`TELEMEDICINE_DASHBOARD_VIEWS.md`](TELEMEDICINE_DASHBOARD_VIEWS.md).
 
+Uma auditoria de melhoria com proximos passos para pre-paper, metodologia academica, ads e engenharia esta em [`PROJECT_IMPROVEMENT_AUDIT.md`](PROJECT_IMPROVEMENT_AUDIT.md).
+
 ## Pergunta
 
 Contar UBS responde onde existem registros de unidades. Nao responde, sozinho, se existe capacidade suficiente de atencao primaria.
