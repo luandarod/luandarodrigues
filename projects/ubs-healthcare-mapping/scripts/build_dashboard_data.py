@@ -26,6 +26,7 @@ def build_gap_geojson(geometries: dict, gap: pd.DataFrame) -> dict:
         "phase2_spatial_target_rank", "travel_time_status",
         "active_ubs_travel_time_minutes", "osm_pharmacy_travel_time_minutes",
         "telemedicine_phase4_routed_validation", "phase4_routed_target_rank",
+        "phase4_need_pillar", "phase4_feasibility_pillar",
         "phase4_interpretation", "phase4_evidence_grade",
     ]
     features = []
@@ -118,6 +119,7 @@ def build_dashboard_data(project_dir: Path, dashboard_dir: Path) -> None:
                 phase4_fields = [
                     "ibge_municipio", "active_ubs_travel_time_minutes", "osm_pharmacy_travel_time_minutes",
                     "telemedicine_phase4_routed_validation", "phase4_routed_target_rank",
+                    "phase4_need_pillar", "phase4_feasibility_pillar",
                     "phase4_interpretation", "phase4_evidence_grade",
                 ]
                 gap = gap.merge(phase4[phase4_fields], on="ibge_municipio", how="left", validate="one_to_one")

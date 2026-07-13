@@ -140,7 +140,8 @@ Na execução atual, o roteamento usa OSRM público e perfil `driving`; deve ser
 Arquivos:
 
 - `data/enriched/telemedicine_opportunity_phase4.csv`;
-- `data/enriched/telemedicine_phase4_ads_routed_shortlist.csv`.
+- `data/enriched/telemedicine_phase4_ads_routed_shortlist.csv`;
+- `data/enriched/telemedicine_phase4_threshold_sensitivity.csv`.
 
 | Campo | Unidade | Interpretação |
 |---|---:|---|
@@ -153,5 +154,9 @@ Arquivos:
 | `phase4_routed_validation_rank` | posição | ranking somente entre municípios roteados |
 | `phase4_routed_target_rank` | posição | ranking somente entre alvos UBS >= 15 min e farmácia <= 5 min |
 | `phase4_interpretation` | categoria | leitura operacional da Fase 4 |
+| `ubs_hard_minutes_threshold` | minutos | limiar testado na sensibilidade |
+| `pharmacy_easy_minutes_threshold` | minutos | limiar testado na sensibilidade |
+| `candidate_count` | municípios | quantidade de alvos sob o par de limiares |
+| `candidate_municipalities` | texto | municípios selecionados no cenário |
 
 A Fase 4 é uma validação de piloto; não é um ranking nacional.

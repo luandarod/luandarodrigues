@@ -39,3 +39,11 @@ O acesso roteado combina barreira até UBS, com peso 65%, e facilidade até farm
 ## Uso correto
 
 Use `data/enriched/telemedicine_phase4_ads_routed_shortlist.csv` para escolher pilotos territoriais pequenos e validação local. Não use a Fase 4 para segmentar indivíduos, inferir condição clínica, ou afirmar disponibilidade real da farmácia.
+
+## Sensibilidade dos limiares
+
+Arquivo: `data/enriched/telemedicine_phase4_threshold_sensitivity.csv`.
+
+O resultado é estável para os limiares UBS >= 10 ou >= 15 minutos combinados com farmácia <= 3, <= 5 ou <= 10 minutos: os quatro alvos permanecem. Ao exigir UBS >= 20 minutos, a lista fica mais restrita e mantém apenas Guapimirim/RJ e Angatuba/SP.
+
+Essa sensibilidade deve acompanhar qualquer apresentação externa, porque deixa claro que Sananduva/RS e Arraial do Cabo/RJ dependem de um limiar de barreira UBS de 15 minutos, enquanto Guapimirim/RJ e Angatuba/SP são os dois casos mais robustos ao limiar mais duro.

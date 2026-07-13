@@ -1,0 +1,15 @@
+{
+  "generated_at_utc": "2026-07-13T18:21:47.898465+00:00",
+  "source": "projects\\ubs-healthcare-mapping\\data\\enriched\\telemedicine_phase3_routing_summary.csv",
+  "ubs_thresholds_minutes": [
+    10,
+    15,
+    20
+  ],
+  "pharmacy_thresholds_minutes": [
+    3,
+    5,
+    10
+  ],
+  "purpose": "Operational sensitivity analysis for the Phase 4 routed target rule."
+}

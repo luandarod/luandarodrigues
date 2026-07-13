@@ -10,6 +10,8 @@ Para validação espacial antes de compra de mídia, use também `data/enriched/
 
 O arquivo mais conservador para campanha piloto agora é `data/enriched/telemedicine_phase4_ads_routed_shortlist.csv`. Ele ordena apenas os alvos roteados, combinando necessidade, acesso por tempo e viabilidade.
 
+Para uma primeira compra pequena, priorize Guapimirim/RJ e Angatuba/SP: eles sobrevivem também ao limiar mais duro de UBS >= 20 minutos. Sananduva/RS e Arraial do Cabo/RJ entram como segunda dupla, ainda consistentes no cenário UBS >= 15 minutos.
+
 ## Uso recomendado
 
 1. Selecionar de 6 a 12 municípios da shortlist, preservando diversidade de região e porte;

@@ -1,0 +1,10 @@
+ubs_hard_minutes_threshold,pharmacy_easy_minutes_threshold,candidate_count,candidate_municipalities
+10,3,4,Guapimirim/RJ; Angatuba/SP; Sananduva/RS; Arraial do Cabo/RJ
+10,5,4,Guapimirim/RJ; Angatuba/SP; Sananduva/RS; Arraial do Cabo/RJ
+10,10,4,Guapimirim/RJ; Angatuba/SP; Sananduva/RS; Arraial do Cabo/RJ
+15,3,4,Guapimirim/RJ; Angatuba/SP; Sananduva/RS; Arraial do Cabo/RJ
+15,5,4,Guapimirim/RJ; Angatuba/SP; Sananduva/RS; Arraial do Cabo/RJ
+15,10,4,Guapimirim/RJ; Angatuba/SP; Sananduva/RS; Arraial do Cabo/RJ
+20,3,2,Guapimirim/RJ; Angatuba/SP
+20,5,2,Guapimirim/RJ; Angatuba/SP
+20,10,2,Guapimirim/RJ; Angatuba/SP

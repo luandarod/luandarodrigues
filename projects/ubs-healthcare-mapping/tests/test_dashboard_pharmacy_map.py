@@ -33,6 +33,7 @@ class DashboardPharmacyMapTests(unittest.TestCase):
             "hard_ubs_easy_pharmacy_flag": True, "telemedicine_phase2_balanced": 72,
             "phase2_spatial_target_rank": 1, "active_ubs_travel_time_minutes": 24,
             "osm_pharmacy_travel_time_minutes": 1, "telemedicine_phase4_routed_validation": 80,
+            "phase4_need_pillar": 70, "phase4_feasibility_pillar": 60,
             "phase4_routed_target_rank": 1, "phase4_interpretation": "phase4_primary_routed_target",
         }])
 
@@ -42,6 +43,7 @@ class DashboardPharmacyMapTests(unittest.TestCase):
         self.assertEqual(result["features"][0]["properties"]["pharmacies"], 20)
         self.assertTrue(result["features"][0]["properties"]["hard_ubs_easy_pharmacy_flag"])
         self.assertEqual(result["features"][0]["properties"]["phase4_interpretation"], "phase4_primary_routed_target")
+        self.assertEqual(result["features"][0]["properties"]["phase4_need_pillar"], 70)
         self.assertEqual(result["features"][0]["geometry"]["type"], "MultiPolygon")
 
 
