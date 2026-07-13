@@ -14,6 +14,8 @@ Para evitar confundir mercado-alvo amplo com piloto operacional, a leitura foi s
 
 Uma auditoria de melhoria com proximos passos para pre-paper, metodologia academica, ads e engenharia esta em [`PROJECT_IMPROVEMENT_AUDIT.md`](PROJECT_IMPROVEMENT_AUDIT.md).
 
+A fase seguinte transforma ranking em classes operacionais e academicas na [`TELEMEDICINE_DECISION_MATRIX.md`](TELEMEDICINE_DECISION_MATRIX.md).
+
 ## Pergunta
 
 Contar UBS responde onde existem registros de unidades. Nao responde, sozinho, se existe capacidade suficiente de atencao primaria.

@@ -28,6 +28,9 @@ class TelemedicineOutputAuditTests(unittest.TestCase):
         self.assertTrue(summary["geojson_has_required_fields"])
         self.assertTrue(summary["dashboard_has_separated_filters"])
         self.assertTrue(summary["views_are_separated"])
+        self.assertEqual(summary["decision_matrix_rows"], summary["phase4_rows"])
+        self.assertEqual(summary["decision_class_counts"]["pharmacy_assisted_pilot"], 4)
+        self.assertGreater(summary["decision_class_counts"]["national_priority_high_readiness"], 0)
         self.assertEqual(summary["goiania"]["phase2_rank_balanced"], 1)
         self.assertIsNone(summary["goiania"]["phase4_routed_target_rank"])
 

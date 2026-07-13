@@ -250,6 +250,7 @@ Eu faria a próxima fase em três commits:
 1. `feat: add telemedicine decision matrix`
    - gerar matriz municipal com classes interpretáveis;
    - adicionar teste de invariantes.
+   - status: implementado em `scripts/build_telemedicine_decision_matrix.py` e documentado em `TELEMEDICINE_DECISION_MATRIX.md`.
 
 2. `docs: add scoping review protocol`
    - protocolo de busca;

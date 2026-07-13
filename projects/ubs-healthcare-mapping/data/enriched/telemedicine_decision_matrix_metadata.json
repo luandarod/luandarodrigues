@@ -1,0 +1,35 @@
+{
+  "generated_at_utc": "2026-07-13T20:48:58.262260+00:00",
+  "matrix_version": "decision-matrix-v1",
+  "source": "projects\\ubs-healthcare-mapping\\data\\enriched\\telemedicine_opportunity_phase4.csv",
+  "classification_order": [
+    "insufficient_evidence",
+    "regional_scale_opportunity",
+    "high_need_digital_inclusion_first",
+    "national_priority_inclusion_first",
+    "national_priority_high_readiness",
+    "pharmacy_assisted_geodesic_candidate",
+    "pharmacy_assisted_pilot"
+  ],
+  "digital_readiness_threshold": "median among Phase 2 eligible municipalities",
+  "important_limits": [
+    "Classes are decision-support categories, not clinical access diagnoses.",
+    "Ads tiers are for aggregated geographic experiments, not individual targeting.",
+    "Pharmacy-assisted classes require partner validation before implementation."
+  ],
+  "summary": {
+    "rows": 5571,
+    "decision_class_counts": {
+      "high_need_digital_inclusion_first": 2,
+      "insufficient_evidence": 583,
+      "monitor_or_low_priority": 4485,
+      "national_priority_high_readiness": 100,
+      "pharmacy_assisted_geodesic_candidate": 2,
+      "pharmacy_assisted_pilot": 4,
+      "regional_scale_opportunity": 395
+    },
+    "top100_rows": 100,
+    "phase4_pilot_rows": 4,
+    "digital_inclusion_first_rows": 2
+  }
+}

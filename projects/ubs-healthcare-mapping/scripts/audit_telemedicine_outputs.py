@@ -26,11 +26,13 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
     enriched = project_dir / "data" / "enriched"
     phase2_path = enriched / "telemedicine_opportunity_phase2.csv"
     phase4_path = enriched / "telemedicine_opportunity_phase4.csv"
+    matrix_path = enriched / "telemedicine_decision_matrix.csv"
     geojson_path = dashboard_dir / "data" / "municipality_pharmacy_access_gap.geojson"
     dashboard_path = dashboard_dir / "index.html"
 
     phase2 = pd.read_csv(phase2_path)
     phase4 = pd.read_csv(phase4_path, low_memory=False)
+    matrix = pd.read_csv(matrix_path) if matrix_path.exists() else pd.DataFrame()
     geojson = _read_geojson(geojson_path)
     dashboard_html = dashboard_path.read_text(encoding="utf-8")
 
@@ -56,6 +58,9 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
         "phase2_need_pillar",
         "phase2_feasibility_pillar",
         "phase4_interpretation",
+        "decision_class",
+        "decision_label",
+        "primary_driver",
     }
     required_dashboard_filters = {
         'value="national"',
@@ -69,6 +74,12 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
         "phase2_top100_municipalities": int((phase2["phase2_rank_balanced"] <= 100).sum()),
         "phase4_rows": int(len(phase4)),
         "phase4_primary_routed_targets": int((phase4["phase4_interpretation"] == "phase4_primary_routed_target").sum()),
+        "decision_matrix_rows": int(len(matrix)),
+        "decision_class_counts": (
+            {str(k): int(v) for k, v in matrix["decision_class"].value_counts().sort_index().items()}
+            if not matrix.empty and "decision_class" in matrix
+            else {}
+        ),
         "dashboard_geojson_features": int(len(geojson.get("features", []))),
         "geojson_has_required_fields": required_geojson_fields.issubset(first_properties.keys()),
         "dashboard_has_separated_filters": all(token in dashboard_html for token in required_dashboard_filters),
@@ -79,6 +90,7 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
         and summary["phase2_top100_municipalities"] == 100
         and summary["goiania"].get("phase2_rank_balanced") == 1
         and summary["goiania"].get("phase4_routed_target_rank") is None
+        and summary["decision_class_counts"].get("pharmacy_assisted_pilot") == summary["phase4_primary_routed_targets"]
     )
     return summary
 

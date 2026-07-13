@@ -31,6 +31,8 @@ def build_gap_geojson(geometries: dict, gap: pd.DataFrame) -> dict:
         "telemedicine_phase4_routed_validation", "phase4_routed_target_rank",
         "phase4_need_pillar", "phase4_feasibility_pillar",
         "phase4_interpretation", "phase4_evidence_grade",
+        "decision_class", "decision_label", "ads_positioning_tier",
+        "recommended_next_action", "primary_driver", "evidence_grade",
     ]
     features = []
     for ibge7, item in geometries.items():
@@ -129,6 +131,16 @@ def build_dashboard_data(project_dir: Path, dashboard_dir: Path) -> None:
                     "phase4_interpretation", "phase4_evidence_grade",
                 ]
                 gap = gap.merge(phase4[phase4_fields], on="ibge_municipio", how="left", validate="one_to_one")
+            matrix_file = src / "telemedicine_decision_matrix.csv"
+            if matrix_file.exists():
+                shutil.copy2(matrix_file, dst / matrix_file.name)
+                matrix = pd.read_csv(matrix_file, low_memory=False)
+                matrix["ibge_municipio"] = matrix["ibge_municipio"].astype("string").str.replace(r"\.0$", "", regex=True).str[:6]
+                matrix_fields = [
+                    "ibge_municipio", "decision_class", "decision_label", "ads_positioning_tier",
+                    "recommended_next_action", "primary_driver", "evidence_grade",
+                ]
+                gap = gap.merge(matrix[matrix_fields], on="ibge_municipio", how="left", validate="one_to_one")
             gap_geojson = build_gap_geojson(geometries, gap)
             (dst / "municipality_pharmacy_access_gap.geojson").write_text(
                 json.dumps(gap_geojson, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"
