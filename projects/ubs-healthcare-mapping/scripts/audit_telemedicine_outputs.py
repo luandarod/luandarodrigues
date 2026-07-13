@@ -27,12 +27,14 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
     phase2_path = enriched / "telemedicine_opportunity_phase2.csv"
     phase4_path = enriched / "telemedicine_opportunity_phase4.csv"
     matrix_path = enriched / "telemedicine_decision_matrix.csv"
+    state_summary_path = enriched / "telemedicine_state_opportunity_summary.csv"
     geojson_path = dashboard_dir / "data" / "municipality_pharmacy_access_gap.geojson"
     dashboard_path = dashboard_dir / "index.html"
 
     phase2 = pd.read_csv(phase2_path)
     phase4 = pd.read_csv(phase4_path, low_memory=False)
     matrix = pd.read_csv(matrix_path) if matrix_path.exists() else pd.DataFrame()
+    state_summary = pd.read_csv(state_summary_path) if state_summary_path.exists() else pd.DataFrame()
     geojson = _read_geojson(geojson_path)
     dashboard_html = dashboard_path.read_text(encoding="utf-8")
 
@@ -80,6 +82,10 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
             if not matrix.empty and "decision_class" in matrix
             else {}
         ),
+        "state_summary_rows": int(len(state_summary)),
+        "state_top100_total": int(state_summary["top100_municipalities"].sum()) if not state_summary.empty else 0,
+        "state_phase4_pilot_total": int(state_summary["pharmacy_assisted_pilot_count"].sum()) if not state_summary.empty else 0,
+        "top_state": str(state_summary.sort_values("state_rank").iloc[0]["uf_sigla"]) if not state_summary.empty else None,
         "dashboard_geojson_features": int(len(geojson.get("features", []))),
         "geojson_has_required_fields": required_geojson_fields.issubset(first_properties.keys()),
         "dashboard_has_separated_filters": all(token in dashboard_html for token in required_dashboard_filters),
@@ -91,6 +97,9 @@ def summarize_outputs(project_dir: Path = PROJECT_ROOT, dashboard_dir: Path = DA
         and summary["goiania"].get("phase2_rank_balanced") == 1
         and summary["goiania"].get("phase4_routed_target_rank") is None
         and summary["decision_class_counts"].get("pharmacy_assisted_pilot") == summary["phase4_primary_routed_targets"]
+        and summary["state_summary_rows"] == 27
+        and summary["state_top100_total"] == summary["phase2_top100_municipalities"]
+        and summary["state_phase4_pilot_total"] == summary["phase4_primary_routed_targets"]
     )
     return summary
 

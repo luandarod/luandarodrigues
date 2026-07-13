@@ -261,6 +261,7 @@ Eu faria a próxima fase em três commits:
    - ranking estadual agregado;
    - cards no dashboard;
    - CSV exportável.
+   - status: agregado estadual implementado em `scripts/build_telemedicine_state_summary.py`; cards no dashboard ficam como próximo incremento visual.
 
 ## Decisão metodológica recomendada
 

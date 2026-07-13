@@ -31,6 +31,10 @@ class TelemedicineOutputAuditTests(unittest.TestCase):
         self.assertEqual(summary["decision_matrix_rows"], summary["phase4_rows"])
         self.assertEqual(summary["decision_class_counts"]["pharmacy_assisted_pilot"], 4)
         self.assertGreater(summary["decision_class_counts"]["national_priority_high_readiness"], 0)
+        self.assertEqual(summary["state_summary_rows"], 27)
+        self.assertEqual(summary["state_top100_total"], 100)
+        self.assertEqual(summary["state_phase4_pilot_total"], 4)
+        self.assertEqual(summary["top_state"], "SP")
         self.assertEqual(summary["goiania"]["phase2_rank_balanced"], 1)
         self.assertIsNone(summary["goiania"]["phase4_routed_target_rank"])
 

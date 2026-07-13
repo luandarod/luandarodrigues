@@ -91,6 +91,9 @@ def build_dashboard_data(project_dir: Path, dashboard_dir: Path) -> None:
     pd.read_csv(src / "region_ubs_territory_summary.csv").to_csv(dst / "region_ubs_territory_summary.csv", index=False)
     pd.read_csv(src / "aps_coverage_normalized.csv").to_csv(dst / "aps_coverage_normalized.csv", index=False)
     pd.read_csv(src / "uf_ubs_aps_coverage_summary.csv").to_csv(dst / "uf_ubs_aps_coverage_summary.csv", index=False)
+    state_summary_file = src / "telemedicine_state_opportunity_summary.csv"
+    if state_summary_file.exists():
+        shutil.copy2(state_summary_file, dst / state_summary_file.name)
 
     # Pharmacy artifacts are optional until an official Farmacia Popular extract
     # has been supplied. When present, keep the GitHub Pages copy in sync.

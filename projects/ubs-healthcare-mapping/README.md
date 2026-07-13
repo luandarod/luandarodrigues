@@ -10,6 +10,7 @@ O resultado principal é um dashboard municipal e uma matriz de decisão. A leit
 
 - [Dashboard interativo](https://luandarodrigues.github.io/luandarodrigues/dashboards/ubs-healthcare-mapping/)
 - [Matriz de decisão municipal](TELEMEDICINE_DECISION_MATRIX.md)
+- [Ranking estadual de oportunidade](TELEMEDICINE_STATE_SUMMARY.md)
 - [Protocolo pré-paper](PREPAPER_TELEMEDICINE_PROTOCOL.md)
 - [Dicionário de dados](TELEMEDICINE_DATA_DICTIONARY.md)
 - [Auditoria de evolução](PROJECT_IMPROVEMENT_AUDIT.md)
@@ -24,6 +25,7 @@ O resultado principal é um dashboard municipal e uma matriz de decisão. A leit
 | Municípios com score nacional de telemedicina | 4.988 |
 | Top nacional para triagem inicial | 100 |
 | Oportunidades regionais adicionais | 395 |
+| UFs no ranking estadual | 27 |
 | Pilotos farmácia assistida roteados | 4 |
 | Registros de UBS analisados | 47.714 |
 | UBS com coordenadas válidas no Brasil | 45.782 |
@@ -74,6 +76,26 @@ Arquivo principal: `data/enriched/telemedicine_decision_matrix.csv`.
 | `insufficient_evidence` | 583 | Corrigir ou complementar dados |
 
 Cada linha traz classe, tier de ads, próxima ação recomendada, principal driver e grau de evidência. O uso em mídia deve permanecer agregado por geografia, nunca por inferência individual.
+
+## Ranking estadual
+
+O resumo estadual agrega a matriz municipal para leitura estratégica por UF.
+
+Arquivo principal: `data/enriched/telemedicine_state_opportunity_summary.csv`.
+
+Top 7 atual:
+
+| Rank | UF | Estratégia |
+| ---: | --- | --- |
+| 1 | SP | `hybrid_national_and_pharmacy_pilot` |
+| 2 | DF | `selective_city_ads` |
+| 3 | RJ | `hybrid_national_and_pharmacy_pilot` |
+| 4 | RS | `hybrid_national_and_pharmacy_pilot` |
+| 5 | GO | `national_ads_priority` |
+| 6 | PR | `national_ads_priority` |
+| 7 | MG | `national_ads_priority` |
+
+O score estadual combina intensidade e escala: score municipal ponderado por população, necessidade, prontidão digital, contagem de municípios Top 100 e população relativa. Leia a regra em [TELEMEDICINE_STATE_SUMMARY.md](TELEMEDICINE_STATE_SUMMARY.md).
 
 ## Dados usados
 
@@ -183,6 +205,7 @@ python projects/ubs-healthcare-mapping/scripts/build_phase3_routing_od_matrix.py
 python projects/ubs-healthcare-mapping/scripts/build_phase3_routing_summary.py
 python projects/ubs-healthcare-mapping/scripts/build_telemedicine_phase4_index.py
 python projects/ubs-healthcare-mapping/scripts/build_telemedicine_decision_matrix.py
+python projects/ubs-healthcare-mapping/scripts/build_telemedicine_state_summary.py
 ```
 
 Atualize os artefatos publicados:
@@ -236,9 +259,9 @@ Produto esperado: `SCOPING_REVIEW_TELEMEDICINE_ACCESS.md`.
 
 ### 2. Ranking estadual agregado
 
-Gerar resumo por UF com score médio ponderado, contagem de Top 100, contagem de classes da matriz e recomendação de experimento.
+Status: implementado em [TELEMEDICINE_STATE_SUMMARY.md](TELEMEDICINE_STATE_SUMMARY.md).
 
-Produto esperado: CSV estadual, cards no dashboard e camada “Top estados”.
+Próximo incremento visual: cards estaduais no dashboard e camada “Top estados”.
 
 ### 3. Acesso espacial avançado
 

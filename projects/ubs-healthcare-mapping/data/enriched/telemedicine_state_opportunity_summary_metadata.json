@@ -1,0 +1,41 @@
+{
+  "generated_at_utc": "2026-07-13T21:13:21.341812+00:00",
+  "summary_version": "state-opportunity-v1",
+  "source": "projects\\ubs-healthcare-mapping\\data\\enriched\\telemedicine_decision_matrix.csv",
+  "state_opportunity_score": {
+    "population_weighted_phase2_score": 0.35,
+    "population_weighted_need": 0.2,
+    "population_weighted_digital_readiness": 0.1,
+    "top100_count_scaled_to_best_state": 0.25,
+    "sqrt_population_scaled_to_largest_state": 0.1
+  },
+  "strategy_rules": {
+    "hybrid_national_and_pharmacy_pilot": "Combinar teste digital estadual com validação local dos pilotos farmácia.",
+    "national_ads_priority": "Priorizar geoexperimento digital em municípios Top 100 e medir funil por UF.",
+    "selective_city_ads": "Testar mídia apenas nos municípios líderes, sem extrapolar para todo o estado.",
+    "digital_inclusion_first": "Desenhar oferta assistida ou de baixo consumo antes de campanha digital ampla.",
+    "regional_experiment": "Usar como lista ampliada ou experimento regional controlado.",
+    "data_quality_first": "Complementar dados antes de recomendar investimento territorial.",
+    "monitor": "Manter em monitoramento até nova evidência ou atualização de dados."
+  },
+  "important_limits": [
+    "UF aggregation hides intrastate heterogeneity.",
+    "State recommendations are for geo-experiment planning, not clinical claims.",
+    "Municipal evidence remains the source of truth for local validation."
+  ],
+  "summary": {
+    "states": 27,
+    "top_state": "SP",
+    "top100_total": 100,
+    "phase4_pilot_total": 4,
+    "strategy_counts": {
+      "data_quality_first": 7,
+      "digital_inclusion_first": 2,
+      "hybrid_national_and_pharmacy_pilot": 3,
+      "monitor": 2,
+      "national_ads_priority": 3,
+      "regional_experiment": 3,
+      "selective_city_ads": 7
+    }
+  }
+}
