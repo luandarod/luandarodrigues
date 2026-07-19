@@ -2,18 +2,22 @@
 
 # Luanda Rodrigues
 
-**Data Analyst · Health Analytics · BI · SQL · Machine Learning**
+**Data Analyst | Health Analytics | BI | SQL | Machine Learning**
 
 I turn complex health, operational and public datasets into readable analysis, decision-ready dashboards, reproducible notebooks and portfolio-grade data products.
 
-[Portfolio](https://luandarodrigues-portfolio.vercel.app/) ·
-[GitLab](https://gitlab.com/luanda-rodrigues) ·
-[LinkedIn](https://www.linkedin.com/in/luanda-rodrigues) ·
+[Portfolio](https://luandarodrigues-portfolio.vercel.app/) |
+[GitLab](https://gitlab.com/luanda-rodrigues) |
+[LinkedIn](https://www.linkedin.com/in/luanda-rodrigues) |
 [Email](mailto:luandarodrigues30@gmail.com)
 
-![Line drawing of Luanda Rodrigues analytical workflow](./docs/assets/profile-line-map.svg)
-
 </div>
+
+---
+
+| messy data | audited layers | models and BI | decision-ready outputs |
+| --- | --- | --- | --- |
+| public health, operations, logistics, markets | SQL, Python, quality checks, documentation | ML validation, dashboards, notebooks, spatial analysis | reports, portfolio cases, apps, reproducible repositories |
 
 ## What I Work On
 
@@ -37,7 +41,7 @@ I turn complex health, operational and public datasets into readable analysis, d
 
 ## Stack
 
-`Python` · `SQL` · `Pandas` · `DuckDB` · `Scikit-learn` · `Power BI` · `Looker Studio` · `BigQuery` · `Snowflake` · `Databricks` · `GitLab` · `Astro`
+`Python` `SQL` `Pandas` `DuckDB` `Scikit-learn` `Power BI` `Looker Studio` `BigQuery` `Snowflake` `Databricks` `GitLab` `Astro`
 
 ## Current Direction
 
