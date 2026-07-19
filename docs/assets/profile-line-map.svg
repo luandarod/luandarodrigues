@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="260" viewBox="0 0 920 260" role="img" aria-labelledby="title desc">
+  <title id="title">Luanda Rodrigues analytical workflow</title>
+  <desc id="desc">A minimal line drawing connecting messy data, analysis, models, dashboards and decisions.</desc>
+  <rect width="920" height="260" rx="22" fill="#fafafa"/>
+  <g fill="none" stroke="#1f2937" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M90 143c42-62 99-72 164-28 47 32 84 35 128 7 59-38 109-35 155 11 50 50 114 51 179 4 39-28 77-33 114-16"/>
+    <path d="M82 173c58 28 119 23 183-15 54-31 101-36 143-13 56 31 109 29 158-5 67-47 129-48 187-5 30 22 58 31 85 27"/>
+    <circle cx="115" cy="132" r="33"/>
+    <circle cx="300" cy="112" r="30"/>
+    <circle cx="464" cy="137" r="36"/>
+    <circle cx="632" cy="126" r="31"/>
+    <circle cx="790" cy="145" r="34"/>
+    <path d="M99 121h32M99 132h21M99 143h27"/>
+    <path d="M285 126l15-29 15 29M291 116h18"/>
+    <path d="M444 151l20-38 21 38M453 138h23"/>
+    <path d="M616 139h32M616 126h21M616 113h27"/>
+    <path d="M775 153l15-35 16 35M780 141h20"/>
+    <path d="M177 70h90M653 65h132M407 207h128"/>
+    <path d="M187 83h62M665 78h94M422 220h92"/>
+  </g>
+  <g fill="#111827" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15">
+    <text x="72" y="218">messy data</text>
+    <text x="268" y="70">SQL + audit</text>
+    <text x="424" y="198">models</text>
+    <text x="594" y="70">dashboards</text>
+    <text x="748" y="218">decisions</text>
+  </g>
+  <g fill="#6b7280" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12">
+    <text x="340" y="36">health analytics · BI · machine learning · data products</text>
+  </g>
+</svg>
